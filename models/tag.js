@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Tag.associate = function (models) {
         // https://sequelize.org/master/manual/associations.html#belongsto
         // https://sequelize.org/master/class/lib/associations/belongs-to.js~BelongsTo.html
-        models.Tag.belongsTo(models.Tag_Kind);
+        models.Tag.belongsTo(models.TagKind);
     };
 
     return Tag;
