@@ -6,13 +6,24 @@ const bodyParser = require('body-parser');
 
 const routes = require('./routes/index');
 
+// miscellaneous passport things
+const passport = require('passport');
+
+// Initialize passport ( Passport is a singleton )
+require('./config/passport');
+
 const app = express();
 
+// middleware
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Passport Js must have that
+app.use(passport.initialize());
+
+// routes
 app.use('/', routes);
 
 // catch 404 and forward to error handler
