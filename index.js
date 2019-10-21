@@ -1,7 +1,7 @@
-import express from 'express';
+const express = require('express');
 // Express related imports
 const bodyParser = require("body-parser");
-const API = require("./app/api/entrypoint");
+
 
 // other node package imports
 
