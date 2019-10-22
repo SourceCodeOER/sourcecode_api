@@ -50,6 +50,11 @@ module.exports = (sequelize, DataTypes) => {
             as: "exercises",
             foreignKey: "user_id"
         });
+        // a user can evaluate exercise(s)
+        models.User.hasMany(models.Notation, {
+           as: "notations",
+           foreignKey: "user_id"
+        });
     };
 
     // This hook is called when an entry is being added to the back end.

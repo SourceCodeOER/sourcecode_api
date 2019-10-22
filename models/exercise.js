@@ -31,7 +31,12 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
             as: "tags",
             foreignKey: "exercise_id"
-        })
+        });
+        // An exercise can be evaluated multiples times
+        models.Exercise.hasMany(models.Notation, {
+            as: "notes",
+            foreignKey: "exercise_id"
+        });
     };
 
     return Exercise;

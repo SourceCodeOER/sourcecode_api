@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
     let ExerciseTag = sequelize.define("Exercise_Tag", {
-        // TODO au cas ou il faudrait des attributs ( mais à priori non ;) )
+        // if we need another fields ( but probably not )
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
         timestamps: false,
