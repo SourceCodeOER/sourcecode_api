@@ -3,7 +3,6 @@
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
-    // TODO more fields ^^
     let User = sequelize.define('User', {
         username: {
             type: DataTypes.STRING,
@@ -53,6 +52,11 @@ module.exports = (sequelize, DataTypes) => {
         // a user can evaluate exercise(s)
         models.User.hasMany(models.Notation, {
            as: "notations",
+           foreignKey: "user_id"
+        });
+        // a user can possess configuration so that she/he didn't have to remember all her/his filters
+        models.User.hasMany(models.Configuration, {
+           as: "configurations",
            foreignKey: "user_id"
         });
     };

@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
             as: "exercises",
             foreignKey: "tag_id"
+        });
+        // a Tag can be used in multiple configurations
+        models.Tag.belongsToMany(models.Configuration, {
+            through: models.Configuration_Tag,
+            foreignKey: "tag_id"
         })
     };
 
