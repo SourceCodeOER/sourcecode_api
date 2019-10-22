@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.associate = function (models) {
-        // un utilisateur peut poster plusieurs exercises
+        // a user can post multiple exercises
         models.User.hasMany(models.Exercise, {
             as: "exercises",
             foreignKey: "user_id"

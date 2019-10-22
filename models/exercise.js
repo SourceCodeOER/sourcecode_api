@@ -2,8 +2,13 @@
 
 module.exports = (sequelize, DataTypes) => {
     let Exercise = sequelize.define('Exercise', {
+        title : {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         description: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue: ""
         }
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration

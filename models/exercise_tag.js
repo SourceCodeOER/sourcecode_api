@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
         timestamps: false,
+        tableName: "Exercises_Tags"
     });
 
     return ExerciseTag;
