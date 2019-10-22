@@ -2,7 +2,10 @@
 // Par example "fill the code", "easy", "java"
 module.exports = (sequelize, DataTypes) => {
     let Tag = sequelize.define("Tag", {
-        text: DataTypes.STRING,
+        text: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         isValidated: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -18,9 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Tag.associate = function (models) {
-        // https://sequelize.org/master/manual/associations.html#belongsto
-        // https://sequelize.org/master/class/lib/associations/belongs-to.js~BelongsTo.html
+        // a Tag must have a TagKind ( Category )
         models.Tag.belongsTo(models.TagKind);
+        // a Tag can be used in multiple exercises
+        models.Tag.belongsToMany(models.Exercise, {
+            through: models.Exercise_Tag,
+            timestamps: false,
+            as: "exercises"
+        })
     };
 
     return Tag;

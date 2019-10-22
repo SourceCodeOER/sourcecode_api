@@ -1,14 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     let TagKind = sequelize.define("TagKind", {
-        kind: DataTypes.ENUM([
-            "programming_language",
-            "difficulty" ,
-            "exercise_type",
-            "plateform",
-            "topics",
-            "organisation"
-        ])
+        kind: {
+            type: DataTypes.ENUM([
+                "programming_language",
+                "difficulty" ,
+                "exercise_type",
+                "plateform",
+                "topics",
+                "organisation"
+            ]),
+            allowNull: false
+        }
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
 

@@ -8,12 +8,19 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: false
         },
         password: {
             type: DataTypes.STRING,
+            allowNull: false
         },
         fullName: {
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        role: {
+            type: DataTypes.ENUM("admin", "user"),
+            allowNull: false
         }
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
@@ -38,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.associate = function (models) {
-        // TODO
+        // un utilisateur peut poster plusieurs exercises
+        models.User.hasMany(models.Exercise, {as: "exercises"});
     };
 
     // This hook is called when an entry is being added to the back end.
