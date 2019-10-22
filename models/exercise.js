@@ -16,12 +16,16 @@ module.exports = (sequelize, DataTypes) => {
 
     Exercise.associate = function (models) {
         // An exercise is linked to a User
-        models.Exercise.belongsTo(models.User, {as: "creator"});
+        models.Exercise.belongsTo(models.User, {
+            as: "creator",
+            foreignKey: "user_id"
+        });
         // An exercise could have multiple tags
         models.Exercise.belongsToMany(models.Tag, {
             through: models.Exercise_Tag,
             timestamps: false,
-            as: "tags"
+            as: "tags",
+            foreignKey: "exercise_id"
         })
     };
 

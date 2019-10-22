@@ -22,12 +22,16 @@ module.exports = (sequelize, DataTypes) => {
 
     Tag.associate = function (models) {
         // a Tag must have a TagKind ( Category )
-        models.Tag.belongsTo(models.TagKind);
+        models.Tag.belongsTo(models.Tag_Kind, {
+            as: "category",
+            foreignKey: "category_id"
+        });
         // a Tag can be used in multiple exercises
         models.Tag.belongsToMany(models.Exercise, {
             through: models.Exercise_Tag,
             timestamps: false,
-            as: "exercises"
+            as: "exercises",
+            foreignKey: "tag_id"
         })
     };
 

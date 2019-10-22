@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    let TagKind = sequelize.define("TagKind", {
+    let TagKind = sequelize.define("Tag_Kind", {
         kind: {
             type: DataTypes.ENUM([
                 "programming_language",
@@ -22,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     TagKind.associate = function (models) {
         // https://sequelize.org/master/manual/associations.html#hasmany---belongstomany-association
         // https://sequelize.org/master/class/lib/associations/has-many.js~HasMany.html
-        models.TagKind.hasMany(models.Tag);
+        models.Tag_Kind.hasMany(models.Tag, {
+            as: "tags",
+            foreignKey: "category_id"
+        });
     };
 
     return TagKind;

@@ -46,7 +46,10 @@ module.exports = (sequelize, DataTypes) => {
 
     User.associate = function (models) {
         // un utilisateur peut poster plusieurs exercises
-        models.User.hasMany(models.Exercise, {as: "exercises"});
+        models.User.hasMany(models.Exercise, {
+            as: "exercises",
+            foreignKey: "user_id"
+        });
     };
 
     // This hook is called when an entry is being added to the back end.
