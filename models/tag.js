@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Tag.associate = function (models) {
-        // a Tag must have a TagKind ( Category )
-        models.Tag.belongsTo(models.Tag_Kind, {
+        // a Tag must have a Tag Category
+        models.Tag.belongsTo(models.Tag_Category, {
             as: "category",
             foreignKey: {
                 name: "category_id",

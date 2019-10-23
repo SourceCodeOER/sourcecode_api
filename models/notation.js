@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     let Notation = sequelize.define('Notation', {
         // no need for more ; as notes are usually between 0 and 5
         note: {
-            type: DataTypes.FLOAT(1,2),
+            type: DataTypes.DECIMAL(3,2),
             allowNull: false
         }
     }, {
