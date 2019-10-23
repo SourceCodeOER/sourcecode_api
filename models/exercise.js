@@ -23,7 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         // An exercise is linked to a User
         models.Exercise.belongsTo(models.User, {
             as: "creator",
-            foreignKey: "user_id"
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            }
         });
         // An exercise could have multiple tags
         models.Exercise.belongsToMany(models.Tag, {
@@ -35,7 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         // An exercise can be evaluated multiples times
         models.Exercise.hasMany(models.Notation, {
             as: "notes",
-            foreignKey: "exercise_id"
+            foreignKey: {
+                name: "exercise_id",
+                allowNull: false
+            }
         });
     };
 

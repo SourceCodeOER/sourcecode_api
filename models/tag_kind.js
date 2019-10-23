@@ -23,7 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         // A Tag_Kind can be used in multiple tags
         models.Tag_Kind.hasMany(models.Tag, {
             as: "tags",
-            foreignKey: "category_id"
+            foreignKey: {
+                name: "category_id",
+                allowNull: false
+            }
         });
     };
 

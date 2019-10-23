@@ -47,31 +47,40 @@ module.exports = (sequelize, DataTypes) => {
         // a user can post multiple exercises
         models.User.hasMany(models.Exercise, {
             as: "exercises",
-            foreignKey: "user_id"
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            }
         });
         // a user can evaluate exercise(s)
         models.User.hasMany(models.Notation, {
-           as: "notations",
-           foreignKey: "user_id"
+            as: "notations",
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            }
         });
         // a user can possess configuration so that she/he didn't have to remember all her/his filters
         models.User.hasMany(models.Configuration, {
-           as: "configurations",
-           foreignKey: "user_id"
+            as: "configurations",
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            }
         });
     };
 
     // This hook is called when an entry is being added to the back end.
     // This method is used to hash the password before storing it in our database.
-    User.addHook('beforeCreate', function(user, options) {
+    User.addHook('beforeCreate', function (user, options) {
         const SALT_WORK_FACTOR = 10;
-        bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-            if(err) {
+        bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+            if (err) {
                 return Promise.reject(err);
             }
             // generate salt.
-            bcrypt.hash(user.password, salt, null, function(err, hash) {
-                if(err) {
+            bcrypt.hash(user.password, salt, null, function (err, hash) {
+                if (err) {
                     return Promise.reject(err);
                 }
                 // replace the password with the hash and pass on the user object to whoever should require it.

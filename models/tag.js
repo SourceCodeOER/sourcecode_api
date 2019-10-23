@@ -24,7 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         // a Tag must have a TagKind ( Category )
         models.Tag.belongsTo(models.Tag_Kind, {
             as: "category",
-            foreignKey: "category_id"
+            foreignKey: {
+                name: "category_id",
+                allowNull: false
+            }
         });
         // a Tag can be used in multiple exercises
         models.Tag.belongsToMany(models.Exercise, {
