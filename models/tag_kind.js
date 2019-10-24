@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     let TagKind = sequelize.define("Tag_Category", {
         kind: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         }
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
