@@ -46,13 +46,15 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row
-    Exercise.addHook("afterCreate", "auto_create_exercise_metrics", function(exercise, _) {
+    Exercise.addHook("afterCreate", "auto_create_exercise_metrics", function(exercise, options) {
         exercise
             .sequelize
             .models
             .Exercise_Metrics
             .create({
                exercise_id:  exercise.id
+            }, {
+                transaction: options.transaction
             });
     });
 

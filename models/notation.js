@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     
     // common function for hooks
     function exercise_metrics_hookFct(kind) {
-        return function (notation, _) {
+        return function (notation, options) {
             // find the Exercise_Metrics related to this exercise with the AVG computed
             notation
                 .sequelize
@@ -50,7 +50,8 @@ module.exports = (sequelize, DataTypes) => {
                             vote_count: new_vote_count,
                             avg_vote_score: exercise_metrics.vote_score
                         }, {
-                            where: {id: exercise_metrics.id}
+                            where: {id: exercise_metrics.id},
+                            transaction: options.transaction
                         });
 
                 })

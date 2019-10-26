@@ -9,7 +9,10 @@ const models = require('../models');
 
 // https://github.com/zapstar/node-sequelize-passport
 // To get a JWT Token
-passport.use(new LocalStrategy(function(email, password, done) {
+passport.use(new LocalStrategy({
+    usernameField: "email",
+    passwordField: "password"
+},function(email, password, done) {
     models.User
         .find({ where: { email: email } })
         .then(function(user) { // successful query to database
