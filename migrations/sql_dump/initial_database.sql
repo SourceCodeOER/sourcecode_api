@@ -119,6 +119,7 @@ CREATE TABLE exercises_library."Exercises_Metrics" (
     id integer NOT NULL,
     vote_count integer DEFAULT 0 NOT NULL,
     avg_vote_score numeric(3,2) DEFAULT 0 NOT NULL,
+    tags_ids integer[] NOT NULL DEFAULT ARRAY[]::integer[],
     exercise_id integer NOT NULL
 );
 
