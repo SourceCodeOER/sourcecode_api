@@ -4,9 +4,11 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 // for sign in
-router.post('/signIn',
-    passport.authenticate('local'),
-    function(req, res) {
+router.post('/login',
+    passport.authenticate('local', {
+        failWithError: true
+    }),
+    function(req, res, next) {
         // For more information : http://www.passportjs.org/docs/authenticate/
         // `req.user` contains the authenticated user.
         res.json({
@@ -22,3 +24,4 @@ router.post('/signIn',
 
 // for register
 // TODO
+module.exports = router;

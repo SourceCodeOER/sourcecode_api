@@ -36,8 +36,7 @@ app.use(function(req, res, next) {
 // error handler
 // no stacktraces leaked to user unless in development environment
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
+    res.status(err.status || 500).json({
         message: err.message,
         error: (app.get('env') === 'development') ? err : {}
     });
