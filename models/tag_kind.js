@@ -2,15 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
     let TagKind = sequelize.define("Tag_Category", {
         kind: {
-            type: DataTypes.ENUM([
-                "programming_language",
-                "difficulty" ,
-                "exercise_type",
-                "plateform",
-                "topics",
-                "organisation"
-            ]),
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
         }
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
