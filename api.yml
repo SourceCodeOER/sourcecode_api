@@ -141,9 +141,9 @@ components:
             - createdAt
             - updatedAt
 # For search / get context, we have other fields (in addition of the AlreadyPresentExerciseModel )
-    SearchableExercise:
+    SearchableExerciseModel:
       allOf:
-        - $ref: '#/components/schemas/AlreadyPresentExerciseModel'
+        - $ref: "#/components/schemas/AlreadyPresentExerciseModel"
         - type: object
           properties:
             metrics:
@@ -161,8 +161,15 @@ components:
               required:
                 - vote_count
                 - avg_vote_score
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/TagWithCategory'
+# Each exercise has a least one tag
+              minItems: 1
           required:
             - metrics
+            - tags
 # A Tag Category
     Tag_Category:
       type: object
@@ -228,7 +235,28 @@ components:
       required:
         - text
         - category
-# When we want to upload a new exercise,  
+# When we want to upload a new exercise, we need other fields for that
+    ExerciseForm:
+      allOf:
+        - $ref: "#/components/schemas/BasicExerciseModel"
+        - type: object
+          properties:
+            official_tags:
+              type: array
+              items:
+                type: integer
+                description: "A Tag ID"
+              description: "Array of Integer that contains ID of already existent tags in database"
+# We must always put at least one tag in the database
+              minItems: 1
+            not_official_tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/NotOfficialTag'
+# Optional but if we use that, we must have at least a Tag
+              minItems: 1
+          required:
+            - official_tags
 # 1) Define the security scheme type (HTTP bearer)
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
