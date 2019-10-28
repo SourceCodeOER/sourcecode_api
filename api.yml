@@ -1,0 +1,241 @@
+openapi: 3.0.0
+info:
+  description: "API for exercises library"
+  version: "1.0.0"
+  title: "Exercises Library"
+  license:
+    name: "MIT"
+    url: "https://choosealicense.com/licenses/mit/"
+
+# Pas utile pour l'instant mais c'est mieux pour après
+servers:
+  - url: http://api.example.com/v1
+    description: Optional server description, e.g. Main (production) server
+  - url: http://staging-api.example.com
+    description: Optional server description, e.g. Internal staging server for testing
+
+paths:
+  /auth/login:
+    post:
+      summary: "Logs user into the system"
+      responses:
+        '200':
+          description: A JSON containing the JWT Token under the token key
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JWTToken"
+        '400':
+          description: "Bad Request (missing email / password)"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
+        '401':
+          description: "Unauthorized (wrong email / password)"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
+  /auth/register:
+    post:
+      summary: "Creates a new user into the system"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Auth"
+      responses:
+        '200':
+          description: OK
+        '409':
+          description: "Conflit : already a user with the same email"
+  /api/create_exercise:
+    post:
+      summary: "Creates a new exercise into the system"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Exercise"
+
+components:
+  schemas:
+    JWTToken:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The JWT Token
+      required:
+        - token
+    ErrorObject:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The error message
+        error:
+          type: object
+          description: "Full error object (only on developpment environnement)"
+      required:
+        - message
+    Auth:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "jy95@perdu.com"
+        passport:
+          type: string
+          format: password
+          example: "42"
+      required:
+        - email
+        - passport
+# Basic model of a Exercise 
+    BasicExerciseModel:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "A Super Exercise"
+          description: "The title of this exercise"
+        description:
+          type: string
+          example: "..."
+          description: "The preamble of this exercise"
+      required:
+        - title
+        - description
+# If already in database, we have other fields (in addition of the basic Model)
+    AlreadyPresentExerciseModel:
+      allOf:
+        - $ref: '#/components/schemas/BasicExerciseModel'
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 42
+              description: "The Id of this exercise"
+            version:
+              type: integer
+              example: 42
+              description: "The version of this exercise (optimistic lock)"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2019-10-26 21:46:02.325+02"
+              description: "Date of creation of this exercise"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2019-10-26 21:46:02.325+02"
+              description: "Date of the latest update of this exercise"
+          required:
+            - id
+            - version
+            - createdAt
+            - updatedAt
+# For search / get context, we have other fields (in addition of the AlreadyPresentExerciseModel )
+    SearchableExercise:
+      allOf:
+        - $ref: '#/components/schemas/AlreadyPresentExerciseModel'
+        - type: object
+          properties:
+            metrics:
+              type: object
+              properties:
+                vote_count:
+                  type: integer
+                  example: 42
+                  description: "Number of votes for this exercise"
+                avg_vote_score:
+                  type: number
+                  format: double
+                  example: 5.0
+                  description: "The average score of this exercise"
+              required:
+                - vote_count
+                - avg_vote_score
+          required:
+            - metrics
+# A Tag Category
+    Tag_Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+          description: "The Id of this Tag_Category"
+        kind:
+          type: string
+          example: "difficulty"
+          description: "The text of this Tag_Category"
+      required:
+        - id
+        - kind
+# A Tag
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+          description: "The Id of this Tag"
+        text:
+          type: string
+          example: "easy"
+          description: "The text of this Tag"
+      required:
+        - id
+        - text
+# Tag with category (for /search)
+    TagWithCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+          description: "The Id of this Tag"
+        text:
+          type: string
+          example: "easy"
+          description: "The text of this Tag"
+        kind:
+          type: string
+          example: "difficulty"
+          description: "The text of the Tag Category linked with this tag"
+      required:
+        - id
+        - text
+        - kind
+# When the user wants to create new tag that isn't validated
+    NotOfficialTag:
+      type: object
+      properties:
+        text:
+          type: string
+          example: "Dafny"
+          description: "The text of this not-official Tag"
+        category:
+          type: integer
+          example: 42
+          description: "The Tag_Category ID for this not-official Tag"
+      required:
+        - text
+        - category
+# When we want to upload a new exercise,  
+# 1) Define the security scheme type (HTTP bearer)
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+
+# 2) Apply the security globally to all operations
+#security:
+#  - bearerAuth: []         # use the same name as above
