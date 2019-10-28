@@ -5,7 +5,7 @@ const passportJWT = require('passport-jwt');
 const ExtractJWT = passportJWT.ExtractJwt;
 const JWTStrategy = passportJWT.Strategy;
 
-const models = require('../models');
+const models = require('../models/index');
 
 // https://github.com/zapstar/node-sequelize-passport
 // To get a JWT Token
@@ -14,7 +14,7 @@ passport.use(new LocalStrategy({
     passwordField: "password"
 },function(email, password, done) {
     models.User
-        .find({ where: { email: email } })
+        .findOne({ where: { email: email } })
         .then(function(user) { // successful query to database
             if(!user) {
                 return done(null, false, { message: 'Unknown user ' + email });

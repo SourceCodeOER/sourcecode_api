@@ -24,24 +24,23 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
         timestamps: false,
-        classMethods: {
-            // Class method User.comparePassword() to compare hash vs provided password
-            comparePassword: function (password, hash, callback) {
-                // if bcrypt.compare() succeeds it'll call our function
-                // with (null, true), if password doesn't match it calls our function
-                // with (null, false), if it errors out it calls our function
-                // with (err, null)
-                bcrypt.compare(password, hash, function (err, isMatch) {
-                    if (err) {
-                        return callback(err, null);
-                    } else {
-                        callback(null, isMatch);
-                    }
-                });
-
-            }
-        }
     });
+
+    // Class method User.comparePassword() to compare hash vs provided password
+    User.comparePassword = function (password, hash, callback) {
+        // if bcrypt.compare() succeeds it'll call our function
+        // with (null, true), if password doesn't match it calls our function
+        // with (null, false), if it errors out it calls our function
+        // with (err, null)
+        bcrypt.compare(password, hash, function (err, isMatch) {
+            if (err) {
+                return callback(err, null);
+            } else {
+                callback(null, isMatch);
+            }
+        });
+
+    };
 
     User.associate = function (models) {
         // a user can post multiple exercises
