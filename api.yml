@@ -59,8 +59,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Exercise"
-
+              $ref: "#/components/schemas/ExerciseForm"
+      responses:
+        '200':
+          description: OK
+  /api/exercises/{id}:
+    get:
+      summary: "Retrieve this specific exercise data"
+      parameters:
+        - name: id
+          in: path
+          description: "The exercise ID"
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Exercise data inside a JSON"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchableExerciseModel"
+        '404':
+          description: "Exercise not found"
 components:
   schemas:
     JWTToken:
