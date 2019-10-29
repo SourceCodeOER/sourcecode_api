@@ -88,7 +88,7 @@ paths:
                 $ref: "#/components/schemas/SearchableExerciseModel"
         '404':
           description: "Exercise not found"
-    post:
+    put:
       summary: "Update this specific exercise data"
       parameters:
         - name: id
@@ -129,7 +129,49 @@ paths:
                   $ref: "#/components/examples/searchExample1"
                 searchExample2:
                   $ref: "#/components/examples/searchExample2"
-  
+  /api/tags:
+    get:
+      summary: "Retrieve tags"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/CommonCriterias"
+                - type: object
+                  properties:
+                    onlyValidated:
+                      type: boolean
+                      description: "If true, only consider validated tags by admins. If false, only not validated tags"
+                      default: true
+      responses:
+        '200':
+          description: "An array of tags"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TagWithCategory"
+  /api/tags_categories:
+    get:
+      summary: "Retrieve Tag categories"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommonCriterias"
+      responses:
+        '200':
+          description: "An array of tag categories"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tag_Category"
 components:
   schemas:
     JWTToken:
@@ -269,41 +311,18 @@ components:
       required:
         - id
         - text
-# Tag with category (for /search)
+# Tag with category
     TagWithCategory:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 42
-          description: "The Id of this Tag"
-        text:
-          type: string
-          example: "easy"
-          description: "The text of this Tag"
-        kind:
-          type: string
-          example: "difficulty"
-          description: "The text of the Tag Category linked with this tag"
-      required:
-        - id
-        - text
-        - kind
-# When the user wants to create new tag that isn't validated
-    NotOfficialTag:
-      type: object
-      properties:
-        text:
-          type: string
-          example: "Dafny"
-          description: "The text of this not-official Tag"
-        category:
-          type: integer
-          example: 42
-          description: "The Tag_Category ID for this not-official Tag"
-      required:
-        - text
-        - category
+      allOf:
+        - $ref: "#/components/schemas/Tag"
+        - type: object
+          properties:
+            kind:
+              type: string
+              example: "difficulty"
+              description: "The text of the Tag Category linked with this tag"
+          required:
+            - kind
 # When we want to upload a new exercise, we need other fields for that
     ExerciseForm:
       allOf:
@@ -316,8 +335,7 @@ components:
                 type: integer
                 description: "A Tag ID"
               description: "Array of Integer that contains ID of already existent tags in database"
-# We must always put at least one tag in the database
-              minItems: 1
+              minItems: 1 # We must always put at least one tag in the database
           required:
             - tags
 # When we want to update a already existent exercise, we also need the version
