@@ -82,6 +82,42 @@ paths:
                 $ref: "#/components/schemas/SearchableExerciseModel"
         '404':
           description: "Exercise not found"
+    post:
+      summary: "Update this specific exercise data"
+      parameters:
+        - name: id
+          in: path
+          description: "The exercise ID"
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExerciseUpdateForm"
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: "Exercise not found"
+  /search:
+    post:
+      summary: "Search exercises that matches criteria"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ""
+      responses:
+        '200':
+          description: "An object that contains the results and additionnal information"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResult"
 components:
   schemas:
     JWTToken:
@@ -278,6 +314,34 @@ components:
               minItems: 1
           required:
             - official_tags
+# When we want to update a already existent exercise, we also need the version
+    ExerciseUpdateForm:
+      allOf:
+        - $ref: "#/components/schemas/ExerciseForm"
+        - type: object
+          properties:
+            version:
+              type: integer
+              description: "The version of this exercise (optimistic lock)"
+              example: 42
+          required:
+            - version
+# Result after a call to /search
+    SearchResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: "How much exercises match the given criterias"
+          example: 42
+        rows:
+          type: array
+          items:
+            $ref: "#/components/schemas/SearchableExerciseModel" 
+            description: "An array of exercise data"
+      required:
+        - count
+        - rows
 # 1) Define the security scheme type (HTTP bearer)
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
