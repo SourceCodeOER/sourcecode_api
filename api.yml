@@ -129,6 +129,7 @@ paths:
                   $ref: "#/components/examples/searchExample1"
                 searchExample2:
                   $ref: "#/components/examples/searchExample2"
+  
 components:
   schemas:
     JWTToken:
@@ -309,7 +310,7 @@ components:
         - $ref: "#/components/schemas/BasicExerciseModel"
         - type: object
           properties:
-            official_tags:
+            tags:
               type: array
               items:
                 type: integer
@@ -317,14 +318,8 @@ components:
               description: "Array of Integer that contains ID of already existent tags in database"
 # We must always put at least one tag in the database
               minItems: 1
-            not_official_tags:
-              type: array
-              items:
-                $ref: '#/components/schemas/NotOfficialTag'
-# Optional but if we use that, we must have at least a Tag
-              minItems: 1
           required:
-            - official_tags
+            - tags
 # When we want to update a already existent exercise, we also need the version
     ExerciseUpdateForm:
       allOf:
@@ -353,8 +348,8 @@ components:
       required:
         - count
         - rows
-# Search criteria
-    SearchCriterias:
+# Common criteria ( for pagination )
+    CommonCriterias:
       type: object
       properties:
         limit:
@@ -365,25 +360,30 @@ components:
           type: integer
           description: "Number of items we want to skip (useful with limit for pagination)"
           example: 42
-        title:
-          type: string
-          description: "Something we want to find inside the title of exercises"
-          example: "SINF2MS"
-        tags:
-          type: array
-          items:
-            oneOf:
-              - type: integer
-                format: int32
-                example: 1
-              - type: array
-                items:
-                  type: integer
-                  format: int32
-# Not allowing empty array if we use
-                minItems: 1 
-          description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
-          example: [-1, [2, 3]]
+# Search criteria
+    SearchCriterias:
+      allOf:
+        - $ref: '#/components/schemas/CommonCriterias'
+        - type: object
+          properties:
+            title:
+              type: string
+              description: "Something we want to find inside the title of exercises"
+              example: "SINF2MS"
+            tags:
+              type: array
+              items:
+                oneOf:
+                  - type: integer
+                    format: int32
+                    example: 1
+                  - type: array
+                    items:
+                      type: integer
+                      format: int32
+                    minItems: 1 # Not allowing empty array if we use
+              description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
+              example: [-1, [2, 3]]
 # 1) Define the security scheme type (HTTP bearer)
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
