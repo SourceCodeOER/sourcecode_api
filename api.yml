@@ -18,6 +18,12 @@ paths:
   /auth/login:
     post:
       summary: "Logs user into the system"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Auth"
       responses:
         '200':
           description: A JSON containing the JWT Token under the token key
@@ -102,7 +108,7 @@ paths:
           description: OK
         '404':
           description: "Exercise not found"
-  /search:
+  /api/search:
     post:
       summary: "Search exercises that matches criteria"
       requestBody:
