@@ -118,6 +118,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResult"
+              examples:
+                searchExample1:
+                  $ref: "#/components/examples/searchExample1"
+                searchExample2:
+                  $ref: "#/components/examples/searchExample2"
 components:
   schemas:
     JWTToken:
@@ -364,6 +369,7 @@ components:
             oneOf:
               - type: integer
                 format: int32
+                example: 1
               - type: array
                 items:
                   type: integer
@@ -371,6 +377,7 @@ components:
 # Not allowing empty array if we use
                 minItems: 1 
           description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
+          example: [-1, [2, 3]]
 # 1) Define the security scheme type (HTTP bearer)
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -381,3 +388,19 @@ components:
 # 2) Apply the security globally to all operations
 #security:
 #  - bearerAuth: []         # use the same name as above
+
+  examples:
+# Examples for /search
+    searchExample1:
+      description: "Search the first 10 exercises that have 'Java' in their title and have some specific tags ( 1 AND (2 OR 3 OR 4) )"
+      value:
+        limit: 10
+        title: "Java"
+        tags: [1, [2, 3, 4]]
+    searchExample2:
+      description: "Search the 5 other exercises that have 'Java' in their title but with specific tags ( (NOT 1) AND (2 OR 3)  )"
+      value:
+        limit: 10
+        offset: 5
+        title: "Java"
+        tags: [-1, [2, 3]]
