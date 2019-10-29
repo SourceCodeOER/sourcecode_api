@@ -110,7 +110,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ""
+              $ref: "#/components/schemas/SearchCriterias"
       responses:
         '200':
           description: "An object that contains the results and additionnal information"
@@ -342,6 +342,35 @@ components:
       required:
         - count
         - rows
+# Search criteria
+    SearchCriterias:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: "Maximal number of items we want to retrieve"
+          example: 42
+        offset:
+          type: integer
+          description: "Number of items we want to skip (useful with limit for pagination)"
+          example: 42
+        title:
+          type: string
+          description: "Something we want to find inside the title of exercises"
+          example: "SINF2MS"
+        tags:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+                format: int32
+              - type: array
+                items:
+                  type: integer
+                  format: int32
+# Not allowing empty array if we use
+                minItems: 1 
+          description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
 # 1) Define the security scheme type (HTTP bearer)
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
