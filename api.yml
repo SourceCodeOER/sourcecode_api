@@ -117,6 +117,11 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/SearchCriterias"
+            examples:
+              searchExample1:
+                $ref: "#/components/examples/searchExample1"
+              searchExample2:
+                $ref: "#/components/examples/searchExample2"            
       responses:
         '200':
           description: "An object that contains the results and additionnal information"
@@ -124,11 +129,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResult"
-              examples:
-                searchExample1:
-                  $ref: "#/components/examples/searchExample1"
-                searchExample2:
-                  $ref: "#/components/examples/searchExample2"
   /api/tags:
     get:
       summary: "Retrieve tags"
@@ -356,11 +356,29 @@ components:
     SearchResult:
       type: object
       properties:
-        count:
-          type: integer
-          description: "How much exercises match the given criterias"
-          example: 42
-        rows:
+        metadata:
+          type: object
+          description: "Fields for pagination"
+          properties:
+            currentPage:
+              type: integer
+              example: 1
+              description: "Current number of page"
+              default: 1
+            totalItems:
+              type: integer
+              example: 42
+              description: "How much exercises match the given criterias"
+            totalPages:
+              type: integer
+              example: 5
+              description: "How much pages of exercises match the given criterias"
+            pageSize:
+              type: integer
+              example: 10
+              default: 10
+              description: "How many entries of exercises on each page"
+        data:
           type: array
           items:
             $ref: "#/components/schemas/SearchableExerciseModel" 
@@ -382,9 +400,25 @@ components:
           example: 42
 # Search criteria
     SearchCriterias:
-      allOf:
-        - $ref: '#/components/schemas/CommonCriterias'
-        - type: object
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: "Fields for pagination"
+          properties:
+            page:
+              type: integer
+              description: "Page number (start at 1)"
+              default: 1
+              example: 1
+            size:
+              type: integer
+              description: "Number of items by page"
+              default: 10
+              example: 10
+        data:
+          type: object
+          description: "Search criterias"
           properties:
             title:
               type: string
@@ -420,13 +454,15 @@ components:
     searchExample1:
       description: "Search the first 10 exercises that have 'Java' in their title and have some specific tags ( 1 AND (2 OR 3 OR 4) )"
       value:
-        limit: 10
-        title: "Java"
-        tags: [1, [2, 3, 4]]
+        data:
+          title: "Java"
+          tags: [1, [2, 3, 4]]
     searchExample2:
-      description: "Search the 5 other exercises that have 'Java' in their title but with specific tags ( (NOT 1) AND (2 OR 3)  )"
+      description: "Search the exercises on page 2 that have 'Java' in their title but with specific tags ( (NOT 1) AND (2 OR 3)  )"
       value:
-        limit: 10
-        offset: 5
-        title: "Java"
-        tags: [-1, [2, 3]]
+        metadata:
+          page: 2
+          size: 10
+        data:
+          title: "Java"
+          tags: [-1, [2, 3]]
