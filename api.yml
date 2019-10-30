@@ -132,19 +132,20 @@ paths:
   /api/tags:
     get:
       summary: "Retrieve tags"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              allOf:
-                - $ref: "#/components/schemas/CommonCriterias"
-                - type: object
-                  properties:
-                    onlyValidated:
-                      type: boolean
-                      description: "If true, only consider validated tags by admins. If false, only not validated tags"
-                      default: true
+      parameters:
+        - in: query
+          style: form
+          name: settings
+          explode: true
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/CommonCriterias"
+              - type: object
+                properties:
+                  onlyValidated:
+                    type: boolean
+                    description: "If true, only consider validated tags by admins. If false, only not validated tags"
+                    default: true
       responses:
         '200':
           description: "An array of tags"
@@ -157,12 +158,13 @@ paths:
   /api/tags_categories:
     get:
       summary: "Retrieve Tag categories"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CommonCriterias"
+      parameters:
+        - in: query
+          style: form
+          name: settings
+          explode: true
+          schema:
+            $ref: "#/components/schemas/CommonCriterias"
       responses:
         '200':
           description: "An array of tag categories"
