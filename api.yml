@@ -155,6 +155,28 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TagWithCategory"
+    post:
+      summary: "Submit a tag proposal"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TagProposal"
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: "Validate or modify a Tag"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TagFull"
+      responses:
+        '200':
+          description: OK
   /api/tags_categories:
     get:
       summary: "Retrieve Tag categories"
@@ -325,6 +347,43 @@ components:
               description: "The text of the Tag Category linked with this tag"
           required:
             - kind
+# Tag proposal
+    TagProposal:
+      type: object
+      properties:
+        text:
+          type: string
+          example: "easy"
+          description: "The text of this Tag"
+        category_id:
+          type: integer
+          example: 42
+          description: "the category id to which it is related"
+      required:
+        - text
+        - category_id
+# Tag updated / validated
+    TagFull:
+      allOf:
+        - $ref: "#/components/schemas/Tag"
+        - type: object
+          properties:
+            category_id:
+              type: integer
+              example: 42
+              description: "the category id to which it is related"
+            isValidated:
+              type: boolean
+              example: false
+              description: "Is this tag validated or not"
+            version:
+              type: integer
+              description: "The version of this exercise (optimistic lock)"
+              example: 42 
+          required:
+            - category_id
+            - isValidated
+            - version
 # When we want to upload a new exercise, we need other fields for that
     ExerciseForm:
       allOf:
