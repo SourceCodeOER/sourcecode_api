@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    let TagKind = sequelize.define("Tag_Category", {
+    let Tag_Category = sequelize.define("Tag_Category", {
         kind: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false
     });
 
-    TagKind.associate = function (models) {
+    Tag_Category.associate = function (models) {
         // A Tag_Category can be used in multiple tags
         models.Tag_Category.hasMany(models.Tag, {
             as: "tags",
