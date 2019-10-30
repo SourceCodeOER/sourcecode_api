@@ -224,13 +224,13 @@ components:
           type: string
           format: email
           example: "jy95@perdu.com"
-        passport:
+        password:
           type: string
           format: password
           example: "42"
       required:
         - email
-        - passport
+        - password
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object

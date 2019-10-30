@@ -9,6 +9,10 @@ const routes = require('./routes/index');
 // miscellaneous passport things
 const passport = require('passport');
 
+// OpenAPI V3 validation middleware
+const OpenApiValidator = require('express-openapi-validator').OpenApiValidator;
+const spec = path.join(__dirname, 'api.yml');
+
 // Initialize passport ( Passport is a singleton )
 require('./config/passport');
 
@@ -19,6 +23,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// API validation before routes and password.js
+// Install the OpenApiValidator on your express app
+new OpenApiValidator({
+    apiSpec: spec,
+    validateRequests: true,
+    validateResponses: false,
+    // securityHandlers: {
+    //   ApiKeyAuth: (req, scopes, schema) => true,
+    // },
+}).install(app);
 
 // Passport Js must have that
 app.use(passport.initialize());
@@ -36,10 +51,23 @@ app.use(function(req, res, next) {
 // error handler
 // no stacktraces leaked to user unless in development environment
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500).json({
-        message: err.message,
-        error: (app.get('env') === 'development') ? err : {}
-    });
+
+    // if error thrown by validation, give everything
+    if (err.hasOwnProperty("errors")) {
+
+        res.status(err.status || 500).json({
+            message: err.message,
+            errors: err.errors
+        })
+
+    } else {
+        // default behaviour
+        res.status(err.status || 500).json({
+            message: err.message,
+            error: (app.get('env') === 'development') ? err : {}
+        });
+    }
+
 });
 
 
