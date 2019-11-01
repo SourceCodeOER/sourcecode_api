@@ -62,21 +62,13 @@ app.use(function(req, res, next) {
 // no stacktraces leaked to user unless in development environment
 app.use(function(err, req, res, next) {
 
-    // if error thrown by validation, give everything
-    if (err.hasOwnProperty("errors")) {
-
-        res.status(err.status || 500).json({
-            message: err.message,
-            errors: err.errors
-        })
-
-    } else {
-        // default behaviour
-        res.status(err.status || 500).json({
-            message: err.message,
-            error: (app.get('env') === 'development') ? err : {}
-        });
-    }
+    // if error thrown by validation, give everything else depending of the environment
+    res.status(err.status || 500).json({
+        message: err.message,
+        errors: err.hasOwnProperty("errors")
+            ? err.errors
+            : (app.get('env') === 'development') ? [err] : []
+    });
 
 });
 
