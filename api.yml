@@ -31,14 +31,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/JWTToken"
-        '400':
-          description: "Bad Request (missing email / password)"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorObject"
-        '401':
-          description: "Unauthorized (wrong email / password)"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
           content:
             application/json:
               schema:
@@ -55,8 +50,13 @@ paths:
       responses:
         '200':
           description: OK
-        '409':
-          description: "Conflit : already a user with the same email"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/create_exercise:
     post:
       summary: "Creates a new exercise into the system"
@@ -69,6 +69,13 @@ paths:
       responses:
         '200':
           description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/exercises/{id}:
     get:
       summary: "Retrieve this specific exercise data"
@@ -86,8 +93,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchableExerciseModel"
-        '404':
-          description: "Exercise not found"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Update this specific exercise data"
       parameters:
@@ -106,8 +118,13 @@ paths:
       responses:
         '200':
           description: OK
-        '404':
-          description: "Exercise not found"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/search:
     post:
       summary: "Search exercises that matches criteria"
@@ -129,6 +146,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResult"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/tags:
     get:
       summary: "Retrieve tags"
@@ -155,6 +179,13 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TagWithCategory"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
     post:
       summary: "Submit a tag proposal"
       requestBody:
@@ -166,6 +197,13 @@ paths:
       responses:
         '200':
           description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Validate or modify a Tag"
       requestBody:
@@ -177,6 +215,13 @@ paths:
       responses:
         '200':
           description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/tags_categories:
     get:
       summary: "Retrieve Tag categories"
@@ -196,6 +241,13 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Tag_Category"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
 components:
   schemas:
     JWTToken:
@@ -211,12 +263,15 @@ components:
       properties:
         message:
           type: string
-          description: The error message
-        error:
-          type: object
-          description: "Full error object (only on developpment environnement)"
+          description: The main error message ( for example "Bad Request", "Unauthorized", etc. )
+        errors:
+          type: array
+          items:
+            type: object
+            description: Explanation about an error
       required:
         - message
+        - errors
     Auth:
       type: object
       properties:
