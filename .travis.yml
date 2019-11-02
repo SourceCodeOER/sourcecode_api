@@ -1,4 +1,5 @@
 language: node_js
+node_js: node
 dist: bionic
 # keep the npm cache around to speed up installs
 cache:
@@ -8,8 +9,6 @@ notifications:
   slack:
     on_success: change
     on_failure: always
-before_install:
-  - npm install @openapitools/openapi-generator-cli -g
 script:
   - npx openapi-generator validate -i api.yml
   - npx redoc-cli bundle api.yml -o docs/index.html
