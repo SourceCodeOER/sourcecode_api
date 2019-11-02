@@ -1,0 +1,22 @@
+language: node_js
+node_js: node
+dist: bionic
+# keep the npm cache around to speed up installs
+cache:
+  directories:
+    - "$HOME/.npm"
+notifications:
+  slack:
+    on_success: change
+    on_failure: always
+script:
+  - npx openapi-generator validate -i api.yml
+  - npx redoc-cli bundle api.yml -o docs/index.html
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  local_dir: docs
+  on:
+    branch: master

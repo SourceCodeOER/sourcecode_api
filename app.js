@@ -9,15 +9,10 @@ const routes = require('./routes/index');
 // miscellaneous passport things
 const passport = require('passport');
 
-// Swagger UI Express
-// So that we can see the documentation of the API
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
 
 // OpenAPI V3 validation middleware
 const OpenApiValidator = require('express-openapi-validator').OpenApiValidator;
 const spec = path.join(__dirname, 'api.yml');
-const swaggerDocument = YAML.load(spec);
 
 // Initialize passport ( Passport is a singleton )
 require('./config/passport');
@@ -30,9 +25,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Set Up first Swagger UI so that if API has a fault, we directly know that
-// https://github.com/cdimascio/express-openapi-validator#faq
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Gives the Swagger UI Viewer
+app.use('/api-docs', function (_, res) {
+    res.redirect("http://petstore.swagger.io/?url=https://raw.githubusercontent.com/jy95/exercises_library/master/api.yml");
+});
 
 // API validation before routes and password.js
 // Install the OpenApiValidator on your express app
