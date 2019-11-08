@@ -10,7 +10,8 @@
     "createDatabase": "sequelize db:create",
     "revertMigration": "npx sequelize-cli db:migrate:undo",
     "reverSeed": "npx sequelize-cli db:seed:undo",
-    "createMigration": "sequelize migration:create --name default_migration"
+    "createMigration": "sequelize migration:create --name default_migration",
+    "generateClient": "npx openapi-generator generate -g typescript-axios -i api.yml -o out"
   },
   "author": "",
   "license": "ISC",
