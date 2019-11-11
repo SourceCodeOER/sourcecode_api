@@ -154,38 +154,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorObject"
   /api/tags:
-    get:
-      summary: "Retrieve tags"
-      parameters:
-        - in: query
-          style: form
-          name: settings
-          explode: true
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/CommonCriterias"
-              - type: object
-                properties:
-                  onlyValidated:
-                    type: boolean
-                    description: "If true, only consider validated tags by admins. If false, only not validated tags"
-                    default: true
-      responses:
-        '200':
-          description: "An array of tags"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/TagWithCategory"
-        # Definition of all error statuses
-        default:
-          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorObject"
     post:
       summary: "Submit a tag proposal"
       requestBody:
@@ -224,14 +192,7 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
   /api/tags_categories:
     get:
-      summary: "Retrieve Tag categories"
-      parameters:
-        - in: query
-          style: form
-          name: settings
-          explode: true
-          schema:
-            $ref: "#/components/schemas/CommonCriterias"
+      summary: "Retrieve only Tag categories"
       responses:
         '200':
           description: "An array of tag categories"
@@ -241,6 +202,38 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Tag_Category"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
+  /api/tags_by_categories:
+    get:
+      summary: "Retrieve Tag categories with their related tags"
+      parameters:
+        - in: query
+          style: form
+          name: settings
+          explode: true
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  onlyValidated:
+                    type: boolean
+                    description: "If true, only consider validated tags by admins. If false, it takes everything"
+                    default: true
+      responses:
+        '200':
+          description: "An array of Tag category with their related tags"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TagCategoryWithTags"
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
@@ -390,7 +383,7 @@ components:
       required:
         - id
         - text
-# Tag with category
+# Tag with Tag category
     TagWithCategory:
       allOf:
         - $ref: "#/components/schemas/Tag"
@@ -400,8 +393,24 @@ components:
               type: string
               example: "difficulty"
               description: "The text of the Tag Category linked with this tag"
+            category_id:
+              type: integer
+              example: 42
+              description: "The category ID linked with this tag"
           required:
             - category
+            - category_id
+    TagCategoryWithTags:
+      allOf:
+        - $ref: "#/components/schemas/Tag_Category"
+        - type: object
+          properties:
+            tags:
+              type: array
+              description: "An array of related tags to this Tag Category"
+              minItems: 1
+              items:
+                $ref: "#/components/schemas/Tag"
 # Tag proposal
     TagProposal:
       type: object
@@ -413,7 +422,7 @@ components:
         category_id:
           type: integer
           example: 42
-          description: "the category id to which it is related"
+          description: "the category id to which this tag is related"
       required:
         - text
         - category_id
