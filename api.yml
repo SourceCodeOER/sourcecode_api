@@ -339,18 +339,18 @@ components:
             metrics:
               type: object
               properties:
-                vote_count:
+                votes:
                   type: integer
                   example: 42
                   description: "Number of votes for this exercise"
-                avg_vote_score:
+                avg_score:
                   type: number
                   format: double
                   example: 5.0
                   description: "The average score of this exercise"
               required:
-                - vote_count
-                - avg_vote_score
+                - votes
+                - avg_score
             tags:
               type: array
               items:
@@ -368,13 +368,13 @@ components:
           type: integer
           example: 42
           description: "The Id of this Tag_Category"
-        kind:
+        category:
           type: string
           example: "difficulty"
           description: "The text of this Tag_Category"
       required:
         - id
-        - kind
+        - category
 # A Tag
     Tag:
       type: object
@@ -396,12 +396,12 @@ components:
         - $ref: "#/components/schemas/Tag"
         - type: object
           properties:
-            kind:
+            category:
               type: string
               example: "difficulty"
               description: "The text of the Tag Category linked with this tag"
           required:
-            - kind
+            - category
 # Tag proposal
     TagProposal:
       type: object
@@ -448,9 +448,12 @@ components:
             tags:
               type: array
               items:
-                type: integer
-                description: "A Tag ID"
-              description: "Array of Integer that contains ID of already existent tags in database"
+                oneOf:
+                  - type: integer
+                    description: "A Tag ID ( already existent in database )"
+                  - $ref: "#/components/schemas/TagProposal"
+                    description: "A not-existent Tag we want to add"
+              description: "Mixed array that contains existent tag(s) or not"
               minItems: 1 # We must always put at least one tag in the database
           required:
             - tags
