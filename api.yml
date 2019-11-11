@@ -229,6 +229,10 @@ paths:
                     type: array
                     description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
                     default: []
+                    items:
+                      type: integer
+                      example: 42
+                      description: "A Tag Category ID"
       responses:
         '200':
           description: "An array of Tag category with their related tags"
