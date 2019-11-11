@@ -225,6 +225,10 @@ paths:
                     type: boolean
                     description: "If true, only consider validated tags by admins. If false, it takes everything"
                     default: true
+                  onlySelected:
+                    type: array
+                    description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
+                    default: []
       responses:
         '200':
           description: "An array of Tag category with their related tags"
