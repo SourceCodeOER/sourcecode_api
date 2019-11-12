@@ -60,6 +60,8 @@ paths:
   /api/create_exercise:
     post:
       summary: "Creates a new exercise into the system"
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -102,6 +104,8 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Update this specific exercise data"
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -156,6 +160,8 @@ paths:
   /api/tags:
     post:
       summary: "Submit a tag proposal"
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -174,6 +180,8 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Validate or modify a Tag"
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
