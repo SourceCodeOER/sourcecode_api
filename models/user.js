@@ -71,22 +71,18 @@ module.exports = (sequelize, DataTypes) => {
 
     // This hook is called when an entry is being added to the back end.
     // This method is used to hash the password before storing it in our database.
-    User.addHook('beforeCreate', function (user, options) {
+    User.addHook('beforeCreate',  (user, _options) => {
         const SALT_WORK_FACTOR = 10;
-        bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-            if (err) {
-                return Promise.reject(err);
-            }
-            // generate salt.
-            bcrypt.hash(user.password, salt, null, function (err, hash) {
-                if (err) {
-                    return Promise.reject(err);
-                }
+        return bcrypt.genSalt(SALT_WORK_FACTOR)
+            .then(salt => {
+                return bcrypt.hash(user.password, salt);
+            }).then(hash => {
                 // replace the password with the hash and pass on the user object to whoever should require it.
                 user.password = hash;
                 return Promise.resolve(user);
-            });
-        });
+            }).catch(err =>
+                Promise.reject(err)
+            );
     });
 
     return User

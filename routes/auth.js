@@ -2,17 +2,18 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const models = require('../models');
 
 // for sign in
 router.post('/login',
     passport.authenticate('json', {
         failWithError: true
     }),
-    function(req, res, next) {
+    function (req, res) {
         // For more information : http://www.passportjs.org/docs/authenticate/
         // `req.user` contains the authenticated user.
         res.json({
-            token:  jwt.sign(
+            token: jwt.sign(
                 {
                     id: req.user.id
                 },
@@ -23,5 +24,24 @@ router.post('/login',
 );
 
 // for register
-// TODO
+router.post('/register',
+    function (req, res, next) {
+        models
+            .User
+            .create({
+                email: req.body.email,
+                password: req.body.password,
+                role: "user",
+                fullName: "Unknown"
+            }, {
+                returning: false // no need to retrieve the created item as we simply care about insert
+            }).then(() => {
+                res.status(200).end() // see
+            }).catch(err => {
+                // changes the error as it already exist
+                err.status = 409;
+                next(err)
+            })
+    }
+);
 module.exports = router;
