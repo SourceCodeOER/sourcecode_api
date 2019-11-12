@@ -239,6 +239,7 @@ paths:
                     default: []
                     items:
                       type: integer
+                      minimum: 0
                       example: 42
                       description: "A Tag Category ID"
       responses:
@@ -319,10 +320,12 @@ components:
             id:
               type: integer
               example: 42
+              minimum: 0
               description: "The Id of this exercise"
             version:
               type: integer
               example: 42
+              minimum: 0
               description: "The version of this exercise (optimistic lock)"
             createdAt:
               type: string
@@ -351,10 +354,12 @@ components:
                 votes:
                   type: integer
                   example: 42
+                  minimum: 0
                   description: "Number of votes for this exercise"
                 avg_score:
                   type: number
                   format: double
+                  minimum: 0.0
                   example: 5.0
                   description: "The average score of this exercise"
               required:
@@ -375,6 +380,7 @@ components:
       properties:
         id:
           type: integer
+          minimum: 0
           example: 42
           description: "The Id of this Tag_Category"
         category:
@@ -391,6 +397,7 @@ components:
         id:
           type: integer
           example: 42
+          minimum: 0
           description: "The Id of this Tag"
         text:
           type: string
@@ -412,6 +419,7 @@ components:
             category_id:
               type: integer
               example: 42
+              minimum: 0
               description: "The category ID linked with this tag"
           required:
             - category
@@ -437,6 +445,7 @@ components:
           description: "The text of this Tag"
         category_id:
           type: integer
+          minimum: 0
           example: 42
           description: "the category id to which this tag is related"
       required:
@@ -451,6 +460,7 @@ components:
             category_id:
               type: integer
               example: 42
+              minimum: 0
               description: "the category id to which it is related"
             isValidated:
               type: boolean
@@ -458,6 +468,7 @@ components:
               description: "Is this tag validated or not"
             version:
               type: integer
+              minimum: 0
               description: "The version of this exercise (optimistic lock)"
               example: 42 
           required:
@@ -491,6 +502,7 @@ components:
             version:
               type: integer
               description: "The version of this exercise (optimistic lock)"
+              minimum: 0
               example: 42
           required:
             - version
@@ -505,18 +517,22 @@ components:
             currentPage:
               type: integer
               example: 1
+              minimum: 1
               description: "Current number of page"
               default: 1
             totalItems:
               type: integer
               example: 42
+              minimum: 0
               description: "How much exercises match the given criterias"
             totalPages:
               type: integer
+              minimum: 0
               example: 5
               description: "How much pages of exercises match the given criterias"
             pageSize:
               type: integer
+              minimum: 0
               example: 10
               default: 10
               description: "How many entries of exercises on each page"
@@ -534,10 +550,12 @@ components:
       properties:
         limit:
           type: integer
+          minimum: 0
           description: "Maximal number of items we want to retrieve"
           example: 42
         offset:
           type: integer
+          minimum: 0
           description: "Number of items we want to skip (useful with limit for pagination)"
           example: 42
 # Search criteria
@@ -551,10 +569,12 @@ components:
             page:
               type: integer
               description: "Page number (start at 1)"
+              minimum: 1
               default: 1
               example: 1
             size:
               type: integer
+              minimum: 0
               description: "Number of items by page"
               default: 10
               example: 10
