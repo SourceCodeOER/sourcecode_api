@@ -7,7 +7,8 @@ const models = require('../models');
 // for sign in
 router.post('/login',
     passport.authenticate('json', {
-        failWithError: true
+        failWithError: true,
+        session: false
     }),
     function (req, res) {
         // For more information : http://www.passportjs.org/docs/authenticate/
