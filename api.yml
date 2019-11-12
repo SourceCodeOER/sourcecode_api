@@ -210,6 +210,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Tag_Category"
+                uniqueItems: true
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
@@ -237,6 +238,7 @@ paths:
                     type: array
                     description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
                     default: []
+                    uniqueItems: true
                     items:
                       type: integer
                       minimum: 0
@@ -251,6 +253,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TagCategoryWithTags"
+                uniqueItems: true
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
@@ -303,9 +306,12 @@ components:
         title:
           type: string
           example: "A Super Exercise"
+          minLength: 5
+          maxLength: 100
           description: "The title of this exercise"
         description:
           type: string
+          maxLength: 5000
           example: "..."
           description: "The preamble of this exercise"
       required:
@@ -371,6 +377,7 @@ components:
                 $ref: '#/components/schemas/TagWithCategory'
 # Each exercise has a least one tag
               minItems: 1
+              uniqueItems: true
           required:
             - metrics
             - tags
@@ -386,6 +393,8 @@ components:
         category:
           type: string
           example: "difficulty"
+          minLength: 3
+          maxLength: 100
           description: "The text of this Tag_Category"
       required:
         - id
@@ -402,6 +411,8 @@ components:
         text:
           type: string
           example: "easy"
+          minLength: 1
+          maxLength: 100
           description: "The text of this Tag"
       required:
         - id
@@ -415,6 +426,8 @@ components:
             category:
               type: string
               example: "difficulty"
+              minLength: 3
+              maxLength: 100
               description: "The text of the Tag Category linked with this tag"
             category_id:
               type: integer
@@ -433,6 +446,7 @@ components:
               type: array
               description: "An array of related tags to this Tag Category"
               minItems: 1
+              uniqueItems: true
               items:
                 $ref: "#/components/schemas/Tag"
 # Tag proposal
@@ -442,6 +456,8 @@ components:
         text:
           type: string
           example: "easy"
+          minLength: 1
+          maxLength: 100
           description: "The text of this Tag"
         category_id:
           type: integer
@@ -490,6 +506,7 @@ components:
                   - $ref: "#/components/schemas/TagProposal"
                     description: "A not-existent Tag we want to add"
               description: "Mixed array that contains existent tag(s) or not"
+              uniqueItems: true
               minItems: 1 # We must always put at least one tag in the database
           required:
             - tags
@@ -585,6 +602,7 @@ components:
             title:
               type: string
               description: "Something we want to find inside the title of exercises"
+              maxLength: 100
               example: "SINF2MS"
             tags:
               type: array
