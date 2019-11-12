@@ -11,8 +11,8 @@ info:
 servers:
   - url: http://api.example.com/v1
     description: Optional server description, e.g. Main (production) server
-  - url: http://staging-api.example.com
-    description: Optional server description, e.g. Internal staging server for testing
+  - url: http://localhost:3000
+    description: Internal staging server for testing
 
 paths:
   /auth/login:
@@ -26,11 +26,33 @@ paths:
               $ref: "#/components/schemas/Auth"
       responses:
         '200':
-          description: A JSON containing the JWT Token under the token key
+          description: A JSON containing the JWT Token and some information about the user
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/JWTToken"
+                allOf:
+                  - $ref: "#/components/schemas/JWTToken"
+                  - type: object
+                    description: Some basic information on this user
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          fullName:
+                            type: string
+                            description: "The full name of this user"
+                            example: "Alexandre Dewit"
+                            minLength: 1
+                            maxLength: 50
+                          role:
+                            type: string
+                            enum: [admin, user]
+                            description: "What kind of user are we ?"  
+                        required:
+                          - fullName
+                          - role
+                    required:
+                      - user
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
@@ -46,7 +68,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Auth"
+              allOf:
+                - $ref: "#/components/schemas/Auth"
+                - type: object
+                  properties:
+                    fullName:
+                      type: string
+                      example: "Alexandre Dewit"
+                      description: "The full name of this new user"
+                      minLength: 1
+                      maxLength: 50
+                  required:
+                    - fullName
       responses:
         '200':
           description: OK

@@ -19,7 +19,11 @@ router.post('/login',
                     id: req.user.id
                 },
                 process.env.SECRET_PHRASE || "Super secured passphrase"
-            )
+            ),
+            user: {
+                role: req.user.role,
+                fullName: req.user.fullName
+            }
         });
     }
 );
@@ -33,7 +37,7 @@ router.post('/register',
                 email: req.body.email,
                 password: req.body.password,
                 role: "user",
-                fullName: "Unknown"
+                fullName: req.body.fullName
             }, {
                 returning: false // no need to retrieve the created item as we simply care about insert
             }).then(() => {
