@@ -502,6 +502,7 @@ components:
               items:
                 oneOf:
                   - type: integer
+                    minimum: 0
                     description: "A Tag ID ( already existent in database )"
                   - $ref: "#/components/schemas/TagProposal"
                     description: "A not-existent Tag we want to add"
