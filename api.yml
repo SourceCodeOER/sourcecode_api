@@ -231,6 +231,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorObject"
+    get:
+      summary: "Retrieve all tags"
+      parameters:
+        - in: query
+          style: form
+          name: settings
+          explode: true
+          schema:
+            type: object
+            properties:
+              tags_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 0
+                minItems: 1
+                description: "Only consider the given tag ID(S)"
+              categories_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 0
+                minItems: 1
+                description: "Only consider the given tag categories ID(S)"
+              onlyValidated:
+                type: boolean
+                description: "If true, only consider validated tags by admins. If false, it takes everything"
+                default: true
+      responses:
+        '200':
+          description: "An array of tag"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TagFull"
+                uniqueItems: true
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/tags_categories:
     get:
       summary: "Retrieve only Tag categories"
