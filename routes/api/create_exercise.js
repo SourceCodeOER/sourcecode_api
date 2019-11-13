@@ -10,11 +10,18 @@ module.exports = function (req, res, next) {
     // distinguish already present tags from new tags
     const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
     // where condition builder
-    const whereBuilder = (array_data) => models.sequelize.where(
-        models.sequelize.fn("LOWER", models.sequelize.col("text")),
-        Op.in,
-        array_data
-    );
+    const conditionBuilder = (array_data) => [
+        models.sequelize.where(
+            models.sequelize.fn("LOWER", models.sequelize.col("text")),
+            Op.in,
+            array_data.map(tag => tag.text.toLowerCase())
+        ),
+        models.sequelize.where(
+            models.sequelize.col("category_id"),
+            Op.in,
+            array_data.map(tag => tag.category_id)
+        )
+    ];
 
     new Promise((resolve, reject) => {
         // no need to query DB if no new
@@ -24,7 +31,9 @@ module.exports = function (req, res, next) {
             // query database to find possible match before creating new tags
             return models.Tag.findAll({
                 attributes: ["id", "text", "category_id"],
-                where: whereBuilder(new_tags.map(tag => tag.text))
+                where: {
+                    [Op.and]: conditionBuilder(new_tags)
+                }
             })
         }
     }).then(result => {
