@@ -13,13 +13,13 @@ module.exports = function (req, res, next) {
     const conditionBuilder = (array_data) => [
         models.sequelize.where(
             models.sequelize.fn("LOWER", models.sequelize.col("text")),
-            Op.in,
-            array_data.map(tag => tag.text.toLowerCase())
+            Op.eq,
+            models.sequelize.fn("ANY", array_data.map(tag => tag.text.toLowerCase()))
         ),
         models.sequelize.where(
             models.sequelize.col("category_id"),
-            Op.in,
-            array_data.map(tag => tag.category_id)
+            Op.eq,
+            models.sequelize.fn("ANY", array_data.map(tag => tag.category_id))
         )
     ];
 
