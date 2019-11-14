@@ -25,16 +25,20 @@ const conditionBuilder = (array_data) => ({
 
 // Promise to retrieve
 function find_tag_matches(new_tags) {
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve, reject) => {
         // no need to query DB if no new
         if (new_tags.length === 0) {
             resolve([]);
         } else {
             // query database to find possible match before creating new tags
-            return models.Tag.findAll({
-                attributes: ["id", "text", "category_id"],
-                where: conditionBuilder(new_tags)
-            })
+            models
+                .Tag
+                .findAll({
+                    attributes: ["id", "text", "category_id"],
+                    where: conditionBuilder(new_tags)
+                })
+                .then(result => resolve(result))
+                .catch(err => reject(err))
         }
     })
 }
