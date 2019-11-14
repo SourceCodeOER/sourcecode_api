@@ -30,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
             ];
 
             // computes the new tags array for each exercise
-            ExerciseTag.findAll({
+            return ExerciseTag.findAll({
                 attributes: [
                     "exercise_id",
-                    [sequelize.fn("array_agg"), sequelize.col("tag_id"), "tags"]
+                    [sequelize.fn("array_agg", sequelize.col("tag_id")), "tags"]
                 ],
                 where: {
                     exercise_id: {
@@ -54,7 +54,9 @@ module.exports = (sequelize, DataTypes) => {
                                 .update({
                                     tags_ids: exercise.get("tags")
                                 }, {
-                                    where: exercise.get("exercise_id"),
+                                    where: {
+                                        exercise_id: exercise.get("exercise_id")
+                                    },
                                     transaction: options.transaction
                                 })
                         }

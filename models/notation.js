@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     function exercise_metrics_hookFct(kind) {
         return function (notation, options) {
             // find the Exercise_Metrics related to this exercise with the AVG computed
-            notation
+            return notation
                 .sequelize
                 .models
                 .Exercise_Metrics
@@ -63,12 +63,14 @@ module.exports = (sequelize, DataTypes) => {
     Notation.addHook(
         "afterCreate",
         "exercise_metrics_created",
-        exercise_metrics_hookFct("insert"));
+        exercise_metrics_hookFct("insert")
+    );
 
     Notation.addHook(
         "afterUpdate",
         "exercise_metrics_updated",
-        exercise_metrics_hookFct("update"));
+        exercise_metrics_hookFct("update")
+    );
 
     return Notation;
 };
