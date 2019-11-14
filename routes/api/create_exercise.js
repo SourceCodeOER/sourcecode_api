@@ -5,29 +5,27 @@ const partition = require('lodash.partition');
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-module.exports = function (req, res, next) {
+// where condition builder
+const conditionBuilder = (array_data) => ({
+    [Op.or]: array_data.map(tag => ({
+        [Op.and]: [
+            models.sequelize.where(
+                models.sequelize.col("category_id"),
+                Op.eq,
+                tag.category_id
+            ),
+            models.sequelize.where(
+                models.sequelize.fn("LOWER", models.sequelize.col("text")),
+                Op.eq,
+                models.sequelize.fn("LOWER", tag.text)
+            )
+        ]
+    }))
+});
 
-    // distinguish already present tags from new tags
-    const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
-    // where condition builder
-    const conditionBuilder = (array_data) => ({
-        [Op.or]:  array_data.map(tag => ({
-            [Op.and] : [
-                models.sequelize.where(
-                    models.sequelize.col("category_id"),
-                    Op.eq,
-                    tag.category_id
-                ),
-                models.sequelize.where(
-                    models.sequelize.fn("LOWER", models.sequelize.col("text")),
-                    Op.eq,
-                    models.sequelize.fn("LOWER", tag.text)
-                )
-            ]
-        }))
-    });
-
-    new Promise((resolve, reject) => {
+// Promise to retrieve
+function find_tag_matches(new_tags) {
+    return new Promise((resolve, _reject) => {
         // no need to query DB if no new
         if (new_tags.length === 0) {
             resolve([]);
@@ -38,10 +36,24 @@ module.exports = function (req, res, next) {
                 where: conditionBuilder(new_tags)
             })
         }
-    }).then(result => {
-        console.log(result);
-    });
+    })
+}
+
+module.exports = function (req, res, next) {
+
+    // distinguish already present tags from new tags
+    const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
+
+    // find tag matches for new_tags if already existing
+    find_tag_matches(new_tags)
+        .then(result => {
+            // do the matching process here
+            console.log(result);
+            next(new Error("NOT YET IMPLEMENTED"));
+        }).catch(err => {
+            next(err);
+        });
 
 
-    next(new Error("NOT YET IMPLEMENTED"));
+    //next(new Error("NOT YET IMPLEMENTED"));
 };
