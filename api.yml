@@ -255,10 +255,11 @@ paths:
                   minimum: 0
                 minItems: 1
                 description: "Only consider the given tag categories ID(S)"
-              onlyValidated:
-                type: boolean
-                description: "If true, only consider validated tags by admins. If false, it takes everything"
-                default: true
+              state:
+                type: string
+                enum: ["default", "validated", "pending"]
+                default: "default"
+                description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
       responses:
         '200':
           description: "An array of tag"
@@ -308,10 +309,11 @@ paths:
             allOf:
               - type: object
                 properties:
-                  onlyValidated:
-                    type: boolean
-                    description: "If true, only consider validated tags by admins. If false, it takes everything"
-                    default: true
+                  state:
+                    type: string
+                    enum: ["default", "validated", "pending"]
+                    default: "default"
+                    description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
                   onlySelected:
                     type: array
                     description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
