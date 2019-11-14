@@ -5,32 +5,32 @@ const passportJWT = require('passport-jwt');
 const ExtractJWT = passportJWT.ExtractJwt;
 const JWTStrategy = passportJWT.Strategy;
 
-const models = require('../models/index');
+const models = require('../models');
 
 // https://github.com/zapstar/node-sequelize-passport
 // To get a JWT Token
 passport.use(new JsonStrategy({
     usernameProp: "email",
     passwordProp: "password"
-},function(email, password, done) {
+}, function (email, password, done) {
     models.User
-        .findOne({ where: { email: email } })
-        .then(function(user) { // successful query to database
-            if(!user) {
-                return done(null, false, { message: 'Unknown user ' + email });
+        .findOne({where: {email: email}})
+        .then(function (user) { // successful query to database
+            if (!user) {
+                return done(null, false, {message: 'Unknown user ' + email});
             }
-            models.User.comparePassword(password, user.password, function(err, isMatch) {
-                if(err) {
+            models.User.comparePassword(password, user.password, function (err, isMatch) {
+                if (err) {
                     return done(err);
                 }
-                if(isMatch) {
+                if (isMatch) {
                     return done(null, user);
                 } else {
-                    return done(null, false, { message: 'Invalid password' });
+                    return done(null, false, {message: 'Invalid password'});
                 }
             });
         })
-        .catch(function(err) { // something went wrong with query to db
+        .catch(function (err) { // something went wrong with query to db
             console.log(err);
             done(err);
         });
@@ -49,12 +49,12 @@ passport.use(new JWTStrategy({
             };
 
             models.User
-                .find({ where: userAttributes })
-                .then(function(user) { // successful query to database
+                .findOne({where: userAttributes})
+                .then(function (user) { // successful query to database
                     return done(null, user);
                 })
-                .catch(function(error) { // something went wrong with query to db
-                   return done(error);
+                .catch(function (error) { // something went wrong with query to db
+                    return done(error);
                 });
 
         })
