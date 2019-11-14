@@ -29,6 +29,7 @@
     "express": "^4.17.1",
     "express-openapi-validator": "^2.15.0",
     "jsonwebtoken": "^8.5.1",
+    "lodash.groupby": "^4.6.0",
     "lodash.partition": "^4.6.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
