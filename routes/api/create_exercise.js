@@ -144,7 +144,7 @@ function store_exercise(user, exercise_data, existent_tags, really_new_tags) {
                 })
             }).then((_) => {
                 // OK work as expected
-                resolve(null)
+                resolve()
             }).catch(err => {
                 reject(err)
             })
@@ -166,8 +166,9 @@ module.exports = function (req, res, next) {
             ([existent_tags, really_new_tags]) => {
                 return store_exercise(req.user, req.body, existent_tags, really_new_tags);
             }
-        )
-        .catch(err => {
+        ).then(() => {
+            res.status(200).end()
+        }).catch(err => {
             next(err);
         });
 
