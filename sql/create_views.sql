@@ -14,15 +14,7 @@ SELECT ex.id as "exercise_id",
        ex."updatedAt"
 FROM exercises_library."Exercises" ex;
 
--- 2. exercises_with_authors
-CREATE OR REPLACE VIEW exercises_library.Exercises_And_Author AS
-SELECT ex.id as "exercise_id",
-       json_build_object('user_id', u.id, 'fullName', u."fullName") AS "user"
-FROM exercises_library."Exercises" ex
-JOIN exercises_library."Users" u
-ON ex.user_id = u.id;
-
--- 3. other data of exercises
+-- 2. other data of exercises
 CREATE OR REPLACE VIEW exercises_library.Exercises_Advanced_Data AS
 SELECT em.exercise_id,
        json_agg(json_build_object('vote_count', em.vote_count, 'vote_score', em.avg_vote_score)) AS "metrics",

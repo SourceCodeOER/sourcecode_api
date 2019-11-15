@@ -11,13 +11,13 @@ const Op = Sequelize.Op;
 const conditionBuilder = (array_data) => ({
     [Op.or]: array_data.map(tag => ({
         [Op.and]: [
-            models.sequelize.where(
-                models.sequelize.col("category_id"),
+            Sequelize.where(
+                Sequelize.col("category_id"),
                 Op.eq,
                 tag.category_id
             ),
-            models.sequelize.where(
-                models.sequelize.fn("LOWER", models.sequelize.col("text")),
+            Sequelize.where(
+                Sequelize.fn("LOWER", Sequelize.col("text")),
                 Op.eq,
                 tag.text.toLowerCase()
             )
@@ -38,7 +38,7 @@ function find_tag_matches(new_tags) {
                 .findAll({
                     attributes: [
                         "id",
-                        [models.sequelize.fn("LOWER", models.sequelize.col("text")), "text"],
+                        [Sequelize.fn("LOWER", Sequelize.col("text")), "text"],
                         "category_id"
                     ],
                     where: conditionBuilder(new_tags)

@@ -4,13 +4,6 @@ const path = require("path");
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        /*
-          Add altering commands here.
-          Return a promise to correctly handle asynchronicity.
-
-          Example:
-          return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-        */
         const file_path = path.join(__dirname, "..", "sql" ,"initial_database.sql");
 
         return fs.readFile(file_path, "utf8").then(sql => queryInterface.sequelize.query(sql))
