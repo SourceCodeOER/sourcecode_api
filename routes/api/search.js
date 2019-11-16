@@ -25,7 +25,7 @@ const simpleCase = (array, mustOverlap) => {
 const tagsWhereBuilder = {
     "simpleCase": simpleCase,
     "complexCase": (must_have, must_not) => ({
-        [Op.or] : [
+        [Op.or]: [
             simpleCase(must_have, true),
             simpleCase(must_not, false),
         ]
@@ -42,7 +42,7 @@ function tagsConditionsBuilder(tags) {
             ? tagOrTags.filter(tag => tag >= 0)
             : tagOrTags >= 0
                 ? [tagOrTags]
-                : [] ;
+                : [];
         const must_not = Array.isArray(tagOrTags)
             ? tagOrTags.filter(tag => !(tag >= 0)).map(tag => -tag)
             : tagOrTags >= 0
@@ -94,7 +94,7 @@ function whereConditionBuilder(parameters) {
             // we have at least a tag criteria
             return {
                 [Op.and]: [
-                    { id: Sequelize.col("Exercises_Metrics.exercise_id") },
+                    {id: Sequelize.col("Exercises_Metrics.exercise_id")},
                     tagsConditionsBuilder(data.tags)
                 ]
             }
@@ -113,9 +113,7 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
     let options = {
         attributes: ["id"],
         limit: metadata.size,
-        offset: (metadata.page > 1
-            ? metadata.page - 1
-            : 1) * metadata.size,
+        offset: (metadata.page - 1) * metadata.size,
         include: [{
             model: models.Exercise_Metrics,
             where: whereConditionBuilder(parameters)
@@ -138,27 +136,84 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
 // build the full result
 function buildResult(params) {
     const {
-        result: { count: totalItems, rows: exercise_ids},
-        metadata : {page, size},
+        result: {count: totalItems, rows: exercise_ids},
+        metadata: {page, size},
     } = params;
     return new Promise((resolve, reject) => {
         // TODO need sleep in order to code that
-        resolve({
-            metadata: {
-                currentPage: page,
-                pageSize: size,
-                totalItems: totalItems,
-                totalPages: Math.ceil(totalItems / size)
-            },
-            data: []
-        })
+        const ids = exercise_ids.map(exercise => exercise.id);
+        models
+            .Exercise
+            .findAll({
+                // no need for that part here
+                attributes: [
+                    "id",
+                    "title",
+                    "description",
+                    "version",
+                    "createdAt",
+                    "updatedAt"
+                ],
+                where: {
+                    id: {
+                        [Op.in]: ids
+                    }
+                },
+                include: [
+                    // load exercise evaluation
+                    {
+                        models: models.Exercise_Metrics,
+                        as: "metrics",
+                        through: {
+                            attributes: [
+                                ["vote_count", "votes"],
+                                ["avg_vote_score", "avg_vote"]
+                            ]
+                        }
+                    },
+                    // load tags linked to this exercise ( with their category included )
+                    {
+                        models: models.Tag,
+                        as: "tags",
+                        through: {
+                            attributes: [
+                                "id",
+                                "text"
+                            ],
+                            include: [
+                                {
+                                    models: models.Tag_Category,
+                                    through: {
+                                        attributes: [
+                                            ["kind", "category"],
+                                            ["id", "category_id"]
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }).then(data => {
+            resolve({
+                metadata: {
+                    currentPage: page,
+                    pageSize: size,
+                    totalItems: totalItems,
+                    totalPages: Math.ceil(totalItems / size)
+                },
+                data: data
+            })
+        }).catch(err => {
+            reject(err);
+        });
     });
 }
 
 module.exports = function (req, res, next) {
 
     // merge page criteria
-    const updated_metadata = {...METADATA, ...(req.body.hasOwnProperty("metadata") ? req.body.metadata : {} )};
+    const updated_metadata = {...METADATA, ...(req.body.hasOwnProperty("metadata") ? req.body.metadata : {})};
 
     find_exercises_ids_with_given_criteria(req.body, updated_metadata)
         .then(result => {
@@ -167,8 +222,8 @@ module.exports = function (req, res, next) {
                 metadata: updated_metadata
             });
         }).then(result => {
-            res.json(result);
-        }).catch(err => {
-            next(err);
-        });
+        res.json(result);
+    }).catch(err => {
+        next(err);
+    });
 };
