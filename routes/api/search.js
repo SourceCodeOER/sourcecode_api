@@ -138,7 +138,6 @@ function buildResult(params) {
         metadata: {page, size},
     } = params;
     return new Promise((resolve, reject) => {
-        // TODO need sleep in order to code that
         const ids = exercise_ids.map(exercise => exercise.id);
         // if ids is a empty array, it is simple : empty array
         if (ids.length === 0) {
@@ -183,19 +182,25 @@ function buildResult(params) {
                         },
                         // load tags linked to this exercise ( with their category included )
                         {
-                            models: models.Tag,
+                            models: models.Exercise_Tag,
                             as: "tags",
-                            attributes: [
-                                "id",
-                                "text"
-                            ],
+                            attributes: [],
                             include: [
                                 {
-                                    models: models.Tag_Category,
-                                    as: "category",
+                                    models: models.Tag,
                                     attributes: [
-                                        ["kind", "category"],
-                                        ["id", "category_id"]
+                                        "id",
+                                        "text"
+                                    ],
+                                    include: [
+                                        {
+                                            models: models.Tag_Category,
+                                            as: "category",
+                                            attributes: [
+                                                ["kind", "category"],
+                                                ["id", "category_id"]
+                                            ]
+                                        }
                                     ]
                                 }
                             ]
