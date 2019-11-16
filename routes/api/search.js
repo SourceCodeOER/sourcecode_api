@@ -175,15 +175,18 @@ function buildResult(params) {
                         {
                             model: models.Exercise_Metrics,
                             as: "metrics",
+                            required: true,
                             attributes: [
                                 ["vote_count", "votes"],
                                 ["avg_vote_score", "avg_vote"]
                             ]
                         },
                         // load tags linked to this exercise ( with their category included )
+                        // required : true for inner join (by default, it uses left outer join which is bad )
                         {
                             model: models.Tag,
                             as: "tags",
+                            required: true,
                             // credits to Stackoverflow : https://stackoverflow.com/a/45093383/6149867
                             through: {attributes: []}, //<-- this line will prevent mapping object from being added
                             attributes: [
@@ -194,6 +197,7 @@ function buildResult(params) {
                                 {
                                     model: models.Tag_Category,
                                     as: "category",
+                                    required: true,
                                     attributes: [
                                         ["id", "category_id"],
                                         ["kind", "category_text"]
