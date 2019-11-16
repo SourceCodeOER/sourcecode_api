@@ -109,12 +109,11 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
         attributes: ["id"],
         limit: metadata.size,
         offset: (metadata.page - 1) * metadata.size,
-        // TODO soucis include
         include: [{
             model: models.Exercise_Metrics,
             as: "metrics",
-            // TODO le where ?
-            where: whereConditionBuilder(parameters)
+            where: whereConditionBuilder(parameters),
+            attributes: []
         }]
     };
     // if the user provide a title, we must add it to the where clause
@@ -134,7 +133,6 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
 
 // build the full result
 function buildResult(params) {
-    console.log("TEST 2");
     const {
         result: {count: totalItems, rows: exercise_ids},
         metadata: {page, size},
@@ -155,6 +153,7 @@ function buildResult(params) {
             })
         } else {
             // more complex, at least one result
+            console.log("TEST 2");
             models
                 .Exercise
                 .findAll({
@@ -177,34 +176,29 @@ function buildResult(params) {
                         {
                             models: models.Exercise_Metrics,
                             as: "metrics",
-                            through: {
-                                attributes: [
-                                    ["vote_count", "votes"],
-                                    ["avg_vote_score", "avg_vote"]
-                                ]
-                            }
+                            attributes: [
+                                ["vote_count", "votes"],
+                                ["avg_vote_score", "avg_vote"]
+                            ]
                         },
                         // load tags linked to this exercise ( with their category included )
                         {
                             models: models.Tag,
                             as: "tags",
-                            through: {
-                                attributes: [
-                                    "id",
-                                    "text"
-                                ],
-                                include: [
-                                    {
-                                        models: models.Tag_Category,
-                                        through: {
-                                            attributes: [
-                                                ["kind", "category"],
-                                                ["id", "category_id"]
-                                            ]
-                                        }
-                                    }
-                                ]
-                            }
+                            attributes: [
+                                "id",
+                                "text"
+                            ],
+                            include: [
+                                {
+                                    models: models.Tag_Category,
+                                    as: "category",
+                                    attributes: [
+                                        ["kind", "category"],
+                                        ["id", "category_id"]
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }).then(data => {
