@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         models.Tag.belongsToMany(models.Configuration, {
             through: models.Configuration_Tag,
             foreignKey: "tag_id"
-        })
+        });
     };
 
     return Tag;

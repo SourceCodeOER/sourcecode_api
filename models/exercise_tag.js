@@ -30,6 +30,14 @@ module.exports = (sequelize, DataTypes) => {
             as: "Exercises",
             foreignKey: "tag_id"
         });
+        // One ExerciseTag has always one Tag
+        ExerciseTag.hasOne(models.Tag, {
+           as: "tag",
+           foreignKey: {
+               name: "id",
+               allowNull: false
+           }
+        });
     };
 
     // after bulk insert of tags, we must update the "tags_ids" of given exercise(s)
