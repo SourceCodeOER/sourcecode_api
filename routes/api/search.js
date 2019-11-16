@@ -142,59 +142,8 @@ function buildResult(params) {
     return new Promise((resolve, reject) => {
         // TODO need sleep in order to code that
         const ids = exercise_ids.map(exercise => exercise.id);
-        models
-            .Exercise
-            .findAll({
-                // no need for that part here
-                attributes: [
-                    "id",
-                    "title",
-                    "description",
-                    "version",
-                    "createdAt",
-                    "updatedAt"
-                ],
-                where: {
-                    id: {
-                        [Op.in]: ids
-                    }
-                },
-                include: [
-                    // load exercise evaluation
-                    {
-                        models: models.Exercise_Metrics,
-                        as: "metrics",
-                        through: {
-                            attributes: [
-                                ["vote_count", "votes"],
-                                ["avg_vote_score", "avg_vote"]
-                            ]
-                        }
-                    },
-                    // load tags linked to this exercise ( with their category included )
-                    {
-                        models: models.Tag,
-                        as: "tags",
-                        through: {
-                            attributes: [
-                                "id",
-                                "text"
-                            ],
-                            include: [
-                                {
-                                    models: models.Tag_Category,
-                                    through: {
-                                        attributes: [
-                                            ["kind", "category"],
-                                            ["id", "category_id"]
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }).then(data => {
+        // if ids is a empty array, it is simple : empty array
+        if (ids.length === 0) {
             resolve({
                 metadata: {
                     currentPage: page,
@@ -202,11 +151,77 @@ function buildResult(params) {
                     totalItems: totalItems,
                     totalPages: Math.ceil(totalItems / size)
                 },
-                data: data
+                data: []
             })
-        }).catch(err => {
-            reject(err);
-        });
+        } else {
+            // more complex, at least one result
+            models
+                .Exercise
+                .findAll({
+                    // no need for that part here
+                    attributes: [
+                        "id",
+                        "title",
+                        "description",
+                        "version",
+                        "createdAt",
+                        "updatedAt"
+                    ],
+                    where: {
+                        id: {
+                            [Op.in]: ids
+                        }
+                    },
+                    include: [
+                        // load exercise evaluation
+                        {
+                            models: models.Exercise_Metrics,
+                            as: "metrics",
+                            through: {
+                                attributes: [
+                                    ["vote_count", "votes"],
+                                    ["avg_vote_score", "avg_vote"]
+                                ]
+                            }
+                        },
+                        // load tags linked to this exercise ( with their category included )
+                        {
+                            models: models.Tag,
+                            as: "tags",
+                            through: {
+                                attributes: [
+                                    "id",
+                                    "text"
+                                ],
+                                include: [
+                                    {
+                                        models: models.Tag_Category,
+                                        through: {
+                                            attributes: [
+                                                ["kind", "category"],
+                                                ["id", "category_id"]
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }).then(data => {
+                resolve({
+                    metadata: {
+                        currentPage: page,
+                        pageSize: size,
+                        totalItems: totalItems,
+                        totalPages: Math.ceil(totalItems / size)
+                    },
+                    data: data
+                })
+            }).catch(err => {
+                reject(err);
+            });
+        }
+
     });
 }
 
@@ -222,7 +237,7 @@ module.exports = function (req, res, next) {
                 metadata: updated_metadata
             });
         }).then(result => {
-            res.json(result);
+        res.json(result);
     }).catch(err => {
         console.log(err);
         next(err);
