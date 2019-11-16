@@ -183,35 +183,23 @@ function buildResult(params) {
                         },
                         // load tags linked to this exercise ( with their category included )
                         {
-                            association: "tags",
-                            // don't want to see useless and repetitive information here
-                            /*
+                            model: models.Tag,
+                            as: "tags",
                             attributes: [
-                                {exclude: [""]}
-                            ],*/
-                            attributes: {
-                                // need at least one element
-                                exclude: ['exercise_id'],
-                            },
+                                ["id", "tag_id"],
+                                ["text", "tag_text"]
+                            ],
                             include: [
                                 {
-                                    association: "tag",
+                                    model: models.Tag_Category,
+                                    as: "category",
                                     attributes: [
-                                        ["id", "tag_id"],
-                                        ["text", "tag_text"]
-                                    ],
-                                    include: [
-                                        {
-                                            association: "category",
-                                            attributes: [
-                                                ["id", "category_id"],
-                                                ["kind", "category_text"]
-                                            ]
-                                        }
+                                        ["id", "category_id"],
+                                        ["kind", "category_text"]
                                     ]
                                 }
                             ]
-                        },
+                        }
                     ]
                 }).then(data => {
                 resolve({

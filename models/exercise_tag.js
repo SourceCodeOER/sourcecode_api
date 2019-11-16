@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         models.Exercise.belongsToMany(models.Tag, {
             through: ExerciseTag,
             timestamps: false,
-            as: "Tags",
+            as: "tags",
             foreignKey: "exercise_id"
         });
         // a Tag can be used in multiple exercises
@@ -29,14 +29,6 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
             as: "Exercises",
             foreignKey: "tag_id"
-        });
-        // One ExerciseTag has always one Tag
-        ExerciseTag.hasOne(models.Tag, {
-           as: "tag",
-           foreignKey: {
-               name: "id",
-               allowNull: false
-           }
         });
     };
 
