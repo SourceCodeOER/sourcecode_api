@@ -125,7 +125,7 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
             }
         }
     }
-    console.log("TEST 1");
+
     return models
         .Exercise
         .findAndCountAll(options)
@@ -170,10 +170,11 @@ function buildResult(params) {
                             [Op.in]: ids
                         }
                     },
+
                     include: [
                         // load exercise evaluation
                         {
-                            models: models.Exercise_Metrics,
+                            model: models.Exercise_Metrics,
                             as: "metrics",
                             attributes: [
                                 ["vote_count", "votes"],
@@ -182,19 +183,19 @@ function buildResult(params) {
                         },
                         // load tags linked to this exercise ( with their category included )
                         {
-                            models: models.Exercise_Tag,
+                            model: models.Exercise_Tag,
                             as: "tags",
                             attributes: [],
                             include: [
                                 {
-                                    models: models.Tag,
+                                    model: models.Tag,
                                     attributes: [
                                         "id",
                                         "text"
                                     ],
                                     include: [
                                         {
-                                            models: models.Tag_Category,
+                                            model: models.Tag_Category,
                                             as: "category",
                                             attributes: [
                                                 ["kind", "category"],
