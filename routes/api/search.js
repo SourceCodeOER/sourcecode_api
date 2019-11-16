@@ -152,7 +152,6 @@ function buildResult(params) {
             })
         } else {
             // more complex, at least one result
-            console.log("TEST 2");
             models
                 .Exercise
                 .findAll({
@@ -185,6 +184,8 @@ function buildResult(params) {
                         {
                             model: models.Tag,
                             as: "tags",
+                            // credits to Stackoverflow : https://stackoverflow.com/a/45093383/6149867
+                            through: {attributes: []}, //<-- this line will prevent mapping object from being added
                             attributes: [
                                 ["id", "tag_id"],
                                 ["text", "tag_text"]
