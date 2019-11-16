@@ -43,6 +43,14 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+        // An exercice has one metrics
+        models.Exercise.hasOne(models.Exercise_Metrics, {
+            as: "metrics",
+            foreignKey: {
+                name: "exercise_id",
+                allowNull: false
+            }
+        })
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row

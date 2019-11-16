@@ -87,23 +87,18 @@ function whereConditionBuilder(parameters) {
         // no tags criteria given, simple case : just the join condition
         // title criteria is handled somewhere else
         if (counter === 0 || !data.hasOwnProperty("tags")) {
-            return {
-                id: Sequelize.col("Exercises_Metrics.exercise_id")
-            }
+            return {}
         } else {
             // we have at least a tag criteria
             return {
                 [Op.and]: [
-                    {id: Sequelize.col("Exercises_Metrics.exercise_id")},
                     tagsConditionsBuilder(data.tags)
                 ]
             }
         }
     } else {
         // no criteria given, simple case : just the join condition
-        return {
-            id: Sequelize.col("Exercises_Metrics.exercise_id")
-        }
+        return {}
     }
 }
 
@@ -114,8 +109,11 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
         attributes: ["id"],
         limit: metadata.size,
         offset: (metadata.page - 1) * metadata.size,
+        // TODO soucis include
         include: [{
             model: models.Exercise_Metrics,
+            as: "metrics",
+            // TODO le where ?
             where: whereConditionBuilder(parameters)
         }]
     };
@@ -128,6 +126,7 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
             }
         }
     }
+    console.log("TEST 1");
     return models
         .Exercise
         .findAndCountAll(options)
@@ -135,6 +134,7 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
 
 // build the full result
 function buildResult(params) {
+    console.log("TEST 2");
     const {
         result: {count: totalItems, rows: exercise_ids},
         metadata: {page, size},
@@ -222,8 +222,9 @@ module.exports = function (req, res, next) {
                 metadata: updated_metadata
             });
         }).then(result => {
-        res.json(result);
+            res.json(result);
     }).catch(err => {
+        console.log(err);
         next(err);
     });
 };
