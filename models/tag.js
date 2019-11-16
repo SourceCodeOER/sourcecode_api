@@ -29,13 +29,6 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
-        // a Tag can be used in multiple exercises
-        models.Tag.belongsToMany(models.Exercise, {
-            through: models.Exercise_Tag,
-            timestamps: false,
-            as: "exercises",
-            foreignKey: "tag_id"
-        });
         // a Tag can be used in multiple configurations
         models.Tag.belongsToMany(models.Configuration, {
             through: models.Configuration_Tag,

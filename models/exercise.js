@@ -20,37 +20,30 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Exercise.associate = function (models) {
-        // An exercise is linked to a User
-        models.Exercise.belongsTo(models.User, {
-            as: "creator",
-            foreignKey: {
-                name: "user_id",
-                allowNull: false
-            }
-        });
-        // An exercise could have multiple tags
-        models.Exercise.belongsToMany(models.Tag, {
-            through: models.Exercise_Tag,
-            timestamps: false,
-            as: "tags",
-            foreignKey: "exercise_id"
-        });
         // An exercise can be evaluated multiples times
-        models.Exercise.hasMany(models.Notation, {
+        Exercise.hasMany(models.Notation, {
             as: "notes",
             foreignKey: {
                 name: "exercise_id",
                 allowNull: false
             }
         });
-        // An exercice has one metrics
-        models.Exercise.hasOne(models.Exercise_Metrics, {
+        // An exercise has one metrics
+        Exercise.hasOne(models.Exercise_Metrics, {
             as: "metrics",
             foreignKey: {
                 name: "exercise_id",
                 allowNull: false
             }
-        })
+        });
+        // An exercise has many tags
+        Exercise.hasMany(models.Exercise_Tag, {
+           as: "tags",
+           foreignKey: {
+               name: "exercise_id",
+               allowNull: false
+           }
+        });
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row

@@ -182,6 +182,7 @@ function buildResult(params) {
                             ]
                         },
                         // load tags linked to this exercise ( with their category included )
+                        // TODO ici
                         {
                             model: models.Exercise_Tag,
                             as: "tags",

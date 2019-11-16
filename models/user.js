@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
 
     User.associate = function (models) {
         // a user can post multiple exercises
-        models.User.hasMany(models.Exercise, {
+        User.hasMany(models.Exercise, {
             as: "exercises",
             foreignKey: {
                 name: "user_id",
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         });
         // a user can evaluate exercise(s)
-        models.User.hasMany(models.Notation, {
+        User.hasMany(models.Notation, {
             as: "notations",
             foreignKey: {
                 name: "user_id",
@@ -60,8 +60,16 @@ module.exports = (sequelize, DataTypes) => {
             }
         });
         // a user can possess configuration so that she/he didn't have to remember all her/his filters
-        models.User.hasMany(models.Configuration, {
+        User.hasMany(models.Configuration, {
             as: "configurations",
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            }
+        });
+        // An exercise is linked to a User
+        models.Exercise.belongsTo(models.User, {
+            as: "creator",
             foreignKey: {
                 name: "user_id",
                 allowNull: false

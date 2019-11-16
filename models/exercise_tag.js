@@ -15,6 +15,23 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
+    ExerciseTag.associate = function (models) {
+        // An exercise could have multiple tags
+        models.Exercise.belongsToMany(models.Tag, {
+            through: ExerciseTag,
+            timestamps: false,
+            as: "Tags",
+            foreignKey: "exercise_id"
+        });
+        // a Tag can be used in multiple exercises
+        models.Tag.belongsToMany(models.Exercise, {
+            through: ExerciseTag,
+            timestamps: false,
+            as: "Exercises",
+            foreignKey: "tag_id"
+        });
+    };
+
     // after bulk insert of tags, we must update the "tags_ids" of given exercise(s)
     ExerciseTag.addHook(
         "afterBulkCreate",
