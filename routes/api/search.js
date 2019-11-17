@@ -11,15 +11,21 @@ const METADATA = {
 };
 
 // Tags where condition builder
-const simpleCase = (array, mustOverlap) => {
+const simpleCase = (array, mustBePresent) => {
+    // positive tags : 2 OR 3 OR 4 , etc...
+    // negative tags : NOT 2 OR NOT 3 , etc...
     return Sequelize.where(
+        // for negative check, we should use contains instead
+        // For example (using the examples above) :
+        //   For positive check : tags_ids && [2,3,4]
+        //   For negative check : tags_ids @> [2,3]
         Sequelize.where(
             Sequelize.col("tags_ids"),
-            Op.overlap,
+            (mustBePresent) ? Op.overlap : Op.contains,
             array
         ),
         Op.is,
-        mustOverlap
+        mustBePresent
     )
 };
 const tagsWhereBuilder = {
