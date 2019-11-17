@@ -483,20 +483,20 @@ components:
     Tag:
       type: object
       properties:
-        id:
+        tag_id:
           type: integer
           example: 42
           minimum: 0
           description: "The Id of this Tag"
-        text:
+        tag_text:
           type: string
           example: "easy"
           minLength: 1
           maxLength: 100
           description: "The text of this Tag"
       required:
-        - id
-        - text
+        - tag_id
+        - tag_text
 # Tag with Tag category
     TagWithCategory:
       allOf:
@@ -504,19 +504,24 @@ components:
         - type: object
           properties:
             category:
-              type: string
-              example: "difficulty"
-              minLength: 3
-              maxLength: 100
-              description: "The text of the Tag Category linked with this tag"
-            category_id:
-              type: integer
-              example: 42
-              minimum: 0
-              description: "The category ID linked with this tag"
+              type: object
+              properties:
+                category_text:
+                  type: string
+                  example: "difficulty"
+                  minLength: 3
+                  maxLength: 100
+                  description: "The text of the Tag Category linked with this tag"
+                category_id:
+                  type: integer
+                  example: 42
+                  minimum: 0
+                  description: "The category ID linked with this tag"
+              required:
+                - category_text
+                - category_id
           required:
             - category
-            - category_id
     TagCategoryWithTags:
       allOf:
         - $ref: "#/components/schemas/Tag_Category"
@@ -529,6 +534,8 @@ components:
               uniqueItems: true
               items:
                 $ref: "#/components/schemas/Tag"
+          required:
+            - tags
 # Tag proposal
     TagProposal:
       type: object
@@ -640,8 +647,8 @@ components:
             $ref: "#/components/schemas/SearchableExerciseModel" 
             description: "An array of exercise data"
       required:
-        - count
-        - rows
+        - metadata
+        - data
 # Common criteria ( for pagination )
     CommonCriterias:
       type: object
