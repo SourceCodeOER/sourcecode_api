@@ -7,6 +7,7 @@ const Op = Sequelize.Op;
 
 // for fetching
 router.get("/",(req, res, next) => {
+    // TODO Fix of OpenApi validator to full test this endpoint
     const settings = {
         tags_ids: req.query.tags_ids || [],
         categories_ids: req.query.categories_ids || [],
