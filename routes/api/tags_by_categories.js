@@ -30,7 +30,12 @@ module.exports = function (req, res, next) {
                 attributes: [
                     ["id", "tag_id"],
                     ["text", "tag_text"]
-                ]
+                ],
+                where: (settings.state !== "default")
+                    ? {
+                        isValidated: settings.state === "validated"
+                    }
+                    : {}
             }
         ]
     };
