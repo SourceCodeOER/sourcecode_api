@@ -50,26 +50,27 @@ module.exports = (sequelize, DataTypes) => {
                 }
                 return options;
             },
+            // for bulky query, default attributes to show
+            default_attributes_for_bulk: {
+                attributes: {
+                    exclude: ["user_id"]
+                }
+            },
+            // filter exercises ids
+            filter_exercises_ids(ids) {
+                  return {
+                      where: {
+                          id: {
+                              [Op.in]: ids
+                          }
+                      }
+                  }
+            },
             // to build the final result
             // for simplicity, we can invoke the scope ONLY when there is at least ONE item in ids
             // if not, don't use that
-            exercise_with_metrics_and_tags_and_categories_related(ids) {
+            exercise_with_metrics_and_tags_and_categories_related() {
                 return {
-                    // no need for that part here
-                    attributes: [
-                        "id",
-                        "title",
-                        "description",
-                        "version",
-                        "createdAt",
-                        "updatedAt"
-                    ],
-                    where: {
-                        id: {
-                            [Op.in]: ids
-                        }
-                    },
-
                     include: [
                         // load exercise evaluation
                         {

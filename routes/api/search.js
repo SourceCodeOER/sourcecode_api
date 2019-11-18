@@ -43,9 +43,13 @@ function buildResult(params) {
             // more complex, at least one result
             models
                 .Exercise
-                .scope({
-                    method: ["exercise_with_metrics_and_tags_and_categories_related", ids]
-                })
+                .scope([
+                    "default_attributes_for_bulk",
+                    {
+                        method: ["filter_exercises_ids", ids]
+                    },
+                    "exercise_with_metrics_and_tags_and_categories_related"
+                ])
                 .findAll()
                 .then(data => {
                     resolve({
