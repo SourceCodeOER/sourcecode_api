@@ -80,7 +80,8 @@ module.exports = (sequelize, DataTypes) => {
         });
         // reverse relation : One ExerciseTag is always related to one Tag
         ExerciseTag.hasOne(models.Tag, {
-            foreignKey: "id"
+            foreignKey: "id",
+            sourceKey: "tag_id"
         })
     };
 
