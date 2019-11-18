@@ -48,6 +48,7 @@ function buildResult(params) {
                     {
                         method: ["filter_exercises_ids", ids]
                     },
+                    "with_exercise_metrics",
                     "exercise_with_metrics_and_tags_and_categories_related"
                 ])
                 .findAll()

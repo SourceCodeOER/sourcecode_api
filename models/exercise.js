@@ -66,10 +66,8 @@ module.exports = (sequelize, DataTypes) => {
                       }
                   }
             },
-            // to build the final result
-            // for simplicity, we can invoke the scope ONLY when there is at least ONE item in ids
-            // if not, don't use that
-            exercise_with_metrics_and_tags_and_categories_related() {
+            // include the metrics part
+            with_exercise_metrics() {
                 return {
                     include: [
                         // load exercise evaluation
@@ -81,7 +79,16 @@ module.exports = (sequelize, DataTypes) => {
                                 ["vote_count", "votes"],
                                 ["avg_vote_score", "avg_vote"]
                             ]
-                        },
+                        }
+                    ]
+                }
+            },
+            // to build the final result
+            // for simplicity, we can invoke the scope ONLY when there is at least ONE item in ids
+            // if not, don't use that
+            exercise_with_metrics_and_tags_and_categories_related() {
+                return {
+                    include: [
                         // load tags linked to this exercise ( with their category included )
                         // required : true for inner join (by default, it uses left outer join which is bad )
                         {
