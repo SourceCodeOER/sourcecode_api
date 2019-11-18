@@ -58,6 +58,15 @@ module.exports = (sequelize, DataTypes) => {
                         }],
                         group: "exercise_id"
                     }
+                },
+                filter_by_exercise_ids(ids) {
+                    return {
+                        where: {
+                            exercise_id: {
+                                [Op.in]: ids
+                            }
+                        }
+                    }
                 }
             }
         }

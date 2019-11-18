@@ -4,6 +4,9 @@ const Promise = require("bluebird");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+// function for bulky inner select
+const build_search_result = require("../utlis_fct").build_search_result;
+
 // Default limit in this endpoint
 const METADATA = {
     page: 1,
@@ -40,18 +43,7 @@ function buildResult(params) {
                 data: []
             })
         } else {
-            // more complex, at least one result
-            models
-                .Exercise
-                .scope([
-                    "default_attributes_for_bulk",
-                    {
-                        method: ["filter_exercises_ids", ids]
-                    },
-                    "with_exercise_metrics",
-                    "exercise_with_metrics_and_tags_and_categories_related"
-                ])
-                .findAll()
+            build_search_result(ids)
                 .then(data => {
                     resolve({
                         metadata: {
