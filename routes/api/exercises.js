@@ -80,18 +80,109 @@ router.put("/:exerciseId", (req, res, next) => {
                 .map(tag => tag.get("tag_id"));
             // computes the changes in order to insert (or not) minimal number of new rows
             // as we could add and remove tags, we must handle both cases at once
-            const changes = {
+            let changes = {
                 "added": difference(new_tags, old_tags),
                 "deleted": difference(old_tags, new_tags)
             };
             // delegate work to other promise
             return Promise.resolve([changes, tags_to_be_inserted]);
         })
-        .then( ([changes, tags_to_be_inserted]) => {
-            // TODO work to do
+        .then(([changes, tags_to_be_inserted]) => {
+            // if there is only additions in tags, we will use our hook to deal with the update part of precomputed data
+            // if not, we have to do that manually
+            const onlyAdditions = (changes["added"].length > 0 && changes["deleted"].length === 0);
+            const creationDate = new Date();
+
+            // transaction here as if anything bad happens, we don't commit that to database
+            return models
+                .sequelize
+                .transaction({
+                    isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+                }, (t) => {
+                    // if new tags to insert, do that
+                    // if not, do nothing
+                    return ((tags_to_be_inserted.length === 0)
+                            ? Promise.resolve([])
+                            : models
+                                .Tag
+                                .bulkCreate(tags_to_be_inserted.map(tag => ({
+                                    // no matter of the kind of user, creating tags like that should be reviewed
+                                    isValidated: false,
+                                    text: tag.text,
+                                    category_id: tag.category_id,
+                                    // some timestamps must be inserted
+                                    updatedAt: creationDate,
+                                    createdAt: creationDate
+                                })), {
+                                    transaction: t,
+                                    // I must retrieve the inserted row(s) ids for later
+                                    returning: ["id"]
+                                })
+                    ).then((created_tags) => {
+                        // add the newly created tag(s) into "added" key
+                        // if empty, it does nothing ^^
+                        changes["added"] = changes["added"].concat(
+                            created_tags.map(tag => tag.id)
+                        );
+                        // multiple cases can occur here
+                        switch (true) {
+                            // 1. no changes in the tags : the PERFECT case
+                            case (changes["added"].length === 0 && changes["deleted"].length === 0):
+                                return Promise.resolve();
+
+                            // 2. Only additions in tags : The AVERAGE case
+                            // ( we can rely on the hook in Exercise_Tag to update precomputed data eg : "tags_ids" )
+                            case onlyAdditions:
+                                return models
+                                    .Exercise_Tag
+                                    .bulkCreate(changes["added"].map(tag => ({
+                                        tag_id: tag,
+                                        exercise_id: id
+                                    })), {
+                                        transaction: t
+                                    });
+
+                            // 3. additions and deletes : The HARD case
+                            // We have to manually do what the hook in Exercise_Tag does
+                            // as there is no "instances" with their API for bulkDestroy
+                            default:
+                                return Promise.all([
+                                    // insert the new tags
+                                    // we have to disable the hook on them for no recompute things two times
+                                    models
+                                        .Exercise_Tag
+                                        .bulkCreate(changes["added"].map(tag => ({
+                                            tag_id: tag,
+                                            exercise_id: id
+                                        })), {
+                                            transaction: t,
+                                            hooks: false
+                                        }),
+                                    // delete the old tags
+                                    models
+                                        .Exercise_Tag
+                                        .destroy({
+                                            where: {
+                                                [Op.and]: [
+                                                    {exercise_id: id},
+                                                    {
+                                                        tag_id: {
+                                                            [Op.in]: changes["deleted"]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        })
+                                ]).then(() => {
+                                    // retrieve the new "tags_ids" array & update the Exercise_metrics row
+                                    
+                                })
+                        }
+                    })
+                })
 
         })
-        .then( () => {
+        .then(() => {
             // everything works as expected : tell that to user
             res.status(200).end();
         })
