@@ -68,6 +68,11 @@ app.use(function (err, req, res, next) {
     // to check it is not an expected error of these
     let is_custom = true;
     switch (true) {
+        case err instanceof Sequelize.EmptyResultError:
+            // resource not found
+            custom_err.message = "Resource not found";
+            custom_err.status = 404;
+            break;
         case err instanceof Sequelize.DatabaseError:
             // constraints violations
             custom_err.message = "Problem with the database : Constraints not satisfied , etc";

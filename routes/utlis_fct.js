@@ -7,13 +7,13 @@ const Op = Sequelize.Op;
 const groupBy = require('lodash.groupby');
 
 module.exports = {
-    // return "data" result for /search and /
+    // return "data" result for /search and /exercise/{id}
     build_search_result(ids) {
         // models.sequelize.getDialect() == "postgres"
         return new Promise((resolve, reject) => {
             // For Postgres, we have a much better way to handle this case
             if (models.sequelize.getDialect() === "postgres") {
-                // decompose this complex task to
+                // decompose this complex task to several sub queries
                 // Why ?
                 // 1. Database can more easily cache rows
                 // 2. Inner join with more of 3 tables with millions of rows is a memory leak
