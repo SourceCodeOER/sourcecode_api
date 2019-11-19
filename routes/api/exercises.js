@@ -79,7 +79,7 @@ router.put("/:exerciseId", (req, res, next) => {
                 .get("tag_entries")
                 .map(tag => tag.get("tag_id"));
             // computes the changes in order to insert (or not) minimal number of new rows
-            // as we change add and remove tags, we must handle both cases at once
+            // as we could add and remove tags, we must handle both cases at once
             const changes = {
                 "added": difference(new_tags, old_tags),
                 "deleted": difference(old_tags, new_tags)
@@ -87,7 +87,8 @@ router.put("/:exerciseId", (req, res, next) => {
             // delegate work to other promise
             return Promise.resolve([changes, tags_to_be_inserted]);
         })
-        .then( ([]) => {
+        .then( ([changes, tags_to_be_inserted]) => {
+            // TODO work to do
 
         })
         .then( () => {

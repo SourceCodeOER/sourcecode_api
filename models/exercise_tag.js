@@ -67,6 +67,21 @@ module.exports = (sequelize, DataTypes) => {
                             }
                         }
                     }
+                },
+                // to compute tags array
+                tags_summary(options = {}) {
+                    let settings = {
+                        attributes: [
+                            "exercise_id",
+                            [sequelize.fn("array_agg", sequelize.col("tag_id")), "tags"]
+                        ],
+                        group: "exercise_id",
+                        transaction: options.transaction
+                    };
+                    if (options.hasOwnProperty("transaction")) {
+                        settings["transaction"] = options.transaction;
+                    }
+                    return settings;
                 }
             }
         }
@@ -109,40 +124,32 @@ module.exports = (sequelize, DataTypes) => {
             ];
 
             // computes the new tags array for each exercise
-            return ExerciseTag.findAll({
-                attributes: [
-                    "exercise_id",
-                    [sequelize.fn("array_agg", sequelize.col("tag_id")), "tags"]
-                ],
-                where: {
-                    exercise_id: {
-                        [Op.in]: exercises_ids
-                    }
-                },
-                group: "exercise_id",
-                transaction: options.transaction
-            }).then(exercises_with_tags => {
-
-                // bulk update
-                return Promise.all(
-                    exercises_with_tags.map(
-                        (exercise) => {
-                            return sequelize
-                                .models
-                                .Exercise_Metrics
-                                .update({
-                                    tags_ids: exercise.get("tags")
-                                }, {
-                                    where: {
-                                        exercise_id: exercise.get("exercise_id")
-                                    },
-                                    transaction: options.transaction
-                                })
-                        }
+            return ExerciseTag
+                .scope([
+                    {method: ["filter_by_exercise_ids", exercises_ids]},
+                    {method: ["tags_summary", options]}
+                ])
+                .findAll()
+                .then(exercises_with_tags => {
+                    // bulk update
+                    return Promise.all(
+                        exercises_with_tags.map(
+                            (exercise) => {
+                                return sequelize
+                                    .models
+                                    .Exercise_Metrics
+                                    .update({
+                                        tags_ids: exercise.get("tags")
+                                    }, {
+                                        where: {
+                                            exercise_id: exercise.get("exercise_id")
+                                        },
+                                        transaction: options.transaction
+                                    })
+                            }
+                        )
                     )
-                )
-
-            });
+                });
         }
     );
 
