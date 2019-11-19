@@ -12,18 +12,15 @@ const build_search_result = require("../utlis_fct").build_search_result;
 
 router.get("/:exerciseId", (req, res, next) => {
 
-    const id = req.params.exerciseId;
+    const id = parseInt(req.params.exerciseId, 10);
 
     // check if id exist in database
     return models
         .Exercise
-        .findOne({
+        .findByPk(id,{
             attributes: [
                 Sequelize.literal(1)
             ],
-            where: {
-                id: id
-            },
             rejectOnEmpty: true
         }).then((result) => {
             return build_search_result([id]);
@@ -36,6 +33,7 @@ router.get("/:exerciseId", (req, res, next) => {
 
 });
 
+// TODO later secure that to prevent some mad genius to do stuff they can't
 router.put("/:exerciseId", (req, res, next) => {
     // TODO
     next(new Error("NOT YET IMPLEMENTED"));

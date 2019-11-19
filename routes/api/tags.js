@@ -91,7 +91,7 @@ router.put("/",(req, res, next) => {
         })
         .then( (check) => {
             const numberOfRowAffected = check[0];
-            // TODO find later which the optimisticLock error isn't throw
+            // TODO find later why the optimisticLock error isn't throw
             if (numberOfRowAffected !== 1) {
                 let error = new Error("It seems you are using an outdated version of this resource : Operation denied");
                 error.status = 409;
