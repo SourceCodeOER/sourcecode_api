@@ -63,11 +63,9 @@ router.put("/:exerciseId", (req, res, next) => {
                     // if new tags to insert, do that
                     // if not, do nothing
                     return insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t)
-                        .then((created_tags) =>
-                            handle_all_cases_for_tags([id, changes, created_tags, t])
-                        )
+                        .then((created_tags) => handle_all_cases_for_tags([id, changes, created_tags, t]))
+                        .then(() => update_exercise([id, req.body, t]))
                 })
-
         })
         .then(() => {
             // everything works as expected : tell that to user
@@ -104,6 +102,7 @@ function find_exercise_tags_and_search_possible_new_tags_match(
         models
             .Exercise
             .findAll({
+                attributes: ["id"],
                 where: {
                     [Op.and]: [
                         {id: id},
@@ -198,7 +197,6 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
         default:
             return Promise.all([
                 // insert the new tags
-                // we have to disable the hook on them for no recompute things two times
                 models
                     .Exercise_Tag
                     .bulkCreate(changes["added"].map(tag => ({
@@ -206,7 +204,7 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
                         exercise_id: id
                     })), {
                         transaction: t,
-                        hooks: false
+                        hooks: false // we have to disable the hook on them for no recompute things two times
                     }),
                 // delete the old tags
                 models
@@ -225,7 +223,47 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
                     })
             ]).then(() => {
                 // retrieve the new "tags_ids" array & update the Exercise_metrics row
-
+                return models
+                    .Exercise_Tag
+                    .scope([
+                        {method: ["filter_by_exercise_ids", [id]]},
+                        {method: ["tags_summary", {transaction: t}]}
+                    ])
+                    .findAll({
+                        rejectOnEmpty: true
+                    })
+            }).then(([data]) => {
+                // as Exercise_Metrics doesn't use version lock and/or timestamps, more easily to update
+                return models
+                    .Exercise_Metrics
+                    .update({
+                        "tags_ids": data.tags
+                    }, {
+                        where: {
+                            exercise_id: data.exercise_id
+                        }
+                    })
             })
     }
+}
+
+function update_exercise([id, body, t]) {
+    return models
+        .Exercise
+        .scope([
+            {method: ["filter_exercises_ids", [id]]}
+        ])
+        .findAll({
+            transaction: t,
+            rejectOnEmpty: true,
+            where: {
+                version: body.version
+            }
+        })
+        .then(([instance]) => {
+            return instance.update({
+                title: body.title,
+                description: body.description
+            })
+        })
 }
