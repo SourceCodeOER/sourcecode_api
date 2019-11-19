@@ -72,7 +72,7 @@ router.put("/:exerciseId", (req, res, next) => {
             res.status(200).end();
         })
         .catch(err => {
-            console.log(err);
+            //console.log(err);
             if (err instanceof Sequelize.EmptyResultError) {
                 let error = new Error("Resource not found / Outdated version");
                 error.message = "It seems you are using an outdated version of this resource : Operation denied";
@@ -219,7 +219,8 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
                                     }
                                 }
                             ]
-                        }
+                        },
+                        transaction: t
                     })
             ]).then(() => {
                 // retrieve the new "tags_ids" array & update the Exercise_metrics row
@@ -230,6 +231,7 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
                         {method: ["tags_summary", {transaction: t}]}
                     ])
                     .findAll({
+                        transaction: t,
                         rejectOnEmpty: true
                     })
             }).then(([data]) => {
@@ -237,11 +239,12 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
                 return models
                     .Exercise_Metrics
                     .update({
-                        "tags_ids": data.tags
+                        "tags_ids": data.get("tags")
                     }, {
                         where: {
-                            exercise_id: data.exercise_id
-                        }
+                            exercise_id: data.get("exercise_id")
+                        },
+                        transaction: t
                     })
             })
     }
