@@ -6,7 +6,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 // for fetching
-router.get("/",(req, res, next) => {
+router.get("/", (req, res, next) => {
     // TODO Fix of OpenApi validator to full test this endpoint
     const settings = {
         tags_ids: req.query.tags_ids || [],
@@ -65,9 +65,7 @@ router.get("/",(req, res, next) => {
 
 // For update
 // TODO later secure that to prevent some mad genius to do stuff they can't
-router.put("/",(req, res, next) => {
-
-    //const updateDate = new Date();
+router.put("/", (req, res, next) => {
     const {
         tag_id,
         tag_text,
@@ -76,35 +74,47 @@ router.put("/",(req, res, next) => {
         version
     } = req.body;
 
+    // cannot use here findByPk as it ignores my where clause
     return models
         .Tag
-        .update({
-            category_id: category_id,
-            text: tag_text,
-            isValidated: isValidated,
-            // sequelize doesn't seem to update that one
-            version: version + 1
-        }, {
+        .findAll({
             where: {
-                [Op.and]: [{ id: tag_id }, { version : version}]
-            }
+                [Op.and]: [
+                    {
+                        id: tag_id
+                    },
+                    {
+                        version: version
+                    }
+                ]
+            },
+            rejectOnEmpty: true
         })
-        .then( (check) => {
-            const numberOfRowAffected = check[0];
-            // TODO find later why the optimisticLock error isn't throw
-            if (numberOfRowAffected !== 1) {
-                let error = new Error("It seems you are using an outdated version of this resource : Operation denied");
+        .then(([instance]) => {
+            return instance.update({
+                category_id: category_id,
+                text: tag_text,
+                isValidated: isValidated
+            });
+        })
+        .then(() => {
+            res.status(200).end();
+        })
+        .catch(err => {
+            if (err instanceof Sequelize.EmptyResultError) {
+                let error = new Error("Resource not found / Outdated version");
+                error.message = "It seems you are using an outdated version of this resource : Operation denied";
                 error.status = 409;
-                next(error)
+                next(error);
             } else {
-                res.status(200).end()
+                // default handler
+                next(err);
             }
-        })
-        .catch(err => next(err));
+        });
 });
 
 // create a Tag Proposal
-router.post("/",(req, res, next) => {
+router.post("/", (req, res, next) => {
     const creationDate = new Date();
     const {
         text,
@@ -122,8 +132,8 @@ router.post("/",(req, res, next) => {
             updateAt: creationDate,
             createAt: creationDate
         })
-        .then( () => res.status(200).end())
-        .catch( err => next(err));
+        .then(() => res.status(200).end())
+        .catch(err => next(err));
 });
 
 module.exports = router;
