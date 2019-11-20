@@ -8,16 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env DEBUG=express-sequelize node ./bin/www",
-    "seeders": "sequelize-cli db:seed:all --debug",
-    "migrate": "sequelize-cli db:migrate",
-    "createDatabase": "sequelize db:create",
-    "revertMigration": "npx sequelize-cli db:migrate:undo",
-    "reverSeed": "npx sequelize-cli db:seed:undo",
-    "createMigration": "sequelize migration:create --name default_migration",
-    "generateClient": "npx openapi-generator generate -g typescript-axios -i api.yml -o out"
+    "start": "cross-env DEBUG=express-sequelize node ./bin/www"
   },
-  "author": "",
+  "author": "jy95",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
