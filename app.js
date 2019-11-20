@@ -100,6 +100,7 @@ app.use(function (err, req, res, next) {
         custom_err.is_custom = true;
         custom_err.dev_errors = [err];
     }
+    console.log(err);
     next(custom_err)
 
 });

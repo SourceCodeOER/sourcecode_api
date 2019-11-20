@@ -136,14 +136,13 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
-        // An exercise could have many tag entries
-        Exercise.hasMany(models.Exercise_Tag, {
-            as: "tag_entries",
-            foreignKey: {
-                name: "exercise_id",
-                allowNull: false
-            }
-        })
+        // An exercise could have multiple tags
+        Exercise.belongsToMany(models.Tag, {
+            through: models.Exercise_Tag,
+            timestamps: false,
+            as: "tags",
+            foreignKey: "exercise_id"
+        });
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row
