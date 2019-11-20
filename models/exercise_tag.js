@@ -93,14 +93,16 @@ module.exports = (sequelize, DataTypes) => {
                 name: "tag_id",
                 allowNull: false
             },
-            targetKey: "id"
+            targetKey: "id",
+            onDelete: "CASCADE"
         });
         ExerciseTag.belongsTo(models.Exercise, {
             foreignKey: {
                 name: "exercise_id",
                 allowNull: false
             },
-            targetKey: "id"
+            targetKey: "id",
+            onDelete: "CASCADE"
         })
     };
 
