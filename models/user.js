@@ -57,19 +57,12 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: {
                 name: "user_id",
                 allowNull: false
-            }
+            },
+            onDelete: "CASCADE"
         });
         // a user can possess configuration so that she/he didn't have to remember all her/his filters
         User.hasMany(models.Configuration, {
             as: "configurations",
-            foreignKey: {
-                name: "user_id",
-                allowNull: false
-            }
-        });
-        // An exercise is linked to a User
-        models.Exercise.belongsTo(models.User, {
-            as: "creator",
             foreignKey: {
                 name: "user_id",
                 allowNull: false

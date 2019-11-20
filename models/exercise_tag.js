@@ -89,11 +89,17 @@ module.exports = (sequelize, DataTypes) => {
 
     ExerciseTag.associate = function (models) {
         ExerciseTag.belongsTo(models.Tag, {
-            foreignKey: "tag_id",
+            foreignKey: {
+                name: "tag_id",
+                allowNull: false
+            },
             targetKey: "id"
         });
         ExerciseTag.belongsTo(models.Exercise, {
-            foreignKey: "exercise_id",
+            foreignKey: {
+                name: "exercise_id",
+                allowNull: false
+            },
             targetKey: "id"
         })
     };

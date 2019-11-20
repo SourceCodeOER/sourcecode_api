@@ -151,7 +151,16 @@ module.exports = (sequelize, DataTypes) => {
                 name: "exercise_id",
                 allowNull: false
             }
-        })
+        });
+        // An exercise is linked to a User
+        Exercise.belongsTo(models.User, {
+            as: "creator",
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            },
+
+        });
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row

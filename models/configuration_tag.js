@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             },
             targetKey: 'id',
-            as: 'Tag'
+            as: 'Tag',
+            onDelete: "CASCADE"
         });
         ConfigurationTag.belongsTo(models.Configuration, {
             foreignKey: {
