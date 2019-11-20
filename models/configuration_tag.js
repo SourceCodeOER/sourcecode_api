@@ -9,5 +9,25 @@ module.exports = (sequelize, DataTypes) => {
         tableName: "Configurations_Tags"
     });
 
+    ConfigurationTag.associate = function (models) {
+        ConfigurationTag.belongsTo(models.Tag, {
+            foreignKey: {
+                name: 'tag_id',
+                allowNull: false
+            },
+            targetKey: 'id',
+            as: 'Tag',
+            onDelete: "CASCADE"
+        });
+        ConfigurationTag.belongsTo(models.Configuration, {
+            foreignKey: {
+                name: 'configuration_id',
+                allowNull: false
+            },
+            targetKey: 'id',
+            as: 'Configuration'
+        });
+    };
+
     return ConfigurationTag;
 };

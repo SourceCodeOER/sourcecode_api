@@ -15,10 +15,22 @@ module.exports = (sequelize, DataTypes) => {
 
     Configuration.associate = function (models) {
         // a configuration can use multiple tags
-        models.Configuration.belongsToMany(models.Tag, {
+        Configuration.belongsToMany(models.Tag, {
             through: models.Configuration_Tag,
-            foreignKey: "configuration_id"
+            foreignKey: {
+                name: "configuration_id",
+                allowNull: false
+            }
         });
+        // a configuration belongs to a user
+        Configuration.belongsTo(models.User, {
+            as: "User",
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            },
+            onDelete: "CASCADE"
+        })
     };
 
     return Configuration;

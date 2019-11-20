@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
                     offset: (metadata.page - 1) * metadata.size,
                     include: [{
                         model: sequelize.models.Exercise_Metrics,
+                        required: true,
                         as: "metrics",
                         where: whereConditionBuilder(parameters),
                         attributes: []
@@ -136,6 +137,13 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+        // An exercise could have multiple tags
+        Exercise.belongsToMany(models.Tag, {
+            through: models.Exercise_Tag,
+            timestamps: false,
+            as: "tags",
+            foreignKey: "exercise_id"
+        });
         // An exercise could have many tag entries
         Exercise.hasMany(models.Exercise_Tag, {
             as: "tag_entries",
@@ -143,7 +151,16 @@ module.exports = (sequelize, DataTypes) => {
                 name: "exercise_id",
                 allowNull: false
             }
-        })
+        });
+        // An exercise is linked to a User
+        Exercise.belongsTo(models.User, {
+            as: "creator",
+            foreignKey: {
+                name: "user_id",
+                allowNull: false
+            },
+            onDelete: "CASCADE"
+        });
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row

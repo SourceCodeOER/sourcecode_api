@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             as: "tags",
             foreignKey: {
                 name: "category_id",
-                allowNull: false
+                allowNull: false,
             }
         });
     };

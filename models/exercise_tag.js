@@ -88,24 +88,21 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     ExerciseTag.associate = function (models) {
-        // An exercise could have multiple tags
-        models.Exercise.belongsToMany(models.Tag, {
-            through: ExerciseTag,
-            timestamps: false,
-            as: "tags",
-            foreignKey: "exercise_id"
+        ExerciseTag.belongsTo(models.Tag, {
+            foreignKey: {
+                name: "tag_id",
+                allowNull: false
+            },
+            targetKey: "id",
+            onDelete: "CASCADE"
         });
-        // a Tag can be used in multiple exercises
-        models.Tag.belongsToMany(models.Exercise, {
-            through: ExerciseTag,
-            timestamps: false,
-            as: "Exercises",
-            foreignKey: "tag_id"
-        });
-        // reverse relation : One ExerciseTag is always related to one Tag
-        ExerciseTag.hasOne(models.Tag, {
-            foreignKey: "id",
-            sourceKey: "tag_id"
+        ExerciseTag.belongsTo(models.Exercise, {
+            foreignKey: {
+                name: "exercise_id",
+                allowNull: false
+            },
+            targetKey: "id",
+            onDelete: "CASCADE"
         })
     };
 
