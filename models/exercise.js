@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
                     offset: (metadata.page - 1) * metadata.size,
                     include: [{
                         model: sequelize.models.Exercise_Metrics,
+                        required: true,
                         as: "metrics",
                         where: whereConditionBuilder(parameters),
                         attributes: []
@@ -143,6 +144,14 @@ module.exports = (sequelize, DataTypes) => {
             as: "tags",
             foreignKey: "exercise_id"
         });
+        // An exercise could have many tag entries
+        Exercise.hasMany(models.Exercise_Tag, {
+            as: "tag_entries",
+            foreignKey: {
+                name: "exercise_id",
+                allowNull: false
+            }
+        })
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row

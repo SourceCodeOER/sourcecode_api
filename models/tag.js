@@ -27,19 +27,26 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: {
                 name: "category_id",
                 allowNull: false
-            }
+            },
+            onDelete: "CASCADE"
         });
         // a Tag can be used in multiple configurations
         Tag.belongsToMany(models.Configuration, {
             through: models.Configuration_Tag,
-            foreignKey: "tag_id"
+            foreignKey: {
+                name: "tag_id",
+                allowNull: false
+            }
         });
         // a Tag can be used in multiple exercises
         Tag.belongsToMany(models.Exercise, {
             through: models.Exercise_Tag,
             timestamps: false,
             as: "Exercises",
-            foreignKey: "tag_id"
+            foreignKey: {
+                name: "tag_id",
+                allowNull: false
+            }
         });
     };
 

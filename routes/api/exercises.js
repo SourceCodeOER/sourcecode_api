@@ -113,6 +113,7 @@ function find_exercise_tags_and_search_possible_new_tags_match(
                     {
                         model: models.Exercise_Tag,
                         as: "tag_entries",
+                        require: true,
                         attributes: [
                             "tag_id"
                         ]
