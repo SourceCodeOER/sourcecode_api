@@ -71,7 +71,6 @@ fs
     .mkdir(argv.workingDirectory, {recursive: true})
     .then(() => {
         // If custom script, invoke this to get results
-        // TODO find a way to send custom properties here
         const results =
             (argv.hasOwnProperty("custom_strategy"))
                 ? require(argv.custom_strategy)(settings)

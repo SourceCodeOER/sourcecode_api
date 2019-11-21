@@ -13,8 +13,11 @@
   },
   "license": "ISC",
   "dependencies": {
+    "filehound": "^1.17.3",
     "js-yaml": "^3.13.1",
+    "lodash.partition": "^4.6.0",
     "openapi-client-axios": "^3.2.4",
+    "simple-git": "^1.126.0",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
