@@ -21,7 +21,7 @@ module.exports = async function (options) {
     try {
         // Clone the given git
         // TODO don't clone if already present ; fs.readDir
-        await simpleGit.clone(gitURL);
+        //await simpleGit.clone(gitURL);
         // Find course.yaml and task.yaml files
         const files = await FileHound
             .create()
