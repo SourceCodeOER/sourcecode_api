@@ -10,7 +10,7 @@
     "CS1-Java": "node index.js --settings demo/settings3.json",
     "LSINF1121": "node index.js --settings demo/settings4.json",
     "JobBlockly": "node index.js --settings demo/settings5.json",
-    "Cuisine-Algorithmique": "node index.js --settings demo/settings5.json"
+    "Cuisine-Algorithmique": "node index.js --settings demo/settings6.json"
   },
   "author": "jy95",
   "repository": {

@@ -1,0 +1,6 @@
+{
+  "url": "https://github.com/lin3out/cuisine-algorithmique",
+  "strategy": "inginious-git",
+  "mustSend": false,
+  "debug": true
+}
