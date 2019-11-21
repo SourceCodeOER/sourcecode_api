@@ -5,16 +5,17 @@ const groupBy = require('lodash.groupby');
 
 const yaml = require('js-yaml');
 const fs = require('fs').promises;
+const readFileSync = require("fs").readFileSync;
 
 // Handle tag crawling for INGINIOUS tasks on one GIT
 module.exports = async function (options) {
     const {
-        workingDir,
+        workingDirectory,
         url: gitURL
     } = options;
 
     // git clone the given folder in workingDir
-    const simpleGit = simpleGitModule(workingDir);
+    const simpleGit = simpleGitModule(workingDirectory);
 
     try {
         // Clone the given git
@@ -23,7 +24,7 @@ module.exports = async function (options) {
         // Find course.yaml and task.yaml files
         const files = await FileHound
             .create()
-            .paths(workingDir)
+            .paths(workingDirectory)
             .ext("yaml")
             // some inginious tasks use config files like "feedback_settings.yaml", exclude them from result)
             .glob("*course.yaml", "*task.yaml")
@@ -42,7 +43,7 @@ module.exports = async function (options) {
             courses_data
                 .map(course_data => {
                         // parse the given yaml file
-                        const doc = yaml.safeLoad(fs.readFileSync(course_data, 'utf8'));
+                        const doc = yaml.safeLoad(readFileSync(course_data, 'utf8'));
                         // if we can find some tags, extract them
                         return {
                             "all_tags": extract_tags(doc, "tags"), // all the given tags
@@ -71,7 +72,7 @@ module.exports = async function (options) {
         */
         const exercises = exercises_data.map(exercise_data => {
             // parse the given yaml file
-            const doc = yaml.safeLoad(fs.readFileSync(exercise_data, 'utf8'));
+            const doc = yaml.safeLoad(readFileSync(exercise_data, 'utf8'));
             // if we can find the related course metadata , use that to get more info on this exercise
             // Warning : as path , we must take the most specialized one ( aka the longest string )
             const course_match = Object

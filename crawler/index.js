@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const path = require('path');
 const fs = require("fs").promises;
+const readFileSync = require("fs").readFileSync;
 const DEFAULT_WORKING_FOLDER = path.resolve(__dirname, "./temp");
 const PATH_FOR_STRATEGY = path.resolve(__dirname, "./strategies");
 const DEBUG_FILE = path.resolve("./results.json");
@@ -55,16 +56,11 @@ const argv = require('yargs') // eslint-disable-line
         return path.resolve(arg);
     })
     .config("settings", "settings for strategy",(configPath) => {
-        return JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        return JSON.parse(readFileSync(configPath, 'utf-8'));
     })
     .check(demandOneOfOption("custom_strategy", "strategy")) // at least one of two is set
     .help()
     .argv;
-
-// settings
-const settings = Object.assign({}, argv.settings || {}, {
-    workingDir: argv.workingDirectory
-});
 
 // recreate the working directory
 fs
@@ -73,8 +69,8 @@ fs
         // If custom script, invoke this to get results
         const results =
             (argv.hasOwnProperty("custom_strategy"))
-                ? require(argv.custom_strategy)(settings)
-                : require(path.resolve(PATH_FOR_STRATEGY, argv.strategy))(settings);
+                ? require(argv.custom_strategy)(argv)
+                : require(path.resolve(PATH_FOR_STRATEGY, argv.strategy))(argv);
 
         // must we debug that later
         if (argv.debug) {

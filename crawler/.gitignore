@@ -137,6 +137,9 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
+# For testing
+temp
+
 # TypeScript cache
 *.tsbuildinfo
 
