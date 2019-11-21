@@ -1,5 +1,6 @@
 {
   "url": "https://github.com/UCL-INGI/LSINF1252",
   "strategy": "inginious-git",
-  "mustSend": false
+  "mustSend": false,
+  "debug": true
 }

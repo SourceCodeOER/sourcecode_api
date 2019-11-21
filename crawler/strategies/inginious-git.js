@@ -6,6 +6,7 @@ const groupBy = require('lodash.groupby');
 const yaml = require('js-yaml');
 const fs = require('fs').promises;
 const readFileSync = require("fs").readFileSync;
+const dirname = require("path").dirname;
 
 // Handle tag crawling for INGINIOUS tasks on one GIT
 module.exports = async function (options) {
@@ -77,7 +78,7 @@ module.exports = async function (options) {
             // Warning : as path , we must take the most specialized one ( aka the longest string )
             const course_match = Object
                 .keys(courses)
-                .filter(s => exercise_data.includes(s))
+                .filter(s => exercise_data.includes(dirname(s)))
                 .reduce((a, b) => a.length > b.length ? a : b, '');
             const course_data = (course_match.length > 0) ? courses[course_match] : {};
 

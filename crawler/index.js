@@ -66,29 +66,42 @@ const argv = require('yargs') // eslint-disable-line
 fs
     .mkdir(argv.workingDirectory, {recursive: true})
     .then(() => {
-        // If custom script, invoke this to get results
-        const results =
-            (argv.hasOwnProperty("custom_strategy"))
-                ? require(argv.custom_strategy)(argv)
-                : require(path.resolve(PATH_FOR_STRATEGY, argv.strategy))(argv);
+        fetch_results(argv)
+            .then( (results) => {
+                // TODO part of sending the extract results
+                if (argv.mustSend) {
 
-        // must we debug that later
-        if (argv.debug) {
-            // print pretty json
-            fs.writeFile(DEBUG_FILE, JSON.stringify(results, null, 4))
-                .then(() => {
-                    console.log("SUCCESSFULLY SAVED THE RESULTS")
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        }
-
-        // TODO part of sending the extract results
-        if (argv.mustSend) {
-
-        }
+                }
+            })
     })
     .catch((err) => {
         console.error(err);
     });
+
+async function fetch_results(argv) {
+    // If custom script, invoke this to get results
+    try {
+        const results =
+            (argv.hasOwnProperty("custom_strategy"))
+                ? await require(argv.custom_strategy)(argv)
+                : await require(path.resolve(PATH_FOR_STRATEGY, argv.strategy))(argv);
+        save_to_file(argv, results);
+        return await Promise.resolve(results)
+    } catch (e) {
+        return await Promise.reject(e);
+    }
+}
+
+function save_to_file(argv, results) {
+    // must we debug that later
+    if (argv.debug) {
+        // print pretty json
+        fs.writeFile(DEBUG_FILE, JSON.stringify(results, null, 4))
+            .then(() => {
+                console.log("SUCCESSFULLY SAVED THE RESULTS")
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+}
