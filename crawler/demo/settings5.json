@@ -1,0 +1,6 @@
+{
+  "url": "https://github.com/CelineDknp/JobBlockly",
+  "strategy": "inginious-git",
+  "mustSend": false,
+  "debug": true
+}
