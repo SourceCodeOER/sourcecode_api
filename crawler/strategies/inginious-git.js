@@ -278,7 +278,7 @@ function find_language_of_a_problem(problem) {
     let language = DEFAULT_LANGUAGE;
 
     // the most simple case : directly found the language
-    if (problem.hasOwnProperty("language")) {
+    if (problem.hasOwnProperty("language") && problem.language.length > 0) {
         language = problem.language;
     }
 
