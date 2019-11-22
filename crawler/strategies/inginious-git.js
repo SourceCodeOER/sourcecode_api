@@ -275,7 +275,7 @@ const DEFAULT_LANGUAGE = "UNKNOWN";
 
 function find_language_of_a_problem(problem) {
     // language can be present (or not), if not, try to infer that
-    const header_regex = RegExp(".. code-block:: (\w)");
+    const header_regex = RegExp("\.\. code-block:: (\\w+)");
     let language = DEFAULT_LANGUAGE;
 
     // the most simple case : directly found the language
