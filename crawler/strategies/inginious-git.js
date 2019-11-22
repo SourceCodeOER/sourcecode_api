@@ -6,7 +6,9 @@ const groupBy = require('lodash.groupby');
 const yaml = require('js-yaml');
 const fs = require('fs').promises;
 const readFileSync = require("fs").readFileSync;
-const dirname = require("path").dirname;
+const path = require("path");
+const dirname = path.dirname;
+const emptyDir = require('empty-dir');
 
 // Handle tag crawling for INGINIOUS tasks on one GIT
 module.exports = async function (options) {
@@ -17,15 +19,21 @@ module.exports = async function (options) {
 
     // git clone the given folder in workingDir
     const simpleGit = simpleGitModule(workingDirectory);
+    const folderName = gitURL.substr(gitURL.lastIndexOf("/") + 1).replace(/\.git/,"");
+    const gitFolder = path.resolve(workingDirectory, "./" + folderName);
 
     try {
-        // Clone the given git
-        // TODO don't clone if already present ; fs.readDir
-        await simpleGit.clone(gitURL);
+        // check if given git folder already exist, to prevent stupid re cloning
+        const isEmpty = await emptyDir(gitFolder);
+        if (isEmpty) {
+            // Clone the given git
+            await simpleGit.clone(gitURL);
+        }
+
         // Find course.yaml and task.yaml files
         const files = await FileHound
             .create()
-            .paths(workingDirectory)
+            .paths(gitFolder)
             .ext("yaml")
             // some inginious tasks use config files like "feedback_settings.yaml", exclude them from result)
             .glob("*course.yaml", "*task.yaml")
