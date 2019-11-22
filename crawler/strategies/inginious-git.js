@@ -108,7 +108,8 @@ module.exports = async function (options) {
                 2: "Category"
             },
             // date of creation
-            "extraction_date": new Date()
+            "extraction_date": new Date(),
+            "url": gitURL
         }
 
 
