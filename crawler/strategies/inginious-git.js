@@ -33,8 +33,8 @@ module.exports = async function (options) {
 
     try {
         // check if given git folder already exist, to prevent stupid re cloning
-        const isEmpty = exists(gitFolder);
-        if (isEmpty) {
+        const folder_exists = exists(gitFolder);
+        if (!folder_exists) {
             // Clone the given git
             await simpleGit.clone(gitURL);
         }
