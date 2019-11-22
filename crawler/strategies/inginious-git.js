@@ -5,10 +5,19 @@ const groupBy = require('lodash.groupby');
 
 const yaml = require('js-yaml');
 const fs = require('fs').promises;
-const readFileSync = require("fs").readFileSync;
+const {readFileSync, existsSync} = require("fs");
+
 const path = require("path");
 const dirname = path.dirname;
-const emptyDir = require('empty-dir');
+
+const exists = (dir) => {
+    try {
+        existsSync(dir);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
 
 // Handle tag crawling for INGINIOUS tasks on one GIT
 module.exports = async function (options) {
@@ -24,7 +33,7 @@ module.exports = async function (options) {
 
     try {
         // check if given git folder already exist, to prevent stupid re cloning
-        const isEmpty = await emptyDir(gitFolder);
+        const isEmpty = exists(gitFolder);
         if (isEmpty) {
             // Clone the given git
             await simpleGit.clone(gitURL);

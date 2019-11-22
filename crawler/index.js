@@ -42,6 +42,12 @@ const argv = require('yargs') // eslint-disable-line
         description: "Absolute path to a folder where the crawler can do its stuff",
         default: DEFAULT_WORKING_FOLDER
     })
+    .option("resultFile", {
+        alias: "out",
+        type: "string",
+        description: "Absolute path to a JSON file the crawler could write its results",
+        default: DEBUG_FILE
+    })
     .option("debug", {
         type: "boolean",
         default: false,
@@ -96,7 +102,7 @@ function save_to_file(argv, results) {
     // must we debug that later
     if (argv.debug) {
         // print pretty json
-        fs.writeFile(DEBUG_FILE, JSON.stringify(results, null, 4))
+        fs.writeFile(argv.resultFile, JSON.stringify(results, null, 4))
             .then(() => {
                 console.log("SUCCESSFULLY SAVED THE RESULTS")
             })

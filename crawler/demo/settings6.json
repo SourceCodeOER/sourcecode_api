@@ -2,5 +2,6 @@
   "url": "https://github.com/lin3out/cuisine-algorithmique",
   "strategy": "inginious-git",
   "mustSend": false,
-  "debug": true
+  "debug": true,
+  "resultFile": "./results/results6.json"
 }

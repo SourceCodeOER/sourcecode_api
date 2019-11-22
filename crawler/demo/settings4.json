@@ -2,5 +2,6 @@
   "url": "https://github.com/UCL-INGI/LSINF1121-Data-Structures-And-Algorithms",
   "strategy": "inginious-git",
   "mustSend": false,
-  "debug": true
+  "debug": true,
+  "resultFile": "./results/results4.json"
 }

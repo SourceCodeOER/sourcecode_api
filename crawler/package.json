@@ -19,7 +19,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "empty-dir": "^2.0.0",
     "filehound": "^1.17.3",
     "js-yaml": "^3.13.1",
     "lodash.groupby": "^4.6.0",
