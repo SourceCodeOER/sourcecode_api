@@ -18,6 +18,7 @@ paths:
   /auth/login:
     post:
       summary: "Logs user into the system"
+      operationId: signIn
       requestBody:
         required: true
         content:
@@ -63,6 +64,7 @@ paths:
   /auth/register:
     post:
       summary: "Creates a new user into the system"
+      operationId: register
       requestBody:
         required: true
         content:
@@ -93,6 +95,7 @@ paths:
   /api/create_exercise:
     post:
       summary: "Creates a new exercise into the system"
+      operationId: createSingleExercise
       security:
         - bearerAuth: []
       requestBody:
@@ -114,6 +117,7 @@ paths:
   /api/exercises/{id}:
     get:
       summary: "Retrieve this specific exercise data"
+      operationId: getExerciseByID
       parameters:
         - name: id
           in: path
@@ -137,6 +141,7 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Update this specific exercise data"
+      operationId: UpdateExercise
       security:
         - bearerAuth: []
       parameters:
@@ -165,6 +170,7 @@ paths:
   /api/search:
     post:
       summary: "Search exercises that matches criteria"
+      operationId: searchExercises
       requestBody:
         required: true
         content:
@@ -193,6 +199,7 @@ paths:
   /api/tags:
     post:
       summary: "Submit a tag proposal"
+      operationId: submitTagProposal
       security:
         - bearerAuth: []
       requestBody:
@@ -213,6 +220,7 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Validate or modify a Tag"
+      operationId: updateTag
       security:
         - bearerAuth: []
       requestBody:
@@ -233,6 +241,7 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     get:
       summary: "Retrieve all tags"
+      operationId: getTags
       parameters:
         - in: query
           style: form
@@ -280,6 +289,7 @@ paths:
   /api/tags_categories:
     get:
       summary: "Retrieve only Tag categories"
+      operationId: getTagCategories
       responses:
         '200':
           description: "An array of tag categories"
@@ -300,6 +310,7 @@ paths:
   /api/tags_by_categories:
     get:
       summary: "Retrieve Tag categories with their related tags"
+      operationId: getTagCategoriesWithTags
       parameters:
         - in: query
           style: form
