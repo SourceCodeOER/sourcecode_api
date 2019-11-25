@@ -24,7 +24,6 @@ before_install:
   - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
 before_script:
 # Create test database with our schema
-  - pg_ctl -D /usr/local/var/postgres start
   - psql --pset pager=off -c 'CREATE DATABASE database_test;' -U postgres
   - psql --pset pager=off -d database_test -c 'CREATE SCHEMA exercises_library;' -U postgres
   # Change passport to match the one in config.json
