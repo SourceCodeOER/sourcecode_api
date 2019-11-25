@@ -9,10 +9,10 @@ info:
 
 # Pas utile pour l'instant mais c'est mieux pour après
 servers:
-  - url: http://api.example.com/v1
-    description: Optional server description, e.g. Main (production) server
   - url: http://localhost:3000
     description: Internal staging server for testing
+  - url: http://api.example.com/v1
+    description: Optional server description, e.g. Main (production) server
 
 paths:
   /auth/login:
@@ -378,6 +378,8 @@ paths:
     post:
       summary: "Creates or Find tag categories"
       operationId: createOrFindTagCategories
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:

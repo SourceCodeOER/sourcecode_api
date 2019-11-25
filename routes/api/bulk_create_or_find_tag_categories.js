@@ -17,7 +17,10 @@ module.exports = function (req, res, next) {
         // As explained in docs, it return something like [instance, isCreated]
         // https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findOrCreate
         // I just need the instance
-        res.json(results.map(result => result[0]));
+        res.json(results.map(result => ({
+            id: result[0].id,
+            category: result[0].kind
+        })));
     }).catch(err => {
         next(err);
     });
