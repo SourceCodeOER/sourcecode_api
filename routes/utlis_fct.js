@@ -192,18 +192,12 @@ module.exports = {
                         ).then(inserted_tags => {
                             // now time to bind inserted tags with their exercise
                             let tags_dictionary = build_dictionary_for_matching_process(inserted_tags);
-                            const exercises_with_tags = exercises_with_tags_partition.map(exercise => {
-                                const tags = exercise.tags[0].concat(
-                                    exercise.tags[1].map(tag => {
-                                        // TODO
-                                    })
-                                );
-                                return [exercise, tags];
-                            });
+                            const exercises_with_tags = reconcile_exercises_with_tags(exercises_with_tags_partition, tags_dictionary);
+                            // Finally bulk insert all of these
                             return Promise.all(
                                 exercises_with_tags.map(
-                                    // I don't use the really new tags here since in bulk insert, we may have the same new tag to insert
-                                    // This is handled above
+                                    // I don't use the really new tags here since in bulk insert,
+                                    // we may have the same new tag to insert : This is handled above
                                     ([exercise, tags]) => store_single_exercise(user, exercise, tags, [], t)
                                 )
                             );
@@ -308,4 +302,18 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                 }
             )
     })
+}
+
+// for bulky insert, we need a function close to matching_process but adapted to this situation
+// since it is required to have a match for each tags, we could simplify that
+function reconcile_exercises_with_tags(exercises_with_tags_partition, tag_dictionary) {
+    return exercises_with_tags_partition.map(exercise => {
+        // concat the existent tags with newly created
+        const tags = exercise.tags[0].concat(
+            exercise.tags[1].map(tag => {
+                return tag_dictionary[tag.text][tag.category_id][0].id;
+            })
+        );
+        return [exercise, tags];
+    });
 }
