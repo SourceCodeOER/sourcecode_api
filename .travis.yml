@@ -8,12 +8,17 @@ notifications:
   slack:
     on_success: change
     on_failure: always
+# Ugly fix found here : https://travis-ci.community/t/postgresql-11-2-cannot-connect/2680/5
+services:
+  - postgresql
 addons:
-  postgresql: "10"
-  apt:
-    packages:
-      - postgresql-10
-      - postgresql-client-10
+  postgresql: "11.2"
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-11 postgresql-client-11
+  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+  - sudo service postgresql restart 11
 before_script:
 # Create test database with our schema
   - psql --pset pager=off -c 'CREATE DATABASE database_test;' -U postgres
