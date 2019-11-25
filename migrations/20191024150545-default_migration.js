@@ -11,6 +11,9 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
         // delete all tables since it is the first migrations
-        return queryInterface.dropAllTables(queryInterface.sequelize.config.database);
+        return queryInterface.dropAllTables({
+            cascade: true,
+            force: true
+        });
     }
 };
