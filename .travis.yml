@@ -23,6 +23,7 @@ before_script:
 # Create test database with our schema
   - psql --pset pager=off -c 'CREATE DATABASE database_test;' -U postgres
   - psql --pset pager=off -d database_test -c 'CREATE SCHEMA exercises_library;' -U postgres
+  - psql --pset pager=off -d database_test -f sql/initial_database.sql
   # Change passport to match the one in config.json
   - psql --pset pager=off -c "ALTER USER postgres PASSWORD 'jy95';" -U postgres
 script:
