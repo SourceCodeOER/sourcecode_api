@@ -147,7 +147,7 @@ module.exports = {
     bulky_store_exercises(user, exercises) {
         const creationDate = new Date();
         return new Promise((resolve, reject) => {
-            models
+            return models
                 .sequelize
                 .transaction({
                     isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
