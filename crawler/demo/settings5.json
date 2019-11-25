@@ -1,7 +1,7 @@
 {
   "url": "https://github.com/CelineDknp/JobBlockly",
   "strategy": "inginious-git",
-  "mustSend": false,
+  "mustSend": true,
   "debug": true,
   "resultFile": "./results/results5.json"
 }

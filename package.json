@@ -7,8 +7,11 @@
     "url": "https://github.com/jy95/exercises_library.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env DEBUG=express-sequelize node ./bin/www"
+    "start": "cross-env DEBUG=express-sequelize node ./bin/www",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --runInBand --forceExit",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
   },
   "author": "jy95",
   "license": "ISC",
@@ -38,7 +41,11 @@
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.2-4.2.0",
     "@types/express": "^4.17.2",
-    "@types/sequelize": "^4.28.6",
-    "redoc-cli": "^0.9.2"
+    "@types/jest": "^24.0.23",
+    "@types/sequelize": "^4.28.7",
+    "@types/supertest": "^2.0.8",
+    "jest": "^24.9.0",
+    "redoc-cli": "^0.9.2",
+    "supertest": "^4.0.2"
   }
 }

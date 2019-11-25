@@ -77,13 +77,8 @@ module.exports = {
     },
 
     // Promise that try to match new_tags with the result in DB
-    matching_process(already_present_tags, new_tags, result_in_db) {
+    matching_process(already_present_tags, new_tags, tag_dictionary) {
         return new Promise(resolve => {
-            // set up structure for matching
-            let tag_dictionary = groupBy(result_in_db, "text");
-            Object.keys(tag_dictionary).forEach(item => {
-                tag_dictionary[item] = groupBy(tag_dictionary[item], "category_id");
-            });
             // do the matching process here
             const [has_match, no_match] = partition(new_tags,
                 tag =>
@@ -124,7 +119,98 @@ module.exports = {
                     .catch(err => reject(err))
             }
         })
+    },
+    // to create the dictionary used for matching_process
+    "build_dictionary_for_matching_process": build_dictionary_for_matching_process,
+
+    // To store a single exercise
+    store_single_exercise(user, exercise_data, existent_tags, really_new_tags) {
+        return new Promise((resolve, reject) => {
+            models
+                .sequelize
+                .transaction({
+                    isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+                }, (t) => {
+                    return store_single_exercise(user, exercise_data, existent_tags, really_new_tags, t)
+                })
+                .then((_) => {
+                    // OK work as expected
+                    resolve()
+                })
+                .catch(err => {
+                    reject(err)
+                })
+        });
+    },
+
+    // Promise to store bulky exercise(s)
+    bulky_store_exercises(user, exercises) {
+        const creationDate = new Date();
+        return new Promise((resolve, reject) => {
+            return models
+                .sequelize
+                .transaction({
+                    isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+                }, (t) => {
+                    // separate tags proposal from existent tags in exercises
+                    let exercises_with_tags_partition = exercises.map(exercise => ({
+                        title: exercise.title,
+                        description: exercise.description,
+                        // here partition is necessary to separate existent tags from no existent yet
+                        tags: partition(exercise.tags, obj => Number.isInteger(obj))
+                    }));
+
+                    // collect all the tags to be inserted ( thanks to partition )
+                    // to prevent dummy insert, only takes unique elements
+                    const tags_to_be_inserted = [
+                        ...new Set(
+                            [].concat(
+                                ...exercises_with_tags_partition.map(exercise => exercise.tags[1])
+                            )
+                        )
+                    ];
+
+                    // insert new tags and retrieve ids
+                    return models
+                        .Tag
+                        .bulkCreate(
+                            tags_to_be_inserted.map(tag => {
+                                return {
+                                    // no matter of the kind of user, creating tags like that should be reviewed
+                                    isValidated: false,
+                                    text: tag.text,
+                                    category_id: tag.category_id,
+                                    // some timestamps must be inserted
+                                    updatedAt: creationDate,
+                                    createdAt: creationDate
+                                }
+                            }),
+                            {
+                                transaction: t,
+                                returning: ["id", "text", "category_id"]
+                            }
+                        ).then(inserted_tags => {
+                            // now time to bind inserted tags with their exercise
+                            let tags_dictionary = build_dictionary_for_matching_process(inserted_tags);
+                            const exercises_with_tags = reconcile_exercises_with_tags(exercises_with_tags_partition, tags_dictionary);
+                            // Finally bulk insert all of these
+                            return Promise.all(
+                                exercises_with_tags.map(
+                                    // I don't use the really new tags here since in bulk insert,
+                                    // we may have the same new tag to insert : This is handled above
+                                    ([exercise, tags]) => store_single_exercise(user, exercise, tags, [], t)
+                                )
+                            );
+                        });
+                })
+        }).then((_) => {
+            // OK work as expected
+            resolve()
+        }).catch(err => {
+            reject(err)
+        });
     }
+
 };
 
 // private functions here
@@ -145,3 +231,89 @@ const conditionBuilder = (array_data) => ({
         ]
     }))
 });
+
+// to create the dictionary used for matching_process
+function build_dictionary_for_matching_process(result_in_db) {
+    // set up structure for matching
+    let tag_dictionary = groupBy(result_in_db, "text");
+    Object.keys(tag_dictionary).forEach(item => {
+        tag_dictionary[item] = groupBy(tag_dictionary[item], "category_id");
+    });
+    return tag_dictionary;
+}
+
+// to store a single exercise
+function store_single_exercise(user, exercise_data, existent_tags, really_new_tags, t) {
+    // create exercise and news tag together
+    const creationDate = new Date();
+    return Promise.all([
+        // create the exercise with given information
+        models
+            .Exercise
+            .create(
+                {
+                    title: exercise_data.title,
+                    description: exercise_data.description,
+                    user_id: user.id,
+                    // some timestamps must be inserted
+                    updatedAt: creationDate,
+                    createdAt: creationDate
+                },
+                {
+                    transaction: t,
+                    returning: ["id"]
+                }
+            )
+        ,
+        // bulky create the new tags into the systems
+        models
+            .Tag
+            .bulkCreate(
+                really_new_tags.map(tag => {
+                    return {
+                        // no matter of the kind of user, creating tags like that should be reviewed
+                        isValidated: false,
+                        text: tag.text,
+                        category_id: tag.category_id,
+                        // some timestamps must be inserted
+                        updatedAt: creationDate,
+                        createdAt: creationDate
+                    }
+                }),
+                {
+                    transaction: t,
+                    returning: ["id"]
+                }
+            )
+    ]).then(([exercise, tags]) => {
+        // add the newly created tags ids to array so that I can bulk insert easily
+        const all_tags_ids = existent_tags.concat(
+            tags.map(tag => tag.id)
+        );
+        return models
+            .Exercise_Tag
+            .bulkCreate(
+                all_tags_ids.map(tag => ({
+                    tag_id: tag,
+                    exercise_id: exercise.id
+                })),
+                {
+                    transaction: t
+                }
+            )
+    })
+}
+
+// for bulky insert, we need a function close to matching_process but adapted to this situation
+// since it is required to have a match for each tags, we could simplify that
+function reconcile_exercises_with_tags(exercises_with_tags_partition, tag_dictionary) {
+    return exercises_with_tags_partition.map(exercise => {
+        // concat the existent tags with newly created
+        const tags = exercise.tags[0].concat(
+            exercise.tags[1].map(tag => {
+                return tag_dictionary[tag.text][tag.category_id][0].id;
+            })
+        );
+        return [exercise, tags];
+    });
+}

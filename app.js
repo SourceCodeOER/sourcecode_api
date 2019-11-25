@@ -27,7 +27,7 @@ const app = express();
 // middleware
 app.use(helmet());
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -100,7 +100,6 @@ app.use(function (err, req, res, next) {
         custom_err.is_custom = true;
         custom_err.dev_errors = [err];
     }
-    console.log(err);
     next(custom_err)
 
 });

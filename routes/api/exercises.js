@@ -15,6 +15,7 @@ const difference = require('lodash.difference');
 const {
     build_search_result,
     find_tag_matches,
+    build_dictionary_for_matching_process,
     matching_process
 } = require("../utlis_fct");
 
@@ -123,7 +124,10 @@ function find_exercise_tags_and_search_possible_new_tags_match(
             }),
         // Find possible match for new tag(s)
         find_tag_matches(new_tags)
-            .then(result => matching_process(already_present_tags, new_tags, result))
+            .then(result => {
+                const tag_dictionary = build_dictionary_for_matching_process(result);
+                return matching_process(already_present_tags, new_tags, tag_dictionary);
+            })
     ])
 }
 
