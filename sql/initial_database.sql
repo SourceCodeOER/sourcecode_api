@@ -5,8 +5,6 @@
 -- Dumped from database version 12.0
 -- Dumped by pg_dump version 12.0
 
--- Started on 2019-11-20 17:40:13
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -19,7 +17,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 6 (class 2615 OID 23274)
 -- Name: exercises_library; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -28,10 +25,10 @@ SET row_security = off;
 DROP SCHEMA IF EXISTS exercises_library CASCADE;
 CREATE SCHEMA exercises_library;
 
+
 ALTER SCHEMA exercises_library OWNER TO postgres;
 
 --
--- TOC entry 552 (class 1247 OID 23276)
 -- Name: enum_Users_role; Type: TYPE; Schema: exercises_library; Owner: postgres
 --
 
@@ -43,12 +40,10 @@ CREATE TYPE exercises_library."enum_Users_role" AS ENUM (
 
 ALTER TYPE exercises_library."enum_Users_role" OWNER TO postgres;
 
-SET default_tablespace = '';
-
+-- This line is not accepted on travis
 SET default_table_access_method = heap;
 
 --
--- TOC entry 206 (class 1259 OID 23296)
 -- Name: Configurations; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -62,7 +57,6 @@ CREATE TABLE exercises_library."Configurations" (
 ALTER TABLE exercises_library."Configurations" OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 23332)
 -- Name: Configurations_Tags; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -75,7 +69,6 @@ CREATE TABLE exercises_library."Configurations_Tags" (
 ALTER TABLE exercises_library."Configurations_Tags" OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 23294)
 -- Name: Configurations_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -91,8 +84,6 @@ CREATE SEQUENCE exercises_library."Configurations_id_seq"
 ALTER TABLE exercises_library."Configurations_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2915 (class 0 OID 0)
--- Dependencies: 205
 -- Name: Configurations_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -100,7 +91,6 @@ ALTER SEQUENCE exercises_library."Configurations_id_seq" OWNED BY exercises_libr
 
 
 --
--- TOC entry 213 (class 1259 OID 23349)
 -- Name: Exercises; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -118,7 +108,6 @@ CREATE TABLE exercises_library."Exercises" (
 ALTER TABLE exercises_library."Exercises" OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 23367)
 -- Name: Exercises_Metrics; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -134,7 +123,6 @@ CREATE TABLE exercises_library."Exercises_Metrics" (
 ALTER TABLE exercises_library."Exercises_Metrics" OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 23365)
 -- Name: Exercises_Metrics_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -150,8 +138,6 @@ CREATE SEQUENCE exercises_library."Exercises_Metrics_id_seq"
 ALTER TABLE exercises_library."Exercises_Metrics_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2916 (class 0 OID 0)
--- Dependencies: 214
 -- Name: Exercises_Metrics_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -159,7 +145,6 @@ ALTER SEQUENCE exercises_library."Exercises_Metrics_id_seq" OWNED BY exercises_l
 
 
 --
--- TOC entry 216 (class 1259 OID 23384)
 -- Name: Exercises_Tags; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -172,7 +157,6 @@ CREATE TABLE exercises_library."Exercises_Tags" (
 ALTER TABLE exercises_library."Exercises_Tags" OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 23347)
 -- Name: Exercises_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -188,8 +172,6 @@ CREATE SEQUENCE exercises_library."Exercises_id_seq"
 ALTER TABLE exercises_library."Exercises_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2917 (class 0 OID 0)
--- Dependencies: 212
 -- Name: Exercises_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -197,7 +179,6 @@ ALTER SEQUENCE exercises_library."Exercises_id_seq" OWNED BY exercises_library."
 
 
 --
--- TOC entry 218 (class 1259 OID 23401)
 -- Name: Notations; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -212,7 +193,6 @@ CREATE TABLE exercises_library."Notations" (
 ALTER TABLE exercises_library."Notations" OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 23399)
 -- Name: Notations_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -228,8 +208,6 @@ CREATE SEQUENCE exercises_library."Notations_id_seq"
 ALTER TABLE exercises_library."Notations_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2918 (class 0 OID 0)
--- Dependencies: 217
 -- Name: Notations_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -237,7 +215,6 @@ ALTER SEQUENCE exercises_library."Notations_id_seq" OWNED BY exercises_library."
 
 
 --
--- TOC entry 208 (class 1259 OID 23309)
 -- Name: Tag_Categories; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -250,7 +227,6 @@ CREATE TABLE exercises_library."Tag_Categories" (
 ALTER TABLE exercises_library."Tag_Categories" OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 23307)
 -- Name: Tag_Categories_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -266,8 +242,6 @@ CREATE SEQUENCE exercises_library."Tag_Categories_id_seq"
 ALTER TABLE exercises_library."Tag_Categories_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2919 (class 0 OID 0)
--- Dependencies: 207
 -- Name: Tag_Categories_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -275,7 +249,6 @@ ALTER SEQUENCE exercises_library."Tag_Categories_id_seq" OWNED BY exercises_libr
 
 
 --
--- TOC entry 210 (class 1259 OID 23319)
 -- Name: Tags; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -293,7 +266,6 @@ CREATE TABLE exercises_library."Tags" (
 ALTER TABLE exercises_library."Tags" OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 23317)
 -- Name: Tags_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -309,8 +281,6 @@ CREATE SEQUENCE exercises_library."Tags_id_seq"
 ALTER TABLE exercises_library."Tags_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2920 (class 0 OID 0)
--- Dependencies: 209
 -- Name: Tags_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -318,7 +288,6 @@ ALTER SEQUENCE exercises_library."Tags_id_seq" OWNED BY exercises_library."Tags"
 
 
 --
--- TOC entry 204 (class 1259 OID 23283)
 -- Name: Users; Type: TABLE; Schema: exercises_library; Owner: postgres
 --
 
@@ -334,7 +303,6 @@ CREATE TABLE exercises_library."Users" (
 ALTER TABLE exercises_library."Users" OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 23281)
 -- Name: Users_id_seq; Type: SEQUENCE; Schema: exercises_library; Owner: postgres
 --
 
@@ -350,8 +318,6 @@ CREATE SEQUENCE exercises_library."Users_id_seq"
 ALTER TABLE exercises_library."Users_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2921 (class 0 OID 0)
--- Dependencies: 203
 -- Name: Users_id_seq; Type: SEQUENCE OWNED BY; Schema: exercises_library; Owner: postgres
 --
 
@@ -359,7 +325,6 @@ ALTER SEQUENCE exercises_library."Users_id_seq" OWNED BY exercises_library."User
 
 
 --
--- TOC entry 2739 (class 2604 OID 23299)
 -- Name: Configurations id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -367,7 +332,6 @@ ALTER TABLE ONLY exercises_library."Configurations" ALTER COLUMN id SET DEFAULT 
 
 
 --
--- TOC entry 2744 (class 2604 OID 23352)
 -- Name: Exercises id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -375,7 +339,6 @@ ALTER TABLE ONLY exercises_library."Exercises" ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 2747 (class 2604 OID 23370)
 -- Name: Exercises_Metrics id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -383,7 +346,6 @@ ALTER TABLE ONLY exercises_library."Exercises_Metrics" ALTER COLUMN id SET DEFAU
 
 
 --
--- TOC entry 2751 (class 2604 OID 23404)
 -- Name: Notations id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -391,7 +353,6 @@ ALTER TABLE ONLY exercises_library."Notations" ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 2740 (class 2604 OID 23312)
 -- Name: Tag_Categories id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -399,7 +360,6 @@ ALTER TABLE ONLY exercises_library."Tag_Categories" ALTER COLUMN id SET DEFAULT 
 
 
 --
--- TOC entry 2741 (class 2604 OID 23322)
 -- Name: Tags id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -407,7 +367,6 @@ ALTER TABLE ONLY exercises_library."Tags" ALTER COLUMN id SET DEFAULT nextval('e
 
 
 --
--- TOC entry 2738 (class 2604 OID 23286)
 -- Name: Users id; Type: DEFAULT; Schema: exercises_library; Owner: postgres
 --
 
@@ -415,7 +374,6 @@ ALTER TABLE ONLY exercises_library."Users" ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 2765 (class 2606 OID 23336)
 -- Name: Configurations_Tags Configurations_Tags_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -424,7 +382,6 @@ ALTER TABLE ONLY exercises_library."Configurations_Tags"
 
 
 --
--- TOC entry 2757 (class 2606 OID 23301)
 -- Name: Configurations Configurations_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -433,7 +390,6 @@ ALTER TABLE ONLY exercises_library."Configurations"
 
 
 --
--- TOC entry 2769 (class 2606 OID 23378)
 -- Name: Exercises_Metrics Exercises_Metrics_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -442,7 +398,6 @@ ALTER TABLE ONLY exercises_library."Exercises_Metrics"
 
 
 --
--- TOC entry 2771 (class 2606 OID 23388)
 -- Name: Exercises_Tags Exercises_Tags_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -451,7 +406,6 @@ ALTER TABLE ONLY exercises_library."Exercises_Tags"
 
 
 --
--- TOC entry 2767 (class 2606 OID 23359)
 -- Name: Exercises Exercises_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -460,7 +414,6 @@ ALTER TABLE ONLY exercises_library."Exercises"
 
 
 --
--- TOC entry 2773 (class 2606 OID 23406)
 -- Name: Notations Notations_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -469,7 +422,6 @@ ALTER TABLE ONLY exercises_library."Notations"
 
 
 --
--- TOC entry 2759 (class 2606 OID 23316)
 -- Name: Tag_Categories Tag_Categories_kind_key; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -478,7 +430,6 @@ ALTER TABLE ONLY exercises_library."Tag_Categories"
 
 
 --
--- TOC entry 2761 (class 2606 OID 23314)
 -- Name: Tag_Categories Tag_Categories_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -487,7 +438,6 @@ ALTER TABLE ONLY exercises_library."Tag_Categories"
 
 
 --
--- TOC entry 2763 (class 2606 OID 23326)
 -- Name: Tags Tags_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -496,7 +446,6 @@ ALTER TABLE ONLY exercises_library."Tags"
 
 
 --
--- TOC entry 2753 (class 2606 OID 23293)
 -- Name: Users Users_email_key; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -505,7 +454,6 @@ ALTER TABLE ONLY exercises_library."Users"
 
 
 --
--- TOC entry 2755 (class 2606 OID 23291)
 -- Name: Users Users_pkey; Type: CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -514,7 +462,6 @@ ALTER TABLE ONLY exercises_library."Users"
 
 
 --
--- TOC entry 2776 (class 2606 OID 23337)
 -- Name: Configurations_Tags Configurations_Tags_configuration_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -523,7 +470,6 @@ ALTER TABLE ONLY exercises_library."Configurations_Tags"
 
 
 --
--- TOC entry 2777 (class 2606 OID 23342)
 -- Name: Configurations_Tags Configurations_Tags_tag_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -532,7 +478,6 @@ ALTER TABLE ONLY exercises_library."Configurations_Tags"
 
 
 --
--- TOC entry 2774 (class 2606 OID 23302)
 -- Name: Configurations Configurations_user_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -541,7 +486,6 @@ ALTER TABLE ONLY exercises_library."Configurations"
 
 
 --
--- TOC entry 2779 (class 2606 OID 23379)
 -- Name: Exercises_Metrics Exercises_Metrics_exercise_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -550,7 +494,6 @@ ALTER TABLE ONLY exercises_library."Exercises_Metrics"
 
 
 --
--- TOC entry 2780 (class 2606 OID 23389)
 -- Name: Exercises_Tags Exercises_Tags_exercise_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -559,7 +502,6 @@ ALTER TABLE ONLY exercises_library."Exercises_Tags"
 
 
 --
--- TOC entry 2781 (class 2606 OID 23394)
 -- Name: Exercises_Tags Exercises_Tags_tag_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -568,7 +510,6 @@ ALTER TABLE ONLY exercises_library."Exercises_Tags"
 
 
 --
--- TOC entry 2778 (class 2606 OID 23360)
 -- Name: Exercises Exercises_user_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -577,7 +518,6 @@ ALTER TABLE ONLY exercises_library."Exercises"
 
 
 --
--- TOC entry 2782 (class 2606 OID 23407)
 -- Name: Notations Notations_exercise_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -586,7 +526,6 @@ ALTER TABLE ONLY exercises_library."Notations"
 
 
 --
--- TOC entry 2783 (class 2606 OID 23412)
 -- Name: Notations Notations_user_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
@@ -595,15 +534,12 @@ ALTER TABLE ONLY exercises_library."Notations"
 
 
 --
--- TOC entry 2775 (class 2606 OID 23327)
 -- Name: Tags Tags_category_id_fkey; Type: FK CONSTRAINT; Schema: exercises_library; Owner: postgres
 --
 
 ALTER TABLE ONLY exercises_library."Tags"
     ADD CONSTRAINT "Tags_category_id_fkey" FOREIGN KEY (category_id) REFERENCES exercises_library."Tag_Categories"(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
-
--- Completed on 2019-11-20 17:40:13
 
 --
 -- PostgreSQL database dump complete
