@@ -21,6 +21,7 @@ before_install:
   - sudo service postgresql restart 11
 before_script:
 # Create test database with our schema
+  - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
   - psql --pset pager=off -c 'CREATE DATABASE database_test;' -U postgres
   - psql --pset pager=off -d database_test -c 'CREATE SCHEMA exercises_library;' -U postgres
   - psql --pset pager=off -d database_test -f sql/initial_database.sql
