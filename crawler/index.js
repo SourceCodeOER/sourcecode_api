@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 const path = require('path');
-const fs = require("fs").promises;
-const readFileSync = require("fs").readFileSync;
+const {promises: fs, readFileSync} = require("fs");
+const OpenAPIClientAxios = require('openapi-client-axios').default;
 const DEFAULT_WORKING_FOLDER = path.resolve(__dirname, "./temp");
 const PATH_FOR_STRATEGY = path.resolve(__dirname, "./strategies");
 const DEBUG_FILE = path.resolve("./results.json");
+const API_FILE = path.resolve("../api.yml");
 
 // Credits to https://github.com/yargs/yargs/issues/1093#issuecomment-491299261
 const demandOneOfOption = (...options) => (argv) => {
@@ -18,9 +19,19 @@ const demandOneOfOption = (...options) => (argv) => {
     return true;
 };
 
+// Auto generated tags
+// if we want to map them to another name, we can do that easily ( Here : English TO French )
+const AUTO_GENERATED_TAG_CATEGORIES = {
+    "_PLATFORM_": "Plateforme",
+    "_SOURCE_": "Source",
+    "_COURSE_": "Cours",
+    "_EXERCISE-TYPE_": "Type d'exercise",
+    "_PROGRAMMING-LANGUAGE_": "Langage de programmation",
+    "_AUTHOR_": "Auteur"
+};
+
 const argv = require('yargs') // eslint-disable-line
-    .option("url", {
-        alias: "u",
+    .option("apiBaseUrl", {
         type: "string",
         description: "URL of the API server (to override the one in documentation)",
         default: "localhost:3000"
@@ -48,6 +59,11 @@ const argv = require('yargs') // eslint-disable-line
         description: "Absolute path to a JSON file the crawler could write its results",
         default: DEBUG_FILE
     })
+    .option("apiFile", {
+        type: "string",
+        default: API_FILE,
+        description: "Path to the OpenAPI file that describe our API"
+    })
     .option("debug", {
         type: "boolean",
         default: false,
@@ -61,7 +77,7 @@ const argv = require('yargs') // eslint-disable-line
     .coerce("workingDirectory", (arg) => {
         return path.resolve(arg);
     })
-    .config("settings", "settings for strategy",(configPath) => {
+    .config("settings", "settings for strategy", (configPath) => {
         return JSON.parse(readFileSync(configPath, 'utf-8'));
     })
     .check(demandOneOfOption("custom_strategy", "strategy")) // at least one of two is set
@@ -72,42 +88,42 @@ const argv = require('yargs') // eslint-disable-line
 fs
     .mkdir(argv.workingDirectory, {recursive: true})
     .then(() => {
-        fetch_results(argv)
-            .then( (results) => {
-                // TODO part of sending the extract results
-                if (argv.mustSend) {
-
-                }
+        fetch_and_save_results(argv)
+            .then()
+            .then((results) => {
+                return argv.mustSend ? send_to_API(argv, results) : Promise.resolve();
             })
     })
     .catch((err) => {
         console.error(err);
     });
 
-async function fetch_results(argv) {
+async function fetch_and_save_results(argv) {
     // If custom script, invoke this to get results
     try {
         const results =
             (argv.hasOwnProperty("custom_strategy"))
                 ? await require(argv.custom_strategy)(argv)
                 : await require(path.resolve(PATH_FOR_STRATEGY, argv.strategy))(argv);
-        save_to_file(argv, results);
+        if (argv.debug) {
+            await fs.writeFile(argv.resultFile, JSON.stringify(results, null, 4));
+        }
+        console.log("SUCCESSFULLY SAVED THE RESULTS");
         return await Promise.resolve(results)
     } catch (e) {
         return await Promise.reject(e);
     }
 }
 
-function save_to_file(argv, results) {
-    // must we debug that later
-    if (argv.debug) {
-        // print pretty json
-        fs.writeFile(argv.resultFile, JSON.stringify(results, null, 4))
-            .then(() => {
-                console.log("SUCCESSFULLY SAVED THE RESULTS")
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }
+async function send_to_API(argv, results) {
+    const api = new OpenAPIClientAxios({
+        definition: argv.apiFile,
+        axiosConfigDefaults: {
+            url: argv.apiBaseUrl
+        }
+    });
+    await api.init();
+    const client = await api.getClient();
+    console.log()
+    // TODO some query here
 }

@@ -8,86 +8,11 @@ const Sequelize = require("sequelize");
 // delegate tag matching process to specialized functions
 const {
     find_tag_matches,
-    matching_process
+    matching_process,
+    build_dictionary_for_matching_process,
+    store_single_exercise
 } = require("../utlis_fct");
 
-// Promise to store exercise
-// it should be a transaction as if something fails, nothing should remain
-function store_exercise(user, exercise_data, existent_tags, really_new_tags) {
-    return new Promise((resolve, reject) => {
-        models
-            .sequelize
-            .transaction({
-                isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
-            }, (t) => {
-                // create exercise and news tag together
-                const creationDate = new Date();
-                return Promise.all([
-                    // create the exercise with given information
-                    models
-                        .Exercise
-                        .create(
-                            {
-                                title: exercise_data.title,
-                                description: exercise_data.description,
-                                user_id: user.id,
-                                // some timestamps must be inserted
-                                updatedAt: creationDate,
-                                createdAt: creationDate
-                            },
-                            {
-                                transaction: t,
-                                returning: ["id"]
-                            }
-                        )
-                    ,
-                    // bulky create the new tags into the systems
-                    models
-                        .Tag
-                        .bulkCreate(
-                            really_new_tags.map(tag => {
-                                return {
-                                    // no matter of the kind of user, creating tags like that should be reviewed
-                                    isValidated: false,
-                                    text: tag.text,
-                                    category_id: tag.category_id,
-                                    // some timestamps must be inserted
-                                    updatedAt: creationDate,
-                                    createdAt: creationDate
-                                }
-                            }),
-                            {
-                                transaction: t,
-                                returning: ["id"]
-                            }
-                        )
-                ]).then(([exercise, tags]) => {
-                    // add the newly created tags ids to array so that I can bulk insert easily
-                    const all_tags_ids = existent_tags.concat(
-                        tags.map(tag => tag.id)
-                    );
-                    return models
-                        .Exercise_Tag
-                        .bulkCreate(
-                            all_tags_ids.map(tag => ({
-                                tag_id: tag,
-                                exercise_id: exercise.id
-                            })),
-                            {
-                                transaction: t
-                            }
-                        )
-                })
-            })
-            .then((_) => {
-                // OK work as expected
-                resolve()
-            })
-            .catch(err => {
-                reject(err)
-            })
-    });
-}
 
 module.exports = function (req, res, next) {
 
@@ -98,11 +23,12 @@ module.exports = function (req, res, next) {
     find_tag_matches(new_tags)
         .then(result => {
             // try to match them
-            return matching_process(already_present_tags, new_tags, result);
+            const tag_dictionary = build_dictionary_for_matching_process(result);
+            return matching_process(already_present_tags, new_tags, tag_dictionary);
         })
         .then(
             ([existent_tags, really_new_tags]) => {
-                return store_exercise(req.user, req.body, existent_tags, really_new_tags);
+                return store_single_exercise(req.user, req.body, existent_tags, really_new_tags);
             }
         )
         .then(() => {
