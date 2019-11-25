@@ -38,7 +38,7 @@
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.2-4.2.0",
     "@types/express": "^4.17.2",
-    "@types/sequelize": "^4.28.6",
+    "@types/sequelize": "^4.28.7",
     "redoc-cli": "^0.9.2"
   }
 }
