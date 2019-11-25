@@ -9,9 +9,25 @@ notifications:
   slack:
     on_success: change
     on_failure: always
+addons:
+  postgresql: "11"
+  apt:
+    packages:
+      - postgresql-11
+      - postgresql-client-11
+env:
+  global:
+    - PGPORT=5433
+before_script:
+# Create test database with our schema
+  - psql -c 'CREATE DATABASE database_test; \connect database_test; CREATE SCHEMA exercises_library;' -U postgres
+# Change passport to match the one in config.json
+  - psql -c "ALTER USER postgres PASSWORD 'jy95';" -U postgres
 script:
   - npx openapi-generator validate -i api.yml
   - npx redoc-cli bundle api.yml -o docs/index.html
+  - echo "Testing endpoints"
+  - npm run test
 deploy:
   provider: pages
   skip_cleanup: true
