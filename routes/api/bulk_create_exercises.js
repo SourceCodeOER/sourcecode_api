@@ -1,7 +1,9 @@
-const models = require('../../models');
-const Promise = require("bluebird");
-const Sequelize = require("sequelize");
+const {
+    bulky_store_exercises
+} = require("../utlis_fct");
 
 module.exports = function (req, res, next) {
-
+    bulky_store_exercises(req.user, req.body)
+        .then((_) => res.status(200).end())
+        .catch((err) => next(err));
 };
