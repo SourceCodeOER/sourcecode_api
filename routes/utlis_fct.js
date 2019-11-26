@@ -55,7 +55,8 @@ module.exports = {
                             }
                         )
                     )
-                }).catch(err => reject(err));
+                }).catch(/* istanbul ignore next */
+                err => reject(err));
 
 
             // fallback implementation : It should never be used as it is highly inefficient
@@ -100,9 +101,8 @@ module.exports = {
                     // OK work as expected
                     resolve()
                 })
-                .catch(err => {
-                    reject(err)
-                })
+                .catch(/* istanbul ignore next */
+                    err => reject(err))
         });
     },
 
@@ -179,9 +179,8 @@ module.exports = {
                 }).then((_) => {
                     // OK work as expected
                     resolve()
-                }).catch(err => {
-                    reject(err)
-                });
+                }).catch(/* istanbul ignore next */
+                    err => reject(err));
         });
     }
 };
@@ -296,7 +295,8 @@ function find_tag_matches(new_tags) {
                     where: conditionBuilder(new_tags)
                 })
                 .then(result => resolve(result))
-                .catch(err => reject(err))
+                .catch(/* istanbul ignore next */
+                    err => reject(err))
         }
     })
 }
