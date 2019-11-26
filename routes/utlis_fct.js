@@ -6,6 +6,8 @@ const Op = Sequelize.Op;
 
 const partition = require('lodash.partition');
 const groupBy = require('lodash.groupby');
+const uniqWith = require('lodash.uniqwith');
+const isEqual = require('lodash.isequal');
 
 // Some utilities functions commonly used
 module.exports = {
@@ -162,13 +164,11 @@ module.exports = {
 
                     // collect all the tags to be inserted ( thanks to partition )
                     // to prevent dummy insert, only takes unique elements
-                    const tags_to_be_inserted = [
-                        ...new Set(
-                            [].concat(
-                                ...exercises_with_tags_partition.map(exercise => exercise.tags[1])
-                            )
-                        )
-                    ];
+                    const tags_to_be_inserted = uniqWith(
+                        []
+                            .concat(...exercises_with_tags_partition
+                                .map(exercise => exercise.tags[1]))
+                        , isEqual);
 
                     // insert new tags and retrieve ids
                     return models
