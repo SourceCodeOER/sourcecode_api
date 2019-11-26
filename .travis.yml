@@ -19,6 +19,8 @@ before_install:
   - sudo apt-get install -y postgresql-12 postgresql-client-12
   - sudo cp /etc/postgresql/{9.6,12}/main/pg_hba.conf
   - sudo service postgresql restart 12
+install:
+  - npm install -g codecov
 before_script:
 # Create test database with our schema
   - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
@@ -31,7 +33,7 @@ script:
   - npx openapi-generator validate -i api.yml
   - npx redoc-cli bundle api.yml -o docs/index.html
   - echo "Testing endpoints"
-  - npm run test
+  - npm run test && codecov
 deploy:
   provider: pages
   skip_cleanup: true
