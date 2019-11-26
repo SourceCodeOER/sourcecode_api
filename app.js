@@ -28,10 +28,11 @@ const app = express();
 app.use(helmet());
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '10mb'}));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // Gives the Swagger UI Viewer
+/* istanbul ignore next */
 app.use('/api-docs', function (_, res) {
     res.redirect("http://petstore.swagger.io/?url=https://raw.githubusercontent.com/jy95/exercises_library/master/api.yml");
 });
@@ -54,7 +55,8 @@ app.use(passport.initialize());
 app.use('/', routes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+/* istanbul ignore next */
+app.use(function (req, res, next) {
     let err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -73,25 +75,30 @@ app.use(function (err, req, res, next) {
             custom_err.message = "Resource not found";
             custom_err.status = 404;
             break;
+        /* istanbul ignore next */
         case err instanceof Sequelize.DatabaseError:
             // constraints violations
             custom_err.message = "Problem with the database : Constraints not satisfied , etc";
             custom_err.status = 400;
             break;
+        /* istanbul ignore next */
         case err instanceof Sequelize.ConnectionError:
             // Connection issues : cannot reach , timeout, etc
             custom_err.message = "The database cannot be reached : Please try later";
             custom_err.status = 503;
             break;
+        /* istanbul ignore next */
         case err instanceof Sequelize.OptimisticLockError:
             // catch locking issues with version
             custom_err.message = "It seems you are using an outdated version of this resource : Operation denied";
             custom_err.status = 409;
             break;
-        case err instanceof  Sequelize.BaseError:
+        /* istanbul ignore next */
+        case err instanceof Sequelize.BaseError:
             // catch all unwatched exceptions coming from Sequelize
             custom_err.message = "Unexpected error";
             break;
+        /* istanbul ignore next */
         default:
             is_custom = false;
             custom_err = err;
@@ -106,14 +113,15 @@ app.use(function (err, req, res, next) {
 
 // error handler
 // no stacktraces leaked to user unless in development environment
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 
     // if error thrown by validation, give everything else depending of the environment
     res.status(err.status || 500).json({
         message: err.message,
         errors: err.hasOwnProperty("errors")
             ? err.errors
-            : (app.get('env') === 'development' && err.hasOwnProperty("is_custom") ) ? err.dev_errors : [err]
+            /* istanbul ignore next */
+            : (app.get('env') === 'development' && err.hasOwnProperty("is_custom")) ? err.dev_errors : [err]
     });
 
 });

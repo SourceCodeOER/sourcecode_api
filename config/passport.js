@@ -20,6 +20,7 @@ passport.use(new JsonStrategy({
                 return done(null, false, {message: 'Unknown user ' + email});
             }
             models.User.comparePassword(password, user.password, function (err, isMatch) {
+                /* istanbul ignore next */
                 if (err) {
                     return done(err);
                 }
@@ -30,10 +31,10 @@ passport.use(new JsonStrategy({
                 }
             });
         })
-        .catch(function (err) { // something went wrong with query to db
-            console.log(err);
-            done(err);
-        });
+        // something went wrong with query to db
+        .catch(/* istanbul ignore next */
+            err => done(err)
+        );
 }));
 
 passport.use(new JWTStrategy({
@@ -53,10 +54,10 @@ passport.use(new JWTStrategy({
                 .then(function (user) { // successful query to database
                     return done(null, user);
                 })
-                .catch(function (error) { // something went wrong with query to db
-                    return done(error);
-                });
-
+                // something went wrong with query to db
+                .catch(/* istanbul ignore next */
+                    error => done(error)
+                );
         })
     }
 ));
