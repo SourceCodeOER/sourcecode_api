@@ -12,8 +12,7 @@ const dirname = path.dirname;
 
 const exists = (dir) => {
     try {
-        existsSync(dir);
-        return true;
+        return existsSync(dir);
     } catch (e) {
         return false;
     }
