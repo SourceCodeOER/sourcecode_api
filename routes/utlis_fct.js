@@ -79,49 +79,10 @@ module.exports = {
     },
 
     // Promise that try to match new_tags with the result in DB
-    matching_process(already_present_tags, new_tags, tag_dictionary) {
-        return new Promise(resolve => {
-            // do the matching process here
-            const [has_match, no_match] = partition(new_tags,
-                tag =>
-                    tag.text.toLowerCase() in tag_dictionary
-                    && tag.category_id in tag_dictionary[tag.text.toLowerCase()]
-            );
-            // takes the first match
-            resolve([
-                already_present_tags.concat(
-                    has_match.map(tag => {
-                        return tag_dictionary[tag.text.toLowerCase()][tag.category_id][0].id
-                    })
-                ),
-                no_match
-            ]);
-        });
-    },
+    matching_process: matching_process,
 
     // Promise to retrieve possible matches for new tag
-    find_tag_matches(new_tags) {
-        return new Promise((resolve, reject) => {
-            // no need to query DB if no new
-            if (new_tags.length === 0) {
-                resolve([]);
-            } else {
-                // query database to find possible match before creating new tags
-                models
-                    .Tag
-                    .findAll({
-                        attributes: [
-                            "id",
-                            [Sequelize.fn("LOWER", Sequelize.col("text")), "text"],
-                            "category_id"
-                        ],
-                        where: conditionBuilder(new_tags)
-                    })
-                    .then(result => resolve(result))
-                    .catch(err => reject(err))
-            }
-        })
-    },
+    find_tag_matches: find_tag_matches,
     // to create the dictionary used for matching_process
     "build_dictionary_for_matching_process": build_dictionary_for_matching_process,
 
@@ -170,28 +131,41 @@ module.exports = {
                                 .map(exercise => exercise.tags[1]))
                         , isEqual);
 
-                    // insert new tags and retrieve ids
-                    return models
-                        .Tag
-                        .bulkCreate(
-                            tags_to_be_inserted.map(tag => {
-                                return {
-                                    // no matter of the kind of user, creating tags like that should be reviewed
-                                    isValidated: false,
-                                    text: tag.text,
-                                    category_id: tag.category_id,
-                                    // some timestamps must be inserted
-                                    updatedAt: creationDate,
-                                    createdAt: creationDate
-                                }
-                            }),
-                            {
-                                transaction: t,
-                                returning: ["id", "text", "category_id"]
+                    // find possible match for not existent tags
+                    return find_tag_matches(tags_to_be_inserted)
+                        .then(result => {
+                            const tag_dictionary = build_dictionary_for_matching_process(result);
+                            return matching_process2(tags_to_be_inserted, tag_dictionary);
+                        }).then(
+                            ([existent_tags, really_new_tags]) => {
+                                return Promise.all([
+                                    Promise.resolve(existent_tags),
+                                    // insert new tags and retrieve ids
+                                    models
+                                        .Tag
+                                        .bulkCreate(
+                                            really_new_tags.map(tag => {
+                                                return {
+                                                    // no matter of the kind of user, creating tags like that should be reviewed
+                                                    isValidated: false,
+                                                    text: tag.text,
+                                                    category_id: tag.category_id,
+                                                    // some timestamps must be inserted
+                                                    updatedAt: creationDate,
+                                                    createdAt: creationDate
+                                                }
+                                            }),
+                                            {
+                                                transaction: t,
+                                                returning: ["id", "text", "category_id"]
+                                            }
+                                        )
+                                ])
                             }
-                        ).then(inserted_tags => {
+                        ).then(([existent_tags, inserted_tags]) => {
                             // now time to bind inserted tags with their exercise
-                            let tags_dictionary = build_dictionary_for_matching_process(inserted_tags);
+                            // merge both array for reconciliation
+                            let tags_dictionary = build_dictionary_for_matching_process(existent_tags.concat(inserted_tags));
                             const exercises_with_tags = reconcile_exercises_with_tags(exercises_with_tags_partition, tags_dictionary);
                             // Finally bulk insert all of these
                             return Promise.all(
@@ -304,14 +278,91 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
     })
 }
 
+// Promise to retrieve possible matches for new tag
+function find_tag_matches(new_tags) {
+    return new Promise((resolve, reject) => {
+        // no need to query DB if no new
+        if (new_tags.length === 0) {
+            resolve([]);
+        } else {
+            // query database to find possible match before creating new tags
+            models
+                .Tag
+                .findAll({
+                    attributes: [
+                        "id",
+                        [Sequelize.fn("LOWER", Sequelize.col("text")), "text"],
+                        "category_id"
+                    ],
+                    where: conditionBuilder(new_tags)
+                })
+                .then(result => resolve(result))
+                .catch(err => reject(err))
+        }
+    })
+}
+
+// Promise that try to match new_tags with the result in DB
+function matching_process(already_present_tags, new_tags, tag_dictionary) {
+    return new Promise(resolve => {
+        // do the matching process here
+        const [has_match, no_match] = find_match(tag_dictionary, new_tags);
+        // takes the first match
+        resolve([
+            already_present_tags.concat(
+                has_match.map(tag => {
+                    return tag_dictionary[tag.text.toLowerCase()][tag.category_id][0].id
+                })
+            ),
+            no_match
+        ]);
+    });
+}
+
+// ONLY FOR BULK INSERT, we need a mutated version of the matching_process
+// As we need all the information for later, I cannot use only ID like the original version
+function matching_process2(new_tags, tag_dictionary) {
+    return new Promise(resolve => {
+        // do the matching process here
+        const [has_match, no_match] = find_match(tag_dictionary, new_tags);
+        resolve([
+            has_match.map(tag => tag_dictionary[tag.text.toLowerCase()][tag.category_id][0])
+            ,
+            no_match
+        ])
+    });
+}
+
+// inner function used in matching_process
+function find_match(tag_dictionary, new_tags) {
+    return partition(new_tags,
+        tag =>
+            tag.text.toLowerCase() in tag_dictionary
+            && tag.category_id in tag_dictionary[tag.text.toLowerCase()]
+    );
+}
+
 // for bulky insert, we need a function close to matching_process but adapted to this situation
 // since it is required to have a match for each tags, we could simplify that
 function reconcile_exercises_with_tags(exercises_with_tags_partition, tag_dictionary) {
+    // useful for later
+    const tags_keys = Object.keys(tag_dictionary).map(key => ({original_key: key, lower_key: key.toLowerCase()}));
     return exercises_with_tags_partition.map(exercise => {
         // concat the existent tags with newly created
         const tags = exercise.tags[0].concat(
             exercise.tags[1].map(tag => {
-                return tag_dictionary[tag.text][tag.category_id][0].id;
+                // We must handle the case where a similar text already exist in database (but not the same typo )
+                // Thanks to tags_keys, we can retrieve the correct text for dictionary
+                const lower_key = tag.text.toLowerCase();
+                const tag_text = (tag_dictionary.hasOwnProperty(tag.text))
+                    ? tag.text
+                    : tags_keys
+                        .filter(tag_tuple => tag_tuple.lower_key === lower_key)
+                        .slice(0, 1)
+                        .reduce((_prev, current) => {
+                            return current.original_key;
+                        }, "");
+                return tag_dictionary[tag_text][tag.category_id][0].id;
             })
         );
         return [exercise, tags];
