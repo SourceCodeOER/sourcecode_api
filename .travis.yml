@@ -20,7 +20,10 @@ before_install:
   - sudo cp /etc/postgresql/{9.6,12}/main/pg_hba.conf
   - sudo service postgresql restart 12
 install:
+  - npm install -g npm@latest
   - npm install -g codecov
+# It seems codecov somehow delete that from node module
+  - npm install cross-env
 before_script:
 # Create test database with our schema
   - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
