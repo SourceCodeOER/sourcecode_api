@@ -239,7 +239,7 @@ function tagsConditionsBuilder(tags) {
             )
         } else {
             // the most horrible case
-            return tagsConditionsBuilder[kind](must_have, must_not)
+            return tagsWhereBuilder[kind](must_have, must_not)
         }
 
     });

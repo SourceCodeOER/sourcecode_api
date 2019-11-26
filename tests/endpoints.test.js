@@ -20,6 +20,9 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// credits to https://stackoverflow.com/a/8511350/6149867
+const isObject = (obj) => typeof obj === 'object' && obj !== null;
+
 // Should be able to register and login
 // if not, we cannot test so much things ...
 beforeAll(async () => {
@@ -39,7 +42,7 @@ beforeAll(async () => {
     expect(typeof JWT_TOKEN).toBe('string')
 });
 
-describe("Manual testing", () => {
+describe("Simple case testing", () => {
 
     it("POST /api/bulk_create_or_find_tag_categories", async () => {
         const response = await request
@@ -63,19 +66,58 @@ describe("Manual testing", () => {
         expect(responses).toHaveLength(tags.length);
     });
 
-    // TODO find a way to wait for the two first test
     it("GET /api/tags", async () => {
         const response = await request
             .get("/api/tags")
             .set('Accept', 'application/json')
             .expect(200);
-        expect(response.body).toHaveLength(0);
+        expect(Array.isArray(response.body)).toBeTruthy();
     });
-    
-});
 
-describe('Sample Test', () => {
-    it('should test that true === true', () => {
-        expect(true).toBe(true)
-    })
+    it("GET /api/tags_by_categories", async () => {
+        const response = await request
+            .get("/api/tags_by_categories")
+            .set('Accept', 'application/json')
+            .expect(200);
+        expect(Array.isArray(response.body)).toBeTruthy();
+    });
+
+    it("GET /api/tags_by_categories", async () => {
+        const response = await request
+            .get("/api/tags_categories")
+            .set('Accept', 'application/json')
+            .expect(200);
+        expect(Array.isArray(response.body)).toBeTruthy();
+    });
+
+    it("GET /api/exercises/{id} : 404 error", async () => {
+        const response = await request
+            .get("/api/exercises/"+ 42)
+            .set('Accept', 'application/json')
+            .expect(404);
+        expect(response.status).toBe(404);
+    });
+
+    it("POST /api/search with no exercise", async () => {
+        let response = await request
+            .post("/api/search")
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({
+                data: {
+                    title: "HELLO WORLD",
+                    tags: [
+                        1,
+                        [2, -3, 4],
+                        37,
+                        -42
+                    ]
+                }
+            })
+            .expect(200);
+        expect(isObject(response.body)).toBeTruthy();
+        expect(Array.isArray(response.body.data)).toBeTruthy();
+        expect(response.body.data).toHaveLength(0);
+        expect(response.body.metadata.totalItems).toBe(0);
+    });
 });
