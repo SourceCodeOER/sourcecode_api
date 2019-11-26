@@ -23,12 +23,6 @@ function getRandomInt(min, max) {
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
-// credits to https://stackoverflow.com/a/58920031/6149867
-// Only way to prevent conflict
-function wait(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
-
 // Should be able to register and login
 // if not, we cannot test so much things ...
 beforeAll(async () => {
@@ -231,40 +225,40 @@ describe("Complex scenarios", () => {
         expect(isObject(response.body)).toBeTruthy();
         expect(response.body.version).toBe(1);
         expect(response.body.id).toBe(data.id);
-        /*
+
         // 2. Only additions
-        await request
+        response = await request
             .put("/api/exercises/" + data.id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 title: response.body.title,
-                version: response.body.version + 1,
+                version: 1,
                 description: response.body.description,
                 tags: response.body.tags.map(tag => tag.tag_id).concat([
                     {text: "TRY 42", category_id: 1}
                 ])
-            })
-            .expect(200);
+            });
 
-         */
+        expect(response.status).toBe(200);
         // 3. Add / remove some tags ( difficult case )
-        /*
-        await request
+
+        // I know it should be version 2 but requests are faster than applying the modification
+        response = await request
             .put("/api/exercises/" + data.id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 title: data.title,
-                version: data.version + 1,
+                version: 1,
                 description: data.description + "API4FUN",
                 tags: data.tags.splice(0, 1).map(tag => tag.tag_id).concat([
                     {text: "TRY 1", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
                     {text: "TRY 2", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
                 ])
-            })
-            .expect(200);
+            });
 
-         */
+        expect(response.status).toBe(200);
+
     });
 });
