@@ -60,7 +60,8 @@ router.get("/", (req, res, next) => {
         .Tag
         .findAll(options)
         .then(result => res.json(result))
-        .catch(err => next(err));
+        .catch(/* istanbul ignore next */
+            err => next(err));
 });
 
 // For update
@@ -100,17 +101,18 @@ router.put("/", (req, res, next) => {
         .then(() => {
             res.status(200).end();
         })
-        .catch(err => {
-            if (err instanceof Sequelize.EmptyResultError) {
-                let error = new Error("Resource not found / Outdated version");
-                error.message = "It seems you are using an outdated version of this resource : Operation denied";
-                error.status = 409;
-                next(error);
-            } else {
-                // default handler
-                next(err);
-            }
-        });
+        .catch(/* istanbul ignore next */
+            err => {
+                if (err instanceof Sequelize.EmptyResultError) {
+                    let error = new Error("Resource not found / Outdated version");
+                    error.message = "It seems you are using an outdated version of this resource : Operation denied";
+                    error.status = 409;
+                    next(error);
+                } else {
+                    // default handler
+                    next(err);
+                }
+            });
 });
 
 // create a Tag Proposal
@@ -133,7 +135,8 @@ router.post("/", (req, res, next) => {
             createAt: creationDate
         })
         .then(() => res.status(200).end())
-        .catch(err => next(err));
+        .catch(/* istanbul ignore next */
+            err => next(err));
 });
 
 module.exports = router;

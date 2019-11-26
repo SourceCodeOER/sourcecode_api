@@ -72,18 +72,18 @@ router.put("/:exerciseId", (req, res, next) => {
             // everything works as expected : tell that to user
             res.status(200).end();
         })
-        .catch(err => {
-            //console.log(err);
-            if (err instanceof Sequelize.EmptyResultError) {
-                let error = new Error("Resource not found / Outdated version");
-                error.message = "It seems you are using an outdated version of this resource : Operation denied";
-                error.status = 409;
-                next(error);
-            } else {
-                // default handler
-                next(err);
-            }
-        })
+        .catch(/* istanbul ignore next */
+            err => {
+                if (err instanceof Sequelize.EmptyResultError) {
+                    let error = new Error("Resource not found / Outdated version");
+                    error.message = "It seems you are using an outdated version of this resource : Operation denied";
+                    error.status = 409;
+                    next(error);
+                } else {
+                    // default handler
+                    next(err);
+                }
+            })
 
 });
 

@@ -44,5 +44,6 @@ module.exports = function (req, res, next) {
         .Tag_Category
         .findAll(options)
         .then(result => res.json(result))
-        .catch(err => next(err));
+        .catch(/* istanbul ignore next */
+            err => next(err));
 };

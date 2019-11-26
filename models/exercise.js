@@ -86,7 +86,8 @@ module.exports = (sequelize, DataTypes) => {
             },
             // to build the final result
             // for simplicity, we can invoke the scope ONLY when there is at least ONE item in ids
-            // if not, don't use that
+            // This code is for legacy , in case you have to migrate from Postgresql to another database
+            /*
             exercise_with_metrics_and_tags_and_categories_related() {
                 return {
                     include: [
@@ -117,6 +118,7 @@ module.exports = (sequelize, DataTypes) => {
                     ]
                 }
             }
+         */
         }
     });
 

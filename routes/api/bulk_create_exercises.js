@@ -5,5 +5,6 @@ const {
 module.exports = function (req, res, next) {
     bulky_store_exercises(req.user, req.body)
         .then((_) => res.status(200).end())
-        .catch((err) => next(err));
+        .catch(/* istanbul ignore next */
+            (err) => next(err));
 };
