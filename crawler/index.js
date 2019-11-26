@@ -27,12 +27,12 @@ const demandOneOfOption = (...options) => (argv) => {
 // Auto generated tags
 // if we want to map them to another name, we can do that easily ( Here : English TO French )
 const AUTO_GENERATED_TAG_CATEGORIES = {
-    "_PLATFORM_": "Plateforme",
-    "_SOURCE_": "Source",
-    "_COURSE_": "Cours",
-    "_EXERCISE-TYPE_": "Type d'exercise",
-    "_PROGRAMMING-LANGUAGE_": "Langage de programmation",
-    "_AUTHOR_": "Auteur"
+    "_PLATFORM_": "plateforme",
+    "_SOURCE_": "source",
+    "_COURSE_": "cours",
+    "_EXERCISE-TYPE_": "type d'exercice",
+    "_PROGRAMMING-LANGUAGE_": "langage",
+    "_AUTHOR_": "auteur"
 };
 
 const argv = require('yargs') // eslint-disable-line

@@ -119,9 +119,9 @@ module.exports = async function (options) {
             "exercises": exercises,
             // if the given platform has its own categories for tag, use them
             "own_categories": {
-                0: "Skill",
+                0: "thématique",
                 1: "Misconception",
-                2: "Category"
+                2: "autres"
             },
             // date of creation
             "extraction_date": new Date(),
