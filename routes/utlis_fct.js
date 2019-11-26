@@ -168,23 +168,22 @@ module.exports = {
                             let tags_dictionary = build_dictionary_for_matching_process(existent_tags.concat(inserted_tags));
                             const exercises_with_tags = reconcile_exercises_with_tags(exercises_with_tags_partition, tags_dictionary);
                             // Finally bulk insert all of these
-                            return Promise.all(
-                                exercises_with_tags.map(
-                                    // I don't use the really new tags here since in bulk insert,
-                                    // we may have the same new tag to insert : This is handled above
-                                    ([exercise, tags]) => store_single_exercise(user, exercise, tags, [], t)
-                                )
+                            return Promise.all(exercises_with_tags.map(
+                                // I don't use the really new tags here since in bulk insert,
+                                // we may have the same new tag to insert : This is handled above
+                                ([exercise, tags]) => {
+                                    return store_single_exercise(user, exercise, tags, [], t);
+                                })
                             );
                         });
-                })
-        }).then((_) => {
-            // OK work as expected
-            resolve()
-        }).catch(err => {
-            reject(err)
+                }).then((_) => {
+                    // OK work as expected
+                    resolve()
+                }).catch(err => {
+                    reject(err)
+                });
         });
     }
-
 };
 
 // private functions here

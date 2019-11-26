@@ -122,31 +122,56 @@ describe("Simple case testing", () => {
     });
 });
 
-test("Complex scenario : Creates a exercises / Find it / Update it 3 times", async () => {
-    // retrieve some tag categories
-    let response = await request
-        .post("/api/bulk_create_or_find_tag_categories")
-        .set('Authorization', 'bearer ' + JWT_TOKEN)
-        .set('Content-Type', 'application/json')
-        .set('Accept', 'application/json')
-        .send(tag_categories)
-        .expect(200);
-    expect(response.body).toHaveLength(tag_categories.length);
-    const tag_categories_ids = response.body.map(category => category.id);
-    // create some tags
-    response = await Promise.all(tags.map(tag => {
-        request
-            .post("/api/tags")
+describe("Complex scenario", () => {
+    it("scenario n°1 : Creates a exercises / Find it / Update it 3 times", async () => {
+        // retrieve some tag categories
+        let response = await request
+            .post("/api/bulk_create_or_find_tag_categories")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send({text: tag, category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length)]})
-    }));
-    expect(response).toHaveLength(tags.length);
-    // take some tags
-    response = await request
-        .get("/api/tags")
-        .set('Accept', 'application/json')
-        .expect(200);
-    const some_tags_ids = response.body.map(tag => tag.id).slice(0, tags.length);
+            .set('Accept', 'application/json')
+            .send(tag_categories)
+            .expect(200);
+        expect(response.body).toHaveLength(tag_categories.length);
+        const tag_categories_ids = response.body.map(category => category.id);
+        // create some tags
+        response = await Promise.all(tags.map(tag => {
+            request
+                .post("/api/tags")
+                .set('Authorization', 'bearer ' + JWT_TOKEN)
+                .set('Content-Type', 'application/json')
+                .send({text: tag, category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length -1)]})
+        }));
+        expect(response).toHaveLength(tags.length);
+        // take some tags
+        response = await request
+            .get("/api/tags")
+            .set('Accept', 'application/json')
+            .expect(200);
+        const some_tags_ids = response.body.map(tag => tag.id).slice(0, tags.length);
+        // creates one exercise
+        const title = "HELLO WORLD";
+        const some_exercise_data = (title) => ({
+            "title": title,
+            "description": "Some verrrrrrrrrry long description here",
+            // try to use both existent tags and not
+            tags: some_tags_ids.concat(
+                ["SOME_TAG1", "SOME_TAG2", "SOME_TAG3"].map(tag => ({
+                    text: tag,
+                    category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length-1)]
+                }))
+            )
+        });
 
+        response = await request
+            .post("/api/bulk_create_exercises")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send([
+                some_exercise_data(title)
+            ]).expect(200);
+        // research this exercise
+        console.log()
+
+    });
 });
