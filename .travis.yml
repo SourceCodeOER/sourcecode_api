@@ -33,7 +33,8 @@ script:
   - npx openapi-generator validate -i api.yml
   - npx redoc-cli bundle api.yml -o docs/index.html
   - echo "Testing endpoints"
-  - npm run test && codecov
+  - npm run test
+  - npx codecov
 deploy:
   provider: pages
   skip_cleanup: true
