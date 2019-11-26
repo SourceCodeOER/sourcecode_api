@@ -54,7 +54,8 @@ function buildResult(params) {
                         },
                         data: data
                     })
-                }).catch(err => reject(err));
+                }).catch(/* istanbul ignore next */
+                err => reject(err));
         }
 
     });
@@ -72,8 +73,6 @@ module.exports = function (req, res, next) {
             });
         })
         .then(result => res.json(result))
-        .catch(err => {
-            console.log(err);
-            next(err);
-        });
+        .catch(/* istanbul ignore next */
+            err => next(err));
 };

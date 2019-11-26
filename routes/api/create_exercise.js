@@ -34,8 +34,7 @@ module.exports = function (req, res, next) {
         .then(() => {
             res.status(200).end()
         })
-        .catch(err => {
-            next(err);
-        });
+        .catch(/* istanbul ignore next */
+            err => next(err));
 
 };

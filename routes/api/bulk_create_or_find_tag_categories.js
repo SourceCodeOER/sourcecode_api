@@ -21,9 +21,8 @@ module.exports = function (req, res, next) {
             id: result[0].id,
             category: result[0].kind
         })));
-    }).catch(err => {
-        next(err);
-    });
+    }).catch(/* istanbul ignore next */
+        err => next(err));
 };
 
 // credits to https://webbjocke.com/javascript-check-data-types/#javascript-string
