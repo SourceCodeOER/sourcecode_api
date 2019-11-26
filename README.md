@@ -1,10 +1,10 @@
-# Exercises Library API
+# Exercises Library API  [![Build Status](https://travis-ci.com/jy95/exercises_library.svg?branch=master)](https://travis-ci.com/jy95/exercises_library)  [![codecov](https://codecov.io/gh/jy95/exercises_library/branch/master/graph/badge.svg)](https://codecov.io/gh/jy95/exercises_library)
 
 description TODO
 
 ## Requirements
 
-- PostgreSQL 11 / 12
+- PostgreSQL 12
 - Node.js 10+ 
 
 ## Set up
