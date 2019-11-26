@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         // with (null, false), if it errors out it calls our function
         // with (err, null)
         bcrypt.compare(password, hash, function (err, isMatch) {
+            /* istanbul ignore next */
             if (err) {
                 return callback(err, null);
             } else {
@@ -72,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
 
     // This hook is called when an entry is being added to the back end.
     // This method is used to hash the password before storing it in our database.
-    User.addHook('beforeCreate',  (user, _options) => {
+    User.addHook('beforeCreate', (user, _options) => {
         const SALT_WORK_FACTOR = 10;
         return bcrypt.genSalt(SALT_WORK_FACTOR)
             .then(salt => {
@@ -81,8 +82,8 @@ module.exports = (sequelize, DataTypes) => {
                 // replace the password with the hash and pass on the user object to whoever should require it.
                 user.password = hash;
                 return Promise.resolve(user);
-            }).catch(err =>
-                Promise.reject(err)
+            }).catch(/* istanbul ignore next */
+                err => Promise.reject(err)
             );
     });
 
