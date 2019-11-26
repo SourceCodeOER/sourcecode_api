@@ -123,7 +123,7 @@ describe("Simple case testing", () => {
 });
 
 describe("Complex scenarios", () => {
-    it("scenario n°1 : Creates a exercises / Find it / Update it 3 times", async () => {
+    it("Scenario n°1 : Creates a exercises / Find it / Update it 3 times", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -256,6 +256,48 @@ describe("Complex scenarios", () => {
                     {text: "TRY 1", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
                     {text: "TRY 2", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
                 ])
+            });
+
+        expect(response.status).toBe(200);
+
+    });
+
+    it("Scenario n°2 : Creates a single exercise with (no) existent tag(s)", async () => {
+        // retrieve some tag categories
+        let response = await request
+            .post("/api/bulk_create_or_find_tag_categories")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(tag_categories)
+            .expect(200);
+        expect(response.body).toHaveLength(tag_categories.length);
+
+        // create some tags
+        response = await Promise.all(tags.map(tag => {
+            request
+                .post("/api/tags")
+                .set('Authorization', 'bearer ' + JWT_TOKEN)
+                .set('Content-Type', 'application/json')
+                .send({text: tag, category_id: 1})
+        }));
+        expect(response).toHaveLength(tags.length);
+
+        // creates a single exercise
+        response = await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                "title": "MEAN_OF_LIFE_42",
+                "description": "Random exercise",
+                "tags": [1, 2, 3, {
+                    "text": "JDG",
+                    "category_id": 1
+                }, {
+                    "text": tags[2],
+                    "category_id": 1
+                }]
             });
 
         expect(response.status).toBe(200);
