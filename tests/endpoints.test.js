@@ -120,6 +120,18 @@ describe("Simple case testing", () => {
         expect(response.body.data).toHaveLength(0);
         expect(response.body.metadata.totalItems).toBe(0);
     });
+
+    it("POST /api/search with no parameters", async () => {
+        let response = await request
+            .post("/api/search")
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send()
+            .expect(200);
+        expect(isObject(response.body)).toBeTruthy();
+        expect(Array.isArray(response.body.data)).toBeTruthy();
+        expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+    });
 });
 
 describe("Complex scenarios", () => {
@@ -303,4 +315,44 @@ describe("Complex scenarios", () => {
         expect(response.status).toBe(200);
 
     });
+});
+
+describe("Validations testing", () => {
+
+    it("POST /login : Wrong content type", async () => {
+        await request
+            .post("/auth/login")
+            .set('Content-Type', 'application/xml')
+            .send()
+            .expect(415);
+    });
+
+    it("POST /login : Bad request", async () => {
+        await request
+            .post("/auth/login")
+            .set('Content-Type', 'application/json')
+            .send()
+            .expect(400);
+    });
+
+    it("POST /login : Wrong password", async () => {
+        await request
+            .post("/auth/login")
+            .set('Content-Type', 'application/json')
+            .send(
+                Object.assign({}, user, {password: "HACKERMAN"})
+            )
+            .expect(401);
+    });
+
+    it("POST /login : Unknown user", async () => {
+        await request
+            .post("/auth/login")
+            .set('Content-Type', 'application/json')
+            .send(
+                Object.assign({}, user, {email: "hackerman@perdu.com"})
+            )
+            .expect(401);
+    });
+
 });
