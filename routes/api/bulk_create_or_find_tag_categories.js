@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
 };
 
 // credits to https://webbjocke.com/javascript-check-data-types/#javascript-string
-const isString = (value) => typeof value === 'string' || value instanceof String;
+const isString = (value) => typeof value === 'string' /* istanbul ignore next */ || value instanceof String;
 
 // Generate where conditions
 // TODO handle case with sub category LATER

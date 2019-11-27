@@ -355,4 +355,12 @@ describe("Validations testing", () => {
             .expect(401);
     });
 
+    it("POST /register : Cannot register same user twice (or more)", async () => {
+        await request
+            .post("/auth/register")
+            .set('Content-Type', 'application/json')
+            .send(Object.assign({}, user, {fullName: userName}))
+            .expect(409);
+    });
+
 });

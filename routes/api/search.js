@@ -20,7 +20,9 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
         .Exercise
         .scope({
             method: ["find_exercises_ids_with_given_criteria", [parameters, metadata]]
-        }).findAndCountAll();
+        }).findAndCountAll({
+            attributes: ["id"]
+        });
 }
 
 // build the full result

@@ -93,6 +93,10 @@ app.use(function (err, req, res, next) {
             custom_err.message = "It seems you are using an outdated version of this resource : Operation denied";
             custom_err.status = 409;
             break;
+        case err instanceof Sequelize.UniqueConstraintError:
+            custom_err.message = "You violated a unique constraint and thus generated a conflict";
+            custom_err.status = 409;
+            break;
         /* istanbul ignore next */
         case err instanceof Sequelize.BaseError:
             // catch all unwatched exceptions coming from Sequelize
@@ -101,7 +105,7 @@ app.use(function (err, req, res, next) {
         /* istanbul ignore next */
         default:
             is_custom = false;
-            custom_err = err;
+            custom_err = Object.assign(err);
     }
     if (is_custom) {
         custom_err.is_custom = true;

@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
                     }
                 },
                 // to compute tags array
-                tags_summary(options = {}) {
+                tags_summary(/* istanbul ignore next */ options = {}) {
                     let settings = {
                         attributes: [
                             "exercise_id",
@@ -78,6 +78,7 @@ module.exports = (sequelize, DataTypes) => {
                         group: "exercise_id",
                         transaction: options.transaction
                     };
+                    /* istanbul ignore next */
                     if (options.hasOwnProperty("transaction")) {
                         settings["transaction"] = options.transaction;
                     }
