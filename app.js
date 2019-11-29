@@ -120,7 +120,7 @@ app.use(function (err, req, res, next) {
 app.use(function (err, req, res, next) {
 
     // if error thrown by validation, give everything else depending of the environment
-    res.status(err.status || 500).json({
+    res.status(err.status /* istanbul ignore next */ || 500).json({
         message: err.message,
         errors: err.hasOwnProperty("errors")
             ? err.errors

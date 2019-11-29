@@ -99,43 +99,27 @@ describe("Simple case testing", () => {
     });
 
     it("POST /api/search with no exercise", async () => {
-        let response = await request
-            .post("/api/search")
-            .set('Content-Type', 'application/json')
-            .set('Accept', 'application/json')
-            .send({
-                data: {
-                    title: "HELLO WORLD",
-                    tags: [
-                        1,
-                        [2, -3, 4],
-                        37,
-                        -42
-                    ]
-                }
-            })
-            .expect(200);
-        expect(isObject(response.body)).toBeTruthy();
-        expect(Array.isArray(response.body.data)).toBeTruthy();
-        expect(response.body.data).toHaveLength(0);
-        expect(response.body.metadata.totalItems).toBe(0);
+        const criteria = {
+            data: {
+                title: "HELLO WORLD",
+                tags: [
+                    1,
+                    [2, -3, 4],
+                    37,
+                    -42
+                ]
+            }
+        };
+        await search_exercise(0, criteria);
     });
 
     it("POST /api/search with no parameters", async () => {
-        let response = await request
-            .post("/api/search")
-            .set('Content-Type', 'application/json')
-            .set('Accept', 'application/json')
-            .send()
-            .expect(200);
-        expect(isObject(response.body)).toBeTruthy();
-        expect(Array.isArray(response.body.data)).toBeTruthy();
-        expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+        await search_exercise(-1, {});
     });
 });
 
 describe("Complex scenarios", () => {
-    it("Scenario n°1 : Creates a exercises / Find it / Update it 3 times", async () => {
+    it("Scenario n°1 : Creates a exercises / Find it / Update it 2 times", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -186,22 +170,14 @@ describe("Complex scenarios", () => {
             ]).expect(200);
 
         // research this exercise
-        response = await request
-            .post("/api/search")
-            .set('Content-Type', 'application/json')
-            .set('Accept', 'application/json')
-            .send({
-                data: {
-                    title: title,
-                    tags: some_tags_ids
-                }
-            })
-            .expect(200);
+        const criteria = {
+            data: {
+                title: title,
+                tags: some_tags_ids
+            }
+        };
+        response = await search_exercise(1, criteria);
 
-        expect(isObject(response.body)).toBeTruthy();
-        expect(Array.isArray(response.body.data)).toBeTruthy();
-        expect(response.body.data).toHaveLength(1);
-        expect(response.body.metadata.totalItems).toBe(1);
         let wrap_exercise_data = ([{title, description, id, version, tags}]) => ({
             title,
             description,
@@ -212,9 +188,8 @@ describe("Complex scenarios", () => {
         let data = wrap_exercise_data(response.body.data);
         expect(data.version).toBe(0);
 
-        // test all updates cases : add / remove / keep tags
+        // test most updates cases : add & remove / keep tags
         // 1. Only changed description
-
         response = await request
             .put("/api/exercises/" + data.id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
@@ -238,24 +213,7 @@ describe("Complex scenarios", () => {
         expect(response.body.version).toBe(1);
         expect(response.body.id).toBe(data.id);
 
-        // 2. Only additions
-        response = await request
-            .put("/api/exercises/" + data.id)
-            .set('Authorization', 'bearer ' + JWT_TOKEN)
-            .set('Content-Type', 'application/json')
-            .send({
-                title: response.body.title,
-                version: 1,
-                description: response.body.description,
-                tags: response.body.tags.map(tag => tag.tag_id).concat([
-                    {text: "TRY 42", category_id: 1}
-                ])
-            });
-
-        expect(response.status).toBe(200);
-        // 3. Add / remove some tags ( difficult case )
-
-        // I know it should be version 2 but requests are faster than applying the modification
+        // 2. Add / remove some tags ( difficult case )
         response = await request
             .put("/api/exercises/" + data.id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
@@ -274,7 +232,7 @@ describe("Complex scenarios", () => {
 
     });
 
-    it("Scenario n°2 : Creates a single exercise with (no) existent tag(s)", async () => {
+    it("Scenario n°2 : Creates a single exercise with (no) existent tag(s) and add tags later", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -295,13 +253,14 @@ describe("Complex scenarios", () => {
         }));
         expect(response).toHaveLength(tags.length);
 
+        const title = "MEAN_OF_LIFE_42";
         // creates a single exercise
         response = await request
             .post("/api/create_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
-                "title": "MEAN_OF_LIFE_42",
+                "title": title,
                 "description": "Random exercise",
                 "tags": [1, 2, 3, {
                     "text": "JDG",
@@ -313,6 +272,35 @@ describe("Complex scenarios", () => {
             });
 
         expect(response.status).toBe(200);
+
+        const criteria = {
+            data: {
+                title: title
+            },
+            metadata: {
+                size: 1
+            }
+        };
+        response = await search_exercise(1, criteria);
+        const data = response.body.data[0];
+        expect(data.version).toBe(0);
+
+        // Only additions of tags
+        response = await request
+            .put("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                title: data.title,
+                version: data.version,
+                description: data.description,
+                tags: data.tags.map(tag => tag.tag_id).concat([
+                    {text: "TRY 42-42", category_id: 1}
+                ])
+            });
+
+        expect(response.status).toBe(200);
+        response = await search_exercise(1, criteria);
 
     });
 });
@@ -364,3 +352,23 @@ describe("Validations testing", () => {
     });
 
 });
+
+// utilities functions
+// to fetch exercise(s)
+// if expected_count is equal to -1, we should skip a test
+async function search_exercise(expected_count, search_criteria) {
+    const response = await request
+        .post("/api/search")
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(search_criteria)
+        .expect(200);
+
+    expect(isObject(response.body)).toBeTruthy();
+    expect(Array.isArray(response.body.data)).toBeTruthy();
+    if (expected_count !== -1) {
+        expect(response.body.metadata.totalItems).toBe(expected_count);
+    }
+    expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+    return response;
+}
