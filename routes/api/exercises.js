@@ -169,15 +169,17 @@ function insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t) {
 }
 
 function handle_all_cases_for_tags([id, changes, created_tags, t]) {
-    // if there is only additions in tags, we will use our hook to deal with the update part of precomputed data
-    // if not, we have to do that manually
-    const onlyAdditions = (changes["added"].length > 0 && changes["deleted"].length === 0);
 
     // add the newly created tag(s) into "added" key
     // if empty, it does nothing ^^
     changes["added"] = changes["added"].concat(
         created_tags.map(tag => tag.id)
     );
+
+    // if there is only additions in tags, we will use our hook to deal with the update part of precomputed data
+    // if not, we have to do that manually
+    const onlyAdditions = (changes["added"].length > 0 && changes["deleted"].length === 0);
+
     // multiple cases can occur here
     switch (true) {
         // 1. no changes in the tags : the PERFECT case

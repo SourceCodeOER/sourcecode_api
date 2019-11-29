@@ -178,17 +178,10 @@ describe("Complex scenarios", () => {
         };
         response = await search_exercise(1, criteria);
 
-        let wrap_exercise_data = ([{title, description, id, version, tags}]) => ({
-            title,
-            description,
-            id,
-            version,
-            tags
-        });
-        let data = wrap_exercise_data(response.body.data);
+        let data = response.body.data[0];
         expect(data.version).toBe(0);
 
-        // test most updates cases : add & remove / keep tags
+        // test most updates cases : keep tags / add & remove
         // 1. Only changed description
         response = await request
             .put("/api/exercises/" + data.id)
@@ -300,7 +293,7 @@ describe("Complex scenarios", () => {
             });
 
         expect(response.status).toBe(200);
-        response = await search_exercise(1, criteria);
+        //response = await search_exercise(1, criteria);
 
     });
 });
