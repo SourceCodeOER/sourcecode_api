@@ -25,8 +25,9 @@ module.exports = (sequelize, DataTypes) => {
                 // Query inspired by https://github.com/sequelize/sequelize/issues/3256#issuecomment-520705896
                 .findOne({
                     where: {exercise_id: notation.exercise_id},
+                    attributes: ["id", "vote_count"],
                     include: [
-                        "id", "vote_count", {
+                        {
                             model: notation.sequelize.models.Notation,
                             as: "notes",
                             attributes: [

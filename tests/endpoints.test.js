@@ -342,6 +342,48 @@ describe("Complex scenarios", () => {
             .send({text: "UNVALIDATED_TAG", category_id: 1})
             .expect(200);
     });
+
+    it("Scenario n°4 : Evaluates an exercise then change its evaluation", async () => {
+        const title = "SOME_EXERCISE_WITH_VOTES";
+        // creates a single exercise
+        await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                "title": title,
+                "description": "Random exercise",
+                "tags": [{
+                    "text": "JDG",
+                    "category_id": 1
+                }]
+            })
+            .expect(200);
+
+        const criteria = {
+            data: {
+                title: title
+            },
+            metadata: {
+                size: 1
+            }
+        };
+
+        // retrieve it and send first vote on it
+        let response = await search_exercise(1,criteria);
+        let data = response.body.data[0];
+
+        // we must check that metrics are correct
+        expect(data).toHaveProperty("metrics");
+        expect(isObject(data.metrics)).toBeTruthy();
+        expect(data.metrics).toHaveProperty("votes");
+        expect(data.metrics).toHaveProperty("avg_score");
+        expect(data.metrics.votes).toBe(0);
+        expect(data.metrics.avg_score).toBe("0.00")
+
+        // TODO To be finished
+
+    });
 });
 
 describe("Validations testing", () => {
