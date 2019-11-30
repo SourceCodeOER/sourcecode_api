@@ -296,6 +296,52 @@ describe("Complex scenarios", () => {
         //response = await search_exercise(1, criteria);
 
     });
+
+    it("Scenario n°3 : Creates a tag proposal / update it and try to recreate one similar", async () => {
+        // creates a tag proposal
+        await request
+            .post("/api/tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({text: "UNVALIDATED_TAG", category_id: 1})
+            .expect(200);
+
+        // should be able to retrieve it
+        const response = await request
+            .get("/api/tags")
+            .set('Accept', 'application/json')
+            .expect(200);
+        const created_tag = response
+            .body
+            .filter(tag => tag.tag_text === "UNVALIDATED_TAG" && tag.category_id === 1)
+            .reduce((_prev, curr) => curr, undefined);
+
+        expect(created_tag).not.toBe(undefined);
+        expect(created_tag.version).toBe(0);
+        expect(created_tag.isValidated).toBe(false);
+
+        // modify it to validate it
+        await request
+            .put("/api/tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                tag_id: created_tag.tag_id,
+                tag_text: created_tag.tag_text,
+                category_id: created_tag.category_id,
+                version: created_tag.version,
+                isValidated: true
+            })
+            .expect(200);
+
+        // try to recreate it (for example if someone doesn't see the tag proposal)
+        await request
+            .post("/api/tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({text: "UNVALIDATED_TAG", category_id: 1})
+            .expect(200);
+    });
 });
 
 describe("Validations testing", () => {
