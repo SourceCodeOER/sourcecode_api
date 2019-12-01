@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     // common function for hooks
-    function exercise_metrics_hookFct() {
+    function exercise_metrics_hookFct(kind) {
         return function (notation, options) {
             // find the Exercise_Metrics related to this exercise with the AVG computed
             return Promise.all([
@@ -28,10 +28,11 @@ module.exports = (sequelize, DataTypes) => {
                     .models
                     .Exercise_Metrics
                     .findAll({
-                        attributes: ["id"],
+                        attributes: ["id", "vote_count"],
                         where: {
                             exercise_id: notation.exercise_id
-                        }
+                        },
+                        transaction: options.transaction
                     }),
                 // Find the new avg vote score
                 notation
@@ -40,27 +41,35 @@ module.exports = (sequelize, DataTypes) => {
                     .Notation
                     .findAll({
                         attributes: [
-                            [Sequelize.fn("AVG", Sequelize.col("note")), "vote_score"],
-                            [Sequelize.fn("COUNT", Sequelize.col("user_id")), "vote_count"]
+                            [Sequelize.fn("AVG", Sequelize.col("note")), "vote_score"]
                         ],
                         where: {
                             exercise_id: notation.exercise_id
                         },
-                        group: ["exercise_id"]
+                        group: ["exercise_id"],
+                        transaction: options.transaction
                     })
             ]).then(
                 ([[exercise_metrics], [result_in_db] ]) => {
 
                     // to handle both cases : the first notation created / other cases
+
                     const computed_metadata = {
-                        vote_count: (result_in_db !== undefined)
-                            ? result_in_db.get("vote_count")
-                            : 1,
+                        vote_count: (kind === "insert")
+                            ? exercise_metrics.get("vote_count") + 1
+                            : exercise_metrics.get("vote_count"),
                         vote_score: (result_in_db !== undefined)
                             ? result_in_db.get("vote_score")
                             : notation.note // by default, only one note was inserted for this exercise
                     };
-                    console.log(computed_metadata);
+
+                    console.log("CPT CHECK");
+                    console.table({
+                        "metadata": computed_metadata,
+                        "current_vote_count": exercise_metrics.get("vote_count"),
+                        "find_rows_in_db": result_in_db !== undefined,
+                        "operation": kind
+                    });
 
                     return notation
                         .sequelize
@@ -82,13 +91,13 @@ module.exports = (sequelize, DataTypes) => {
     Notation.addHook(
         "afterCreate",
         "exercise_metrics_created",
-        exercise_metrics_hookFct()
+        exercise_metrics_hookFct("insert")
     );
 
     Notation.addHook(
         "afterUpdate",
         "exercise_metrics_updated",
-        exercise_metrics_hookFct()
+        exercise_metrics_hookFct("update")
     );
 
     return Notation;

@@ -343,7 +343,7 @@ describe("Complex scenarios", () => {
             .expect(200);
     });
 
-    it("Scenario n°4 : Evaluates an exercise then change its evaluation", async () => {
+    it("Scenario n°4 : Evaluates an exercise : multiple variation", async () => {
         const title = "SOME_EXERCISE_WITH_VOTES";
         // creates a single exercise
         await request
@@ -379,9 +379,75 @@ describe("Complex scenarios", () => {
         expect(data.metrics).toHaveProperty("votes");
         expect(data.metrics).toHaveProperty("avg_score");
         expect(data.metrics.votes).toBe(0);
-        expect(data.metrics.avg_score).toBe("0.00")
+        // TODO Signal this bug to Sequelize
+        expect(data.metrics.avg_score).toBe("0.00");
 
-        // TODO To be finished
+        // We must be able to register other user to also vote on this exercise
+        await request
+            .post("/auth/register")
+            .set('Content-Type', 'application/json')
+            .send(Object.assign({}, user, {fullName: "Super Voter", email: "yolo_voter24@uclouvain.be"}))
+            .expect(200);
+        // retrieve
+        response = await request
+            .post("/auth/login")
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(Object.assign({}, user, {email: "yolo_voter24@uclouvain.be"}))
+            .expect(200);
+
+        const JWT_TOKEN_2 = response.body.token;
+
+        // User 1 votes for this exercise
+        await request
+            .post("/api/vote_for_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                exercise_id: data.id,
+                score: 3
+            })
+            .expect(200);
+
+        // We should see the change in this exercise data
+        response = await search_exercise(1,criteria);
+        expect(response.body.data[0].metrics.votes).toBe(1);
+        // TODO Signal this bug to Sequelize
+        expect(response.body.data[0].metrics.avg_score).toBe("3.00");
+
+        // User 2 votes for this exercise
+        response = await request
+            .post("/api/vote_for_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send({
+                exercise_id: data.id,
+                score: 2
+            });
+        expect(response.status).toBe(200);
+
+        // We should see the change in this exercise data
+        response = await search_exercise(1,criteria);
+        expect(response.body.data[0].metrics.votes).toBe(2);
+        // TODO Signal this bug to Sequelize
+        expect(response.body.data[0].metrics.avg_score).toBe("2.50");
+
+        // User 1 wants to change his vote for this exercise
+        await request
+            .post("/api/vote_for_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                exercise_id: data.id,
+                score: 5.0
+            })
+            .expect(200);
+
+        // We should see the change in this exercise data
+        response = await search_exercise(1,criteria);
+        expect(response.body.data[0].metrics.votes).toBe(2);
+        // TODO Signal this bug to Sequelize
+        expect(response.body.data[0].metrics.avg_score).toBe("3.50");
 
     });
 });
