@@ -53,23 +53,16 @@ module.exports = (sequelize, DataTypes) => {
                 ([[exercise_metrics], [result_in_db] ]) => {
 
                     // to handle both cases : the first notation created / other cases
-
                     const computed_metadata = {
                         vote_count: (kind === "insert")
                             ? exercise_metrics.get("vote_count") + 1
                             : exercise_metrics.get("vote_count"),
                         vote_score: (result_in_db !== undefined)
                             ? result_in_db.get("vote_score")
-                            : notation.note // by default, only one note was inserted for this exercise
+                            // by default, only one note was inserted for this exercise
+                            // it should never happen but who knows what could happen ...
+                            : /* istanbul ignore next */ notation.note
                     };
-
-                    console.log("CPT CHECK");
-                    console.table({
-                        "metadata": computed_metadata,
-                        "current_vote_count": exercise_metrics.get("vote_count"),
-                        "find_rows_in_db": result_in_db !== undefined,
-                        "operation": kind
-                    });
 
                     return notation
                         .sequelize

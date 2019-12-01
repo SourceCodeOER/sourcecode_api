@@ -448,7 +448,6 @@ describe("Complex scenarios", () => {
         expect(response.body.data[0].metrics.votes).toBe(2);
         // TODO Signal this bug to Sequelize
         expect(response.body.data[0].metrics.avg_score).toBe("3.50");
-
     });
 });
 
