@@ -78,7 +78,7 @@ module.exports = (sequelize, DataTypes) => {
                             required: true,
                             attributes: [
                                 ["vote_count", "votes"],
-                                ["avg_vote_score", "avg_vote"]
+                                ["avg_vote_score", "avg_score"]
                             ]
                         }
                     ]

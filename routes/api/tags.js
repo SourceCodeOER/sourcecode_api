@@ -6,11 +6,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 // to prevent duplicates in database
-const {
-    find_tag_matches,
-    build_dictionary_for_matching_process,
-    matching_process
-} = require("../utlis_fct");
+const {find_tag_matches} = require("../utlis_fct");
 
 // for fetching
 router.get("/", (req, res, next) => {
