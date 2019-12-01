@@ -50,8 +50,13 @@ module.exports = {
                                 // manually build the good result
                                 const exercise_id = exercise.get("id");
                                 let tags_for_exercise = tags_data_map[exercise_id][0].toJSON();
+                                let exercise_json = exercise.toJSON();
                                 delete tags_for_exercise["exercise_id"];
-                                return Object.assign({}, exercise.toJSON(), tags_for_exercise)
+                                // metrics.avg_score should be a number with only 2 decimal
+                                exercise_json["metrics"]["avg_score"] = Number(
+                                    parseFloat(exercise_json["metrics"]["avg_score"]).toFixed(2)
+                                );
+                                return Object.assign({}, exercise_json, tags_for_exercise)
                             }
                         )
                     )

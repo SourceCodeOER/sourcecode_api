@@ -543,7 +543,6 @@ components:
                   description: "Number of votes for this exercise"
                 avg_score:
                   type: number
-                  format: double
                   minimum: 0.0
                   example: 5.0
                   description: "The average score of this exercise"

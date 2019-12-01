@@ -379,8 +379,7 @@ describe("Complex scenarios", () => {
         expect(data.metrics).toHaveProperty("votes");
         expect(data.metrics).toHaveProperty("avg_score");
         expect(data.metrics.votes).toBe(0);
-        // TODO Signal this bug to Sequelize
-        expect(data.metrics.avg_score).toBe("0.00");
+        expect(data.metrics.avg_score).toBe(0);
 
         // We must be able to register other user to also vote on this exercise
         await request
@@ -412,8 +411,7 @@ describe("Complex scenarios", () => {
         // We should see the change in this exercise data
         response = await search_exercise(1,criteria);
         expect(response.body.data[0].metrics.votes).toBe(1);
-        // TODO Signal this bug to Sequelize
-        expect(response.body.data[0].metrics.avg_score).toBe("3.00");
+        expect(response.body.data[0].metrics.avg_score).toBe(3);
 
         // User 2 votes for this exercise
         response = await request
@@ -429,8 +427,7 @@ describe("Complex scenarios", () => {
         // We should see the change in this exercise data
         response = await search_exercise(1,criteria);
         expect(response.body.data[0].metrics.votes).toBe(2);
-        // TODO Signal this bug to Sequelize
-        expect(response.body.data[0].metrics.avg_score).toBe("2.50");
+        expect(response.body.data[0].metrics.avg_score).toBe(2.5);
 
         // User 1 wants to change his vote for this exercise
         await request
@@ -446,8 +443,7 @@ describe("Complex scenarios", () => {
         // We should see the change in this exercise data
         response = await search_exercise(1,criteria);
         expect(response.body.data[0].metrics.votes).toBe(2);
-        // TODO Signal this bug to Sequelize
-        expect(response.body.data[0].metrics.avg_score).toBe("3.50");
+        expect(response.body.data[0].metrics.avg_score).toBe(3.5);
     });
 });
 
