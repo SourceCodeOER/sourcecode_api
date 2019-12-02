@@ -13,10 +13,15 @@ const tags_by_categories = require("./tags_by_categories");
 const bulk_create_exercises = require("./bulk_create_exercises");
 const bulk_create_or_find_tag_categories = require("./bulk_create_or_find_tag_categories");
 const vote_for_exercise = require("./vote_for_exercise");
+const configurations = require("./configurations");
 
 // delegate work of the api in other files
 router.use("/exercises", exercises);
 router.use("/tags", tags);
+router.use("/configurations", passport.authenticate("jwt", {
+    failWithError: true,
+    session: false
+}), configurations);
 router.post("/create_exercise", passport.authenticate("jwt", {
     failWithError: true,
     session: false

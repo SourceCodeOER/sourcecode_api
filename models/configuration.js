@@ -30,6 +30,14 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             },
             onDelete: "CASCADE"
+        });
+        // to fetch tags related to this configuration
+        Configuration.hasMany(models.Configuration_Tag, {
+            as: "tags",
+            foreignKey: {
+                name: "configuration_id",
+                allowNull: false
+            }
         })
     };
 
