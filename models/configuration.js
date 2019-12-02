@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        title: {
+            type: DataTypes.STRING,
+            defaultValue: ""
         }
     },{
         // https://sequelize.org/master/manual/models-definition.html#configuration
@@ -30,6 +34,14 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             },
             onDelete: "CASCADE"
+        });
+        // to fetch tags related to this configuration
+        Configuration.hasMany(models.Configuration_Tag, {
+            as: "tags",
+            foreignKey: {
+                name: "configuration_id",
+                allowNull: false
+            }
         })
     };
 
