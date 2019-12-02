@@ -116,10 +116,19 @@ describe("Simple case testing", () => {
     it("POST /api/search with no parameters", async () => {
         await search_exercise(-1, {});
     });
+
+    it("GET /api/configurations", async () => {
+        await request
+            .get("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json')
+            .send()
+            .expect(200);
+    });
 });
 
 describe("Complex scenarios", () => {
-    it("Scenario n°1 : Creates a exercises / Find it / Update it 2 times", async () => {
+    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -444,6 +453,71 @@ describe("Complex scenarios", () => {
         response = await search_exercise(1,criteria);
         expect(response.body.data[0].metrics.votes).toBe(2);
         expect(response.body.data[0].metrics.avg_score).toBe(3.5);
+    });
+
+    it("Scenario n°5 : Creates a configuration and update it", async () => {
+        // creates some tags ( it is not important if validated or not )
+        const responses = await Promise.all(tags.map(tag => {
+            request
+                .post("/api/tags")
+                .set('Authorization', 'bearer ' + JWT_TOKEN)
+                .set('Content-Type', 'application/json')
+                .send({text: tag, category_id: 1})
+                .expect(200)
+        }));
+        expect(responses).toHaveLength(tags.length);
+
+        // creates a configuration
+        await request
+            .post("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                name: "UCLouvain exercises in Java",
+                title: "CS1-Java",
+                tags: [1]
+            })
+            .expect(200);
+
+        // should be able to find it in my configurations list
+        const response = await request
+            .get("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json')
+            .send()
+            .expect(200);
+
+        expect(response.body).toHaveLength(1);
+        expect(response.body[0].tags).toHaveLength(1);
+        expect(response.body[0].name).toBe("UCLouvain exercises in Java");
+        expect(response.body[0].title).toBe("CS1-Java");
+
+        // TODO check here
+        // should be able to to update it
+        await request
+            .put("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                name: "UCLouvain 4 FUN",
+                title: "CS1-Java",
+                tags: [2],
+                id: response.body[0].id
+            })
+            .expect(200);
+
+        // changes should be visible
+        const response2 = await request
+            .get("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json')
+            .send()
+            .expect(200);
+
+        expect(response2.body[0].tags).not.toBe(response.body[0].tags);
+        expect(response2.body[0].name).not.toBe(response.body[0].name);
+        expect(response2.body[0].id).toBe(response.body[0].id);
+        expect(response2.body[0].title).toBe(response.body[0].title);
     });
 });
 
