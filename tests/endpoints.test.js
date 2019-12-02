@@ -125,6 +125,20 @@ describe("Simple case testing", () => {
             .send()
             .expect(200);
     });
+
+    it("PUT /api/configurations without a valid configuration", async () => {
+        await request
+            .put("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json')
+            .send({
+                title: "YOLO",
+                tags: [1,2,3],
+                name:"YOLO",
+                id: 42
+            })
+            .expect(404);
+    });
 });
 
 describe("Complex scenarios", () => {
