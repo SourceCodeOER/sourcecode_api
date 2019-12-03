@@ -46,7 +46,7 @@ new OpenApiValidator({
     // securityHandlers: {
     //   ApiKeyAuth: (req, scopes, schema) => true,
     // },
-}).install(app);
+}).installSync(app);
 
 // Passport Js must have that
 app.use(passport.initialize());
