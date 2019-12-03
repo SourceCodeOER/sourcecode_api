@@ -141,6 +141,22 @@ describe("Simple case testing", () => {
             })
             .expect(404);
     });
+
+    it("GET /api/tags with all settings used", async () => {
+        const response = await request
+            .get("/api/tags?settings={\"state\":\"pending\",\"tags_ids\":[1,2,3,4],\"categories_ids\":[1,2,3]}")
+            .set('Accept', 'application/json')
+            .expect(200);
+        expect(Array.isArray(response.body)).toBe(true);
+    });
+
+    it("GET /api/tags_by_categories with all settings used", async () => {
+        const response = await request
+            .get("/api/tags_by_categories?settings={\"state\":\"pending\",\"onlySelected\":[1,2,3,4]}")
+            .set('Accept', 'application/json')
+            .expect(200);
+        expect(Array.isArray(response.body)).toBe(true);
+    });
 });
 
 describe("Complex scenarios", () => {
@@ -550,7 +566,7 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .field("tags[0][text]", "MULTI PART exercise")
             .field("tags[0][category_id]", 1)
             .expect(200);
-    })
+    });
 });
 
 describe("Validations testing", () => {

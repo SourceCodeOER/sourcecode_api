@@ -10,11 +10,11 @@ const {find_tag_matches} = require("../utlis_fct");
 
 // for fetching
 router.get("/", (req, res, next) => {
-    // TODO Fix of OpenApi validator to full test this endpoint
+    const params = req.query.settings || {};
     const settings = {
-        tags_ids: req.query.tags_ids || [],
-        categories_ids: req.query.categories_ids || [],
-        state: req.query.state || "default"
+        tags_ids: params.tags_ids || [],
+        categories_ids: params.categories_ids || [],
+        state: params.state || "default"
     };
 
     let conditions = [];

@@ -3,10 +3,10 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function (req, res, next) {
-    // TODO Fix of OpenApi validator to full test this endpoint
+    const params = req.query.settings || {};
     const settings = {
-        state: req.query.state || "default",
-        onlySelected: req.query.onlySelected || []
+        state: params.state || "default",
+        onlySelected: params.onlySelected || []
     };
 
     let options = {
