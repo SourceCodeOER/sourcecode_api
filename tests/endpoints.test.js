@@ -1,6 +1,8 @@
 const app = require('../app.js');
 const supertest = require('supertest');
+const path = require("path");
 const request = supertest(app);
+const example_zip_file = path.resolve(__dirname, "file.zip");
 
 const user = {
     email: "yolo24@uclouvain.be",
@@ -506,7 +508,6 @@ describe("Complex scenarios", () => {
         expect(response.body[0].name).toBe("UCLouvain exercises in Java");
         expect(response.body[0].title).toBe("CS1-Java");
 
-        // TODO check here
         // should be able to to update it
         await request
             .put("/api/configurations")
@@ -533,6 +534,23 @@ describe("Complex scenarios", () => {
         expect(response2.body[0].id).toBe(response.body[0].id);
         expect(response2.body[0].title).toBe(response.body[0].title);
     });
+});
+
+describe("Using multipart/form-data (instead of JSON)", () => {
+    it("Should be able to create an exercise with a file", async () => {
+        await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            //.set('Content-Type', "multipart/form-data")
+            .attach("exerciseFile", example_zip_file)
+            .field({
+                "title": "MULTIPART FORM TESTING 1",
+                "description": "HELLO WORLD"
+            })
+            .field("tags[0][text]", "MULTI PART exercise")
+            .field("tags[0][category_id]", 1)
+            .expect(200);
+    })
 });
 
 describe("Validations testing", () => {

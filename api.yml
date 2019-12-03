@@ -112,7 +112,7 @@ paths:
                   properties:
                     exerciseFile:
                       type: string
-                      format: base64
+                      format: binary
                       description: "The sources of this exercise, in zip format"
                   required:
                     - exerciseFile
@@ -182,7 +182,7 @@ paths:
                   properties:
                     exerciseFile:
                       type: string
-                      format: base64
+                      format: binary
                       description: "The sources of this exercise, in zip format"
                   required:
                     - exerciseFile
@@ -409,7 +409,7 @@ paths:
                   minItems: 1
                   items:
                     type: string
-                    format: base64
+                    format: binary
                     description: "The source of an exercise, in zip format"
                 filesMapping:
                   type: array
