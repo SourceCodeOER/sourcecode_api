@@ -19,6 +19,7 @@ const helmet = require('helmet');
 const OpenApiValidator = require('express-openapi-validator').OpenApiValidator;
 const spec = path.join(__dirname, 'api.yml');
 
+const multer_storage = require("./config/storage")();
 // Initialize passport ( Passport is a singleton )
 require('./config/passport');
 
@@ -43,9 +44,10 @@ new OpenApiValidator({
     apiSpec: spec,
     validateRequests: true,
     validateResponses: false,
-    // securityHandlers: {
-    //   ApiKeyAuth: (req, scopes, schema) => true,
-    // },
+    // settings for file upload
+    multerOpts: {
+        storage: multer_storage
+    }
 }).installSync(app);
 
 // Passport Js must have that

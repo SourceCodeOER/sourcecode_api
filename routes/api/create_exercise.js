@@ -28,7 +28,15 @@ module.exports = function (req, res, next) {
         })
         .then(
             ([existent_tags, really_new_tags]) => {
-                return store_single_exercise(req.user, req.body, existent_tags, really_new_tags);
+                return store_single_exercise(
+                    req.user,
+                    Object.assign({}, req.body, {
+                            file: (Array.isArray(req.files)) ? req.files[0] : undefined
+                        }
+                    ),
+                    existent_tags,
+                    really_new_tags
+                );
             }
         )
         .then(() => {
