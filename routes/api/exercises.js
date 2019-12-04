@@ -258,6 +258,7 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
 }
 
 function update_exercise([id, body, t]) {
+    // TODO handle new attributes : file , url
     return models
         .Exercise
         .scope([
@@ -274,6 +275,8 @@ function update_exercise([id, body, t]) {
             return instance.update({
                 title: body.title,
                 description: body.description
+            }, {
+                transaction: t
             })
         })
 }

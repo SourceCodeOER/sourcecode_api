@@ -1,7 +1,6 @@
-const app = require('../app.js');
 const supertest = require('supertest');
 const path = require("path");
-const request = supertest(app);
+let request;
 const example_zip_file = path.resolve(__dirname, "file.zip");
 
 const user = {
@@ -25,27 +24,38 @@ function getRandomInt(min, max) {
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
-// Should be able to register and login
-// if not, we cannot test so much things ...
-beforeAll(async () => {
-    // We must be able to register
+// For the basic set up : a user
+async function setUpBasic() {
+
+    const app = await require('../app.js');
+    request = supertest(app);
+
     await request
         .post("/auth/register")
         .set('Content-Type', 'application/json')
         .send(Object.assign({}, user, {fullName: userName}))
         .expect(200);
+
     const response = await request
         .post("/auth/login")
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
         .send(user)
         .expect(200);
+
     JWT_TOKEN = response.body.token;
-    expect(typeof JWT_TOKEN).toBe('string')
+    expect(typeof JWT_TOKEN).toBe('string');
+    return "SET_UP_FINISHED"
+}
+
+// Should be able to register and login
+// if not, we cannot test so much things ...
+beforeAll(() => {
+    // Yeah , I know it is stupid to wait but if not, Jest doesn't do its job correctly
+    return expect(setUpBasic()).resolves.toBe("SET_UP_FINISHED");
 });
 
 describe("Simple case testing", () => {
-
     it("POST /api/bulk_create_or_find_tag_categories", async () => {
         const response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -135,8 +145,8 @@ describe("Simple case testing", () => {
             .set('Accept', 'application/json')
             .send({
                 title: "YOLO",
-                tags: [1,2,3],
-                name:"YOLO",
+                tags: [1, 2, 3],
+                name: "YOLO",
                 id: 42
             })
             .expect(404);
@@ -411,7 +421,7 @@ describe("Complex scenarios", () => {
         };
 
         // retrieve it and send first vote on it
-        let response = await search_exercise(1,criteria);
+        let response = await search_exercise(1, criteria);
         let data = response.body.data[0];
 
         // we must check that metrics are correct
@@ -450,7 +460,7 @@ describe("Complex scenarios", () => {
             .expect(200);
 
         // We should see the change in this exercise data
-        response = await search_exercise(1,criteria);
+        response = await search_exercise(1, criteria);
         expect(response.body.data[0].metrics.votes).toBe(1);
         expect(response.body.data[0].metrics.avg_score).toBe(3);
 
@@ -466,7 +476,7 @@ describe("Complex scenarios", () => {
         expect(response.status).toBe(200);
 
         // We should see the change in this exercise data
-        response = await search_exercise(1,criteria);
+        response = await search_exercise(1, criteria);
         expect(response.body.data[0].metrics.votes).toBe(2);
         expect(response.body.data[0].metrics.avg_score).toBe(2.5);
 
@@ -482,7 +492,7 @@ describe("Complex scenarios", () => {
             .expect(200);
 
         // We should see the change in this exercise data
-        response = await search_exercise(1,criteria);
+        response = await search_exercise(1, criteria);
         expect(response.body.data[0].metrics.votes).toBe(2);
         expect(response.body.data[0].metrics.avg_score).toBe(3.5);
     });

@@ -221,10 +221,13 @@ function build_dictionary_for_matching_process(result_in_db) {
 
 // to store a single exercise
 function store_single_exercise(user, exercise_data, existent_tags, really_new_tags, t) {
-    // create exercise and news tag together
+    // create exercise and new tags together
     const creationDate = new Date();
+    console.log("SOMEWHERE")
+    console.log(exercise_data);
     return Promise.all([
         // create the exercise with given information
+        // TODO handle new attributes : file , url
         models
             .Exercise
             .create(
