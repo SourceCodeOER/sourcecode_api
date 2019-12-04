@@ -65,7 +65,15 @@ router.put("/:exerciseId", (req, res, next) => {
                     // if not, do nothing
                     return insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t)
                         .then((created_tags) => handle_all_cases_for_tags([id, changes, created_tags, t]))
-                        .then(() => update_exercise([id, req.body, t]))
+                        .then(() =>
+                            update_exercise([
+                                id,
+                                Object.assign({}, req.body, {
+                                    file: (Array.isArray(req.files)) ? req.files[0] : null
+                                }),
+                                t
+                            ])
+                        )
                 })
         })
         .then(() => {
@@ -258,7 +266,6 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
 }
 
 function update_exercise([id, body, t]) {
-    // TODO handle new attributes : file , url
     return models
         .Exercise
         .scope([
@@ -274,7 +281,10 @@ function update_exercise([id, body, t]) {
         .then(([instance]) => {
             return instance.update({
                 title: body.title,
-                description: body.description
+                description: body.description,
+                // optional properties to add
+                url: body.url || null,
+                file: (body.file !== null) ? body.file.filename : null
             }, {
                 transaction: t
             })

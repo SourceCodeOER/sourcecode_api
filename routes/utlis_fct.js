@@ -177,7 +177,14 @@ module.exports = {
                                 // I don't use the really new tags here since in bulk insert,
                                 // we may have the same new tag to insert : This is handled above
                                 ([exercise, tags]) => {
-                                    return store_single_exercise(user, exercise, tags, [], t);
+                                    // TODO link file with exercise
+                                    return store_single_exercise(
+                                        user,
+                                        Object.assign({}, exercise, {file: null}),
+                                        tags,
+                                        [],
+                                        t
+                                    );
                                 })
                             );
                         });
@@ -227,7 +234,6 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
     console.log(exercise_data);
     return Promise.all([
         // create the exercise with given information
-        // TODO handle new attributes : file , url
         models
             .Exercise
             .create(
@@ -237,7 +243,10 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                     user_id: user.id,
                     // some timestamps must be inserted
                     updatedAt: creationDate,
-                    createdAt: creationDate
+                    createdAt: creationDate,
+                    // optional properties to add
+                    url: exercise_data.url || null,
+                    file: (exercise_data.file !== null) ? exercise_data.file.filename : null
                 },
                 {
                     transaction: t,

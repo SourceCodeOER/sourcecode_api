@@ -12,6 +12,19 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.TEXT,
             defaultValue: ""
+        },
+        file: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        isValidated: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        url: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration

@@ -31,7 +31,7 @@ module.exports = function (req, res, next) {
                 return store_single_exercise(
                     req.user,
                     Object.assign({}, req.body, {
-                            file: (Array.isArray(req.files)) ? req.files[0] : undefined
+                            file: (Array.isArray(req.files)) ? req.files[0] : null
                         }
                     ),
                     existent_tags,
