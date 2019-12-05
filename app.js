@@ -14,6 +14,9 @@ const error_prettier = require("./middlewares/errors-beautifier");
 const default_error_handler = require("./middlewares/default_error_handler");
 const not_found_handler = require("./middlewares/not_found");
 
+// location of stored files to serve as static
+const {FILES_FOLDER} = require("./config/storage_paths");
+
 // helmet for classic security measures
 const helmet = require('helmet');
 
@@ -42,6 +45,10 @@ module.exports = new Promise((resolve, reject) => {
     app.use('/api-docs', function (_, res) {
         res.redirect("http://petstore.swagger.io/?url=https://raw.githubusercontent.com/jy95/exercises_library/master/api.yml");
     });
+
+    // Serves stored files with this endpoint
+    /* istanbul ignore next */
+    app.use("/files", express.static(FILES_FOLDER));
 
     // API validation before routes and password.js
     // Install the OpenApiValidator on your express app

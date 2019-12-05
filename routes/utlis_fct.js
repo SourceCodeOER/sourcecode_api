@@ -8,6 +8,15 @@ const partition = require('lodash.partition');
 const groupBy = require('lodash.groupby');
 const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
+const {resolve: path_resolve} = require("path");
+
+const {FILES_FOLDER} = require("../config/storage_paths");
+const moveFile = require('move-file');
+// fct that return the promise of moving the file to destination
+const move_promise = (file) => moveFile(
+    file.path,
+    path_resolve(FILES_FOLDER, file.filename), {overwrite: false}
+);
 
 // Some utilities functions commonly used
 module.exports = {
@@ -63,24 +72,6 @@ module.exports = {
                 }).catch(/* istanbul ignore next */
                 err => reject(err));
 
-
-            // fallback implementation : It should never be used as it is highly inefficient
-            // ORMs aren't bullet silver in every case
-            /*
-            models
-                .Exercise
-                .scope([
-                    "default_attributes_for_bulk",
-                    {
-                        method: ["filter_exercises_ids", ids]
-                    },
-                    "with_exercise_metrics",
-                    "exercise_with_metrics_and_tags_and_categories_related"
-                ])
-                .findAll()
-                .then(data => resolve(data))
-                .catch(err => reject(err))
-             */
         })
     },
 
@@ -121,12 +112,13 @@ module.exports = {
                     isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
                 }, (t) => {
                     // separate tags proposal from existent tags in exercises
-                    let exercises_with_tags_partition = exercises.map(exercise => ({
-                        title: exercise.title,
-                        description: exercise.description,
-                        // here partition is necessary to separate existent tags from no existent yet
-                        tags: partition(exercise.tags, obj => Number.isInteger(obj))
-                    }));
+                    let exercises_with_tags_partition = exercises.map(exercise => {
+                        // apart the tags field, nothing changes in the exercise object
+                        return Object.assign({}, exercise, {
+                            // here partition is necessary to separate existent tags from no existent yet
+                            tags: partition(exercise.tags, obj => Number.isInteger(obj))
+                        });
+                    });
 
                     // collect all the tags to be inserted ( thanks to partition )
                     // to prevent dummy insert, only takes unique elements
@@ -177,10 +169,9 @@ module.exports = {
                                 // I don't use the really new tags here since in bulk insert,
                                 // we may have the same new tag to insert : This is handled above
                                 ([exercise, tags]) => {
-                                    // TODO link file with exercise
                                     return store_single_exercise(
                                         user,
-                                        Object.assign({}, exercise, {file: null}),
+                                        exercise,
                                         tags,
                                         [],
                                         t
@@ -192,6 +183,7 @@ module.exports = {
                     // OK work as expected
                     resolve()
                 }).catch(/* istanbul ignore next */
+                    // TODO delete files stored in temp dir
                     err => reject(err));
         });
     }
@@ -230,9 +222,9 @@ function build_dictionary_for_matching_process(result_in_db) {
 function store_single_exercise(user, exercise_data, existent_tags, really_new_tags, t) {
     // create exercise and new tags together
     const creationDate = new Date();
-    console.log("SOMEWHERE")
-    console.log(exercise_data);
     return Promise.all([
+        // if a file was provided, we must be able to store it
+        (exercise_data.file !== null) ? move_promise(exercise_data.file) : Promise.resolve(),
         // create the exercise with given information
         models
             .Exercise
@@ -274,7 +266,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                     returning: ["id"]
                 }
             )
-    ]).then(([exercise, tags]) => {
+    ]).then(([_, exercise, tags]) => {
         // add the newly created tags ids to array so that I can bulk insert easily
         const all_tags_ids = existent_tags.concat(
             tags.map(tag => tag.id)
