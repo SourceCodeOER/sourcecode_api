@@ -9,6 +9,7 @@ const groupBy = require('lodash.groupby');
 const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
 const {resolve: path_resolve} = require("path");
+const del = require('del');
 
 const {FILES_FOLDER} = require("../config/storage_paths");
 const moveFile = require('move-file');
@@ -183,8 +184,21 @@ module.exports = {
                     // OK work as expected
                     resolve()
                 }).catch(/* istanbul ignore next */
-                    // TODO delete files stored in temp dir
-                    err => reject(err));
+                    err => {
+                        const no_file = [null, undefined];
+                        const files_to_be_deleted = exercises
+                            .filter((exercise) => !no_file.includes(exercise.file))
+                            .map(exercise => exercise.file.path);
+                        del(files_to_be_deleted)
+                            .then(() => reject(err))
+                            .catch(/* istanbul ignore next */() => {
+                                console.log("One or more file(s) cannot be deleted - You should probably delete it/them manually");
+                                files_to_be_deleted.forEach( (file) => {
+                                    console.log("\t" + file);
+                                });
+                                reject(err);
+                            });
+                    });
         });
     }
 };
@@ -233,6 +247,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                     title: exercise_data.title,
                     description: exercise_data.description,
                     user_id: user.id,
+                    isValidated: false, // even imported by admin, this exercise must be verified
                     // some timestamps must be inserted
                     updatedAt: creationDate,
                     createdAt: creationDate,
