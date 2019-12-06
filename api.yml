@@ -104,6 +104,22 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ExerciseForm"
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/ExerciseForm"
+                - type: object
+                  properties:
+                    exerciseFile:
+                      type: string
+                      format: binary
+                      description: "The sources of this exercise, in zip format"
+                  required:
+                    - exerciseFile
+            encoding:
+              exerciseFile:
+              # MIME for zip https://stackoverflow.com/a/7027582/6149867
+                contentType: application/zip, application/x-zip-compressed, multipart/x-zip
       responses:
         '200':
           description: OK
@@ -157,6 +173,23 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ExerciseUpdateForm"
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/ExerciseUpdateForm"
+                - type: object
+                  description: "If we want to also to change the sources zip file of this exercise"
+                  properties:
+                    exerciseFile:
+                      type: string
+                      format: binary
+                      description: "The sources of this exercise, in zip format"
+                  required:
+                    - exerciseFile
+            encoding:
+              exerciseFile:
+              # MIME for zip https://stackoverflow.com/a/7027582/6149867
+                contentType: application/zip, application/x-zip-compressed, multipart/x-zip
       responses:
         '200':
           description: OK
@@ -364,6 +397,41 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/MultipleExercisesForm"
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                exercisesData:
+                  $ref: "#/components/schemas/MultipleExercisesForm"
+                files:
+                  type: array
+                  description: "The sources of the exercises, each in zip format"
+                  minItems: 1
+                  items:
+                    type: string
+                    format: binary
+                    description: "The source of an exercise, in zip format"
+                filesMapping:
+                  type: array
+                  description: "Mapping between the given file (to find out which data belong to exercise)"
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      filename:
+                        type: string
+                        description: "The name of the given source file"
+                        example: "file1.zip"
+                      exercise:
+                        type: integer
+                        description: "The location of the related exercise in the exercisesData array"
+                    required:
+                      - filename
+                      - exercise
+              required:
+                - exercisesData
+                - files
+                - filesMapping
       responses:
         '200':
           description: OK
@@ -586,11 +654,29 @@ components:
               format: date-time
               example: "2019-10-26 21:46:02.325+02"
               description: "Date of the latest update of this exercise"
+            isValidated:
+              type: boolean
+              description: "Is this exercise validated by an admin ?"
+              example: false
+            file:
+              type: string
+              nullable: true
+              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{filename}"
+              example: "sources-88af5adc-1837-11ea-8d71-362b9e155667.zip"
+            url:
+              type: string
+              pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
+              example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+              nullable: true
+              description: "If not null, the link to the exercise on a plateform"
           required:
             - id
             - version
             - createdAt
             - updatedAt
+            - isValidated
+            - file
+            - url
 # For search / get context, we have other fields (in addition of the AlreadyPresentExerciseModel )
     SearchableExerciseModel:
       allOf:
@@ -758,6 +844,12 @@ components:
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
               minItems: 1 # We must always put at least one tag in the database
+            url:
+              type: string
+              pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
+              example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+              nullable: true
+              description: "If not null, the link to the exercise on a plateform"
           required:
             - tags
 # When we want to update a already existent exercise, we also need the version

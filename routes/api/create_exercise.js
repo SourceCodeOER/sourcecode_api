@@ -2,7 +2,6 @@ const models = require('../../models');
 const Promise = require("bluebird");
 
 const partition = require('lodash.partition');
-
 const Sequelize = require("sequelize");
 
 // delegate tag matching process to specialized functions
@@ -19,6 +18,9 @@ module.exports = function (req, res, next) {
     // distinguish already present tags from new tags
     const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
+    // did the user provide us a file to store ?
+    const file = (Array.isArray(req.files)) ? req.files[0] : null;
+
     // find tag matches for new_tags if already existing
     find_tag_matches(new_tags)
         .then(result => {
@@ -28,7 +30,15 @@ module.exports = function (req, res, next) {
         })
         .then(
             ([existent_tags, really_new_tags]) => {
-                return store_single_exercise(req.user, req.body, existent_tags, really_new_tags);
+                return store_single_exercise(
+                    req.user,
+                    Object.assign({}, req.body, {
+                            file: file
+                        }
+                    ),
+                    existent_tags,
+                    really_new_tags
+                );
             }
         )
         .then(() => {
@@ -36,5 +46,4 @@ module.exports = function (req, res, next) {
         })
         .catch(/* istanbul ignore next */
             err => next(err));
-
 };

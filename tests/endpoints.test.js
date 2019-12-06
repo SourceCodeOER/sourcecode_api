@@ -1,6 +1,7 @@
-const app = require('../app.js');
 const supertest = require('supertest');
-const request = supertest(app);
+const path = require("path");
+let request;
+const example_zip_file = path.resolve(__dirname, "file.zip");
 
 const user = {
     email: "yolo24@uclouvain.be",
@@ -23,27 +24,38 @@ function getRandomInt(min, max) {
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
-// Should be able to register and login
-// if not, we cannot test so much things ...
-beforeAll(async () => {
-    // We must be able to register
+// For the basic set up : a user
+async function setUpBasic() {
+
+    const app = await require('../app.js');
+    request = supertest(app);
+
     await request
         .post("/auth/register")
         .set('Content-Type', 'application/json')
         .send(Object.assign({}, user, {fullName: userName}))
         .expect(200);
+
     const response = await request
         .post("/auth/login")
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
         .send(user)
         .expect(200);
+
     JWT_TOKEN = response.body.token;
-    expect(typeof JWT_TOKEN).toBe('string')
+    expect(typeof JWT_TOKEN).toBe('string');
+    return "SET_UP_FINISHED"
+}
+
+// Should be able to register and login
+// if not, we cannot test so much things ...
+beforeAll(() => {
+    // Yeah , I know it is stupid to wait but if not, Jest doesn't do its job correctly
+    return expect(setUpBasic()).resolves.toBe("SET_UP_FINISHED");
 });
 
 describe("Simple case testing", () => {
-
     it("POST /api/bulk_create_or_find_tag_categories", async () => {
         const response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -133,11 +145,27 @@ describe("Simple case testing", () => {
             .set('Accept', 'application/json')
             .send({
                 title: "YOLO",
-                tags: [1,2,3],
-                name:"YOLO",
+                tags: [1, 2, 3],
+                name: "YOLO",
                 id: 42
             })
             .expect(404);
+    });
+
+    it("GET /api/tags with all settings used", async () => {
+        const response = await request
+            .get("/api/tags?settings={\"state\":\"pending\",\"tags_ids\":[1,2,3,4],\"categories_ids\":[1,2,3]}")
+            .set('Accept', 'application/json')
+            .expect(200);
+        expect(Array.isArray(response.body)).toBe(true);
+    });
+
+    it("GET /api/tags_by_categories with all settings used", async () => {
+        const response = await request
+            .get("/api/tags_by_categories?settings={\"state\":\"pending\",\"onlySelected\":[1,2,3,4]}")
+            .set('Accept', 'application/json')
+            .expect(200);
+        expect(Array.isArray(response.body)).toBe(true);
     });
 });
 
@@ -201,7 +229,7 @@ describe("Complex scenarios", () => {
         };
         response = await search_exercise(1, criteria);
 
-        let data = response.body.data[0];
+        let data = response.data[0];
         expect(data.version).toBe(0);
 
         // test most updates cases : keep tags / add & remove
@@ -284,7 +312,8 @@ describe("Complex scenarios", () => {
                 }, {
                     "text": tags[2],
                     "category_id": 1
-                }]
+                }],
+                "url": "https://inginious.info.ucl.ac.be/mycourses"
             });
 
         expect(response.status).toBe(200);
@@ -298,8 +327,10 @@ describe("Complex scenarios", () => {
             }
         };
         response = await search_exercise(1, criteria);
-        const data = response.body.data[0];
+        const data = response.data[0];
         expect(data.version).toBe(0);
+        expect(data.file).toBe(null);
+        expect(data.url).not.toBe(null);
 
         // Only additions of tags
         response = await request
@@ -312,11 +343,12 @@ describe("Complex scenarios", () => {
                 description: data.description,
                 tags: data.tags.map(tag => tag.tag_id).concat([
                     {text: "TRY 42-42", category_id: 1}
-                ])
+                ]),
+                "url": null,
+                "file": null
             });
 
         expect(response.status).toBe(200);
-        //response = await search_exercise(1, criteria);
 
     });
 
@@ -393,8 +425,8 @@ describe("Complex scenarios", () => {
         };
 
         // retrieve it and send first vote on it
-        let response = await search_exercise(1,criteria);
-        let data = response.body.data[0];
+        let response = await search_exercise(1, criteria);
+        let data = response.data[0];
 
         // we must check that metrics are correct
         expect(data).toHaveProperty("metrics");
@@ -432,9 +464,9 @@ describe("Complex scenarios", () => {
             .expect(200);
 
         // We should see the change in this exercise data
-        response = await search_exercise(1,criteria);
-        expect(response.body.data[0].metrics.votes).toBe(1);
-        expect(response.body.data[0].metrics.avg_score).toBe(3);
+        response = await search_exercise(1, criteria);
+        expect(response.data[0].metrics.votes).toBe(1);
+        expect(response.data[0].metrics.avg_score).toBe(3);
 
         // User 2 votes for this exercise
         response = await request
@@ -448,9 +480,9 @@ describe("Complex scenarios", () => {
         expect(response.status).toBe(200);
 
         // We should see the change in this exercise data
-        response = await search_exercise(1,criteria);
-        expect(response.body.data[0].metrics.votes).toBe(2);
-        expect(response.body.data[0].metrics.avg_score).toBe(2.5);
+        response = await search_exercise(1, criteria);
+        expect(response.data[0].metrics.votes).toBe(2);
+        expect(response.data[0].metrics.avg_score).toBe(2.5);
 
         // User 1 wants to change his vote for this exercise
         await request
@@ -464,9 +496,9 @@ describe("Complex scenarios", () => {
             .expect(200);
 
         // We should see the change in this exercise data
-        response = await search_exercise(1,criteria);
-        expect(response.body.data[0].metrics.votes).toBe(2);
-        expect(response.body.data[0].metrics.avg_score).toBe(3.5);
+        response = await search_exercise(1, criteria);
+        expect(response.data[0].metrics.votes).toBe(2);
+        expect(response.data[0].metrics.avg_score).toBe(3.5);
     });
 
     it("Scenario n°5 : Creates a configuration and update it", async () => {
@@ -506,7 +538,6 @@ describe("Complex scenarios", () => {
         expect(response.body[0].name).toBe("UCLouvain exercises in Java");
         expect(response.body[0].title).toBe("CS1-Java");
 
-        // TODO check here
         // should be able to to update it
         await request
             .put("/api/configurations")
@@ -532,6 +563,61 @@ describe("Complex scenarios", () => {
         expect(response2.body[0].name).not.toBe(response.body[0].name);
         expect(response2.body[0].id).toBe(response.body[0].id);
         expect(response2.body[0].title).toBe(response.body[0].title);
+    });
+});
+
+describe("Using multipart/form-data (instead of JSON)", () => {
+    it("Should be able to create an exercise with a file and update it (new file and new url)", async () => {
+        const title = "MULTIPART FORM TESTING 1";
+        const exercise_data = {
+            "title": title,
+            "description": "HELLO WORLD",
+            "url": "https://inginious.info.ucl.ac.be/"
+        };
+
+        const search_criteria = {
+            data: {
+                title: title
+            },
+            metadata: {
+                size: 1
+            }
+        };
+
+        await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            //.set('Content-Type', "multipart/form-data")
+            .attach("exerciseFile", example_zip_file)
+            .field(exercise_data)
+            .field("tags[0][text]", "MULTI PART exercise")
+            .field("tags[0][category_id]", 1)
+            .expect(200);
+
+        const exercise = await search_exercise(1, search_criteria);
+        expect(exercise.data[0].file).not.toBe(null);
+        expect(exercise.data[0].url).not.toBe(null);
+
+        await request
+            .put("/api/exercises/" + exercise.data[0].id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .attach("exerciseFile", example_zip_file)
+            .field({
+                "title": title,
+                "description": "Something changes ...",
+                "version": 0
+            })
+            .field("tags[0][text]", "MULTI PART exercise")
+            .field("tags[0][category_id]", 1)
+            .expect(200);
+
+        const exercise2 = await search_exercise(1, search_criteria);
+        expect(exercise2.data[0].file).not.toBe(exercise.data[0].file);
+        expect(exercise2.data[0].url).toBe(exercise2.data[0].url);
+        expect(exercise2.data[0].title).toBe(title);
+        expect(exercise2.data[0].description).toBe("Something changes ...");
+        expect(exercise2.data[0].tags).toHaveLength(exercise.data[0].tags.length);
+
     });
 });
 
@@ -600,5 +686,5 @@ async function search_exercise(expected_count, search_criteria) {
         expect(response.body.metadata.totalItems).toBe(expected_count);
     }
     expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
-    return response;
+    return response.body;
 }

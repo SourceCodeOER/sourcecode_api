@@ -9,8 +9,13 @@ const routes = require('./routes/index');
 // miscellaneous passport things
 const passport = require('passport');
 
-// Sequelize for error handeling
-const Sequelize = require("sequelize");
+// own middlewares
+const error_prettier = require("./middlewares/errors-beautifier");
+const default_error_handler = require("./middlewares/default_error_handler");
+const not_found_handler = require("./middlewares/not_found");
+
+// location of stored files to serve as static
+const {FILES_FOLDER} = require("./config/storage_paths");
 
 // helmet for classic security measures
 const helmet = require('helmet');
@@ -22,113 +27,54 @@ const spec = path.join(__dirname, 'api.yml');
 // Initialize passport ( Passport is a singleton )
 require('./config/passport');
 
-const app = express();
+module.exports = new Promise((resolve, reject) => {
 
-// middleware
-app.use(helmet());
-app.use(logger('dev'));
-app.use(bodyParser.json({limit: '10mb'}));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
+    const multer_storage = require("./config/storage")();
 
-// Gives the Swagger UI Viewer
-/* istanbul ignore next */
-app.use('/api-docs', function (_, res) {
-    res.redirect("http://petstore.swagger.io/?url=https://raw.githubusercontent.com/jy95/exercises_library/master/api.yml");
-});
+    let app = express();
 
-// API validation before routes and password.js
-// Install the OpenApiValidator on your express app
-new OpenApiValidator({
-    apiSpec: spec,
-    validateRequests: true,
-    validateResponses: false,
-    // securityHandlers: {
-    //   ApiKeyAuth: (req, scopes, schema) => true,
-    // },
-}).install(app);
+    // middleware
+    app.use(helmet());
+    app.use(logger('dev'));
+    app.use(bodyParser.json({limit: '10mb'}));
+    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(cookieParser());
 
-// Passport Js must have that
-app.use(passport.initialize());
-
-// routes
-app.use('/', routes);
-
-// catch 404 and forward to error handler
-/* istanbul ignore next */
-app.use(function (req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-// for production, hides Sequelize messages under "general" message
-app.use(function (err, req, res, next) {
-
-    // looks nice ; found on some angular code
-    let custom_err = new Error();
-    // to check it is not an expected error of these
-    let is_custom = true;
-    switch (true) {
-        case err instanceof Sequelize.EmptyResultError:
-            // resource not found
-            custom_err.message = "Resource not found";
-            custom_err.status = 404;
-            break;
-        /* istanbul ignore next */
-        case err instanceof Sequelize.DatabaseError:
-            // constraints violations
-            custom_err.message = "Problem with the database : Constraints not satisfied , etc";
-            custom_err.status = 400;
-            break;
-        /* istanbul ignore next */
-        case err instanceof Sequelize.ConnectionError:
-            // Connection issues : cannot reach , timeout, etc
-            custom_err.message = "The database cannot be reached : Please try later";
-            custom_err.status = 503;
-            break;
-        /* istanbul ignore next */
-        case err instanceof Sequelize.OptimisticLockError:
-            // catch locking issues with version
-            custom_err.message = "It seems you are using an outdated version of this resource : Operation denied";
-            custom_err.status = 409;
-            break;
-        case err instanceof Sequelize.UniqueConstraintError:
-            custom_err.message = "You violated a unique constraint and thus generated a conflict";
-            custom_err.status = 409;
-            break;
-        /* istanbul ignore next */
-        case err instanceof Sequelize.BaseError:
-            // catch all unwatched exceptions coming from Sequelize
-            custom_err.message = "Unexpected error";
-            break;
-        /* istanbul ignore next */
-        default:
-            is_custom = false;
-            custom_err = Object.assign(err);
-    }
-    if (is_custom) {
-        custom_err.is_custom = true;
-        custom_err.dev_errors = [err];
-    }
-    next(custom_err)
-
-});
-
-// error handler
-// no stacktraces leaked to user unless in development environment
-app.use(function (err, req, res, next) {
-
-    // if error thrown by validation, give everything else depending of the environment
-    res.status(err.status /* istanbul ignore next */ || 500).json({
-        message: err.message,
-        errors: err.hasOwnProperty("errors")
-            ? err.errors
-            /* istanbul ignore next */
-            : (app.get('env') === 'development' && err.hasOwnProperty("is_custom")) ? err.dev_errors : [err]
+    // Gives the Swagger UI Viewer
+    /* istanbul ignore next */
+    app.use('/api-docs', function (_, res) {
+        res.redirect("http://petstore.swagger.io/?url=https://raw.githubusercontent.com/jy95/exercises_library/master/api.yml");
     });
 
+    // Serves stored files with this endpoint
+    /* istanbul ignore next */
+    app.use("/files", express.static(FILES_FOLDER));
+
+    // API validation before routes and password.js
+    // Install the OpenApiValidator on your express app
+    new OpenApiValidator({
+        apiSpec: spec,
+        validateRequests: true,
+        validateResponses: false,
+        // settings for file upload
+        multerOpts: {
+            storage: multer_storage
+        }
+    })
+        .install(app)
+        .then(() => {
+            // Passport Js must have that
+            app.use(passport.initialize());
+            // routes
+            app.use('/', routes);
+            // catch 404 and forward to error handler
+            app.use(not_found_handler());
+            // for production, hides Sequelize messages under "general" message
+            app.use(error_prettier());
+            // error handler
+            app.use(default_error_handler(app.get('env') === 'development'));
+
+            resolve(app)
+        })
+        .catch(/* istanbul ignore next */ err => reject(err));
 });
-
-
-module.exports = app;
