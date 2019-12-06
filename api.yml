@@ -654,11 +654,29 @@ components:
               format: date-time
               example: "2019-10-26 21:46:02.325+02"
               description: "Date of the latest update of this exercise"
+            isValidated:
+              type: boolean
+              description: "Is this exercise validated by an admin ?"
+              example: false
+            file:
+              type: string
+              nullable: true
+              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{filename}"
+              example: "sources-88af5adc-1837-11ea-8d71-362b9e155667.zip"
+            url:
+              type: string
+              pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
+              example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+              nullable: true
+              description: "If not null, the link to the exercise on a plateform"
           required:
             - id
             - version
             - createdAt
             - updatedAt
+            - isValidated
+            - file
+            - url
 # For search / get context, we have other fields (in addition of the AlreadyPresentExerciseModel )
     SearchableExerciseModel:
       allOf:
@@ -826,6 +844,12 @@ components:
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
               minItems: 1 # We must always put at least one tag in the database
+            url:
+              type: string
+              pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
+              example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+              nullable: true
+              description: "If not null, the link to the exercise on a plateform"
           required:
             - tags
 # When we want to update a already existent exercise, we also need the version
