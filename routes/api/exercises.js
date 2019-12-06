@@ -315,16 +315,16 @@ function update_exercise([id, body, t]) {
                 // if provided, the new file was correctly uploaded : we still have to destroy the old one (if exist)
                 del((old_file !== null) ? [old_file] : [])
                     .then(() => resolve())
-                    .catch(() => {
+                    .catch(/* istanbul ignore next */() => {
                         console.log(old_file + "cannot be deleted - You should probably delete it/them manually");
                         resolve();
                     });
             })
-            .catch((err) => {
+            .catch(/* istanbul ignore next */(err) => {
                 // we failed to upload the new file ; remove it from uploads folder
                 del(new_file_location)
                     .then(() => reject(err))
-                    .catch(() => {
+                    .catch(/* istanbul ignore next */() => {
                         console.log(new_file_location[0] + "cannot be deleted - You should probably delete it/them manually");
                         reject(err);
                     });
@@ -334,6 +334,7 @@ function update_exercise([id, body, t]) {
 }
 
 // to handle errors when updating an exercise
+/* istanbul ignore next */
 function handle_upload_error(err) {
     if (err instanceof Sequelize.EmptyResultError) {
         let error = new Error("Resource not found / Outdated version");

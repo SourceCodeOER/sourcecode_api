@@ -229,7 +229,7 @@ describe("Complex scenarios", () => {
         };
         response = await search_exercise(1, criteria);
 
-        let data = response.body.data[0];
+        let data = response.data[0];
         expect(data.version).toBe(0);
 
         // test most updates cases : keep tags / add & remove
@@ -312,7 +312,8 @@ describe("Complex scenarios", () => {
                 }, {
                     "text": tags[2],
                     "category_id": 1
-                }]
+                }],
+                "url": "https://inginious.info.ucl.ac.be/mycourses"
             });
 
         expect(response.status).toBe(200);
@@ -326,8 +327,10 @@ describe("Complex scenarios", () => {
             }
         };
         response = await search_exercise(1, criteria);
-        const data = response.body.data[0];
+        const data = response.data[0];
         expect(data.version).toBe(0);
+        expect(data.file).toBe(null);
+        expect(data.url).not.toBe(null);
 
         // Only additions of tags
         response = await request
@@ -340,11 +343,12 @@ describe("Complex scenarios", () => {
                 description: data.description,
                 tags: data.tags.map(tag => tag.tag_id).concat([
                     {text: "TRY 42-42", category_id: 1}
-                ])
+                ]),
+                "url": null,
+                "file": null
             });
 
         expect(response.status).toBe(200);
-        //response = await search_exercise(1, criteria);
 
     });
 
@@ -422,7 +426,7 @@ describe("Complex scenarios", () => {
 
         // retrieve it and send first vote on it
         let response = await search_exercise(1, criteria);
-        let data = response.body.data[0];
+        let data = response.data[0];
 
         // we must check that metrics are correct
         expect(data).toHaveProperty("metrics");
@@ -461,8 +465,8 @@ describe("Complex scenarios", () => {
 
         // We should see the change in this exercise data
         response = await search_exercise(1, criteria);
-        expect(response.body.data[0].metrics.votes).toBe(1);
-        expect(response.body.data[0].metrics.avg_score).toBe(3);
+        expect(response.data[0].metrics.votes).toBe(1);
+        expect(response.data[0].metrics.avg_score).toBe(3);
 
         // User 2 votes for this exercise
         response = await request
@@ -477,8 +481,8 @@ describe("Complex scenarios", () => {
 
         // We should see the change in this exercise data
         response = await search_exercise(1, criteria);
-        expect(response.body.data[0].metrics.votes).toBe(2);
-        expect(response.body.data[0].metrics.avg_score).toBe(2.5);
+        expect(response.data[0].metrics.votes).toBe(2);
+        expect(response.data[0].metrics.avg_score).toBe(2.5);
 
         // User 1 wants to change his vote for this exercise
         await request
@@ -493,8 +497,8 @@ describe("Complex scenarios", () => {
 
         // We should see the change in this exercise data
         response = await search_exercise(1, criteria);
-        expect(response.body.data[0].metrics.votes).toBe(2);
-        expect(response.body.data[0].metrics.avg_score).toBe(3.5);
+        expect(response.data[0].metrics.votes).toBe(2);
+        expect(response.data[0].metrics.avg_score).toBe(3.5);
     });
 
     it("Scenario n°5 : Creates a configuration and update it", async () => {
@@ -563,19 +567,57 @@ describe("Complex scenarios", () => {
 });
 
 describe("Using multipart/form-data (instead of JSON)", () => {
-    it("Should be able to create an exercise with a file", async () => {
+    it("Should be able to create an exercise with a file and update it (new file and new url)", async () => {
+        const title = "MULTIPART FORM TESTING 1";
+        const exercise_data = {
+            "title": title,
+            "description": "HELLO WORLD",
+            "url": "https://inginious.info.ucl.ac.be/"
+        };
+
+        const search_criteria = {
+            data: {
+                title: title
+            },
+            metadata: {
+                size: 1
+            }
+        };
+
         await request
             .post("/api/create_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             //.set('Content-Type', "multipart/form-data")
             .attach("exerciseFile", example_zip_file)
+            .field(exercise_data)
+            .field("tags[0][text]", "MULTI PART exercise")
+            .field("tags[0][category_id]", 1)
+            .expect(200);
+
+        const exercise = await search_exercise(1, search_criteria);
+        expect(exercise.data[0].file).not.toBe(null);
+        expect(exercise.data[0].url).not.toBe(null);
+
+        await request
+            .put("/api/exercises/" + exercise.data[0].id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .attach("exerciseFile", example_zip_file)
             .field({
-                "title": "MULTIPART FORM TESTING 1",
-                "description": "HELLO WORLD"
+                "title": title,
+                "description": "Something changes ...",
+                "version": 0
             })
             .field("tags[0][text]", "MULTI PART exercise")
             .field("tags[0][category_id]", 1)
             .expect(200);
+
+        const exercise2 = await search_exercise(1, search_criteria);
+        expect(exercise2.data[0].file).not.toBe(exercise.data[0].file);
+        expect(exercise2.data[0].url).toBe(exercise2.data[0].url);
+        expect(exercise2.data[0].title).toBe(title);
+        expect(exercise2.data[0].description).toBe("Something changes ...");
+        expect(exercise2.data[0].tags).toHaveLength(exercise.data[0].tags.length);
+
     });
 });
 
@@ -644,5 +686,5 @@ async function search_exercise(expected_count, search_criteria) {
         expect(response.body.metadata.totalItems).toBe(expected_count);
     }
     expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
-    return response;
+    return response.body;
 }
