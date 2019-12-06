@@ -32,6 +32,7 @@ const isString = (value) => typeof value === 'string' /* istanbul ignore next */
 // TODO handle case with sub category LATER
 function findOrCreateCategory(tag_category) {
     // default case
+    /* istanbul ignore next */
     if (isString(tag_category)) {
         return {
             kind: tag_category

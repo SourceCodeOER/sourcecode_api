@@ -2,10 +2,7 @@ const models = require('../../models');
 const Promise = require("bluebird");
 
 const partition = require('lodash.partition');
-
 const Sequelize = require("sequelize");
-
-const del = require('del');
 
 // delegate tag matching process to specialized functions
 const {
@@ -48,14 +45,5 @@ module.exports = function (req, res, next) {
             res.status(200).end()
         })
         .catch(/* istanbul ignore next */
-            err => {
-                del((file === null) ? [] : [file.path])
-                    .then(() => {
-                        next(err)
-                    }).catch(/* istanbul ignore next */() => {
-                        console.log(file.path + " cannot be deleted - You should probably delete it manually");
-                        next(err);
-                    });
-            });
-
+            err => next(err));
 };

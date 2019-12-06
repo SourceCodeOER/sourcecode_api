@@ -193,7 +193,7 @@ module.exports = {
                             .then(() => reject(err))
                             .catch(/* istanbul ignore next */() => {
                                 console.log("One or more file(s) cannot be deleted - You should probably delete it/them manually");
-                                files_to_be_deleted.forEach( (file) => {
+                                files_to_be_deleted.forEach((file) => {
                                     console.log("\t" + file);
                                 });
                                 reject(err);
@@ -236,68 +236,88 @@ function build_dictionary_for_matching_process(result_in_db) {
 function store_single_exercise(user, exercise_data, existent_tags, really_new_tags, t) {
     // create exercise and new tags together
     const creationDate = new Date();
-    return Promise.all([
-        // if a file was provided, we must be able to store it
-        (exercise_data.file !== null) ? move_promise(exercise_data.file) : Promise.resolve(),
-        // create the exercise with given information
-        models
-            .Exercise
-            .create(
-                {
-                    title: exercise_data.title,
-                    description: exercise_data.description,
-                    user_id: user.id,
-                    isValidated: false, // even imported by admin, this exercise must be verified
-                    // some timestamps must be inserted
-                    updatedAt: creationDate,
-                    createdAt: creationDate,
-                    // optional properties to add
-                    url: exercise_data.url || null,
-                    file: (exercise_data.file !== null) ? exercise_data.file.filename : null
-                },
-                {
-                    transaction: t,
-                    returning: ["id"]
-                }
-            )
-        ,
-        // bulky create the new tags into the systems
-        models
-            .Tag
-            .bulkCreate(
-                really_new_tags.map(tag => {
-                    return {
-                        // no matter of the kind of user, creating tags like that should be reviewed
-                        isValidated: false,
-                        text: tag.text,
-                        category_id: tag.category_id,
-                        // some timestamps must be inserted
-                        updatedAt: creationDate,
-                        createdAt: creationDate
-                    }
-                }),
-                {
-                    transaction: t,
-                    returning: ["id"]
-                }
-            )
-    ]).then(([_, exercise, tags]) => {
-        // add the newly created tags ids to array so that I can bulk insert easily
-        const all_tags_ids = existent_tags.concat(
-            tags.map(tag => tag.id)
-        );
-        return models
-            .Exercise_Tag
-            .bulkCreate(
-                all_tags_ids.map(tag => ({
-                    tag_id: tag,
-                    exercise_id: exercise.id
-                })),
-                {
-                    transaction: t
-                }
-            )
-    })
+
+    return new Promise((resolve, reject) => {
+        Promise.all(
+            [
+                // if a file was provided, we must be able to store it
+                (exercise_data.file !== null) ? move_promise(exercise_data.file) : Promise.resolve(),
+                // create the exercise with given information
+                models
+                    .Exercise
+                    .create(
+                        {
+                            title: exercise_data.title,
+                            description: exercise_data.description,
+                            user_id: user.id,
+                            isValidated: false, // even imported by admin, this exercise must be verified
+                            // some timestamps must be inserted
+                            updatedAt: creationDate,
+                            createdAt: creationDate,
+                            // optional properties to add
+                            url: exercise_data.url || null,
+                            file: (exercise_data.file !== null) ? exercise_data.file.filename : null
+                        },
+                        {
+                            transaction: t,
+                            returning: ["id"]
+                        }
+                    )
+                ,
+                // bulky create the new tags into the systems
+                models
+                    .Tag
+                    .bulkCreate(
+                        really_new_tags.map(tag => {
+                            return {
+                                // no matter of the kind of user, creating tags like that should be reviewed
+                                isValidated: false,
+                                text: tag.text,
+                                category_id: tag.category_id,
+                                // some timestamps must be inserted
+                                updatedAt: creationDate,
+                                createdAt: creationDate
+                            }
+                        }),
+                        {
+                            transaction: t,
+                            returning: ["id"]
+                        }
+                    )
+            ])
+            .then(([_, exercise, tags]) => {
+                // add the newly created tags ids to array so that I can bulk insert easily
+                const all_tags_ids = existent_tags.concat(
+                    tags.map(tag => tag.id)
+                );
+                return models
+                    .Exercise_Tag
+                    .bulkCreate(
+                        all_tags_ids.map(tag => ({
+                            tag_id: tag,
+                            exercise_id: exercise.id
+                        })),
+                        {
+                            transaction: t
+                        }
+                    )
+            })
+            .then((result) => resolve(result))
+            .catch(/* istanbul ignore next */(err) => {
+                // delete uploaded file in the two folder
+                const files_to_deleted = (exercise_data.file !== null)
+                    ? [exercise_data.file.path, path_resolve(FILES_FOLDER, exercise_data.file.filename)]
+                    : [];
+                del(files_to_deleted)
+                    .then(() => reject(err))
+                    .catch(/* istanbul ignore next */() => {
+                        files_to_deleted.forEach((file) => {
+                            console.log(file + " cannot be deleted - You should probably delete it manually");
+                        });
+                        reject(err);
+                    });
+            })
+    });
 }
 
 // Promise to retrieve possible matches for new tag
