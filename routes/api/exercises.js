@@ -10,6 +10,16 @@ const Op = Sequelize.Op;
 const partition = require('lodash.partition');
 const difference = require('lodash.difference');
 
+const {resolve: path_resolve} = require("path");
+const del = require('del');
+
+const {FILES_FOLDER} = require("../../config/storage_paths");
+const moveFile = require('move-file');
+// fct that return the promise of moving the file to destination
+const move_promise = (file) => moveFile(
+    file.path,
+    path_resolve(FILES_FOLDER, file.filename), {overwrite: false}
+);
 
 // function for bulky inner select
 const {
@@ -49,6 +59,14 @@ router.put("/:exerciseId", (req, res, next) => {
     // distinguish already present tags from new tags
     const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
+    // did the user provide us a file to store ?
+    const file = (Array.isArray(req.files)) ? req.files[0] : null;
+    const exercise_data = (req.files === undefined)
+        ? req.body
+        : Object.assign({}, req.body, {
+            file: file
+        });
+
     return find_exercise_tags_and_search_possible_new_tags_match(
         [id, req.body.version, new_tags, already_present_tags]
     )
@@ -68,9 +86,7 @@ router.put("/:exerciseId", (req, res, next) => {
                         .then(() =>
                             update_exercise([
                                 id,
-                                Object.assign({}, req.body, {
-                                    file: (Array.isArray(req.files)) ? req.files[0] : null
-                                }),
+                                exercise_data,
                                 t
                             ])
                         )
@@ -82,15 +98,8 @@ router.put("/:exerciseId", (req, res, next) => {
         })
         .catch(/* istanbul ignore next */
             err => {
-                if (err instanceof Sequelize.EmptyResultError) {
-                    let error = new Error("Resource not found / Outdated version");
-                    error.message = "It seems you are using an outdated version of this resource : Operation denied";
-                    error.status = 409;
-                    next(error);
-                } else {
-                    // default handler
-                    next(err);
-                }
+                const better_error = handle_upload_error(err);
+                next(better_error);
             })
 
 });
@@ -98,14 +107,7 @@ router.put("/:exerciseId", (req, res, next) => {
 module.exports = router;
 
 // some methods that made life easier with this hell of promise chaining
-function find_exercise_tags_and_search_possible_new_tags_match(
-    [
-        id,
-        version,
-        new_tags,
-        already_present_tags
-    ]
-) {
+function find_exercise_tags_and_search_possible_new_tags_match([id, version, new_tags, already_present_tags]) {
     return Promise.all([
         // Find current exercise version with its tags
         models
@@ -266,27 +268,80 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
 }
 
 function update_exercise([id, body, t]) {
-    return models
-        .Exercise
-        .scope([
-            {method: ["filter_exercises_ids", [id]]}
-        ])
-        .findAll({
-            transaction: t,
-            rejectOnEmpty: true,
-            where: {
-                version: body.version
-            }
-        })
-        .then(([instance]) => {
-            return instance.update({
-                title: body.title,
-                description: body.description,
-                // optional properties to add
-                url: body.url || null,
-                file: (body.file !== null) ? body.file.filename : null
-            }, {
-                transaction: t
+    // useful if we need to destroy it if upload failed
+    const new_file_location = (body.hasOwnProperty("file") && body.file !== null) ? [body.file.path] : [];
+    return new Promise((resolve, reject) => {
+        return models
+            .Exercise
+            .scope([
+                {method: ["filter_exercises_ids", [id]]}
+            ])
+            .findAll({
+                transaction: t,
+                rejectOnEmpty: true,
+                where: {
+                    version: body.version
+                }
             })
-        })
+            .then(([instance]) => {
+                // common properties for all exercises
+                let properties = {
+                    title: body.title,
+                    description: body.description,
+                };
+                // handle optional properties updates
+                // It would be stupid to lose our file when we simply update the title of an exercise, no ?
+                if (body.hasOwnProperty("url")) {
+                    properties["url"] = body.url;
+                }
+                if (body.hasOwnProperty("file")) {
+                    properties["file"] = (body.file !== null) ? body.file.filename : null;
+                }
+
+                // upload the new file (if asked) together the modification in database
+                return Promise.all(
+                    [
+                        // get the previously inserted filename
+                        Promise.resolve(instance.get("file")),
+                        // upload the new file (if asked)
+                        (body.hasOwnProperty("file") && body.file !== null)
+                            ? move_promise(body.file)
+                            : Promise.resolve(),
+                        // modify the row in db
+                        instance.update(properties, {transaction: t})
+                    ]);
+            })
+            .then(([old_file, _a, _b]) => {
+                // if provided, the new file was correctly uploaded : we still have to destroy the old one (if exist)
+                del((old_file !== null) ? [old_file] : [])
+                    .then(() => resolve())
+                    .catch(() => {
+                        console.log(old_file + "cannot be deleted - You should probably delete it/them manually");
+                        resolve();
+                    });
+            })
+            .catch((err) => {
+                // we failed to upload the new file ; remove it from uploads folder
+                del(new_file_location)
+                    .then(() => reject(err))
+                    .catch(() => {
+                        console.log(new_file_location[0] + "cannot be deleted - You should probably delete it/them manually");
+                        reject(err);
+                    });
+            })
+    });
+
+}
+
+// to handle errors when updating an exercise
+function handle_upload_error(err) {
+    if (err instanceof Sequelize.EmptyResultError) {
+        let error = new Error("Resource not found / Outdated version");
+        error.message = "It seems you are using an outdated version of this resource : Operation denied";
+        error.status = 409;
+        return error;
+    } else {
+        // default handler
+        return err;
+    }
 }
