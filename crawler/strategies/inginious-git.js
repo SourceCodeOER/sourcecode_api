@@ -203,10 +203,9 @@ function auto_generate_tags_for_exercise(gitURL, course_data, exercise_data) {
         // Author 1 , Author 2
         // Author 1 && Author 2
         // Author 1 & Author 2
-
         exercise_data
             .author
-            .split(new RegExp("[\,|\&{1,2}]", "g"))
+            .split(new RegExp("(?:\,|\&{1,2})", "g"))
             .map(s => s.trim()) // remove leading space
             .filter(s => s.length > 0) // no empty author
             .forEach((author) => {
