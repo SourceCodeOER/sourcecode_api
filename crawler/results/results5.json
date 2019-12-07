@@ -3244,10 +3244,10 @@
         }
     ],
     "own_categories": {
-        "0": "Skill",
+        "0": "thématique",
         "1": "Misconception",
-        "2": "Category"
+        "2": "autres"
     },
-    "extraction_date": "2019-11-26T10:10:21.901Z",
+    "extraction_date": "2019-12-07T11:52:20.768Z",
     "url": "https://github.com/CelineDknp/JobBlockly"
 }

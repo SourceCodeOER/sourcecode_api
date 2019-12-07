@@ -248,6 +248,6 @@ async function bulk_insert_request(request, JWT_TOKEN, exercises, files) {
             });
         });
     });
-
+    // TODO improve errors warning
     await requestInstance.expect(200);
 }

@@ -108,11 +108,20 @@ module.exports = async function (options) {
             let found_tags = found_tags_for_exercise(course_data, doc)
                 .filter(tag => (tag["category"] !== 1));
 
-            return {
+            let exercise = {
                 "title": doc.name,
                 "description": (doc.hasOwnProperty("context")) ? doc.context : "", // it is optional on Inginious
                 "tags": auto_tags.concat(found_tags) // merge them in a single array
+            };
+
+            // if the base course inginious url was given , try to infer the inginious task link
+            // Only valid for github that have a single course : for multiple, it is too rare (and much more complex )
+            if (options.hasOwnProperty("inginiousURL")) {
+                const folder_exercise = path.relative(gitFolder, dirname(exercise_data));
+                exercise["url"] = `${options.inginiousURL}/${folder_exercise}`
             }
+
+            return exercise;
         });
 
         return {

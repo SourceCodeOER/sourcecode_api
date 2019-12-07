@@ -3,5 +3,6 @@
   "strategy": "inginious-git",
   "mustSend": false,
   "debug": true,
-  "resultFile": "./results/results6.json"
+  "resultFile": "./results/results6.json",
+  "inginiousURL": "https://inginious.org/course/primaire"
 }
