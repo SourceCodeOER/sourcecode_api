@@ -1,7 +1,7 @@
 {
     "exercises": [
         {
-            "title": "[Example] Coverage Testing",
+            "title": "Coverage Testing",
             "description": "Example of Task using Coverage testing",
             "tags": [
                 {
@@ -42,12 +42,16 @@
                 {
                     "text": "Module 4",
                     "category": 2
+                },
+                {
+                    "category": 2,
+                    "text": "Example"
                 }
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleCoverage"
         },
         {
-            "title": "[Example] JavaGrading Testing",
+            "title": "JavaGrading Testing",
             "description": "Example of Task using JavaGrading",
             "tags": [
                 {
@@ -88,12 +92,16 @@
                 {
                     "text": "Module 4",
                     "category": 2
+                },
+                {
+                    "category": 2,
+                    "text": "Example"
                 }
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleJavaGrading"
         },
         {
-            "title": "[Module 4] Abstract Class",
+            "title": "Abstract Class",
             "description": "In this task, you have to implement the following code represented by this UML diagram :\n\n.. figure:: /course/LEPL1402/AbstractClass/AbstractClass.jpg\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nBefore jumping to the code, a few things to keep in mind :\n  - Shape and all its methods are abstract (since instantiating a Shape class doesn't make sense )\n  - Don't forget every needed modifier, keywords, etc (abstract, public, ...)\n  - No need of instance variables in your code as we pass you the needed parameter to apply your computation\n  - Use Math.PI in your Circle implementation\n  - Advanced feedback are available only if your code has complied",
             "tags": [
                 {
@@ -139,7 +147,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AbstractClass"
         },
         {
-            "title": "[Module 1] Access Modifiers / Scopes",
+            "title": "Access Modifiers / Scopes",
             "description": "",
             "tags": [
                 {
@@ -180,7 +188,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AccessModifiers"
         },
         {
-            "title": "[Module 1] Arrays 2D and Matrix",
+            "title": "Arrays 2D and Matrix",
             "description": "In order to understand the differences between a matrix and a multidimensional array,\nyou have to implement the functions of the MyBuilder_ class that implements the Array2DBuilderInterface_:\n\n.. code-block:: java\n\n    package src;\n\n    public interface Array2DBuilderInterface {\n    // from a String of int, build and return a array of 2D\n    // integers are separated by spaces ; lines by the \\n character\n    // As array 2d aren't always regular matrix, you may build a Irregular matrix with the given input\n    // Example :\n    //      String s = \"1 2 3 \\n 4 5 \\n 42 \\n\";\n    // Gives :\n    //      int[][] array2d = { {1, 2, 3}, {4, 5}, {42} };\n    // hint: there is a method in java that removes space at the start and end of a string\n    public int[][] buildFrom(String s);\n\n    // Compute the sum of all integers in the 2d array (not necessarily a regular matrix )\n    public int sum(int[][] array);\n\n    // return the transpose of the matrix (the given parameter is a regular matrix)\n    public int[][] transpose(int[][] matrix);\n\n    // return the product of : matrix1 X matrix2\n    // (row1 X column1) X (row2 X column2) (row1 and column2 not necessarily the same but regular matrices)\n    public int[][] product(int[][] matrix1, int[][] matrix2);\n    }\n\nYour job:\n\n.. code-block:: java\n\n    public class MyBuilder implements Array2DBuilderInterface {\n        public int[][] buildFrom(String s){\n            //TODO\n        }\n        public int sum(int[][] array){\n            //TODO\n        }\n        public int[][] transpose(int[][] matrix){\n            //TODO\n        }\n        public int[][] product(int[][] matrix1, int[][] matrix2){\n            //TODO\n        }\n    }\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Array2D/LEPL1402_Array2D.zip\n.. _Array2DBuilderInterface: /course/LEPL1402/Array2D/Array2DBuilderInterface.java\n.. _MyBuilder: /course/LEPL1402/Array2D/MyBuilder.java",
             "tags": [
                 {
@@ -226,7 +234,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Array2D"
         },
         {
-            "title": "[Module 1] ASCII Decoder",
+            "title": "ASCII Decoder",
             "description": "For this exercise we want you to make a method able to decode a set of ASCII (decimal) codes into a String. Please, read carefully\nthe signature and the comments above the method's signature below :\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n\n.. _`IntelliJ Project`: /course/LEPL1402/ASCIIDecoder/LEPL1402_ASCIIDecoder.zip\n\n.. code-block:: java\n\n        /*\n        * Forbidden characters are passed as an array of int.\n        * Each element of this array correspond to the decimal ASCII code\n        * of a forbidden character OR null if there's no forbidden character\n        * If you encounter one of these forbidden character\n        * you must ignore it when you translate your sentence.\n        *\n        * the 2D array \"sentences\" contain a set of decimal ASCII code we want you\n        * to translate. Each sub-element of this array is a different sentence.\n        * Ex : if we pass this array : { {\"42\", \"72\", \"88\"}, {\"98\", \"99\", \"111\", \"47\", \"55\"} }\n        * to your decode method, you should return : { \"*HX\", \"bco/7\" }\n        *\n        * You should NEVER return null or an array containing null\n        */\n        public static String [] decode(int[] forbidden, String[][] sentences){\n            // YOUR CODE HERE\n        }\n\nWe also highly suggest you to have a look at the StringBuilder_ and ArrayList_ APIs. We strongly encourage\nyou to use them for this exercise.\n\n.. _StringBuilder : https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html\n.. _ArrayList : https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html",
             "tags": [
                 {
@@ -267,7 +275,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ASCIIDecoder"
         },
         {
-            "title": "[Module 4] BlackBox Testing - Binary Search",
+            "title": "BlackBox Testing - Binary Search",
             "description": "In this task, you will need to provide a JUnit4 TestSuite for the **static method** ``binarySearch`` located in the **class** ``Exercise``  :\n\n.. code-block:: java\n\n    /*\n     * This method returns:\n     *             index of elem if it is between the \"low\" and \"high\" indexes.\n     *             -1 if elem is not the there\n     *             -2 if the parameters do not respect the preconditions.\n     *\n     * @pre low >= 0, high <= |arr|, low <= high, sorted(arr[low...high]) == true\n     * @post returns :\n     *            index in which the searched element is located,\n     *            -1 if it is not present.\n     *            -2 if it does not respect @pre\n     */\n    public static int binarySearch(int [] arr, int low, int high, int elem) {\n        ...\n    }\n\nBased on the specifications provided, create test cases for different input and possible outputs. We strongly suggest you to read the Junit4_ asserts documentation. Here is a signature\nto start your test suite:\n\n.. code-block:: java\n\n    import org.junit.Test;\n    import static org.junit.Assert.*;\n\n    public class TestSuite{\n\n        @Test\n        public void test(){\n            Exercise.binarySearch(...)\n        }\n\n        // Add more tests here.\n\n    }\n\n\n.. _Junit4: https://junit.org/junit4/javadoc/4.12/org/junit/Assert.html",
             "tags": [
                 {
@@ -313,7 +321,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BlackBox"
         },
         {
-            "title": "[Module 6] Bounded Buffer",
+            "title": "Bounded Buffer",
             "description": "A bounded buffer is a way for multiple producers and consumers to synchronised. Indeed multiple producers are going to fill the buffer while consumers  are going to clear out this buffer.\n\nYou have to implement the class BoundedBuffer_. In a bounded buffer, the element window grows to the right, shrinks to the left and slides t the right on the buffer. Here is a little example about the fonctioning of a bounded buffer :\n\n.. image:: /course/LEPL1402/BoundedBuffer/BoundedBuffer.png\n   :scale: 100%\n   :align: center\n   :height: 461px\n   :width: 801px\n\nBefore submitting don't hesitate to create a producer and a consumer and to test your code.\n\nYou can download the `IntelliJ Project`_:\n\n.. _`IntelliJ Project`: /course/LEPL1402/BoundedBuffer/LEPL1402_BoundedBuffer.zip\n\n.. _BoundedBuffer: /course/LEPL1402/BoundedBuffer/BoundedBuffer.java",
             "tags": [
                 {
@@ -359,7 +367,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BoundedBuffer"
         },
         {
-            "title": "[Module 2] Bubble Sort Invariant (MCQ)",
+            "title": "Bubble Sort Invariant (MCQ)",
             "description": "In this exercise, the questions will be about the bubble sort algorithm, its complexities and invariant.\n\nHere its implementation in java:\n\n.. code-block:: java\n\n    public static void bubbleSort(Comparable[] array){\n        int n = array.length;\n        Comparable temp = 0;\n        for(int i=0; i < n; i++){\n            for(int j=1; j < (n-i); j++){\n                if(array[j-1].compareTo(array[j])>0){\n                    //swap elements\n                    temp = array[j-1];\n                    array[j-1] = array[j];\n                    array[j] = temp;\n                }\n            }\n        }\n    }",
             "tags": [
                 {
@@ -400,7 +408,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BubbleSortInvariant"
         },
         {
-            "title": "[Module 1] Type Casting - theoretical questions",
+            "title": "Type Casting - theoretical questions",
             "description": "",
             "tags": [
                 {
@@ -441,7 +449,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Casting"
         },
         {
-            "title": "[Module 2] Circular Linked list",
+            "title": "Circular Linked list",
             "description": "In this task, you have to implement a Circular linked list : a list where the last element points to the first element. In this exercise, the list must maintain a reference\nto the last of its elements. Each time you want to add an element, you must append it at the end of the list. Removing an element is a bit different: you need to specify\nan index to choose which element of the list you want to remove (``remove(0)`` for the first ... ``remove(size()-1)`` for the last). **Pay attention**: your ``remove`` method\nmust throw an ``IndexOutOfBoundsException`` if the index parameter is smaller than ``0`` or greater than ``size()-1``\n\n.. figure:: /course/LEPL1402/CircularLL/CircularLinkedList.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\n\nYou also need to implement the ``ListIterator`` class.\nIterator_ is an interface you have to implement in order to make the class implementing it able to enumerate/browse/iterate over an object : here, we want you to implement a FIFO order iterator\nover your ``CircularLinkedList``. **Pay attention**:\n\n    - Your iterator don't have to implement the ``remove`` method from Iterator_.\n    - Your iterator must throw a ``ConcurrentModificationException`` when you want to get the next element but some other element has been added to the list meanwhile.\n\n.. _Iterator : https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html\n\n\nYou can download the `IntelliJ Project`_:\n\n.. _`IntelliJ Project`: /course/LEPL1402/CircularLL/LEPL1402_CircularLL.zip\n\n\nHere is the class (downloadable here_) where we will insert your code :\n\n\n.. _here: /course/LEPL1402/CircularLL/CircularLinkedList.java\n\n.. code-block:: java\n\n    import java.util.ConcurrentModificationException;\n    import java.util.Iterator;\n\n\n    public class CircularLinkedList<Item> implements Iterable<Item> {\n\n        private int n;          // size of the list\n        private Node last;   // trailer of the list\n\n        // helper linked list class\n        private class Node {\n\n            private Item item;\n            private Node next;\n\n            private Node(Item item){\n                this.item = item;\n                this.next = null;\n            }\n\n        }\n\n        public CircularLinkedList() {\n            last = null;\n            n = 0;\n        }\n\n        public boolean isEmpty() {\n            return n == 0;\n        }\n\n        public int size() {\n            return n;\n        }\n\n        public Node getLast(){\n            return last;\n        }\n\n        public Item getItem(Node n){\n            return n.item;\n        }\n\n\n\n        /**\n        * Append an item at the end of the list\n        * @param item the item to append\n        */\n        public void enqueue(Item item) {\n            // YOUR CODE HERE\n        }\n\n        /**\n        * Removes the element at the specified position in this list.\n        * Shifts any subsequent elements to the left (subtracts one from their indices).\n        * Returns the element that was removed from the list.\n        */\n        public Item remove(int index) {\n            // YOUR CODE HERE\n        }\n\n\n        /**\n        * Returns an iterator that iterates through the items in FIFO order.\n        * @return an iterator that iterates through the items in FIFO order.\n        */\n        public Iterator<Item> iterator() {\n            return new ListIterator();\n        }\n\n        /**\n        * Implementation of an iterator that iterates through the items in FIFO order.\n        *\n        */\n        private class ListIterator implements Iterator<Item> {\n            // YOUR CODE HERE\n        }\n\n\n    }",
             "tags": [
                 {
@@ -487,7 +495,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CircularLL"
         },
         {
-            "title": "[Module 2] quick sort code accuracy - Pre, Post conditions and Invariants",
+            "title": "quick sort code accuracy - Pre, Post conditions and Invariants",
             "description": "",
             "tags": [
                 {
@@ -528,7 +536,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy"
         },
         {
-            "title": "[Module 2] Quick Sort - Implem exercise",
+            "title": "Quick Sort - Implem exercise",
             "description": "In order to discover the importance of pre/post conditions and invariants in your programs, we will take the example of QuickSort.\n\nQuicksort is a divide-and-conquer method for sorting. It works by partitioning an array into two parts, then sorting the parts independently. It takes the first element of the Array, then it determines its position in the array by iterating through it. If an element is lower, it moves the element to its left and increment its own position. Then it recursivly do the same operation for each sub array (left and right of the pivot).\n\n.. figure:: /course/LEPL1402/CodeAccuracy2/quicksort-overview.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nThe crux of the method is the partitioning process , which can be summarized as follows :\n\n.. figure:: /course/LEPL1402/CodeAccuracy2/partitioning-overview.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nEven with this simple algorithm, mistakes can occur and that is why we ask you to complete the implementation\ncontained in this file_ , without forgetting to add assert statements in each method (as they will be tested separately in INGINIOUS).\n\n\nYou can download the `IntelliJ Project`_.\n\n.. _`IntelliJ Project`: /course/LEPL1402/CodeAccuracy2/LEPL1402_CodeAccuracy2.zip\n\n.. _file: /course/LEPL1402/CodeAccuracy2/QuickSort.java",
             "tags": [
                 {
@@ -574,7 +582,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy2"
         },
         {
-            "title": "[Module 1] Game of 9 common Java programming errors",
+            "title": "Game of 9 common Java programming errors",
             "description": "",
             "tags": [
                 {
@@ -615,7 +623,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CommonErrors"
         },
         {
-            "title": "[Module 1] Comparator and Collections",
+            "title": "Comparator and Collections",
             "description": "In this task, the challenge is to sort a custom class **Person** described as :\n\n.. code-block:: java\n\n    public class Person {\n\n        public String name;\n        public int age;\n\n        public Person(String name, int age) {\n            this.name = name;\n            this.age = age;\n        }\n\n        @Override\n        public String toString() {\n            return name + \" \" + age;\n        }\n    }\n\nYour task is to implement the function ``public static void sortPerson(ArrayList<Person> persons)`` that should sort an ArrayList of Persons as follows :\n\n- sort in the lexicographical order of their name\n- If two persons have the same name, they should be classified according to their age (ascending order).\n\nIn order to succeed this task (whose solution is contained on 8 lines), we invite you to discover the following JavaDoc resource : Collections_ (method sort)\n\n.. _Collections: https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html\n\nGiven this example :\n\n.. code-block:: java\n\n    public class Main\n\n      public static void main(String[] args) {\n        ArrayList<Person> persons = new ArrayList<>();\n        persons.add(new Person(\"Guillaume\",20));\n        persons.add(new Person(\"John\",50));\n        persons.add(new Person(\"Guillaume\",10));\n        persons.add(new Person(\"John\",10));\n        persons.add(new Person(\"Luc\",5));\n\n        sortPerson(persons);\n        System.out.println(persons);\n\n      }\n   }\n\nYou should get this on the output :\n\n.. code-block:: java\n\n   [Guillaume 10, Guillaume 20, John 10, John 20, Luc 5]",
             "tags": [
                 {
@@ -656,7 +664,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorAndCollections"
         },
         {
-            "title": "[Module 5] Comparator vs Comparable",
+            "title": "Comparator vs Comparable",
             "description": "In this exercise, you have to answer questions about Comparator_ and Comparable_.\n\nWe are going to work on the Plant_, Tree_, Flower_ and Sorter_ classes. Read and understand the code in this classes before doing this is exercise!\n\nAll the information on how the different method should work are given in comments in each class.\n\nYou can download the `IntelliJ Project`_.\n\n.. _`IntelliJ Project`: /course/LEPL1402/ComparatorvsComparable/LEPL1402_ComparatorvsComparable.zip\n\n.. _Comparator: https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html\n.. _Comparable: https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html\n.. _Plant: /course/LEPL1402/ComparatorvsComparable/Plant.java\n.. _Tree: /course/LEPL1402/ComparatorvsComparable/Tree.java\n.. _Flower: /course/LEPL1402/ComparatorvsComparable/Flower.java\n.. _Sorter: /course/LEPL1402/ComparatorvsComparable/Sorter.java",
             "tags": [
                 {
@@ -702,7 +710,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorvsComparable"
         },
         {
-            "title": "[Module 2] Array Search",
+            "title": "Array Search",
             "description": "In this task, you have to implement a method ``search`` that looks for an element in an ascending sorted array. Your method must return the **index** of the element in the array or **-1** if you can't find the element in the array.\n\nWe'll test the complexity of your code so try to find the best possible algorithm.\n\n.. code-block:: java\n\n    public class Search {\n\n        /**\n         * @param tab is an ordered array of int.\n         * @return index of elem or -1\n         */\n        public static int search(int[] tab, int elem){\n            //TODO YOUR CODE HERE\n        }\n    }\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n\n.. _`IntelliJ Project`: /course/LEPL1402/ComplexityArraySearch/LEPL1402_ComplexityArraySearch.zip",
             "tags": [
                 {
@@ -748,7 +756,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityArraySearch"
         },
         {
-            "title": "[Module 2] Complexity : simple MCQ",
+            "title": "Complexity : simple MCQ",
             "description": "",
             "tags": [
                 {
@@ -789,7 +797,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityMCQ1"
         },
         {
-            "title": "[Module 3] Time Complexity MCQ (trees, tsp, sort, lists)",
+            "title": "Time Complexity MCQ (trees, tsp, sort, lists)",
             "description": "The three first questions will be time complexity questions about trees, the trees we are talking about is a complete ordered binary tree. Like the example you see here under:\n\n.. image:: /course/LEPL1402/complexityMCQ2/binaryTree.png\n   :scale: 60%\n   :align: center\n   :height: 375px\n   :width: 653px\n\n\nThe rest of the questions are harder question about the time complexity of operations on list and arrays. Some questions will be about simple linked list, other about double linked list and some about circular linked list.\n",
             "tags": [
                 {
@@ -830,7 +838,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/complexityMCQ2"
         },
         {
-            "title": "[Module 2] Space Complexity MCQ",
+            "title": "Space Complexity MCQ",
             "description": "Multiple choice questions about space complexity",
             "tags": [
                 {
@@ -871,7 +879,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexitySpaceMCQ"
         },
         {
-            "title": "[Module 4] Coverage Testing",
+            "title": "Coverage Testing",
             "description": "In this task, you should provide a TestSuite for coverage check of the following class :\n\n.. code-block:: java\n\n    public class BigDecimal {\n        /*\n         * parse exponent\n         */\n        public static long parseExp(char[] in, int offset, int len){\n            long exp = 0;\n            offset++;\n            char c = in[offset];\n            len--;\n            boolean negexp = (c == '-');\n            // optional sign\n            if (negexp || c == '+') {\n                offset++;\n                c = in[offset];\n                len--;\n            }\n            if (len <= 0) // no exponent digits\n                throw new NumberFormatException();\n            // skip leading zeros in the exponent\n            while (len > 10 && (c=='0' || (Character.digit(c, 10) == 0))) {\n                offset++;\n                c = in[offset];\n                len--;\n            }\n            if (len > 10) // too many nonzero exponent digits\n                throw new NumberFormatException();\n            // c now holds first digit of exponent\n            for (;; len--) {\n                int v;\n                if (c >= '0' && c <= '9') {\n                    v = c - '0';\n                } else {\n                    v = Character.digit(c, 10);\n                    if (v < 0) // not a digit\n                        throw new NumberFormatException();\n                }\n                exp = exp * 10 + v;\n                if (len == 1)\n                    break; // that was final character\n                offset++;\n                c = in[offset];\n            }\n            if (negexp) // apply sign\n                exp = -exp;\n            return exp;\n        }\n    }\n\nIn order to succeed this task, you must cover all the different execution cases. To grade your tests, we use the tool ``Jacoco``, it checks wether you navigate among the entire code that was given. First understand what this code does, then you should write tests that will navigate through each condition, loop etc.\n\n\nTake a look at this link_ to understand the feedback you'll be given.\n\n\n.. _link: https://www.eclemma.org/jacoco/trunk/doc/counters.html",
             "tags": [
                 {
@@ -917,7 +925,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Coverage"
         },
         {
-            "title": "[Module 6] Cyclic Barrier",
+            "title": "Cyclic Barrier",
             "description": "A Cyclic barrier in concurrent programming is a synchronization construct that helps you synchronize threads every once in a while. The idea is simple, after a thread finished executing a certain amount of operation, it waits until the barrier thread recover the result to restart. Note that the barrier recover this result when every thread is waiting, it thus recover all the results and then the threads can restart their computing before stopping at the next checkpoint.\n\nIn this exercise we ask you to compute the highest sum in a set of array. Imagine that you have a large set of 2D-arrays stored as one 3D-array. We ask you to use a fixed amount of threads, and a small buffer. Each thread is going to compute the sum of the values in a 2D-array and store this sum in the shared buffer. Once every thread has finished computing the sum of his array, the barrier recovers the maximum. When you don't need to compute sums the threads stop and the barrier returns the final result (the index of the maximal sum).\n\nWe give you the class MaxFinder_ that you must complete, read the code carefully before you start writing any line of code.\n\nYou should also read the class CyclicBarrier_ in the java api.\n\nYou can download the `IntelliJ Project`_.\n\n.. _`IntelliJ Project`: /course/LEPL1402/CyclicBarrier/LEPL1402_CyclicBarrier.zip\n\n.. _MaxFinder: /course/LEPL1402/CyclicBarrier/MaxFinder.java\n.. _CyclicBarrier: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/concurrent/CyclicBarrier.html",
             "tags": [
                 {
@@ -963,7 +971,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CyclicBarrier"
         },
         {
-            "title": "[Module 4] Factory design pattern - Level generator",
+            "title": "Factory design pattern - Level generator",
             "description": "In this task, we will ask you to implement a labyrinth mini-game level builder using\nThe factory design pattern. Each level consists in a set of Wall_, Key_, Floor_, Door_, all\nof them implementing the LevelComponent_ interface.\nYour objective is thus to implement the two following classes:\n\nYou can download the `IntelliJ Project`_.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Factory/LEPL1402_Factory.zip\n\n.. code-block:: java\n\n    public class ElementFactory extends Factory {\n\n        // YOUR CODE HERE\n\n        public static ElementFactory getInstance() {\n            // YOUR SINGLETON HERE\n        }\n\n    }\n\n\n    public class Level extends AbstractLevel {\n\n        public Level(String input){\n            // YOUR CODE HERE\n        }\n\n        //Example of level building with this String : String s = \"#-K\\n-D-\\n#-K\"\n        //Gives : LevelComponent[][] componentsObjects = {\n        //                                        {new Wall(), new Floor(), new Key()},\n        //                                        {new Floor(), new Door(), new Floor()},\n        //                                        {new Wall(), new Floor(), new Key()}}\n        public LevelComponent getElement(char  c){\n            // YOUR CODE HERE\n        }\n\n        // YOUR CODE HERE\n    }\n\n.. _Wall: /course/LEPL1402/Factory/Wall.java\n.. _Key: /course/LEPL1402/Factory/Key.java\n.. _Floor: /course/LEPL1402/Factory/Floor.java\n.. _Door: /course/LEPL1402/Factory/Door.java\n.. _LevelComponent: /course/LEPL1402/Factory/LevelComponent.java\n\nNote that these two classes extends the abstract classes Factory_ and AbstractLevel_. Pay attention, we add a small constraint to this exercise: your ElementFactory\n**must** be a singleton (i.e, it should not be possible to instantiate your factory\nwith java's ``new`` keyword). For your ``Level`` class, what we want you to do is, given a String, create a ``Level`` object whose ``components``\nis a 2D array where each cell represent a ``LevelComponent``. Note that all sub-arrays in ``components`` will have the same size as we will only ask you to create \"square\" labyrinths. If a character does not correspond to one of the component, your code should throw an IllegalArgumentException.\n\n.. _Factory: /course/LEPL1402/Factory/Factory.java\n.. _AbstractLevel: /course/LEPL1402/Factory/AbstractLevel.java",
             "tags": [
                 {
@@ -1009,7 +1017,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Factory"
         },
         {
-            "title": "[Module 2] Introduction to recursion in Java - Fibonacci",
+            "title": "Introduction to recursion in Java - Fibonacci",
             "description": "In this task, we will ask you to implement two different versions of the Fibonacci_ sequence number: a recursive one and an iterative one.\nThe objective of this exercise is to make you aware of what a call stack is and what problem could occur. We strongly suggest you to\ntest your code with various input : what will happen if you test your recursive implementation with a very large index. Why ? Will the same\nthing happen with your iterative implementation ? Why ?\n\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Fibonacci/LEPL1402_Fibonacci.zip\n\n.. code-block:: java\n\n    public class Fibonacci {\n\n        /*\n         * Returns the index-th element of the fibonnaci sequence, computed recursively\n         */\n        public static int fiboRecursive(int index){\n            // YOUR CODE HERE\n        }\n\n        /*\n         * Returns the index-th element of the fibonnaci sequence, computed iteratively\n         */\n        public static int fiboIterative(int index){\n            // YOUR CODE HERE\n        }\n\n    }\n\n\nReminder : Fibonacci's sequence is computed as follows\n\n.. math::\n\n     f(n) =\\begin{cases}0 & n=0 \\\\1 & n = 1\\\\ f(n-1) + f(n-2) & n > 1\\end{cases}\n\n.. _Fibonacci: /course/LEPL1402/Fibonacci/Fibonacci.java",
             "tags": [
                 {
@@ -1055,7 +1063,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Fibonacci"
         },
         {
-            "title": "[Module 5] Functional list implementation",
+            "title": "Functional list implementation",
             "description": "Functional programming_ is an increasingly important programming paradigm. In this paradigm, data structures are immutable_. You are asked to implement an immutable list called FList that can be used in functionnal programming.\n\nYou should first make sure that you understood the code that is given to you and what is asked to you before trying any implementation.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/FList/LEPL1402_FList.zip\n\nHere is the API of an FList_ and the FList class_ you have to implement:\n\n.. code-block:: java\n\n    public abstract class FList<A> implements Iterable<A> {\n\n        // creates an empty list\n        public static <A> FList<A> nil();\n\n        // prepend a to the list and return the new list\n        public final FList<A> cons(final A a);\n\n        public final boolean isNotEmpty();\n\n        public final boolean isEmpty();\n\n        public final int length();\n\n        // return the head element of the list\n        public abstract A head();\n\n        // return the tail of the list\n        public abstract FList<A> tail();\n\n        // return a list on which each element has been applied function f\n        public final <B> FList<B> map(Function<A,B> f);\n\n        // return a list on which only the elements that satisfies predicate are kept\n        public final FList<A> filter(Predicate<A> f);\n\n        // return an iterator on the element of the list\n        public Iterator<A> iterator();\n\n    }\n\n\nHere is an example of how we could test your code:\n\n.. code-block:: java\n\n    FList<Integer> list = FList.nil();\n\n    for (int i = 0; i < 10; i++) {\n        list = list.cons(i);\n    }\n\n    list = list.map(i -> i+1);\n    // will print 1,2,...,11\n    for (Integer i: list) {\n        System.out.println(i);\n    }\n\n    list = list.filter(i -> i%2 == 0);\n    // will print 2,4,6,...,10\n    for (Integer i: list) {\n        System.out.println(i);\n    }\n\n\nSince you know how your code should work, we **strongly** recommend you to test it on your computer before trying any submission. The iterator is the most critical part, if it doesn't work, most of the test will not work.\n\n.. _programming: https://en.wikipedia.org/wiki/Functional_programming\n.. _immutable: https://en.wikipedia.org/wiki/Purely_functional_data_structure\n.. _FList: /course/LEPL1402/FList/FList.java\n.. _class: /course/LEPL1402/FList/FListClass.java",
             "tags": [
                 {
@@ -1101,7 +1109,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FList"
         },
         {
-            "title": "[Module 5] FList MergeSort",
+            "title": "FList MergeSort",
             "description": "To complete this task you must implement a mergesort for FList using only FList. Arrays, ArrayList, etc. are prohibited for this exercise.\n\nHere is the class FList_ you will be using. Try first to implement the FList by yourself in this exercise_ before starting this one.\n\nAnd here is the method you must implement: note that you have to implement merge recursivly and you are allowed to create other methods.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/FListMergeSort/LEPL1402_FListMergeSort.zip\n\n.. code-block:: java\n\n    public class FListMerge {\n\n\n        /*\n        * This method receives an FList and returns the FList containing the same values but sorted with the smallest value to the highest one.\n        *\n        */\n        public static FList<Integer> mergeSort(FList<Integer> fList){\n            //TODO By Student\n        }\n\n        //TO Complete if needed\n    }\n\n\n.. _FList: /course/LEPL1402/FListMergeSort/FList.java\n.. _exercise: https://inginious.info.ucl.ac.be/course/LEPL1402/FList",
             "tags": [
                 {
@@ -1147,7 +1155,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FListMergeSort"
         },
         {
-            "title": "[Module 5] Functional immutable tree",
+            "title": "Functional immutable tree",
             "description": "In this exercise you have to complete the class FTree_, Node_ and Leaf_. Ftree_ is an abstract class that represents a binary true, it is extended by Node and Leaf. A Node_ is a FTree_ with two children (left and right) and a value. A Leaf_ is terminal, so it has a value but no children.\n\nIn the FTree_ class you must *recursivly* implement:\n    - depth : returns the depth of the tree (we assume that the tree is balanced)\n    - map : receives a function as argument and apply it to all the values contained in the tree\n\nTo complete the Node_ class you must:\n    - implement the constructor\n    - extend FTree_\n\nTo complete the Leaf_ class you must :\n    - implement the constructor\n    - extend FTree_\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/FTree/LEPL1402_FTree.zip\n\n\n.. _FTree: /course/LEPL1402/FTree/FTree.java\n.. _Node: /course/LEPL1402/FTree/Node.java\n.. _Leaf: /course/LEPL1402/FTree/Leaf.java\n",
             "tags": [
                 {
@@ -1193,7 +1201,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FTree"
         },
         {
-            "title": "[Module 6] Future",
+            "title": "Future",
             "description": "For this task you will learn use Future_ and ExecutorService_ in order to load a web page with images asynchronously. Indeed html is lightweight compared to the images so we want the images to be downloaded asynchronously while the html is displayed without the images.\n\nIn this task we give you the WebPage_ class to complete and three other class to use : URL_, Image_ and HTML_.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Future/LEPL1402_Future.zip\n\n.. code-block:: java\n\n    import java.util.ArrayList;\n    import java.util.List;\n    import java.util.concurrent.ExecutionException;\n    import java.util.concurrent.ExecutorService;\n    import java.util.concurrent.Executors;\n    import java.util.concurrent.Future;\n\n    public class WebPage {\n\n        private ExecutorService executor;\n        private HTML html;\n\n        /*\n         * Bound executor to a fixed thread pool size\n         */\n        public WebPage(int threadNumber, HTML html){\n            //TODO\n        }\n\n        /*\n         * submit the download of the image specified by the url\n         * to be executed by thread pool\n         */\n        public Future<Image> loadImage(URL url){\n            //TODO\n        }\n\n        /*\n         * Download the image specified by the url\n         */\n        public Image downloadImageFromURL(URL url){\n            //HIDDEN\n        }\n\n        /*\n         * Load all images of the page\n         */\n        public List<Future<Image>> loadImages(List<URL> urls){\n            //TODO\n        }\n\n        /*\n         * Load the page while images are being downloaded\n         */\n        private void displayPageWithoutImage(){\n            //HIDDEN\n        }\n\n        /*\n         * Display all images on the page\n         */\n        private void displayImages(List<Image> images){\n            //HIDDEN\n        }\n\n        /*\n         * load the page\n         */\n        public void loadPage(){\n            // First the image are downloaded asynchronously\n            List<Future<Image>> futures = loadImages(this.html.getUrls());\n            // While the image are being downloaded, we display the page without them\n            displayPageWithoutImage();\n            // Then we need all images to display them\n            List<Image> images = new ArrayList<Image>(futures.size());\n            try{\n                for(Future<Image> future : futures){\n                    // the \"get()\" function is waiting for the result of the future task (here download the images)\n                    images.add(future.get());\n                }\n            } catch(InterruptedException e){\n\n            } catch (ExecutionException e){\n\n            }\n            // we can display now images on the page\n            displayImages(images);\n            // shut down the executor service now\n            executor.shutdown();\n\n        }\n\n    }\n\n\n.. _Future: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html\n.. _ExecutorService: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html\n.. _WebPage: /course/LEPL1402/Future/WebPage.java\n.. _Image: /course/LEPL1402/Future/Image.java\n.. _URL: /course/LEPL1402/Future/URL.java\n.. _HTML: /course/LEPL1402/Future/HTML.java",
             "tags": [
                 {
@@ -1239,7 +1247,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Future"
         },
         {
-            "title": "[Module 3] Generics 1",
+            "title": "Generics 1",
             "description": "In this task, you have to implement the map / filter functions of the following class :\n\n.. code-block:: java\n\n    public class Cons {\n        // the item inside this list node\n        public int v;\n        // The next element, null if nothing\n        public Cons next;\n        // creates a new Cons that applies function f on all elements\n        public Cons map(F f) {\n            // TODO by student\n        }\n        // creates a new Cons with all elements that matches predicate p\n        public Cons filter(P p) {\n            // TODO by student\n        }\n        // Constructor\n        public Cons(int v, Cons next) {\n            this.v = v;\n            this.next = next;\n        }\n    }\n\nHere are the interfaces for the object parameter for filter/map\n\n.. code-block:: java\n\n    interface F {\n        int apply(int v);\n    }\n\n    interface P {\n        boolean filter(int v);\n    }\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Generics/LEPL1402_Generics.zip\n\n( You can find all the required files here :  Cons_ , Function_ , Predicate_ )\n\n.. _Cons: /course/LEPL1402/Generics/Cons.java\n.. _Function: /course/LEPL1402/Generics/F.java\n.. _Predicate: /course/LEPL1402/Generics/P.java",
             "tags": [
                 {
@@ -1285,7 +1293,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics"
         },
         {
-            "title": "[Module 3] Generics 2",
+            "title": "Generics 2",
             "description": "In this task, you have to implement the generic map / filter functions of the following class :\n\n.. code-block:: java\n\n    import java.util.function.Predicate;\n    import java.util.function.Function;\n\n    public class Cons < E > {\n        // the item inside this list node\n        public E v;\n        // The next element, null if nothing\n        public Cons<E> next;\n        // creates a new Cons that applies function f on all elements\n        public <R> Cons <R> map(Function <E,R> function) {\n            // TODO by student\n        }\n        // creates a new Cons with all elements that matches predicate p\n        public Cons <E> filter(Predicate <E> predicate) {\n            // TODO by student\n        }\n        // Constructor\n        public Cons(E v, Cons < E > next) {\n            this.v = v;\n            this.next = next;\n        }\n    }\n\nTo help you understand how Predicate and Function works, check the documentation_.\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Generics2/LEPL1402_Generics2.zip\n\n(You can find here all documents : Cons_, Function_, Predicate_)\n\n.. _documentation: https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html\n.. _Cons: /course/LEPL1402/Generics2/Cons.java\n.. _Function: /course/LEPL1402/Generics2/F.java\n.. _Predicate: /course/LEPL1402/Generics2/P.java",
             "tags": [
                 {
@@ -1331,7 +1339,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics2"
         },
         {
-            "title": "[Module 3] Generics 3",
+            "title": "Generics 3",
             "description": "In this task, you have to implement the solver of this well-known logic circuit :\n\n.. figure:: /course/LEPL1402/Generics3/full-adder-circuit.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nInstead of directly using a chain of logical operators ( that can lead you to a error prone code sometimes),\nwe will be using BiFunction_ and Function_ to implement the logic gates.\nYour task is thus to implement the following class : Evaluator_ .\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Generics3/LEPL1402_Generics3.zip\n\n.. _Function: https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html\n.. _BiFunction: https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html\n.. _Evaluator: /course/LEPL1402/Generics3/Evaluator.java",
             "tags": [
                 {
@@ -1377,7 +1385,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics3"
         },
         {
-            "title": "[Module 2] Hanoi Tower",
+            "title": "Hanoi Tower",
             "description": "The tower of Hanoi is a mathematical puzzle, it consists of three rods and a number of disk of different size which can slide onto any rod. The game starts with all the disks in an ascending order forming a stack on the first rod. The objective of this puzzle is to move the entire stack to another rod. We know, it sounds easy, but there are 3 simple rules that make the game harder than you think.\n\nHere they are :\n    - You can only move one disk at a time.\n    - Each move consists of taking the upper disk from one stack and moving it to another stack or on an empty rod.\n    - No larger disk may be placed on top of a smaller disk.\n\nTo help you a little bit, here is an example of how you can solve the problem with a stack of size 3.\n\n.. image:: /course/LEPL1402/HanoiTower/tower-of-hanoi.png\n   :scale: 100%\n   :align: center\n   :height: 384px\n   :width: 684 px\n\nIn this exercise, you are asked to solve this puzzle for any size of stack by implementing this method and this method only! We are using Stack_, to get the first element of a stack, use the method ``pop``, and to add an element use the method ``push``. The object Disk_ is here to make sure you will not solve the exercise by just creating another stack.\n\nHere is the class TowerOfHanoi_ you must implement, you can create disk by yourself to test your method but it will not compile on Inginious if you try to do it.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/HanoiTower/LEPL1402_HanoiTower.zip\n\n**hint:** you can call ``towerOfHanoi`` inside itself\n\n.. _Stack: https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html\n.. _TowerOfHanoi: /course/LEPL1402/HanoiTower/TowerOfHanoi.java\n.. _Disk: /course/LEPL1402/HanoiTower/Disk.java",
             "tags": [
                 {
@@ -1423,7 +1431,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/HanoiTower"
         },
         {
-            "title": "[Module 5] Infinite Streams",
+            "title": "Infinite Streams",
             "description": "The Stream_ interface of java allows to create infinite streams. In order to understand how it works, we will create our own infinite streams.\n\nFor this task we give you an incomplete interface named IStream_ that represents an infinite stream. You first have to complete the three default methods of this interface. Since IStream is an interface, you have to complete the class Cons_ that implements IStream_.\n\nSince an infinite stream is not always usefull, we give you the class Empty_ that implements IStream_ and marks the end of a stream.\n\nFinally you will use all of it to create different finite and infinite streams in the class PlayWithStreams_.\n\nThere may seem like a lot to do, but most functions can be implemented in one line.\n\nNote that you will need to use the Supplier_ object in order to make the creation of your stream (so the tail of a Cons) lazy.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/InfiniteStreams/LEPL1402_InfiniteStreams.zip\n\n.. _Stream: https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html\n.. _IStream: /course/LEPL1402/InfiniteStreams/IStream.java\n.. _Cons: /course/LEPL1402/InfiniteStreams/Cons.java\n.. _Empty: /course/LEPL1402/InfiniteStreams/Empty.java\n.. _PlayWithStreams: /course/LEPL1402/InfiniteStreams/PlayWithStreams.java\n.. _Supplier: https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html",
             "tags": [
                 {
@@ -1469,7 +1477,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/InfiniteStreams"
         },
         {
-            "title": "[Module 3] Inheritance : Fill the gaps (Small Exercise)",
+            "title": "Inheritance : Fill the gaps (Small Exercise)",
             "description": "Will you be able to fill the gaps inside these three source files ( Animal_ , Cat_ , SuperCat_ ) so that it compiles and passes our tests ?\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Inheritance/LEPL1402_Inheritance.zip\n\n.. _Animal: /course/LEPL1402/Inheritance/Animal.java\n.. _Cat: /course/LEPL1402/Inheritance/Cat.java\n.. _SuperCat: /course/LEPL1402/Inheritance/SuperCat.java",
             "tags": [
                 {
@@ -1515,7 +1523,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Inheritance"
         },
         {
-            "title": "[Module 1] Introduction to java, exercises",
+            "title": "Introduction to java, exercises",
             "description": "Welcome to the first task of a long series!\n\nThis serie of inginious tasks will accompany you throughout the quadrimester to learn java and apprehend the material seen in class. Successful completion of all tasks is a major step towards the success of this course. We encourage you to try to do them yourself without going on the Internet.\n\nWe also encourage you to try your solutions by yourself on you computer. To do so take a look at `this tutorial`_ on the tools you will need.\n\nThis first task will cover the basics of java step by step. In most exercises we want you to paste the **signature** and the **body** of the methods you create. In other cases we just wan to you paste the **body** and we give you the **signature**.\n\nHere is the class that you must implements in this task. The context of all variable must be static and the modifier public. You must find the return type by yourself.\n\n.. code-block:: java\n\n    public class IntroductionExercises {\n\n        public static int variable = 0;\n\n        public static int[] squares;\n\n        //TODO\n\n    }\n\n\n.. _IntelliJ: https://www.jetbrains.com/idea/\n.. _here: https://www.jetbrains.com/student/\n.. _`this tutorial`: https://lepl1402.readthedocs.io/en/latest/tools/index.html",
             "tags": [
                 {
@@ -1561,7 +1569,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Introduction"
         },
         {
-            "title": "[Module 5] Lambda Expression in Java",
+            "title": "Lambda Expression in Java",
             "description": "In this exercise you will learn to use basic lambda expression. Since you are going to use them later, they are worth a small introduction exercise.\n\nSince we work with lambda, we have decided to block the ``return`` statement.\n\nHere you can find the java documentation about Function_, Predicate_ and Comparator_.\n\n.. _Function: https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html\n.. _Predicate: https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html\n.. _Comparator: https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html\n",
             "tags": [
                 {
@@ -1607,7 +1615,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LambdaExpressioninJava"
         },
         {
-            "title": "[Module 1] Learn Exception in Java",
+            "title": "Learn Exception in Java",
             "description": "In this task we ask you to implement method throwing and catching exceptions. In Java, Exceptions are handled using ``try`` and ``catch`` statement like the example below\n\n.. code-block:: java\n\n    try{\n        String s = methodThatCanThrowException();\n    }catch(ExceptionCaught e){\n        //Do something\n    }\n\n    //Continue\n\n\nWhen a method can throw an exception, it has to be specified in the signature like the example below:\n\n.. code-block:: java\n\n    public static double divide(int i1, int i2) throws ArithmeticException\n\nIt means that it is possible that the method uses a statement like this:\n\n.. code-block:: java\n\n    throw new ArithmeticException();\n\nDownload Divider_ and read the comment to know what you have to do.\nDownload `intellij project`_ with tests.\n\n.. _Divider: /course/LEPL1402/LearnException/Divider.java\n.. _`intellij project`: /course/LEPL1402/LearnException/LEPL1402_LearnException.zip",
             "tags": [
                 {
@@ -1653,7 +1661,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LearnException"
         },
         {
-            "title": "[Module 1] Make Mistake To Understand Them",
+            "title": "Make Mistake To Understand Them",
             "description": "Although it will seem a bit weird, we will ask you to write code generating Exception. But why?\nThe reason is simple, when you start programming in a new language it sometimes is really hard to understand why your code won't run properly. We made this exercise to help you understand what your mistake can be.\n\nBefore starting this exercise we recommend you to read about NullPointerException_, ArrayIndexOutOfBoundsException_ and ConcurrentModificationException_.\n\n.. _ConcurrentModificationException: https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html\n.. _ArrayIndexOutOfBoundsException: https://docs.oracle.com/javase/8/docs/api/java/lang/ArrayIndexOutOfBoundsException.html\n.. _NullPointerException: https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html\n\n",
             "tags": [
                 {
@@ -1699,7 +1707,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MakeMistakeToUnderstandThem"
         },
         {
-            "title": "[Module 2] Largest Sum Contiguous Subarray",
+            "title": "Largest Sum Contiguous Subarray",
             "description": "In this exercise you must write a method  ``maxSubArray`` that finds the largest sum in a contiguous subarray :\n\nGiven:\n    - an array :math:`s`,\n    - :math:`(i, j)`, two indexes defining the start and the end of a subarray :math:`sub` such that :math:`0 \\leq i \\leq j < s.length`\n    - :math:`sum(sub)` the sum of all elements of the subarray :math:`sub`.\n\n:math:`\\forall sub \\in s` such that :math:`sub \\neq sub_{optimal}`; :math:`sub_{optimal}` is the maximum subarray of :math:`s` if and only if :math:`sum(sub_{optimal}) > sum(sub)`.\n\nWhat it means is that given an array, your program should find the **first** subarray that produces the maximum result.\n\nYour method must return an array of three integers :\n    - The sum of the subarray\n    - The index of the start of the subarray\n    - The index of the end of the subarray\n\n.. code-block:: java\n\n    /*\n    *    Given the array [-2,1,-3,4,-1,2,1,-5,4]\n    *    The contiguous subarray that produces the best result is [4,-1,2,1]\n    *    For this array your method should return [6, 3, 6]\n    */\n    public static int[] maxSubArray(int[] a){\n\n        //TODO By Student\n\n    }\n\nNote that the length of the array **a** is strictly greater than 0.",
             "tags": [
                 {
@@ -1745,7 +1753,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MaximumSumSubarray"
         },
         {
-            "title": "[Module 2] Merge Sort Implementation",
+            "title": "Merge Sort Implementation",
             "description": "In this exercise we ask you to implement the top-down_ merge sort  algorithm on an array of integer. You have to use **2 methods**:\n\n    - Sort, this method has to divide the array and apply merge.\n    - Merge, this method has to merge the array given the 2 index, it receives from sort 3 index, lower bound, middle and high. It also receives a copy of the first array.\n\nThe tests are build to make you able to test the two methods separly but we **recommand** you to test them by yourself.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/MergeSortImplementation/LEPL1402_MergeSortImplementation.zip\n\nHere is the class MergeSort_:\n\n.. code-block:: java\n\n    public class MergeSort {\n\n        /**\n         * Pre-conditions: a[lo..mid] and a[mid+1..hi] are sorted\n         * Post-conditions: a[lo..hi] is sorted\n         */\n        private static void merge(int[] a, int[] aux, int lo, int mid, int hi) {\n            // TODO By Student\n        }\n        /**\n         * Rearranges the array in ascending order, using the natural order\n         */\n        public static void sort(int[] a) {\n            // TODO By Student\n        }\n\n        //TODO Optionnal additionnal method\n    }\n\n.. _MergeSort: /course/LEPL1402/MergeSortImplementation/MergeSort.java\n\n.. _top-down: /course/LEPL1402/MergeSortImplementation/topdown.png\n",
             "tags": [
                 {
@@ -1781,7 +1789,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MergeSortImplementation"
         },
         {
-            "title": "[Module 2] MyArrayList",
+            "title": "MyArrayList",
             "description": "In this task, you have to implement your own version of the famous java's ``ArrayList<E>`` : a dynamic sized array. Each time you want to add an element, you must check that the item can fit and then append it at the end of the list.\nIf the array is too small, you need to resize it so that new items can be added in the future. To remove an element you need to specify\nan index to choose which element of the list you want to remove (``remove(0)`` for the first ... ``remove(size()-1)`` for the last). **Never** leave \"blanks\" in your array.\nWhen you remove an element at some ``index``, **all subsequents** elements must be \"shifted\".\n\nSo if your list look like this:\n\n.. figure:: /course/LEPL1402/MyArrayList/before.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nThen after the call ``remove(1)`` it should look like this:\n\n.. figure:: /course/LEPL1402/MyArrayList/after.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\n\nYou also need to implement the ``MyArrayListIterator`` class.\nIterator_ is an interface you have to implement in order to make the class implementing it able to enumerate/browse/iterate over an object : here, we want you to implement a FIFO order iterator\nover your ``MyArrayList``.\n\n **Pay attention**, we add some constraints for this task:\n\n    - Your iterator don't have to implement the ``remove`` method from Iterator_.\n    - Your iterator must throw a ``ConcurrentModificationException`` when you want to get the next element but some other element has been added to the list meanwhile.\n    - You cannot use ``System.arraycopy`` for this task.\n    - Your constructor must throw an ``IndexOutOfBoundsException`` if the parameter is smaller than 0.\n    - your ``remove`` method must throw an ``IndexOutOfBoundsException`` if the index parameter is smaller than ``0`` or greater than ``size()-1``.\n\nA lot of classes implement this interface, including the official ArrayList_ from java. We **strongly** encourage you to experiment how the ``ArrayList<E>`` iterator works before implementing yours.\n\n.. _Iterator : https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html\n.. _ArrayList: https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/MyArrayList/LEPL1402_MyArrayList.zip\n\nHere is the class (downloadable here_) where we will insert your code :\n\n.. _here : /course/LEPL1402/MyArrayList/MyArrayList.java\n\n.. code-block:: java\n\n    import java.util.ConcurrentModificationException;\n    import java.util.Iterator;\n\n    public class MyArrayList<Item> implements Iterable<Item> {\n\n        private Object [] list;\n        private int size;\n\n\n        public MyArrayList(int initSize){\n            // YOUR CODE HERE\n        }\n\n\n        /*\n        * Checks if 'list' needs to be resized then add the element at the end\n        * of the list.\n        */\n        public void enqueue(Item item){\n            // YOUR CODE HERE\n        }\n\n\n        /*\n        * Removes the element at the specified position in this list.\n        * Returns the element that was removed from the list. You dont need to\n        * resize when removing an element.\n        */\n        public Item remove(int index){\n            // YOUR CODE HERE\n        }\n\n\n        public int size(){\n            return this.size;\n        }\n\n\n        @Override\n        public Iterator<Item> iterator() {\n            return new MyArrayListIterator();\n        }\n\n\n        private class MyArrayListIterator implements Iterator<Item> {\n            // YOUR CODE HERE\n        }\n\n    }",
             "tags": [
                 {
@@ -1827,7 +1835,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MyArrayList"
         },
         {
-            "title": "[Module 4] Observer design pattern",
+            "title": "Observer design pattern",
             "description": "In this task, you have to implement the Observer design pattern for the case of a meteo station:\n\n.. code-block:: java\n\n    public class MeteoStation extends Observable {\n        // YOUR CODE HERE\n    }\n\n\n    public class Client extends Observer {\n        // YOUR CODE HERE\n    }\n\nNote that Observable_ and Observer_ are two abstract classes containing abstract methods.\nTherefore, check and read them carefully in order to implement things correctly. For your ``Client`` class you have to extend the observer class and implement a constructor (do not forget instance variables).\nFor the ``MeteoStation`` class, extend the Observable abstract class, you will need to use Pair_ for this one.\n\nNote that your observers start to receive messages at the moment they subscribe but they should not see messages that were broadcast before they\nsubscribed.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Observer/LEPL1402_Observer.zip\n\n.. _Observable: /course/LEPL1402/Observer/Observable.java\n.. _Observer: /course/LEPL1402/Observer/Observer.java\n.. _Pair: /course/LEPL1402/Observer/Pair.java",
             "tags": [
                 {
@@ -1873,7 +1881,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Observer"
         },
         {
-            "title": "[Module 5] Optional - no more concerns about NullPointerException",
+            "title": "Optional - no more concerns about NullPointerException",
             "description": "The 8th version of java introduced the Optional_ object to avoid NullPointerException in our codes without using too many check on nullable objects.\n\nFor this task, we give you three small classes (Person_, Team_ and TeamLeader_) and you have to implement the different methods of OptionalTest_. All methods can be implemented in one line of code thanks to the different methods of Optional_ and the lambda expressions.\n\nYou are not allow to use ``new TeamLeader()`` in these exercises.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Optional/LEPL1402_Optional.zip\n\n.. _Optional: https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html\n.. _Person: /course/LEPL1402/Optional/Person.java\n.. _Team: /course/LEPL1402/Optional/Team.java\n.. _TeamLeader: /course/LEPL1402/Optional/TeamLeader.java\n.. _OptionalTest: /course/LEPL1402/Optional/OptionalTest.java",
             "tags": [
                 {
@@ -1919,7 +1927,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Optional"
         },
         {
-            "title": "[Module 6] Parallel Merge Sort",
+            "title": "Parallel Merge Sort",
             "description": "In this task, you will be asked to implement a special kind of merge sort using the RecursiveAction_ , ForkJoinPool_ and ForkJoinTask_ interfaces. You will understand by reading these interfaces that the merge sort you must implement is not only recursive but in parallel.\n\nYou have to complete the following class : ParallelMergeSort_\n\nHere is an example of how we can use your implementation :\n\n.. code-block:: java\n\n    int size = 1000;\n    Integer[] array = new Integer[size];\n    for(int i = 0 ; i < size ; i++){\n        array[i] = rng.nextInt(10000);\n    }\n    ParallelMergeSort task = new ParallelMergeSort(array, 0, size-1, new Integer[size],\n                    Comparator.comparing(Integer::intValue));\n    new ForkJoinPool().invoke(task);\n\n\nYou will see that we've fixed a threshold, the reason we are using a threshold is easy to understand. Since you want your code to be effective on very large array, starting a thread for every element can be very ressource consuming and thus you would be losing the advantage you had of using concurrent programming. So when the subarray you're working on is smaller than the threshold, it simply run a normal sort.\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/ParallelelMergeSort/LEPL1402_ParallelelMergeSort.zip\n.. _RecursiveAction: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/RecursiveAction.html\n.. _ForkJoinPool: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html\n.. _ForkJoinTask: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinTask.html\n.. _ParallelMergeSort: /course/LEPL1402/ParallelelMergeSort/ParallelMergeSort.java",
             "tags": [
                 {
@@ -1965,7 +1973,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ParallelelMergeSort"
         },
         {
-            "title": "[Module 3] Postscript interpreter",
+            "title": "Postscript interpreter",
             "description": "You are asked to write a mini-PostScript interpreter as described in the *pdf* (Mission_) of the mission. Precisely, you must implement the following interface :\n\n.. code-block:: java\n\n    public interface InterpreterInterface {\n        /**\n         * @pre: 'instructions' is a valid chain of PostScript instructions\n         * @post: returns a String representing the state of the stack when a 'pstack' instruction is encountered.\n         *    If several 'pstack' instructions are present in the chain, a concatenation of the corresponding states (when 'pstack' is encountered) must be returned, separated by whitespaces.\n         *    If several elements are still on the stack, separate them with whitespaces.\n         *    If there is no element on the stack or no 'pstack' instruction, return the empty string (\"\").\n         */\n        public String interpret(String instructions);\n    }\n\nWe expect your interpreter to be able to handle all of the following specified operations:\n\n+--------------------+-----------+---------------------------------------+\n|       Before       | After     | Description                           |\n+--------------------+-----------+---------------------------------------+\n| any **pstack**     | pstack    | print the top element                 |\n|                    |           | of the pile to the standard output    |\n+--------------------+-----------+---------------------------------------+\n| any1 any2 **exch** | any2 any1 | Swap the two top most element of      |\n|                    |           | the stack                             |\n+--------------------+-----------+---------------------------------------+\n| any **pop**        |           | Pop the top most element of the stack |\n+--------------------+-----------+---------------------------------------+\n| any **dup**        | any any   | Duplicate the top most element of the |\n|                    |           | stack                                 |\n+--------------------+-----------+---------------------------------------+\n| any1 any2 **add**  | any1+any2 | Pop two elements from the stack,      |\n|                    |           | compute their sum and push the result |\n+--------------------+-----------+---------------------------------------+\n| any1 any2 **sub**  | any1-any2 | Same, but with a subtraction          |\n+--------------------+-----------+---------------------------------------+\n| any1 any2 **mul**  | any1*any2 | Same, but with a multiplication       |\n+--------------------+-----------+---------------------------------------+\n| any1 any2 **div**  | any1/any2 | Same, but with a division             |\n+--------------------+-----------+---------------------------------------+\n| any1 any2 **idiv** | any3      |  Compute the quotient of an integer   |\n|                    |           |  division of any1 by any2, then       |\n|                    |           |  push the result to the stack         |\n+--------------------+-----------+---------------------------------------+\n\nThe element of the stack could be:\n    - Operators - any operators from the array above.\n    - Operands - any integer, double or boolean (true, false)\n\nDon't forget to throw exceptions : ``EmptyStackException`` if there's not enough operand left on the stack, ``ArithmeticException`` when an illegal computation\nis submitted to your interpreter, ``IllegalArgumentException`` when a bad operand is found (for example, a boolean instead of an integer when performing a mathematical operation)\n\n\n.. _Mission: /course/LEPL1402/PostScript/mission.pdf",
             "tags": [
                 {
@@ -2011,7 +2019,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/PostScript"
         },
         {
-            "title": "[Module 6] Threads - Producer/Consumer with locks",
+            "title": "Threads - Producer/Consumer with locks",
             "description": "In this task we will ask you to solve the producer/consumer problem, represented here as a concurrent bounded FIFO queue. We will run simultaneously two different types of threads on your queue :\n\n    - Consumers, consuming (= dequeuing) elements from the queue.\n    - Producers, producing (= enqueuing) elements to the queue.\n\nYour queue needs to be thread-safe : it must be able to operate in a concurrent environment. It also means that threads must wait if necessary.\nA producer can't progress if there's no space left in the queue. A consumer can't take element from the queue if it is empty.\nFor this exercise, you will need to implement ``enqueue`` and ``dequeue``, using all the instance variables that are in\nthe LockQueue_ class below. We strongly suggest you to look at await_ and signal_ (or ``signalAll``) methods. You are not allowed to instantiate new locks or condition objects.\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/ProducerConsumer/LEPL1402_ProducerConsumer.zip\n\n.. _await: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/Condition.html#await--\n.. _signal: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/Condition.html#signal--\n.. _LockQueue: /course/LEPL1402/ProducerConsumer/LockQueue.java\n\n.. code-block:: java\n\n    import java.util.concurrent.locks.Condition;\n    import java.util.concurrent.locks.ReentrantLock;\n\n    public class LockQueue {\n\n        public final static int SIZE = 100;\n\n        private final ReentrantLock lock = new ReentrantLock();\n        private final Condition notFull = lock.newCondition();\n        private final Condition notEmpty = lock.newCondition();\n\n        public int head = 0;\n        public int tail = 0;\n        public final Integer [] cells = new Integer[SIZE];\n        public int count = 0;\n\n\n\n        public Integer dequeue() {\n            // YOUR CODE HERE\n        }\n\n\n        public void enqueue(Integer i) {\n            // YOUR CODE HERE\n        }\n\n        public boolean full(){\n            return this.count == SIZE;\n        }\n\n        public boolean empty(){\n            return this.head == this.tail;\n        }\n\n        public int size() { return this.tail - this.head; }\n\n    }",
             "tags": [
                 {
@@ -2057,7 +2065,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ProducerConsumer"
         },
         {
-            "title": "[Module 2] Queue with two stacks",
+            "title": "Queue with two stacks",
             "description": "In this short exercise we will ask you to implement a FIFO queue using two stacks (provided as two Java ``Stack<E>``). We need you to provide 4 methods :\n``enqueue``, ``dequeue``, ``peek``, ``empty``. You can use the ``Stack`` API_ , but you can't instantiate a new ``Stack``. Use ``s1`` and ``s2`` from the MyQueue_ class below.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/QueueWithStacks/LEPL1402_QueueWithStacks.zip\n\n.. _API : https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html\n.. _MyQueue: /course/LEPL1402/QueueWithStacks/MyQueue.java\n\n.. code-block:: java\n\n    import java.util.Stack;\n\n    public class MyQueue<E> {\n\n        Stack<E> s1;\n        Stack<E> s2;\n\n        private E front;\n\n        /*\n        * Constructor\n        */\n        public MyQueue() {\n            s1 = new Stack<>();\n            s2 = new Stack<>();\n            this.front = null;\n        }\n\n        /*\n        * Push element x to the end of the queue (remember, a queue is FIFO)\n        */\n        public void enqueue(E elem) {\n            //TODO\n        }\n\n        /*\n        * Removes the front element of this queue\n        */\n        public E dequeue() {\n            //TODO\n        }\n\n        /*\n        * Get the first element of this list but does not remove it\n        */\n        public E peek() {\n            //TODO\n        }\n\n        /*\n        * Tells if the queue is empty or not.\n        */\n        public boolean empty() {\n            //TODO\n        }\n    }",
             "tags": [
                 {
@@ -2103,7 +2111,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/QueueWithStacks"
         },
         {
-            "title": "[Module 6] Threads - Shared counter with monitors",
+            "title": "Threads - Shared counter with monitors",
             "description": "In this task we will ask you to use monitors for a thread-shared counter. When threads are executed concurrently and they share some piece of memory, unexpected/wrong results\nare very likely to happen. For example, if you run four threads on the same counter, each thread incrementing ten thousands times the counter, you would of course expect that the\nfinal value of the counter will be fourty thousands when all four threads are done... But in practice, if there is no synchronization mechanism of any kind between threads, you will\nsee that the final value will certainly be different from what we expect. Your job for this task is thus to implement a synchronization mechanism for a counter using only java's built-in\nmonitors. We ask you to implement the three following methods:\n\n    - void inc() : increment once the counter.\n    - void dec() : decrement the counter **if and only if** its current value is positive. In fact, the counter we ask you to implement must **always** be positive. If a thread wants to decrement the counter but its value is 0, it has to wait.\n    - int get() : returns the current value of the counter.\n\nPay attention, you are not allowed to use ``Lock`` for this mission, only built-in monitors_. You might also face a deadlock_ problem.\n\n.. code-block:: java\n\n    public class SharedCounter {\n\n        private int counter = 0;\n\n        // YOUR CODE HERE\n\n    }\n\n.. _monitors: https://www.artima.com/insidejvm/ed2/threadsynch.html\n.. _deadlock: https://en.wikipedia.org/wiki/Deadlock",
             "tags": [
                 {
@@ -2149,7 +2157,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SharedCounter"
         },
         {
-            "title": "[Module 1] Sieve of Eratosthenes Implementation",
+            "title": "Sieve of Eratosthenes Implementation",
             "description": "In this task you are asked to implement the method ``numberOfPrime(int n)`` that returns the number of prime numbers between :math:`0` and :math:`n` using the `Eratosthene algorithm`_. To implement this we force you to use a BitSet_, you are not allowed to use an array: you must work with the ``bits`` variable.\n\nThe goal of this exercise is to introduce you to the `java documentation`_ and to make sure that you are able to read, understand and use class that are defined and documented in java.\n\n.. code-block:: java\n\n    public static BitSet bits; //You should work on this BitSet\n\n    public static int numberOfPrime(int n){\n        //TODO By Student\n    }\n\n.. _`Eratosthene algorithm`: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes\n.. _BitSet: https://docs.oracle.com/javase/8/docs/api/java/util/BitSet.html\n.. _`java documentation`: https://docs.oracle.com/javase/8/docs/api/",
             "tags": [
                 {
@@ -2190,7 +2198,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesImplementation"
         },
         {
-            "title": "[Module 1] MCQ Sieve of Eratosthenes",
+            "title": "MCQ Sieve of Eratosthenes",
             "description": "The following mcq will introduce you to the next exercise, we strongly recommend you to answer and understand them before starting the exercise Sieve Of Eratosthene implementation.\n\nThe sieve of Eratosthene is an algorithm that helps you determine how many/which of the number are prime numbers in a set of integer from 0 to :math:`n`.\n\nTo implement this algorithm we want you to use a BitSet_, the idea here is to force you to read and understand the java documentation. Thus, we will ask you questions about the different method you might need in the implementation of the sieve.\n\nThe difficulty will increase each question and ask you to read the doc a *bit* more.\n\n.. _BitSet: https://docs.oracle.com/javase/8/docs/api/java/util/BitSet.html\n",
             "tags": [
                 {
@@ -2226,7 +2234,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesMCQ"
         },
         {
-            "title": "[Module 2] Stack with a Queue",
+            "title": "Stack with a Queue",
             "description": "In this short exercise we will ask you to implement a LIFO stack using a queue (provided as a Java ``LinkedList<E>``). We need you to provide 4 methods :\n``push``, ``pop``, ``peek``, ``empty``. You can't use the ``LinkedList`` API except for the methods listed below:\n\n- ``add``\n- ``remove``\n- ``peek``\n- ``isEmpty``\n- ``size``\n\n(You can find the file here_). The challenge of this exercise is to use **only** the queue that is provided as instance variable: ``queue``. In other words, you **can't** instantiate a new ``LinkedList`` anywhere.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/StackWithQueue/LEPL1402_StackWithQueue.zip\n\n.. _here: /course/LEPL1402/StackWithQueue/MyStack.java\n\n.. code-block:: java\n\n    import java.util.LinkedList;\n\n    public class MyStack<E> {\n\n        private LinkedList<E> queue;\n\n        /*\n        * Constructor\n        */\n        public MyStack() {\n            this.queue = new LinkedList<>();\n        }\n\n        /*\n        * push an element at top (remember, a stack is \"Last In First Out\")\n        */\n        public void push(E elem) {\n            //TODO\n        }\n\n        /*\n        * Return the top of the stack AND remove the retrieved element\n        */\n        public E pop() {\n            //TODO\n        }\n\n        /*\n        * Return the top element of the stack, without removing it\n        */\n        public E peek() {\n            //TODO\n        }\n\n        /*\n        * Tells if the stack is empty or not\n        */\n        public boolean empty() {\n            //TODO\n        }",
             "tags": [
                 {
@@ -2272,7 +2280,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StackWithQueue"
         },
         {
-            "title": "[Module 5] Dealing with Streams",
+            "title": "Dealing with Streams",
             "description": "Given the Student_ class, You are asked to write the implementation of the StudentFunctions_ class ( that implements the StudentStreamFunction_ interface ) :\n\n.. code-block:: java\n\n   import java.util.stream.Stream;\n\n   public interface StudentStreamFunction {\n\n      // Find the N°2 and N°3 top students for the given course name in parameter\n      public Stream<Student> findSecondAndThirdTopStudentForGivenCourse(\n          Stream<Student> studentStream, String name);\n\n      // Compute for each student in the given section their average grade result,\n      // sorted by their result (ascending) as an array of array structured like that :\n      // [ [\"Student FirstName1 LastName1\", 7.5], [\"Student FirstName2 LastName2\", 9.5] ]\n      public Object[] computeAverageForStudentInSection(Stream<Student> studentStream,\n                                                          int section);\n\n      // Give the number of students that success in all courses (> 10.0)\n      public int getNumberOfSuccessfulStudents(Stream<Student> studentStream);\n\n      // Find the student that is the last one in the lexicographic order\n      // ( You must first compare students on their lastNames then on their firstNames )\n      public Student findLastInLexicographicOrder(Stream<Student> studentStream);\n\n\n      // Give the full sum of the grade obtained by all students\n      public double getFullSum(Stream<Student> studentStream);\n\n   }\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Streams/LEPL1402_Streams.zip\n\n.. _StudentStreamFunction: /course/LEPL1402/Streams/StudentStreamFunction.java\n.. _Student: /course/LEPL1402/Streams/Student.java\n.. _StudentFunctions: /course/LEPL1402/Streams/StudentFunctions.java",
             "tags": [
                 {
@@ -2318,7 +2326,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
         },
         {
-            "title": "[Module 5] Dealing with Streams - 2",
+            "title": "Dealing with Streams - 2",
             "description": "In order to understand why the Stream class could be useful for genericity, we purpose you this small exercise that merged casting and streams.\n\nGiven the Student_ class, You are asked to write the implementation of the StudentFunctions_ class ( that implements the StudentStreamFunction_ interface ) :\n\n.. code-block:: java\n\n   import java.util.Map;\n   import java.util.function.Predicate;\n   import java.util.stream.Stream;\n   import java.util.Comparator;\n\n   public interface StudentStreamFunction {\n\n   // In order to test efficiently your code, we use a Map<String, Predicate<?>>\n   // structured like that :\n   //    Key : String that is one of the fields of Student\n   //          ( \"firstName\", \"lastName\", \"section\", \"courses_results\")\n   //    Value : Predicate bounded to the type of the field to perform a check condition\n   //\n   // For example :\n   //    Key:   \"firstName\"\n   //  Value:   Predicate<String>\n\n\n   // Returns a student if any match the given conditions\n   // if it is not possible, you must return null\n   public Student findFirst(Stream<Student> studentsStream,\n                            Map<String, Predicate<?>> conditions);\n\n   // Returns a array of student(s) that match the given conditions\n   public Student[] findAll(Stream<Student> studentsStream,\n                            Map<String, Predicate<?>> conditions);\n\n   // Return true if we could find n student(s) that match the given condition\n   public boolean exists(Stream<Student> studentsStream,\n                         Map<String, Predicate<?>> conditions,\n                         int n);\n\n   // Returns a ordered array of student(s) that match the given conditions,\n   // depending of the given comparator\n   public Student[] filterThenSort(Stream<Student> studentsStream,\n                                   Map<String, Predicate<?>> conditions,\n                                   Comparator<Student> comparator);\n\n   }\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Streams2/LEPL1402_Streams2.zip\n\n.. _StudentStreamFunction: /course/LEPL1402/Streams2/StudentStreamFunction.java\n.. _Student: /course/LEPL1402/Streams2/Student.java\n.. _StudentFunctions: /course/LEPL1402/Streams/StudentFunctions.java",
             "tags": [
                 {
@@ -2364,7 +2372,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams2"
         },
         {
-            "title": "[Module 1] Strings",
+            "title": "Strings",
             "description": "In this task, we ask you to implement several common methods inspired from java's String_ API. The objective of this task is to get you used\nto String manipulation in java. In order to succeed this task, you will have to implement four different methods from a class we called ``StringUtils`` :\n\n- ``split(String str, char marker)`` : separate a String into fragments each time a specific character ``marker`` is encountered. Note that, for simplicity, marker is a ``char`` whereas in java's String_ it is a ``String``. For example, calling your method with \"Here. I. Go.\" with marker '.' should return an array of size three with \"Here\", \"I\" and \"Go\" in its cells.\n- ``indexOf(String str, String sub)`` : returns the index of the first occurrence of the ``String`` sub in the ``String`` str. For example ``indexOf(\"Hello\", \"ell\")`` should return 1, ``indexOf(\"Hello\", \"o\")`` should return 4. If there is no occurrence of sub in str, return -1.\n- ``toLowerCase(String str)`` : returns a String with the same characters as 'str' except that all upper case characters have been replaced by their lower case equivalent.\n- ``palindrome(String str)`` : Returns true if the string 'str' is a palindrome : a string that reads the same from left to right AND from right to left (for example, \"kayak\"). Note that this method does not exist in java's String_ API because it's not very useful. But it is still a good exercise to train yourself to manipulate String objects in java.\n\n\n.. _String: https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#subSequence-int-int-\n\n\n\nHere is the skeleton of the ``StringUtils`` (downloadable here_):\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n\n.. _`IntelliJ Project`: /course/LEPL1402/StringUtils/LEPL1402_StringUtils.zip\n.. _here: /course/LEPL1402/StringUtils/StringUtils.java\n\n.. code-block:: java\n\n    public class StringUtils {\n\n\n        /*\n        * Split the input string 'str' w.r.t the character 'marker' in an array of String\n        * for example split(\"test-test\", '-') => {\"test\", \"test\"}\n        * Must return null if there is no occurrence of 'marker' in 'str'\n        */\n        public static String [] split(String str, char marker){\n            // YOUR CODE HERE\n        }\n\n\n        /*\n        * Returns the index of the first occurrence of sub in str\n        * or -1 if there is no occurrence of sub in str at all.\n        * Be careful, we ask you to make CASE SENSITIVE comparison between str and sub.\n        */\n        public static int indexOf(String str, String sub){\n            // YOUR CODE HERE\n        }\n\n        /*\n        * Returns a String with the same characters as 'str' except that\n        * all upper case characters have been replaced by their lower case equivalent.\n        */\n        public static String toLowerCase(String str){\n            // YOUR CODE HERE\n        }\n\n\n        /*\n        * Returns true if the string 'str' is a palindrome (a string that reads the same from\n        * left to right AND from right to left).\n        */\n        public static boolean palindrome(String str){\n            // YOUR CODE HERE\n        }\n\n\n    }",
             "tags": [
                 {
@@ -2410,7 +2418,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StringUtils"
         },
         {
-            "title": "[Module 6] Small introduction to threads - Counters",
+            "title": "Small introduction to threads - Counters",
             "description": "In this task, we will ask you to implement the ``init`` method of this Launcher_ class :\n\n\n.. code-block:: java\n\n    public class Launcher {\n\n        /*\n         * Instantiate and start each thread from \"t\" with its OWN Counter object,\n         * then wait for all threads to finish and return the set of Counter objects\n         * the threads ran on. Each thread must be named according to its index in the\n         * \"t\" array.\n         */\n        public static Counter[] init(Thread [] t) {\n            // YOUR CODE HERE\n        }\n\n    }\n\n\nIn Java, a thread needs an entry point to know where to start when we want it to run : this entry point can be\nany object implementing the Runnable_ interface. For this exercise, we give you a small implementation of the Runnable_ interface : Counter_, a small class increasing\nan int variable ``rnd`` times.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/ThreadsIntroduction/LEPL1402_ThreadsIntroduction.zip\n\n\n.. code-block:: java\n\n    public class Counter implements Runnable {\n\n        private int count;\n        private int rnd;\n\n        public int getCount() {\n            return count;\n        }\n\n        public int getRnd(){\n            return rnd;\n        }\n\n        public Counter(){\n            this.count = 0;\n            this.rnd = (int) ( (Math.random()*100) + 1000);\n        }\n\n        @Override\n        public void run() {\n            for(int i=0; i< getRnd(); i++){\n                count += 1;\n            }\n        }\n\n    }\n\n\n.. _Runnable : https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html\n.. _Counter: /course/LEPL1402/ThreadsIntroduction/Counter.java\n.. _Launcher: /course/LEPL1402/ThreadsIntroduction/Launcher.java",
             "tags": [
                 {
@@ -2456,7 +2464,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ThreadsIntroduction"
         },
         {
-            "title": "[Module 3] Binary trees - combineWith",
+            "title": "Binary trees - combineWith",
             "description": "Write a method combineWith that could be added to the Tree_ class (Node class can be found here_).\n\nThe method accepts another binary tree of integers as a parameter and combines the two trees into a new third tree which is returned.\nThe new tree's structure should be a union of the structures of the two original trees.\n\nIt should have a node in any location where there was a node in either of the original trees (or both).\n\nThe nodes of the new tree should store an integer indicating the sum of the values at that position of the original trees if possible.\n(else only the value of the not null node)\n\nFor example, suppose Tree variables t1 and t2 have been initialized and store the following trees:\n\n.. figure:: /course/LEPL1402/TreeCombineWith/example-part1.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nThen the following call:\n\n.. code-block:: java\n\n   Tree t3 = t1.combineWith(t2);\n\nWill return a reference to the following tree:\n\n.. figure:: /course/LEPL1402/TreeCombineWith/example-part2.png\n   :scale: 100 %\n   :alt: alternate text\n   :align: center\n   :figclass: align-center\n\nYou may define private helper methods to solve this problem but in any case, your method should not change the structure or contents of either of the two trees being compared.\n\n(This exercise was partialy inspired by this source_)\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/TreeCombineWith/LEPL1402_TreeCombineWith.zip\n\n.. _here: /course/LEPL1402/TreeCombineWith/Node.java\n.. _Tree: /course/LEPL1402/TreeCombineWith/Tree.java\n.. _source: https://practiceit.cs.washington.edu/problem/view/cs2/exams/finals/final4/combineWith",
             "tags": [
                 {
@@ -2502,7 +2510,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeCombineWith"
         },
         {
-            "title": "[Module 3] Binary trees - Inorder traversal",
+            "title": "Binary trees - Inorder traversal",
             "description": "In this task, we ask you to implement two different version of an \"in-order\" tree traversal : a recursive version and\nan iterative version. Both function will take a ``Node`` representing the root of the tree itself and a ``List<Integer>`` that\nyou have to fill with the tree nodes' ``val`` respecting the \"in-order\" traversal.\n\n**Example**:  the following tree, when explored in an in-order fashion, will give\n``A,B,C,D,E,F,G,H,I``. This type of tree traversal is thus very useful to retrieve all nodes from a tree as an ordered list,\nprovided that the tree itself is \"sorted\", i.e, for each node, its left subtree only contain \"smaller\" nodes and its right\nsubtree only contain \"greater\" nodes (which is the case in the example, considering the alphabetical order).\n\n\n.. image:: /course/LEPL1402/TreeInorder/inorder.png\n   :scale: 100%\n   :align: center\n   :height: 218px\n   :width: 240 px\n\n\n\nHere are the skeleton of the Node_ and Traversal_ classes:\n\n.. code-block:: java\n\n    public class Node {\n\n        public int val;\n\n        public Node left;\n        public Node right;\n\n        public Node(int val){\n            this.val = val;\n        }\n\n        public boolean isLeaf(){\n            return this.left == null && this.right == null;\n        }\n    }\n\n\n    import java.util.List;\n    import java.util.Stack; // this should give you a hint for the iterative version\n\n    public class Traversal {\n\n        public static void recursiveInorder(Node root, List<Integer> res) {\n            // YOUR CODE HERE\n        }\n\n\n        public static void iterativeInorder(Node root, List<Integer> res){\n            // YOUR CODE HERE\n        }\n\n    }\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/TreeInorder/LEPL1402_TreeInorder.zip\n\n.. _Node: /course/LEPL1402/TreeInorder/Node.java\n.. _Traversal: /course/LEPL1402/TreeInorder/Traversal.java",
             "tags": [
                 {
@@ -2548,7 +2556,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeInorder"
         },
         {
-            "title": "[Module 3] Binary trees - equals",
+            "title": "Binary trees - equals",
             "description": "In this task, we will ask you to implement the mehtod ``equals(Object o)`` for both classes Tree_ and Node_. Two instances of ``Tree`` are considered\nequal when they both have the exact same structure (same number of nodes, each node at the same place in **both** trees) and when every node has the same ``val``.\nHere are the skeleton of both classes:\n\n.. code-block:: java\n\n    public class Node {\n\n        public int val;\n        public Node left;\n        public Node right;\n\n        public Node(int val){\n            this.val = val;\n        }\n\n        public boolean isLeaf(){\n            return this.left == null && this.right == null;\n        }\n\n        @Override\n        public boolean equals(Object o){\n            // YOUR CODE HERE\n        }\n    }\n\n    public class Tree {\n\n        public Node root;\n\n        public Tree(Node root){\n            this.root = root;\n        }\n\n        @Override\n        public boolean equals(Object o){\n            // YOUR CODE HERE\n        }\n\n    }\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/TreeSame/LEPL1402_TreeSame.zip\n\n.. _Tree: /course/LEPL1402/TreeSame/Tree.java\n.. _Node: /course/LEPL1402/TreeSame/Node.java",
             "tags": [
                 {
@@ -2594,7 +2602,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeSame"
         },
         {
-            "title": "[Module 2] Longest Valley",
+            "title": "Longest Valley",
             "description": "A geologist is trying to find the deepest valley and the biggest mountain between 2 locations and he thinks you can help him! He'll give you an array of integer like this one:\n\n.. image:: /course/LEPL1402/valley/arraytest.png\n   :scale: 35%\n   :align: center\n   :height: 184px\n   :width: 1771px\n\n\nThe negative values mean the slope is negative and the positive ones mean it's positive. Thus previous array looks like this:\n\n.. image:: /course/LEPL1402/valley/schema.png\n   :scale: 35%\n   :align: center\n   :height: 912px\n   :width: 1771px\n\nYour method will return an array containing the depth of the deepest valley at index 0 and the biggest mountain at index 1. In this example, the depth is 5 and the summit is at 3.\n\n\\\nWe can define a valley by saying it is sequence of negative number followed by a sequence of positive number with the same amount of numbers. The depth is the length of the sequence.\n\nHere is the mathematical definition:\n\nGiven :math:`A` an Array of integer :math:`\\forall i, 0\\leq i < |A|, A[i]\\neq 0`,\nGiven :math:`v` the length of the longest valley,\n:math:`\\exists ! i,j` with :math:`0\\leq i < j \\leq |A|` so that :math:`\\forall m` , :math:`i \\leq m < (j-i)/2` , :math:`A[m]<0` and :math:`\\forall n` , :math:`(j-i)/2 < m \\leq j` , :math:`A[n]>0` , :math:`j-i > v*2`\n\n\n\\\nWe can define a mountain by saying it is sequence of positive number followed by a sequence of negative number with the same amount of numbers. The height is the length of the sequence.\n\nHere is the mathematical definition:\n\nGiven :math:`A` an Array of integer :math:`\\forall i, 0\\leq i < |A|, A[i]\\neq 0`,\nGiven :math:`v` the length of the longest valley,\n:math:`\\exists ! i,j` with :math:`0\\leq i < j \\leq |A|` so that :math:`\\forall m` , :math:`i \\leq m < (j-i)/2` , :math:`A[m]>0` and :math:`\\forall n` , :math:`(j-i)/2 < m \\leq j` , :math:`A[n]<0` , :math:`j-i > v*2`\n\nConsider that the array is never gonna be empty and your method should have a theta(n) complexity\n\\\n\nHere is the class you have to fill:\n\n.. code-block:: java\n\n    public class Valley{\n        /*\n         * Example:\n         * [1, 1, 1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, -1, -1]\n         * Should return\n         * [5, 3]\n         */\n\n         public static int[] valley ( int[] array){\n         //TODO By Student\n\n        }\n    }\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/valley/LEPL1402_valley.zip\n",
             "tags": [
                 {
@@ -2640,7 +2648,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/valley"
         },
         {
-            "title": "[Module 1] Value Or Reference",
+            "title": "Value Or Reference",
             "description": "Try to answer the following question without actually testing the shown code on your computer.",
             "tags": [
                 {
@@ -2681,7 +2689,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ValueOrReference"
         },
         {
-            "title": "[Module 4] Visitor design pattern - Calculator",
+            "title": "Visitor design pattern - Calculator",
             "description": "In this task, we will ask you to implement a basic calculator (+,-,*,/) using\nthe visitor design pattern. Every expression you will compute will be represented as a tree. A tree contains at least one node\nand every node of the tree is either :\n\n- a parent node containing two sub nodes (an operand)\n\n- a leaf (a value)\n\nHere is an example of how your code is supposed to run:\n\n.. code-block:: java\n\n    Node root = new Add(                                            //((6-2)/(1+1))+(5*2)\n                        new Div(                                   //(6-2)/(1+1)\n                            new Sub(new Leaf(6),new Leaf(2))         //6-2\n                            new Add(new Leaf(1), new Leaf(1))),      //1+1\n                        new Mult(new Leaf(5), new Leaf(2)));         //5*2\n    Visitor calculator = new Evaluation();\n\n    calculator.visit((Add)root); // 12\n\n\n**We provide you a set of class you have to complete** here_\n\nThere are a lot of classes but please don't panick, this exercise shouldn't require more than 50ish lines of code from you.\n\nA special case needs you to throw an ``IllegalArgumentException``.\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/Visitor/LEPL1402_Visitor.zip\n\n.. _here: /course/LEPL1402/Visitor/source.zip",
             "tags": [
                 {
@@ -2727,7 +2735,7 @@
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Visitor"
         },
         {
-            "title": "[Module 4] Visitor design pattern - List Filtering",
+            "title": "Visitor design pattern - List Filtering",
             "description": "In this task, we will ask you to implement a list filtering using the visitor design pattern. More precisely, your visitor\nwill need to traverse a list full of objects of different kind. At the end of its traversal, your observer should have a\nfiltered list containing only ``Integer`` elements from the original list. To succeed this task, you'll have to give us the\nimplementation of these two classes :\n\n.. code-block:: java\n\n    public class VisitorList extends Visitor {\n        // YOUR CODE HERE\n    }\n\n    public class VisitableList extends Visitable {\n        // YOUR CODE HERE\n    }\n\n\nThese two classes must extends Visitable_ and Visitor_. These are abstract classes, pay attention to implement all abstract\nmethods these classes contain.\n\n.. _Visitable : /course/LEPL1402/VisitorBasic/Visitable.java\n.. _Visitor : /course/LEPL1402/VisitorBasic/Visitor.java\n\n\nHere is an example of how your code is supposed to run:\n\n.. code-block:: java\n\n    Visitor visitor = new VisitorList(Integer.class);\n    Visitable visitable = new VisitableList(new Object[]{1, 2, 3, 3.1, 4, \"HELLO\"});\n\n    visitor.visit(visitable);\n\n    List<Object> lst = visitor.getFiltered(); // [1, 2, 3, 4]\n\n\n\nYou can download the `IntelliJ Project`_ that contains few tests to help you.\n\n.. _`IntelliJ Project`: /course/LEPL1402/VisitorBasic/LEPL1402_VisitorBasic.zip",
             "tags": [
                 {
@@ -2778,6 +2786,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-07T11:52:14.277Z",
+    "extraction_date": "2019-12-07T15:00:02.602Z",
     "url": "https://github.com/UCL-INGI/LEPL1402"
 }
