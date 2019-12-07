@@ -58,17 +58,18 @@ An small example before explanation :
 }
 ```
 Only two properties are required inside : `"exercises"` and `"own_categories"`.  
-Extra properties can be defined if you  (like `"extraction_date"` and `"url"` to keep track of the source / extraction date).
+Extra properties can be defined if you want (like `"extraction_date"` and `"url"` to keep track of the source / extraction date).
 
 Inside the key `"exercises"` , we have an array of exercises metadata.  
 As described in the endpoint [/api/bulk_create_exercises](https://jy95.github.io/exercises_library/#operation/createMultipleExercises),
-some attributes for an exercise are required (like `"title"`, `tags`, `description`) whereas some are optional (like `"url"` or `"file"`).
+some attributes for an exercise are required  
+(like `"title"`, `tags`, `description`) whereas some are optional (like `"url"` or `"file"`).
 
 If you wish to add the sources of an exercise, it should be a zip file.  
-To specify it, you must use the key `"file"` with value a absolute path to this file
+To specify it, you must use the key `"file"` with value a relative path of this file (from the given `workingDirectory` option)
 ```json
 {
-   "file": "/home/someuser/Documents/mysources.zip"
+   "file": "folder/mysources.zip"
 }
 ``` 
 (The script will do for you the mapping between files and exercises)
@@ -119,12 +120,18 @@ Then use them in tags as shown in the example (`"category"` with your own key) :
 
 ## Which strategies are available by default ?
 
-- inginious-git : for INGInious tasks / course(s) stored on a git repository
+- [inginious-git](strategies/inginious-git.js) : for INGInious tasks / course(s) stored on a git repository
 
 ## How to design a new strategy ?
+
+Simply create a module file that looks like this :
 
 ```node
 module.exports = async function (options) {
    // TODO
 }
 ```
+
+This module should return an valid object to the [specification](#what-is-the-format-of-the-json-object-).  
+The given `options` parameter is simply the [argv object created by yargs](http://yargs.js.org/docs/#api-argv).  
+Check out [inginious-git](strategies/inginious-git.js) if you want to see an example about how to use it.
