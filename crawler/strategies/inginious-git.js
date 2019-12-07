@@ -4,8 +4,8 @@ const partition = require('lodash.partition');
 const groupBy = require('lodash.groupby');
 
 const yaml = require('js-yaml');
-const fs = require('fs').promises;
 const {readFileSync, existsSync} = require("fs");
+const child_process = require("child_process");
 
 const path = require("path");
 const dirname = path.dirname;
@@ -15,6 +15,21 @@ const exists = (dir) => {
         return existsSync(dir);
     } catch (e) {
         return false;
+    }
+};
+
+const rst2md = (str) => {
+    try {
+        const result = child_process.spawnSync(
+            "pandoc",
+            ["--from=rst", "--to=markdown"],
+            {input: str, encoding: "utf-8"}
+        );
+        return result.stdout;
+    } catch (e) {
+        // Should ever occur but who knows ?
+        console.log(e);
+        return "An error occurs during conversion from RST TO Markdown : please retry or give up";
     }
 };
 
@@ -110,7 +125,9 @@ module.exports = async function (options) {
 
             let exercise = {
                 "title": doc.name,
-                "description": (doc.hasOwnProperty("context")) ? doc.context : "", // it is optional on Inginious
+                "description": rst2md(
+                    (doc.hasOwnProperty("context")) ? doc.context : "" // it is optional on Inginious
+                ),
                 "tags": auto_tags.concat(found_tags) // merge them in a single array
             };
 

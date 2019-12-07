@@ -49,9 +49,9 @@ An small example before explanation :
       }
    ],
    "own_categories":{
-      0:"thématique",
-      1:"Misconception",
-      2:"autres"
+      "0":"thématique",
+      "1":"Misconception",
+      "2":"autres"
    },
    "extraction_date": "2019-11-26T14:04:34.107Z",
    "url": "https://github.com/UCL-INGI/LSINF1252"
@@ -104,9 +104,9 @@ For tags categories of your own platform, You must describe them in `"own_catego
 
 ```json
 {
-   0:"thématique",
-   1:"Misconception",
-   2:"autres"
+   "0":"thématique",
+   "1":"Misconception",
+   "2":"autres"
 }
 ```
 
