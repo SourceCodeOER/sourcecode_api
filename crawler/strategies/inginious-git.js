@@ -208,6 +208,7 @@ function auto_generate_tags_for_exercise(gitURL, course_data, exercise_data) {
             .split(new RegExp("(?:\,|\&{1,2})", "g"))
             .map(s => s.trim()) // remove leading space
             .filter(s => s.length > 0) // no empty author
+            .map(s => s.replace(/\s*\(.*?\)\s*/g, '')) // credits to genius in CS1 for violating regular convention
             .forEach((author) => {
                 tags.push({
                     text: author,
