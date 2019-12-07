@@ -409,7 +409,7 @@ function handle_exercise_title(exercise) {
         // to match midterm - like exercise ( from my analysis, only see that two times but who knows ?)
         /mid\-?term(.+)$/im,
         // to match mission - like exercise
-        /(?:Bilan\sM|Mission)\s?([0-9])+.*[-|:](.+)$/im,
+        /(?:Bilan\sM|Mission)\s?([0-9])+[\s|-|:]*(.+)$/im,
         // to match some categorized - like exercise ( often by week : S2)
         /\[(.+)\]\s(.+)$/im,
         // to clean a garbage title commonly seen
