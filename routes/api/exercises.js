@@ -313,7 +313,7 @@ function update_exercise([id, body, t]) {
             })
             .then(([old_file, _a, _b]) => {
                 // if provided, the new file was correctly uploaded : we still have to destroy the old one (if exist)
-                del((old_file !== null) ? [old_file] : [])
+                del((old_file !== null) ? [path_resolve(FILES_FOLDER, old_file)] : [])
                     .then(() => resolve())
                     .catch(/* istanbul ignore next */() => {
                         console.log(old_file + "cannot be deleted - You should probably delete it/them manually");
