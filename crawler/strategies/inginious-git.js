@@ -359,7 +359,10 @@ function handle_code_problem(code_problems) {
         text: "code"
     }];
 
-    const languages = code_problems.map(s => s.language).filter(s => s !== DEFAULT_LANGUAGE);
+    const languages = code_problems
+        .map(s => s.language)
+        .filter(s => s !== DEFAULT_LANGUAGE)
+        .map(l => l.toLowerCase());
 
     // Add the found language(s) in exercise
     [...new Set(languages)].forEach((language) => {
