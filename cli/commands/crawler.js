@@ -38,7 +38,7 @@ exports = module.exports = {
                 return path.resolve(arg);
             })
             .config("settings", "settings for strategy + crawler", (configPath) => {
-                return JSON.parse(readFileSync(configPath, 'utf-8'));
+                return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));
             })
             .help()
             .argv;

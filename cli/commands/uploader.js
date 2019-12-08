@@ -1,5 +1,6 @@
 const supertest = require('supertest');
 const {promises: fs, readFileSync} = require("fs");
+const path = require("path");
 
 // Auto generated tags
 // if we want to map them to another name, we can do that easily ( Here : English TO French )
@@ -31,7 +32,7 @@ exports = module.exports = {
                 description: "Absolute path to a JSON file that contains credentials like this : {\"email\": \"\", \"password\":  \"\" } "
             })
             .config("settings", "settings for uploader", (configPath) => {
-                return JSON.parse(readFileSync(configPath, 'utf-8'));
+                return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));
             })
             .coerce("resultFile", (arg) => {
                 return JSON.parse(readFileSync(path.resolve(arg), 'utf-8'));
