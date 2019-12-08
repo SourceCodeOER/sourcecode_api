@@ -1,7 +1,7 @@
 {
-  "name": "crawler-memory",
+  "name": "sourcecode-cli",
   "version": "1.0.0",
-  "description": "Crawler to feed the database",
+  "description": "CLI tools for SourceCode",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,9 +15,10 @@
   "author": "jy95",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jy95/exercises_library.git"
+    "url": "https://github.com/jy95/exercises_library.git",
+    "directory": "cli"
   },
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "filehound": "^1.17.3",
     "js-yaml": "^3.13.1",
