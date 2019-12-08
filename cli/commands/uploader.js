@@ -199,7 +199,7 @@ async function bulk_insert_request(request, JWT_TOKEN, exercises, files) {
             });
         });
     });
-    // TODO improve errors warning
+
     return requestInstance;
 }
 
