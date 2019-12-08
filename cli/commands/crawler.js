@@ -37,7 +37,7 @@ exports = module.exports = {
             .coerce("workingDirectory", (arg) => {
                 return path.resolve(arg);
             })
-            .config("settings", "settings for strategy + crawler", (configPath) => {
+            .config("settings", "Absolute path to a JSON config file for strategy + crawler", (configPath) => {
                 return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));
             })
             .help()

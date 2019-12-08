@@ -31,7 +31,7 @@ exports = module.exports = {
                 type: "string",
                 description: "Absolute path to a JSON file that contains credentials like this : {\"email\": \"\", \"password\":  \"\" } "
             })
-            .config("settings", "settings for uploader", (configPath) => {
+            .config("settings", "Absolute path to a JSON config file for uploader", (configPath) => {
                 return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));
             })
             .coerce("resultFile", (arg) => {
