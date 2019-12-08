@@ -2,7 +2,9 @@
   "name": "sourcecode-cli",
   "version": "1.0.0",
   "description": "CLI tools for SourceCode",
-  "main": "index.js",
+  "bin": {
+      "sourcecode-cli": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "LSINF1252": "node index.js crawler --settings demo/settings1.json",
@@ -15,7 +17,7 @@
   "author": "jy95",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jy95/exercises_library.git",
+    "url": "https://github.com/jy95/sourcecode_api.git",
     "directory": "cli"
   },
   "license": "GPL-3.0-or-later",
@@ -30,5 +32,8 @@
   },
   "devDependencies": {
     "@types/yargs": "^13.0.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
