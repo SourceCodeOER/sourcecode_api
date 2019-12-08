@@ -29,7 +29,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/1_Full_scenario",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 2",
@@ -60,7 +65,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_1",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 10",
@@ -91,7 +101,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_10",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 11",
@@ -122,7 +137,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_11",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 12",
@@ -153,7 +173,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_12",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 13",
@@ -184,7 +209,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_13",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 14",
@@ -215,7 +245,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_14",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 15",
@@ -246,7 +281,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_15",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 2",
@@ -277,7 +317,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_2",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 3",
@@ -308,7 +353,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_3",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 4",
@@ -339,7 +389,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_4",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 5",
@@ -370,7 +425,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_5",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 6",
@@ -401,7 +461,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_6",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 7",
@@ -432,7 +497,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_7",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 8",
@@ -463,7 +533,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_8",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Scénario 9",
@@ -494,7 +569,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/APP0_senario_9",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Première étape : aller tout droit",
@@ -525,7 +605,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/blockly_app0_step1",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Deuxième étape : éviter un obstacle",
@@ -556,7 +641,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/blockly_app0_step2",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Troisième étape : des ennemis",
@@ -587,7 +677,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "app0-2017/blockly_app0_step3",
+                "course_yaml": "app0-2017/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -630,7 +725,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/01_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -673,7 +773,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/02_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -712,7 +817,12 @@
                     "text": "Facile",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/03_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -755,7 +865,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/04_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -798,7 +913,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/05_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 6",
@@ -841,7 +961,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/06_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 7",
@@ -884,7 +1009,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/07_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 8",
@@ -931,7 +1061,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/08_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 9",
@@ -974,7 +1109,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/09_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 10",
@@ -1017,7 +1157,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/10_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 11",
@@ -1060,7 +1205,12 @@
                     "text": "Lecon 2",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours1/11_maze",
+                "course_yaml": "Cours1/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -1099,7 +1249,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours11/Artist_01",
+                "course_yaml": "Cours11/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -1138,7 +1293,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours11/Artist_02",
+                "course_yaml": "Cours11/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -1177,7 +1337,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours11/Artist_03",
+                "course_yaml": "Cours11/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -1216,7 +1381,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours11/Artist_04",
+                "course_yaml": "Cours11/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -1255,7 +1425,12 @@
                     "text": "Facile",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours11/Artist_05",
+                "course_yaml": "Cours11/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -1294,7 +1469,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_01",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -1337,7 +1517,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_02",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -1380,7 +1565,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_03",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -1427,7 +1617,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_04",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -1474,7 +1669,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_05",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 6",
@@ -1521,7 +1721,12 @@
                     "text": "Lecon 13",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_06",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 7",
@@ -1568,7 +1773,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours13/Bee_07",
+                "course_yaml": "Cours13/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -1611,7 +1821,12 @@
                     "text": "Lecon 5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_1",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -1654,7 +1869,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_2",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -1697,7 +1917,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_3",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -1740,7 +1965,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_4",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -1783,7 +2013,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_5",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 6",
@@ -1826,7 +2061,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_6",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 7",
@@ -1873,7 +2113,12 @@
                     "text": "Lecon 5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_7",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 8",
@@ -1916,7 +2161,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_8",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 9",
@@ -1951,7 +2201,12 @@
                     "text": "Lecon5",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours2/Artist_9",
+                "course_yaml": "Cours2/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -1994,7 +2249,12 @@
                     "text": "Lecon 3",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours3/Artist_1",
+                "course_yaml": "Cours3/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -2041,7 +2301,12 @@
                     "text": "Lecon 3",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours3/Artist_2",
+                "course_yaml": "Cours3/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -2088,7 +2353,12 @@
                     "text": "Lecon 3",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours3/Artist_3",
+                "course_yaml": "Cours3/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -2139,7 +2409,12 @@
                     "text": "Lecon 3",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours3/Artist_4",
+                "course_yaml": "Cours3/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -2186,7 +2461,12 @@
                     "text": "Lecon 3",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours3/Artist_5",
+                "course_yaml": "Cours3/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -2225,7 +2505,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours4/Maze_bee_01",
+                "course_yaml": "Cours4/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -2268,7 +2553,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours4/Maze_bee_02",
+                "course_yaml": "Cours4/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -2311,7 +2601,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours4/Maze_bee_03",
+                "course_yaml": "Cours4/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -2354,7 +2649,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours4/Maze_bee_04",
+                "course_yaml": "Cours4/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -2401,7 +2701,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours4/Maze_bee_05",
+                "course_yaml": "Cours4/course.yaml"
+            }
         },
         {
             "title": "Exercice 6",
@@ -2452,7 +2757,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours4/Maze_bee_06",
+                "course_yaml": "Cours4/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -2495,7 +2805,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours5/Maze_bee_01",
+                "course_yaml": "Cours5/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -2538,7 +2853,12 @@
                     "text": "Lecon 7",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours5/Maze_bee_02",
+                "course_yaml": "Cours5/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -2585,7 +2905,12 @@
                     "text": "Lecon 7",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours5/Maze_bee_03",
+                "course_yaml": "Cours5/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -2632,7 +2957,12 @@
                     "text": "Lecon 7",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours5/Maze_bee_04",
+                "course_yaml": "Cours5/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -2679,7 +3009,12 @@
                     "text": "Lecon 7",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours5/Maze_bee_05",
+                "course_yaml": "Cours5/course.yaml"
+            }
         },
         {
             "title": "Exercice 1",
@@ -2718,7 +3053,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_01",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "Exercice 2",
@@ -2761,7 +3101,12 @@
                     "text": "Challenge",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_02",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "Exercice 3",
@@ -2804,7 +3149,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_03",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "Exercice 4",
@@ -2847,7 +3197,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_04",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "Exercice 5",
@@ -2890,7 +3245,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_05",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "Exercice 6",
@@ -2933,7 +3293,12 @@
                     "text": "Facile",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_06",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "Exercice 7",
@@ -2976,7 +3341,12 @@
                     "text": "Normal",
                     "category": 2
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Cours6/Maze_07",
+                "course_yaml": "Cours6/course.yaml"
+            }
         },
         {
             "title": "SimpleMaze",
@@ -3007,7 +3377,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "GeneralCourse/SimpleMaze",
+                "course_yaml": "GeneralCourse/course.yaml"
+            }
         },
         {
             "title": "1. Le plus léger (blocs normaux)",
@@ -3033,7 +3408,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/1_le_plus_leger",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "1. Le plus léger (blocs custom)",
@@ -3064,7 +3444,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/2_le_plus_leger_custom",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "2. Questions - le plus léger",
@@ -3090,7 +3475,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "multiple_choice"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/3_QCM1",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "3. Tri par sélection",
@@ -3121,7 +3511,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/4_selection_sort",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "4. Questions - tri par sélection",
@@ -3147,7 +3542,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "multiple_choice"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/5_QCM2",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "7. Tri par insertion",
@@ -3178,7 +3578,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/6_insertion_sort",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "7.5 Tri par insertion - pire cas",
@@ -3209,7 +3614,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/6_insertion_sort1",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         },
         {
             "title": "Tri rapide",
@@ -3240,7 +3650,12 @@
                     "category_id": "_EXERCISE-TYPE_",
                     "text": "match"
                 }
-            ]
+            ],
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Tri_PDS/7_quick_sort",
+                "course_yaml": "Tri_PDS/course.yaml"
+            }
         }
     ],
     "own_categories": {
@@ -3248,6 +3663,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-07T17:45:59.124Z",
+    "extraction_date": "2019-12-08T12:04:22.862Z",
     "url": "https://github.com/CelineDknp/JobBlockly"
 }

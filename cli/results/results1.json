@@ -34,7 +34,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/absolute_value"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/absolute_value",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "absolute_value",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Advanced queue",
@@ -80,7 +85,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/advanced_queue"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/advanced_queue",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "advanced_queue",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "ArrayList",
@@ -126,7 +136,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/alist"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/alist",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "alist",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Get an array from a binary file using mmap",
@@ -179,7 +194,12 @@
                     "text": "Beta, S5"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/array_mmap"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/array_mmap",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "array_mmap",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Traduction de code assembleur",
@@ -225,7 +245,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm1"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "asm1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Traduction de code assembleur",
@@ -271,7 +296,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm2"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "asm2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Traduction de code assembleur",
@@ -317,7 +347,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm3"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "asm3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Traduction de code assembleur",
@@ -363,7 +398,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm4"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "asm4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Simple linked list",
@@ -413,7 +453,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/basic_linked_list"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/basic_linked_list",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "basic_linked_list",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bitwise operation: high order bits",
@@ -454,7 +499,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_leftmost"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_leftmost",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bits_leftmost",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bitwise operation: extract low order bits",
@@ -495,7 +545,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_rightmost"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_rightmost",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bits_rightmost",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bitwise operation: cycling bits",
@@ -536,7 +591,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_spin"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_spin",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bits_spin",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bitwise operation: resetting the highest order bit",
@@ -577,7 +637,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_strong"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_strong",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bits_strong",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bitwise operation: counting set bits",
@@ -618,7 +683,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_sum"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_sum",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bits_sum",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Opérations sur les bits",
@@ -659,7 +729,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bitwise-ops"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bitwise-ops",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bitwise-ops",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Gestion d'une librairie",
@@ -700,7 +775,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bookstore"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bookstore",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "bookstore",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Simple Binary Search Tree",
@@ -750,7 +830,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/BST"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/BST",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "BST",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "BST : Insert and Delete",
@@ -787,7 +872,12 @@
                     "text": "c"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/BST-Insert_Delete"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/BST-Insert_Delete",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "BST-Insert_Delete",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Parcours d'un arbre binaire de recherche",
@@ -828,7 +918,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/btree-access"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/btree-access",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "btree-access",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Coder calloc en utilisant malloc",
@@ -869,7 +964,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/calloc2"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/calloc2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "calloc2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Comparing functions",
@@ -915,7 +1015,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/cmp_func"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/cmp_func",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "cmp_func",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Le programme test",
@@ -961,7 +1066,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/commandetest"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/commandetest",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "commandetest",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Count the '\\0'",
@@ -1006,7 +1116,12 @@
                     "category": 0
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/count_zero"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/count_zero",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "count_zero",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Jeu de dames: tests de base",
@@ -1038,7 +1153,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/dames"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/dames",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "dames",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Liste doublement chaînée",
@@ -1084,7 +1204,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/DoubleLL"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/DoubleLL",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "DoubleLL",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Manipulation de liste",
@@ -1125,7 +1250,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/EmployeList"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/EmployeList",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "EmployeList",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Factorial",
@@ -1166,7 +1296,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/factorial"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/factorial",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "factorial",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Parcours de fichiers",
@@ -1203,7 +1338,12 @@
                     "text": "c"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Filemap"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Filemap",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Filemap",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Déterminer la valeur de retour d'un programme exécutable",
@@ -1249,7 +1389,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/fork"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/fork",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "fork",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Threads : plus grand commun diviseur",
@@ -1290,7 +1435,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/gcd"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/gcd",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "gcd",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Conversions hexadécimales",
@@ -1331,7 +1481,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/hexadecimal"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/hexadecimal",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "hexadecimal",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Indexation d'un texte",
@@ -1372,7 +1527,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/index-text"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/index-text",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "index-text",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Tri par insertion",
@@ -1413,7 +1573,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/insertion-sort"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/insertion-sort",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "insertion-sort",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Intersection de fichiers",
@@ -1459,7 +1624,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/intersection"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/intersection",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "intersection",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Listes chaînées: concepts de base",
@@ -1496,7 +1666,12 @@
                     "text": "c"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_lists_1"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_lists_1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "linked_lists_1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Listes chaînées: exercices avancés",
@@ -1533,7 +1708,12 @@
                     "text": "c"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_lists_2"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_lists_2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "linked_lists_2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Filtering a linked list",
@@ -1579,7 +1759,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_structs"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_structs",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "linked_structs",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Reading arguments",
@@ -1620,7 +1805,12 @@
                     "text": "S2"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/main_argc"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/main_argc",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "main_argc",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "malloc, realloc et free INCOMPLETE",
@@ -1657,7 +1847,12 @@
                     "text": "c"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/malloc"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/malloc",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "malloc",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Multiplication de matrices",
@@ -1698,7 +1893,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/matrix-mult"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/matrix-mult",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "matrix-mult",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "strlen, strcat et strcasecmp",
@@ -1743,7 +1943,12 @@
                     "text": "S2"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/mini-projet-string"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/mini-projet-string",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mini-projet-string",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Reading from the wire",
@@ -1793,7 +1998,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/modem_read"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/modem_read",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "modem_read",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Manipulate the memory",
@@ -1839,7 +2049,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/multi-free"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/multi-free",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "multi-free",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Mes propres sémaphores",
@@ -1880,7 +2095,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/my-sem"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/my-sem",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "my-sem",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "My strlen - REVIEWED",
@@ -1921,7 +2141,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/my_strlen"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/my_strlen",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "my_strlen",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Ordered  linked list",
@@ -1967,7 +2192,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/order_relation_linked_list"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/order_relation_linked_list",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "order_relation_linked_list",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Soumission du projet de seconde session",
@@ -1994,7 +2224,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/p3check"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/p3check",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "p3check",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Palindrome",
@@ -2035,7 +2270,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/palindrome"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/palindrome",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "palindrome",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Producteurs/Consommateurs",
@@ -2081,7 +2321,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/PC"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/PC",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "PC",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Pointer arithmetic",
@@ -2122,7 +2367,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/pointer_types"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/pointer_types",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "pointer_types",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Polynômes",
@@ -2163,7 +2413,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/poly"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/poly",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "poly",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Printing data",
@@ -2209,7 +2464,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/printf"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/printf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "printf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Modification de fichier",
@@ -2255,7 +2515,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/reverse"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/reverse",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "reverse",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Calculatrice en notation polonaise inversée",
@@ -2296,7 +2561,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/rpn-calc"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/rpn-calc",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "rpn-calc",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Redirection des flux de sortie et d'erreur standards",
@@ -2337,7 +2607,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/run_redir"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/run_redir",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "run_redir",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Capture The Flag 1",
@@ -2377,7 +2652,12 @@
                     "text": "S1"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_ctf1"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_ctf1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s1_ctf1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Capture The Flag 2",
@@ -2413,7 +2693,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_ctf2"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_ctf2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s1_ctf2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Diff",
@@ -2453,7 +2738,12 @@
                     "text": "S1"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_diff"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_diff",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s1_diff",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "grep",
@@ -2489,7 +2779,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_grep"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_grep",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s1_grep",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Pipes",
@@ -2529,7 +2824,12 @@
                     "text": "S1"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_pipes"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_pipes",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s1_pipes",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "tar",
@@ -2569,7 +2869,12 @@
                     "text": "S1"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_tar"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_tar",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s1_tar",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "make basics",
@@ -2623,7 +2928,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s2_make",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "make basics - calculator",
@@ -2672,7 +2982,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make_calc"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make_calc",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s2_make_calc",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "make basics - multiple choice questions",
@@ -2716,7 +3031,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make_mcq"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make_mcq",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s2_make_mcq",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Cunit basics",
@@ -2755,7 +3075,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_cunit_basics"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_cunit_basics",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s3_cunit_basics",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "make more basics",
@@ -2799,7 +3124,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s3_make",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "make more basics - multiple choice questions",
@@ -2838,7 +3168,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make_mcq"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make_mcq",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s3_make_mcq",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "make tests",
@@ -2887,7 +3222,12 @@
                     "text": "S4"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make_tests"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make_tests",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s3_make_tests",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Save struct into file",
@@ -2940,7 +3280,12 @@
                     "text": "S5"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s4_file_save_struct"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s4_file_save_struct",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s4_file_save_struct",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Reading integers in a binary file",
@@ -2997,7 +3342,12 @@
                     "text": "S5"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s4_read_file_array_integer"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s4_read_file_array_integer",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s4_read_file_array_integer",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Get and set on array stored in binary file",
@@ -3046,7 +3396,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_big_array_get_set"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_big_array_get_set",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s5_big_array_get_set",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "File copy",
@@ -3103,7 +3458,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_file_copy"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_file_copy",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s5_file_copy",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "File exists",
@@ -3148,7 +3508,12 @@
                     "text": "S5"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_file_exists"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_file_exists",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "s5_file_exists",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Search and replace",
@@ -3189,7 +3554,12 @@
                     "text": "Juin 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Search_and_replace"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Search_and_replace",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Search_and_replace",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bitwise operation: setting a bit",
@@ -3230,7 +3600,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/set_bit"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/set_bit",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "set_bit",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Écrire un shell",
@@ -3267,7 +3642,12 @@
                     "text": "c"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/shell"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/shell",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "shell",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Simple stack",
@@ -3313,7 +3693,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/simple_stack"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/simple_stack",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "simple_stack",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Sleepy malloc",
@@ -3359,7 +3744,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/sleep_malloc"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/sleep_malloc",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "sleep_malloc",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Soumission du projet fractale",
@@ -3391,7 +3781,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/soumission-projet-fractale"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/soumission-projet-fractale",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "soumission-projet-fractale",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Global and local variables",
@@ -3446,7 +3841,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/stack_vs_heap"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/stack_vs_heap",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "stack_vs_heap",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Exponentially static counter - REVIEWED",
@@ -3487,7 +3887,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/static_counter"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/static_counter",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "static_counter",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Improved strcpy",
@@ -3532,7 +3937,12 @@
                     "text": "S3"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/strcpy"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/strcpy",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "strcpy",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Manipulation de chaines de caractères",
@@ -3578,7 +3988,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/strsplit"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/strsplit",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "strsplit",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Echange de valeurs de fractions",
@@ -3624,7 +4039,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/swap"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/swap",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "swap",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Swap my integers",
@@ -3669,7 +4089,12 @@
                     "text": "S2"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/swap2int"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/swap2int",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "swap2int",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Through the array",
@@ -3710,7 +4135,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/tab_find"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/tab_find",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "tab_find",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Trier une liste chainée",
@@ -3756,7 +4186,12 @@
                     "text": "StudentJob"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/tri"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/tri",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "tri",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "true false",
@@ -3792,7 +4227,12 @@
                     "text": "Beta"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/truefalse"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/truefalse",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "truefalse",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Les types (1/2)",
@@ -3833,7 +4273,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/types"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/types",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "types",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Les types (2/2)",
@@ -3874,7 +4319,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/types2"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/types2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "types2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Stockage d'un vecteur de réels dans un fichier",
@@ -3920,7 +4370,12 @@
                     "text": "Septembre 2016"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Vectorfile"
+            "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Vectorfile",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Vectorfile",
+                "course_yaml": "course.yaml"
+            }
         }
     ],
     "own_categories": {
@@ -3928,6 +4383,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-07T17:45:30.918Z",
+    "extraction_date": "2019-12-08T12:03:40.060Z",
     "url": "https://github.com/UCL-INGI/LSINF1252"
 }

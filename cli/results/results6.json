@@ -30,7 +30,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/primaire/arbre"
+            "url": "https://inginious.org/course/primaire/arbre",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "arbre",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Les brochettes de fruits",
@@ -62,7 +67,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/primaire/brochette"
+            "url": "https://inginious.org/course/primaire/brochette",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "brochette",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "La règle de trois",
@@ -94,7 +104,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/primaire/regle"
+            "url": "https://inginious.org/course/primaire/regle",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "regle",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Initiation à INGInious",
@@ -126,7 +141,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/primaire/reorder"
+            "url": "https://inginious.org/course/primaire/reorder",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "reorder",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Tri des élèves",
@@ -158,7 +178,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/primaire/sorting"
+            "url": "https://inginious.org/course/primaire/sorting",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "sorting",
+                "course_yaml": "course.yaml"
+            }
         }
     ],
     "own_categories": {
@@ -166,6 +191,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-07T17:45:15.312Z",
+    "extraction_date": "2019-12-08T12:04:18.042Z",
     "url": "https://github.com/lin3out/cuisine-algorithmique"
 }

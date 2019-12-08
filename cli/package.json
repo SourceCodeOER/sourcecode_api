@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "CLI tools for SourceCode",
   "bin": {
-      "sourcecode-cli": "./index.js"
+    "sourcecode-cli": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -27,6 +27,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.partition": "^4.6.0",
     "simple-git": "^1.126.0",
+    "slash": "^3.0.0",
     "supertest": "^4.0.2",
     "yargs": "^15.0.2"
   },

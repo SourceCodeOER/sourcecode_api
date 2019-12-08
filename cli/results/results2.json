@@ -48,7 +48,12 @@
                     "text": "Example"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleCoverage"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleCoverage",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "$test$/exampleCoverage",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "JavaGrading Testing",
@@ -98,7 +103,12 @@
                     "text": "Example"
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleJavaGrading"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleJavaGrading",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "$test$/exampleJavaGrading",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Abstract Class",
@@ -144,7 +154,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AbstractClass"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AbstractClass",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "AbstractClass",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Access Modifiers / Scopes",
@@ -185,7 +200,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AccessModifiers"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AccessModifiers",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "AccessModifiers",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Arrays 2D and Matrix",
@@ -231,7 +251,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Array2D"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Array2D",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Array2D",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "ASCII Decoder",
@@ -272,7 +297,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ASCIIDecoder"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ASCIIDecoder",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ASCIIDecoder",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "BlackBox Testing - Binary Search",
@@ -318,7 +348,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BlackBox"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BlackBox",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "BlackBox",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bounded Buffer",
@@ -364,7 +399,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BoundedBuffer"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BoundedBuffer",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "BoundedBuffer",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Bubble Sort Invariant (MCQ)",
@@ -405,7 +445,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BubbleSortInvariant"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BubbleSortInvariant",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "BubbleSortInvariant",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Type Casting - theoretical questions",
@@ -446,7 +491,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Casting"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Casting",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Casting",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Circular Linked list",
@@ -492,7 +542,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CircularLL"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CircularLL",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "CircularLL",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "quick sort code accuracy - Pre, Post conditions and Invariants",
@@ -533,7 +588,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "CodeAccuracy",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Quick Sort - Implem exercise",
@@ -579,7 +639,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy2"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "CodeAccuracy2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Game of 9 common Java programming errors",
@@ -620,7 +685,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CommonErrors"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CommonErrors",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "CommonErrors",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Comparator and Collections",
@@ -661,7 +731,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorAndCollections"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorAndCollections",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ComparatorAndCollections",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Comparator vs Comparable",
@@ -707,7 +782,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorvsComparable"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorvsComparable",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ComparatorvsComparable",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Array Search",
@@ -753,7 +833,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityArraySearch"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityArraySearch",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ComplexityArraySearch",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Complexity : simple MCQ",
@@ -794,7 +879,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityMCQ1"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityMCQ1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ComplexityMCQ1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Time Complexity MCQ (trees, tsp, sort, lists)",
@@ -835,7 +925,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/complexityMCQ2"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/complexityMCQ2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "complexityMCQ2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Space Complexity MCQ",
@@ -876,7 +971,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexitySpaceMCQ"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexitySpaceMCQ",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ComplexitySpaceMCQ",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Coverage Testing",
@@ -922,7 +1022,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Coverage"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Coverage",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Coverage",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Cyclic Barrier",
@@ -968,7 +1073,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CyclicBarrier"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CyclicBarrier",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "CyclicBarrier",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Factory design pattern - Level generator",
@@ -1014,7 +1124,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Factory"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Factory",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Factory",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Introduction to recursion in Java - Fibonacci",
@@ -1060,7 +1175,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Fibonacci"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Fibonacci",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Fibonacci",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Functional list implementation",
@@ -1106,7 +1226,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FList"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FList",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "FList",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "FList MergeSort",
@@ -1152,7 +1277,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FListMergeSort"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FListMergeSort",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "FListMergeSort",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Functional immutable tree",
@@ -1198,7 +1328,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FTree"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FTree",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "FTree",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Future",
@@ -1244,7 +1379,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Future"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Future",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Future",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Generics 1",
@@ -1290,7 +1430,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Generics",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Generics 2",
@@ -1336,7 +1481,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics2"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Generics2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Generics 3",
@@ -1382,7 +1532,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics3"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Generics3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Hanoi Tower",
@@ -1428,7 +1583,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/HanoiTower"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/HanoiTower",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "HanoiTower",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Infinite Streams",
@@ -1474,7 +1634,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/InfiniteStreams"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/InfiniteStreams",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "InfiniteStreams",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Inheritance : Fill the gaps (Small Exercise)",
@@ -1520,7 +1685,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Inheritance"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Inheritance",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Inheritance",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Introduction to java, exercises",
@@ -1566,7 +1736,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Introduction"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Introduction",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Introduction",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Lambda Expression in Java",
@@ -1612,7 +1787,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LambdaExpressioninJava"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LambdaExpressioninJava",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "LambdaExpressioninJava",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Learn Exception in Java",
@@ -1658,7 +1838,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LearnException"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LearnException",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "LearnException",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Make Mistake To Understand Them",
@@ -1704,7 +1889,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MakeMistakeToUnderstandThem"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MakeMistakeToUnderstandThem",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "MakeMistakeToUnderstandThem",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Largest Sum Contiguous Subarray",
@@ -1750,7 +1940,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MaximumSumSubarray"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MaximumSumSubarray",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "MaximumSumSubarray",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Merge Sort Implementation",
@@ -1786,7 +1981,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MergeSortImplementation"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MergeSortImplementation",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "MergeSortImplementation",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "MyArrayList",
@@ -1832,7 +2032,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MyArrayList"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MyArrayList",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "MyArrayList",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Observer design pattern",
@@ -1878,7 +2083,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Observer"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Observer",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Observer",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Optional - no more concerns about NullPointerException",
@@ -1924,7 +2134,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Optional"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Optional",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Optional",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Parallel Merge Sort",
@@ -1970,7 +2185,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ParallelelMergeSort"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ParallelelMergeSort",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ParallelelMergeSort",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Postscript interpreter",
@@ -2016,7 +2236,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/PostScript"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/PostScript",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "PostScript",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Threads - Producer/Consumer with locks",
@@ -2062,7 +2287,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ProducerConsumer"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ProducerConsumer",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ProducerConsumer",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Queue with two stacks",
@@ -2108,7 +2338,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/QueueWithStacks"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/QueueWithStacks",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "QueueWithStacks",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Threads - Shared counter with monitors",
@@ -2154,7 +2389,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SharedCounter"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SharedCounter",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "SharedCounter",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Sieve of Eratosthenes Implementation",
@@ -2195,7 +2435,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesImplementation"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesImplementation",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "SieveOfEratosthenesImplementation",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "MCQ Sieve of Eratosthenes",
@@ -2231,7 +2476,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesMCQ"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesMCQ",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "SieveOfEratosthenesMCQ",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Stack with a Queue",
@@ -2277,7 +2527,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StackWithQueue"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StackWithQueue",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "StackWithQueue",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Dealing with Streams",
@@ -2323,7 +2578,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Streams",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Dealing with Streams - 2",
@@ -2369,7 +2629,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams2"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Streams2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Strings",
@@ -2415,7 +2680,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StringUtils"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StringUtils",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "StringUtils",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Small introduction to threads - Counters",
@@ -2461,7 +2731,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ThreadsIntroduction"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ThreadsIntroduction",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ThreadsIntroduction",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Binary trees - combineWith",
@@ -2507,7 +2782,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeCombineWith"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeCombineWith",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "TreeCombineWith",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Binary trees - Inorder traversal",
@@ -2553,7 +2833,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeInorder"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeInorder",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "TreeInorder",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Binary trees - equals",
@@ -2599,7 +2884,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeSame"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeSame",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "TreeSame",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Longest Valley",
@@ -2645,7 +2935,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/valley"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/valley",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "valley",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Value Or Reference",
@@ -2686,7 +2981,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ValueOrReference"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ValueOrReference",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "ValueOrReference",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Visitor design pattern - Calculator",
@@ -2732,7 +3032,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Visitor"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Visitor",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "Visitor",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Visitor design pattern - List Filtering",
@@ -2778,7 +3083,12 @@
                     "category": 2
                 }
             ],
-            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/VisitorBasic"
+            "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/VisitorBasic",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "VisitorBasic",
+                "course_yaml": "course.yaml"
+            }
         }
     ],
     "own_categories": {
@@ -2786,6 +3096,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-07T17:45:01.636Z",
+    "extraction_date": "2019-12-08T12:05:29.544Z",
     "url": "https://github.com/UCL-INGI/LEPL1402"
 }

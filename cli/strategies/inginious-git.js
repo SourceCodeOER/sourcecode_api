@@ -9,6 +9,7 @@ const child_process = require("child_process");
 
 const path = require("path");
 const dirname = path.dirname;
+const slash = require('slash');
 
 const exists = (dir) => {
     try {
@@ -136,6 +137,17 @@ module.exports = async function (options) {
             if (options.hasOwnProperty("inginiousURL")) {
                 const folder_exercise = path.relative(gitFolder, dirname(exercise_data));
                 exercise["url"] = `${options.inginiousURL}/${folder_exercise}`
+            }
+
+            // To allow file uploads, we need some extra metadata
+            if (course_match.length > 0) {
+                exercise["archive_properties"] = {
+                    "type": "inginious",
+                    // relative path, in order to be cross platform and handle multiple cases
+                    // So I used / instead of the ugly \\ of Windows for path
+                    "exercise_folder": slash(path.relative(gitFolder, dirname(exercise_data))),
+                    "course_yaml": slash(path.relative(gitFolder, course_match))
+                }
             }
 
             // Time to clean the title and maybe add a new tag

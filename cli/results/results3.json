@@ -39,7 +39,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/105_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/105_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "105_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation",
@@ -80,7 +85,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/106_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/106_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "106_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation",
@@ -121,7 +131,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/108_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/108_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "108_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation",
@@ -162,7 +177,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/111_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/111_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "111_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation",
@@ -203,7 +223,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/112_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/112_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "112_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Structures chainées",
@@ -244,7 +269,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/14_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/14_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "14_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Exercice complémentaire 1",
@@ -285,7 +315,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/85_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/85_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "85_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Recherche du plus long palindrome",
@@ -326,7 +361,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/87_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/87_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "87_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Exercice complémentaire 2",
@@ -367,7 +407,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/88_java"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/88_java",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "88_java",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Ordonne",
@@ -413,7 +458,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q10"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q10",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q10",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Moyenne",
@@ -459,7 +509,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q11"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q11",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q11",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Maximum",
@@ -505,7 +560,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q12"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q12",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q12",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Minimum",
@@ -551,7 +611,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q13"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q13",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q13",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Compteur de différence",
@@ -597,7 +662,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q14"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q14",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q14",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Sélecteur de saison",
@@ -643,7 +713,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q15"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q15",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q15",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Nombre de secondes depuis minuit",
@@ -689,7 +764,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q16"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q16",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q16",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Année bissextile",
@@ -735,7 +815,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q17"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q17",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q17",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Siècle",
@@ -776,7 +861,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q18"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q18",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q18",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Calcul d'amende",
@@ -827,7 +917,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Caractère",
@@ -868,7 +963,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q20"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q20",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q20",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Indice de Quételet",
@@ -919,7 +1019,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Calcul de prix",
@@ -970,7 +1075,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : OU exclusif",
@@ -1016,7 +1126,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Fizzbuzz",
@@ -1067,7 +1182,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Somme d'entiers pairs",
@@ -1113,7 +1233,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Médiane",
@@ -1164,7 +1289,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : IN/OUT",
@@ -1205,7 +1335,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -1241,7 +1376,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Bilan Final",
@@ -1287,7 +1427,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -1323,7 +1468,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m01_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m01_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m01_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 1: Les bases",
@@ -1359,7 +1509,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : Somme d'entiers",
@@ -1410,7 +1565,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 3 : Puissances",
@@ -1456,7 +1616,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02dem3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 4 : Plus grand diviseur",
@@ -1502,7 +1667,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02dem4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 5 : Nombres premiers",
@@ -1548,7 +1718,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02dem5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Exercice complémentaire 1 : Exercice rapide",
@@ -1584,7 +1759,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02ec1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02ec1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02ec1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Exercice supplémentaire : Calculer le reste d'une division entière",
@@ -1630,7 +1810,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Calcul du nombre diviseurs distincts",
@@ -1676,7 +1861,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q10"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q10",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q10",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Dessin d'un triangle",
@@ -1722,7 +1912,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Dessin de H",
@@ -1768,7 +1963,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Dessin de X",
@@ -1814,7 +2014,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Dessin de S",
@@ -1860,7 +2065,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Calcul d'intérêts",
@@ -1901,7 +2111,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Calcul de factorielle",
@@ -1947,7 +2162,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Somme des entiers entre a et b",
@@ -1993,7 +2213,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -2029,7 +2254,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Bilan Final",
@@ -2075,7 +2305,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -2111,7 +2346,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m02_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m02_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m02_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 1: Conversions",
@@ -2142,7 +2382,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 2 : Le Nombre Maximum",
@@ -2188,7 +2433,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 3 : Nombres impairs",
@@ -2234,7 +2484,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03dem3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 4 : Lettre L",
@@ -2280,7 +2535,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03dem4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarage 5 : Diviseurs Entiers",
@@ -2326,7 +2586,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03dem5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* intervalle fermé",
@@ -2367,7 +2632,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Calculer la surface d'un rectangle",
@@ -2408,7 +2678,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q*  Maximum",
@@ -2454,7 +2729,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** Médiane",
@@ -2500,7 +2780,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q*  Calcul du volume d'une sphère",
@@ -2546,7 +2831,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** Calcul de la factorielle",
@@ -2592,7 +2882,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** Carré parfait",
@@ -2638,7 +2933,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -2674,7 +2974,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03real1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03real1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03real1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Bilan Final",
@@ -2715,7 +3020,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -2751,7 +3061,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m03_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m03_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m03_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Questions de démarrage 1 : La classe Character",
@@ -2792,7 +3107,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : Concaténation",
@@ -2838,7 +3158,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 3 : Longueur d'un String",
@@ -2884,7 +3209,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04dem3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 4 : toUpper",
@@ -2930,7 +3260,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04dem4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 5 : La méthode containsChar()",
@@ -2971,7 +3306,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04dem5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Occurences de c dans s",
@@ -3012,7 +3352,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** représentation entière",
@@ -3058,7 +3403,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q10"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q10",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q10",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q***  Caractère le plus fréquent",
@@ -3104,7 +3454,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q11"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q11",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q11",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Caractère dans String",
@@ -3145,7 +3500,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* chaîne composée de chiffres",
@@ -3186,7 +3546,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** Vérification de mot de passe",
@@ -3227,7 +3592,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : binaire",
@@ -3268,7 +3638,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** containsOnly",
@@ -3309,7 +3684,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : le palindrome",
@@ -3355,7 +3735,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q*  méthode contains",
@@ -3396,7 +3781,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* notation binaire",
@@ -3437,7 +3827,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -3473,7 +3868,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de bilan final",
@@ -3519,7 +3919,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -3555,7 +3960,12 @@
                     "text": "Mission 4"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m04_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m04_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m04_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 1 : Syntaxe et Tableaux",
@@ -3591,7 +4001,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : Compararer des tableaux",
@@ -3637,7 +4052,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 3 : Matrice unité",
@@ -3683,7 +4103,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05dem3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 4 : Sommes de Matrices",
@@ -3729,7 +4154,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05dem4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 5 : Méthode Main",
@@ -3775,7 +4205,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05dem5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* : Tous la même valeur",
@@ -3821,7 +4256,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** : Somme",
@@ -3867,7 +4307,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q10"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q10",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q10",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q*** : Top",
@@ -3913,7 +4358,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q11"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q11",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q11",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* : Oppose",
@@ -3954,7 +4404,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q12"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q12",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q12",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* : Valeur max du tableau",
@@ -4000,7 +4455,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* : Valeur moyenne du tableau",
@@ -4046,7 +4506,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* : Tableau croissant",
@@ -4092,7 +4557,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** : Vecteur",
@@ -4138,7 +4608,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** : Matrice identité",
@@ -4184,7 +4659,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** : Count",
@@ -4230,7 +4710,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** : replace",
@@ -4276,7 +4761,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** : Decale",
@@ -4322,7 +4812,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -4358,7 +4853,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "(a) : Question de Bilan Final",
@@ -4399,7 +4899,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -4435,7 +4940,12 @@
                     "text": "Mission 5"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m05_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m05_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m05_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 1 : Pair.opposite()",
@@ -4476,7 +4986,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : OrderedPair",
@@ -4517,7 +5032,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 3 : Drapeau.same()",
@@ -4558,7 +5078,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06dem3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 4 : Lecture de fichiers",
@@ -4594,7 +5119,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06dem4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* constructeur Date",
@@ -4635,7 +5165,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* memeSurface",
@@ -4676,7 +5211,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q10"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q10",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q10",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* rectangle identique",
@@ -4717,7 +5257,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q11"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q11",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q11",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* getters Date",
@@ -4758,7 +5303,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* identique",
@@ -4799,7 +5349,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* demain",
@@ -4840,7 +5395,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* getter",
@@ -4881,7 +5441,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* entier",
@@ -4922,7 +5487,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* getters Point",
@@ -4963,7 +5533,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* distance",
@@ -5004,7 +5579,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* surface",
@@ -5045,7 +5625,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -5081,7 +5666,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Bilan Final",
@@ -5122,7 +5712,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -5158,7 +5753,12 @@
                     "text": "Mission 6"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m06_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m06_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m06_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 1 : Paire d'entiers",
@@ -5199,7 +5799,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 2 : Tickets de Parking",
@@ -5240,7 +5845,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Employe - Méthode equals",
@@ -5281,7 +5891,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* DeStats - toString",
@@ -5322,7 +5937,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q10"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q10",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q10",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* DeStats - equals",
@@ -5363,7 +5983,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q11"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q11",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q11",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Employe - Méthode toString",
@@ -5404,7 +6029,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Dé - Méthode equals",
@@ -5445,7 +6075,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Directeur - Constructeur",
@@ -5486,7 +6121,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Directeur - getSalaire",
@@ -5527,7 +6167,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Directeur - Equals",
@@ -5568,7 +6213,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* DeStats - Constructeur",
@@ -5609,7 +6259,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* DeStats - lances",
@@ -5650,7 +6305,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* DeStats - resultats",
@@ -5691,7 +6351,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -5732,7 +6397,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Bilan Final",
@@ -5773,7 +6443,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -5809,7 +6484,12 @@
                     "text": "Mission 7"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m07_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m07_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m07_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 1 : Implémenter une interface",
@@ -5850,7 +6530,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : StringBuffer",
@@ -5891,7 +6576,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* MyString - Constructeur",
@@ -5932,7 +6622,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* MyString - Concat",
@@ -5973,7 +6668,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* MyString - Contains",
@@ -6014,7 +6714,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* ByteString",
@@ -6055,7 +6760,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* ByteTab",
@@ -6096,7 +6806,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Vecteur",
@@ -6137,7 +6852,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Matrice Carrée",
@@ -6178,7 +6898,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -6214,7 +6939,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -6250,7 +6980,12 @@
                     "text": "Mission 8"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m08_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m08_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m08_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 1: Integer.compareTo",
@@ -6286,7 +7021,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : la méthode premierPrenom()",
@@ -6327,7 +7067,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fraction",
@@ -6368,7 +7113,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Employe",
@@ -6409,7 +7159,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fichiers",
@@ -6450,7 +7205,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fichiers : Contains",
@@ -6491,7 +7251,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fichiers:Accessible",
@@ -6532,7 +7297,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fichiers:saveVector",
@@ -6573,7 +7343,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fichiers:readVector",
@@ -6614,7 +7389,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09Q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -6655,7 +7435,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Bilan Final",
@@ -6701,7 +7486,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09_bf"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09_bf",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09_bf",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -6737,7 +7527,12 @@
                     "text": "Mission 9"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m09_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m09_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m09_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 1 : Traitement des exceptions",
@@ -6783,7 +7578,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10dem1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10dem1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10dem1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de démarrage 2 : Écriture dans des fichiers",
@@ -6829,7 +7629,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10dem2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10dem2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10dem2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fraction",
@@ -6870,7 +7675,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Fraction - Constructeur",
@@ -6916,7 +7726,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Student - Constructeur",
@@ -6957,7 +7772,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* AList",
@@ -7003,7 +7823,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Vecteur",
@@ -7044,7 +7869,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Matrix",
@@ -7085,7 +7915,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -7121,7 +7956,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -7157,7 +7997,12 @@
                     "text": "Mission 0"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m10_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m10_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m10_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 1 : JUnit (partie1)",
@@ -7193,7 +8038,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem11"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem11",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11dem11",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 2 : JUnit (partie 2)",
@@ -7229,7 +8079,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem12"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem12",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11dem12",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question de Démarrage 3 : JUnit (partie3) une DList correcte",
@@ -7270,7 +8125,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem13"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem13",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11dem13",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* PileInt",
@@ -7316,7 +8176,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11Q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* Pile",
@@ -7362,7 +8227,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q* FIFOQueue",
@@ -7408,7 +8278,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11Q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** Queue",
@@ -7454,7 +8329,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11Q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** OrderedList",
@@ -7495,7 +8375,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11Q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Q** List",
@@ -7541,7 +8426,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11Q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -7582,7 +8472,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "QCM",
@@ -7618,7 +8513,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m11_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m11_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m11_qcm",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011 online : Enoncé",
@@ -7650,7 +8550,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011enonce_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011enonce_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011enonce_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011 online : Question 1",
@@ -7687,7 +8592,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q1_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q1_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q1_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011 online : Question 2",
@@ -7724,7 +8634,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q2_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q2_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q2_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011 online : Question 3",
@@ -7761,7 +8676,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q3_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q3_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q3_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen juin 2011 online : Question 4",
@@ -7798,7 +8718,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q4_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q4_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q4_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011 online : Question 5",
@@ -7835,7 +8760,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q5_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q5_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q5_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen juin 2011 online : Question 6",
@@ -7872,7 +8802,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q6_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q6_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q6_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011 online : Question 7",
@@ -7909,7 +8844,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q7_online"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q7_online",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m12_examj2011q7_online",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Phase de réalisation: Soumission",
@@ -7945,7 +8885,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/m1real"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/m1real",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "m1real",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011: Question 1",
@@ -7982,7 +8927,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q1"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q1",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q1",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011: Question 2",
@@ -8019,7 +8969,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011: Question 3",
@@ -8056,7 +9011,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q3"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q3",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q3",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen juin 2011: Question 4",
@@ -8093,7 +9053,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q4"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q4",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q4",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011: Question 5",
@@ -8130,7 +9095,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q5"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q5",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q5",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen juin 2011: Question 6",
@@ -8167,7 +9137,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q6"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q6",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q6",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Examen Juin 2011: Question 7",
@@ -8204,7 +9179,12 @@
                     "text": "java"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q7"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q7",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX12_examj2011q7",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Fonctions mathématiques",
@@ -8245,7 +9225,12 @@
                     "text": "Mission 1"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX1Q19"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX1Q19",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX1Q19",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Exercice complémentaire 2 : Equations du second degré",
@@ -8286,7 +9271,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX2ec2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX2ec2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX2ec2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Question supplémentaire : Division euclidienne",
@@ -8332,7 +9322,12 @@
                     "text": "Mission 2"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX2Q2"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX2Q2",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX2Q2",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Fonctions équation du second degré",
@@ -8373,7 +9368,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX3Q8"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX3Q8",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX3Q8",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Fonctions solution d'une équation du second degré",
@@ -8414,7 +9414,12 @@
                     "text": "Mission 3"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/mX3Q9"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/mX3Q9",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "mX3Q9",
+                "course_yaml": "course.yaml"
+            }
         },
         {
             "title": "Révisions : QCM",
@@ -8446,7 +9451,12 @@
                     "text": "match"
                 }
             ],
-            "url": "https://inginious.org/course/uclouvain-cs1-java/rev_qcm"
+            "url": "https://inginious.org/course/uclouvain-cs1-java/rev_qcm",
+            "archive_properties": {
+                "type": "inginious",
+                "exercise_folder": "rev_qcm",
+                "course_yaml": "course.yaml"
+            }
         }
     ],
     "own_categories": {
@@ -8454,6 +9464,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-07T17:45:50.254Z",
+    "extraction_date": "2019-12-08T12:03:59.259Z",
     "url": "https://github.com/UCL-INGI/CS1-Java"
 }
