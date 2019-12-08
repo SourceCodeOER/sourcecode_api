@@ -61,15 +61,6 @@ As described in the endpoint [/api/bulk_create_exercises](https://jy95.github.io
 some attributes for an exercise are required  
 (like `"title"`, `tags`, `description`) whereas some are optional (like `"url"` or `"file"`).
 
-If you wish to add the sources of an exercise, it should be a zip file.  
-To specify it, you must use the key `"file"` with value a relative path of this file (from the given `workingDirectory` option)
-```json
-{
-   "file": "folder/mysources.zip"
-}
-``` 
-(The script will do for you the mapping between files and exercises)
-
 As you can see, whatever the platform, there is some common tags categories that should be used whenever it is possible.
 The full list of them : 
 
@@ -113,6 +104,34 @@ Then use them in tags as shown in the example (`"category"` with your own key) :
    "category":2
 }
 ```
+
+If you wish to add the sources of an exercise, it should be a zip file. 
+
+Two choices are possible :
+
+1. **If you already have the file**, you should use the key `"file"` with value a absolute path of this file :
+
+```json
+{
+   "file": "/home/jy95/folder/mysources.zip"
+}
+```
+
+2. **If you don't have the file**, you can delegate the creation of zip file to `archiver` command thanks to the key `"archive_properties"` structured like that :
+
+```json
+{
+  "archive_properties": {
+    "folders": [],
+    "files": []
+  }
+}
+```
+These two sub properties must be present : use an empty array if you don't have any folder or file.
+Each item of these arrays should be relative path so `archiver` can build the absolute path with the option `baseFolder` (in case you change location of an exercise folder afterward)
+and automatically add the `"file"` property in each exercise.
+
+Using the property `"file"` in each exercise, the `uploader` command will do for you the mapping between files and exercises when you want to upload exercises into the API.
 
 ## Which strategies are available by default for crawler ?
 

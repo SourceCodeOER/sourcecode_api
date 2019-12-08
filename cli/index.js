@@ -3,6 +3,6 @@
 require('yargs')
     .command(require('./commands/crawler'))
     .command(require('./commands/uploader'))
-    .command(require("./commands/inginious_archiver"))
+    .command(require("./commands/archiver"))
     .help()
     .argv;

@@ -3,8 +3,8 @@ const path = require("path");
 const archiver = require('archiver');
 
 exports = module.exports = {
-    "command": "inginious-archiver",
-    "describe": "Generate zip archives from inginious exercises using the crawler JSON results file",
+    "command": "archiver",
+    "describe": "Generate zip archives from exercises using the crawler JSON results file",
     "builder": function (y) {
         return y
             .option("inputFile", {
@@ -19,7 +19,7 @@ exports = module.exports = {
             })
             .option("baseFolder", {
                 type: "string",
-                description: "Absolute path to the base folder where are located the inginious exercises described in inputFile",
+                description: "Absolute path to the base folder where are located the exercises described in inputFile",
                 alias: "root"
             })
             .config("settings", "Absolute path to a JSON config file for archiver", (configPath) => {
