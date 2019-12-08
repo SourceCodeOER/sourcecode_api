@@ -139,6 +139,7 @@ typings/
 
 # For testing
 temp
+results-with-files
 
 # TypeScript cache
 *.tsbuildinfo

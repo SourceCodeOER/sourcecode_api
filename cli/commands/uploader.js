@@ -106,6 +106,9 @@ async function send_to_API(argv, results) {
             path: exercise.file
         }));
 
+    // remove all not specified properties (to prevent a bad request with unknown object )
+    const specified_properties = ["title", "description", "url", "tags"];
+
     // convert exercises to the given format in API
     const exercises = results["exercises"].map(exercise => {
 
@@ -120,8 +123,13 @@ async function send_to_API(argv, results) {
             }
 
         });
-        // remove the file (already done before)
-        delete exercise.file;
+        // clean object from unspecified / not useful properties
+        Object
+            .keys(exercise)
+            .filter(property => !specified_properties.includes(property))
+            .forEach(property => {
+                delete exercise[property];
+            });
 
         return Object.assign({}, exercise, {tags: tags});
     });
