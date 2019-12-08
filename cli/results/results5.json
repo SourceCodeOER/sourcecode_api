@@ -31,9 +31,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/1_Full_scenario",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/1_Full_scenario"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -67,9 +70,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_1",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_1"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -103,9 +109,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_10",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_10"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -139,9 +148,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_11",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_11"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -175,9 +187,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_12",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_12"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -211,9 +226,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_13",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_13"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -247,9 +265,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_14",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_14"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -283,9 +304,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_15",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_15"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -319,9 +343,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_2",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_2"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -355,9 +382,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_3",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_3"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -391,9 +421,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_4",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_4"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -427,9 +460,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_5",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_5"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -463,9 +499,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_6",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_6"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -499,9 +538,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_7",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_7"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -535,9 +577,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_8",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_8"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -571,9 +616,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/APP0_senario_9",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/APP0_senario_9"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -607,9 +655,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/blockly_app0_step1",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/blockly_app0_step1"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -643,9 +694,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/blockly_app0_step2",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/blockly_app0_step2"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -679,9 +733,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "app0-2017/blockly_app0_step3",
-                "course_yaml": "app0-2017/course.yaml"
+                "folders": [
+                    "app0-2017/blockly_app0_step3"
+                ],
+                "files": [
+                    "app0-2017/course.yaml"
+                ]
             }
         },
         {
@@ -727,9 +784,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/01_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/01_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -775,9 +835,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/02_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/02_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -819,9 +882,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/03_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/03_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -867,9 +933,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/04_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/04_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -915,9 +984,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/05_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/05_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -963,9 +1035,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/06_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/06_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -1011,9 +1086,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/07_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/07_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -1063,9 +1141,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/08_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/08_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -1111,9 +1192,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/09_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/09_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -1159,9 +1243,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/10_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/10_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -1207,9 +1294,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours1/11_maze",
-                "course_yaml": "Cours1/course.yaml"
+                "folders": [
+                    "Cours1/11_maze"
+                ],
+                "files": [
+                    "Cours1/course.yaml"
+                ]
             }
         },
         {
@@ -1251,9 +1341,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours11/Artist_01",
-                "course_yaml": "Cours11/course.yaml"
+                "folders": [
+                    "Cours11/Artist_01"
+                ],
+                "files": [
+                    "Cours11/course.yaml"
+                ]
             }
         },
         {
@@ -1295,9 +1388,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours11/Artist_02",
-                "course_yaml": "Cours11/course.yaml"
+                "folders": [
+                    "Cours11/Artist_02"
+                ],
+                "files": [
+                    "Cours11/course.yaml"
+                ]
             }
         },
         {
@@ -1339,9 +1435,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours11/Artist_03",
-                "course_yaml": "Cours11/course.yaml"
+                "folders": [
+                    "Cours11/Artist_03"
+                ],
+                "files": [
+                    "Cours11/course.yaml"
+                ]
             }
         },
         {
@@ -1383,9 +1482,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours11/Artist_04",
-                "course_yaml": "Cours11/course.yaml"
+                "folders": [
+                    "Cours11/Artist_04"
+                ],
+                "files": [
+                    "Cours11/course.yaml"
+                ]
             }
         },
         {
@@ -1427,9 +1529,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours11/Artist_05",
-                "course_yaml": "Cours11/course.yaml"
+                "folders": [
+                    "Cours11/Artist_05"
+                ],
+                "files": [
+                    "Cours11/course.yaml"
+                ]
             }
         },
         {
@@ -1471,9 +1576,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_01",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_01"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1519,9 +1627,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_02",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_02"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1567,9 +1678,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_03",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_03"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1619,9 +1733,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_04",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_04"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1671,9 +1788,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_05",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_05"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1723,9 +1843,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_06",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_06"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1775,9 +1898,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours13/Bee_07",
-                "course_yaml": "Cours13/course.yaml"
+                "folders": [
+                    "Cours13/Bee_07"
+                ],
+                "files": [
+                    "Cours13/course.yaml"
+                ]
             }
         },
         {
@@ -1823,9 +1949,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_1",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_1"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -1871,9 +2000,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_2",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_2"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -1919,9 +2051,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_3",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_3"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -1967,9 +2102,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_4",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_4"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -2015,9 +2153,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_5",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_5"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -2063,9 +2204,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_6",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_6"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -2115,9 +2259,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_7",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_7"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -2163,9 +2310,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_8",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_8"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -2203,9 +2353,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours2/Artist_9",
-                "course_yaml": "Cours2/course.yaml"
+                "folders": [
+                    "Cours2/Artist_9"
+                ],
+                "files": [
+                    "Cours2/course.yaml"
+                ]
             }
         },
         {
@@ -2251,9 +2404,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours3/Artist_1",
-                "course_yaml": "Cours3/course.yaml"
+                "folders": [
+                    "Cours3/Artist_1"
+                ],
+                "files": [
+                    "Cours3/course.yaml"
+                ]
             }
         },
         {
@@ -2303,9 +2459,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours3/Artist_2",
-                "course_yaml": "Cours3/course.yaml"
+                "folders": [
+                    "Cours3/Artist_2"
+                ],
+                "files": [
+                    "Cours3/course.yaml"
+                ]
             }
         },
         {
@@ -2355,9 +2514,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours3/Artist_3",
-                "course_yaml": "Cours3/course.yaml"
+                "folders": [
+                    "Cours3/Artist_3"
+                ],
+                "files": [
+                    "Cours3/course.yaml"
+                ]
             }
         },
         {
@@ -2411,9 +2573,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours3/Artist_4",
-                "course_yaml": "Cours3/course.yaml"
+                "folders": [
+                    "Cours3/Artist_4"
+                ],
+                "files": [
+                    "Cours3/course.yaml"
+                ]
             }
         },
         {
@@ -2463,9 +2628,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours3/Artist_5",
-                "course_yaml": "Cours3/course.yaml"
+                "folders": [
+                    "Cours3/Artist_5"
+                ],
+                "files": [
+                    "Cours3/course.yaml"
+                ]
             }
         },
         {
@@ -2507,9 +2675,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours4/Maze_bee_01",
-                "course_yaml": "Cours4/course.yaml"
+                "folders": [
+                    "Cours4/Maze_bee_01"
+                ],
+                "files": [
+                    "Cours4/course.yaml"
+                ]
             }
         },
         {
@@ -2555,9 +2726,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours4/Maze_bee_02",
-                "course_yaml": "Cours4/course.yaml"
+                "folders": [
+                    "Cours4/Maze_bee_02"
+                ],
+                "files": [
+                    "Cours4/course.yaml"
+                ]
             }
         },
         {
@@ -2603,9 +2777,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours4/Maze_bee_03",
-                "course_yaml": "Cours4/course.yaml"
+                "folders": [
+                    "Cours4/Maze_bee_03"
+                ],
+                "files": [
+                    "Cours4/course.yaml"
+                ]
             }
         },
         {
@@ -2651,9 +2828,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours4/Maze_bee_04",
-                "course_yaml": "Cours4/course.yaml"
+                "folders": [
+                    "Cours4/Maze_bee_04"
+                ],
+                "files": [
+                    "Cours4/course.yaml"
+                ]
             }
         },
         {
@@ -2703,9 +2883,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours4/Maze_bee_05",
-                "course_yaml": "Cours4/course.yaml"
+                "folders": [
+                    "Cours4/Maze_bee_05"
+                ],
+                "files": [
+                    "Cours4/course.yaml"
+                ]
             }
         },
         {
@@ -2759,9 +2942,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours4/Maze_bee_06",
-                "course_yaml": "Cours4/course.yaml"
+                "folders": [
+                    "Cours4/Maze_bee_06"
+                ],
+                "files": [
+                    "Cours4/course.yaml"
+                ]
             }
         },
         {
@@ -2807,9 +2993,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours5/Maze_bee_01",
-                "course_yaml": "Cours5/course.yaml"
+                "folders": [
+                    "Cours5/Maze_bee_01"
+                ],
+                "files": [
+                    "Cours5/course.yaml"
+                ]
             }
         },
         {
@@ -2855,9 +3044,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours5/Maze_bee_02",
-                "course_yaml": "Cours5/course.yaml"
+                "folders": [
+                    "Cours5/Maze_bee_02"
+                ],
+                "files": [
+                    "Cours5/course.yaml"
+                ]
             }
         },
         {
@@ -2907,9 +3099,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours5/Maze_bee_03",
-                "course_yaml": "Cours5/course.yaml"
+                "folders": [
+                    "Cours5/Maze_bee_03"
+                ],
+                "files": [
+                    "Cours5/course.yaml"
+                ]
             }
         },
         {
@@ -2959,9 +3154,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours5/Maze_bee_04",
-                "course_yaml": "Cours5/course.yaml"
+                "folders": [
+                    "Cours5/Maze_bee_04"
+                ],
+                "files": [
+                    "Cours5/course.yaml"
+                ]
             }
         },
         {
@@ -3011,9 +3209,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours5/Maze_bee_05",
-                "course_yaml": "Cours5/course.yaml"
+                "folders": [
+                    "Cours5/Maze_bee_05"
+                ],
+                "files": [
+                    "Cours5/course.yaml"
+                ]
             }
         },
         {
@@ -3055,9 +3256,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_01",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_01"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3103,9 +3307,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_02",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_02"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3151,9 +3358,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_03",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_03"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3199,9 +3409,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_04",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_04"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3247,9 +3460,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_05",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_05"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3295,9 +3511,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_06",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_06"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3343,9 +3562,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Cours6/Maze_07",
-                "course_yaml": "Cours6/course.yaml"
+                "folders": [
+                    "Cours6/Maze_07"
+                ],
+                "files": [
+                    "Cours6/course.yaml"
+                ]
             }
         },
         {
@@ -3379,9 +3601,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "GeneralCourse/SimpleMaze",
-                "course_yaml": "GeneralCourse/course.yaml"
+                "folders": [
+                    "GeneralCourse/SimpleMaze"
+                ],
+                "files": [
+                    "GeneralCourse/course.yaml"
+                ]
             }
         },
         {
@@ -3410,9 +3635,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/1_le_plus_leger",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/1_le_plus_leger"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3446,9 +3674,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/2_le_plus_leger_custom",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/2_le_plus_leger_custom"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3477,9 +3708,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/3_QCM1",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/3_QCM1"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3513,9 +3747,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/4_selection_sort",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/4_selection_sort"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3544,9 +3781,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/5_QCM2",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/5_QCM2"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3580,9 +3820,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/6_insertion_sort",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/6_insertion_sort"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3616,9 +3859,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/6_insertion_sort1",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/6_insertion_sort1"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         },
         {
@@ -3652,9 +3898,12 @@
                 }
             ],
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Tri_PDS/7_quick_sort",
-                "course_yaml": "Tri_PDS/course.yaml"
+                "folders": [
+                    "Tri_PDS/7_quick_sort"
+                ],
+                "files": [
+                    "Tri_PDS/course.yaml"
+                ]
             }
         }
     ],
@@ -3663,6 +3912,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-08T12:04:22.862Z",
+    "extraction_date": "2019-12-08T22:43:45.234Z",
     "url": "https://github.com/CelineDknp/JobBlockly"
 }

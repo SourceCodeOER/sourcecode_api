@@ -1,4 +1,5 @@
-const {promises: fs, readFileSync} = require("fs");
+const {promises: fs, readFileSync, existsSync} = require("fs");
+const path = require("path");
 const archiver = require('archiver');
 
 exports = module.exports = {
@@ -38,5 +39,24 @@ exports = module.exports = {
     },
     "handler": function (argv) {
         // TODO
+        const updated_exercises = argv.inputFile.exercises.map(exercise => {
+            // to skip some exercises that doesn't have file or have already a file
+            if (!exercise.hasOwnProperty("archive_properties") || exercise.hasOwnProperty("file")) {
+                return exercise;
+            }
+            if (exercise.hasOwnProperty("archive_properties")) {
+                console.log("")
+            }
+            return exercise;
+        });
+        console.log();
+    }
+};
+
+const exists = (dir) => {
+    try {
+        return existsSync(dir);
+    } catch (e) {
+        return false;
     }
 };

@@ -41,9 +41,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/105_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "105_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "105_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -87,9 +90,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/106_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "106_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "106_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -133,9 +139,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/108_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "108_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "108_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -179,9 +188,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/111_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "111_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "111_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -225,9 +237,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/112_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "112_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "112_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -271,9 +286,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/14_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "14_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "14_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -317,9 +335,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/85_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "85_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "85_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -363,9 +384,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/87_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "87_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "87_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -409,9 +433,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/88_java",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "88_java",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "88_java"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -460,9 +487,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q10",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q10",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q10"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -511,9 +541,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q11",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q11",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q11"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -562,9 +595,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q12",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q12",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q12"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -613,9 +649,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q13",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q13",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q13"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -664,9 +703,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q14",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q14",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q14"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -715,9 +757,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q15",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q15",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q15"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -766,9 +811,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q16",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q16",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q16"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -817,9 +865,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q17",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q17",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q17"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -863,9 +914,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q18",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q18",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q18"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -919,9 +973,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -965,9 +1022,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q20",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q20",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q20"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1021,9 +1081,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1077,9 +1140,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1128,9 +1194,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1184,9 +1253,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1235,9 +1307,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1291,9 +1366,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1337,9 +1415,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1378,9 +1459,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1429,9 +1513,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1470,9 +1557,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m01_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m01_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m01_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1511,9 +1601,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1567,9 +1660,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1618,9 +1714,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02dem3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02dem3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1669,9 +1768,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02dem4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02dem4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1720,9 +1822,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02dem5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02dem5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02dem5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1761,9 +1866,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02ec1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02ec1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02ec1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1812,9 +1920,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1863,9 +1974,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q10",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q10",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q10"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1914,9 +2028,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1965,9 +2082,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2016,9 +2136,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2067,9 +2190,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2113,9 +2239,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2164,9 +2293,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2215,9 +2347,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2256,9 +2391,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2307,9 +2445,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2348,9 +2489,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m02_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m02_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m02_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2384,9 +2528,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2435,9 +2582,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2486,9 +2636,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03dem3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03dem3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2537,9 +2690,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03dem4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03dem4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2588,9 +2744,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03dem5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03dem5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03dem5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2634,9 +2793,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2680,9 +2842,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2731,9 +2896,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2782,9 +2950,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2833,9 +3004,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2884,9 +3058,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2935,9 +3112,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2976,9 +3156,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03real1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03real1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03real1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3022,9 +3205,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3063,9 +3249,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m03_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m03_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m03_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3109,9 +3298,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3160,9 +3352,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3211,9 +3406,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04dem3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04dem3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3262,9 +3460,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04dem4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04dem4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3308,9 +3509,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04dem5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04dem5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04dem5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3354,9 +3558,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3405,9 +3612,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q10",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q10",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q10"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3456,9 +3666,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q11",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q11",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q11"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3502,9 +3715,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3548,9 +3764,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3594,9 +3813,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3640,9 +3862,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3686,9 +3911,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3737,9 +3965,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3783,9 +4014,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3829,9 +4063,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3870,9 +4107,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3921,9 +4161,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3962,9 +4205,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m04_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m04_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m04_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4003,9 +4249,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4054,9 +4303,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4105,9 +4357,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05dem3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05dem3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4156,9 +4411,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05dem4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05dem4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4207,9 +4465,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05dem5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05dem5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05dem5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4258,9 +4519,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4309,9 +4573,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q10",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q10",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q10"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4360,9 +4627,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q11",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q11",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q11"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4406,9 +4676,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q12",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q12",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q12"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4457,9 +4730,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4508,9 +4784,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4559,9 +4838,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4610,9 +4892,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4661,9 +4946,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4712,9 +5000,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4763,9 +5054,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4814,9 +5108,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4855,9 +5152,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4901,9 +5201,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4942,9 +5245,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m05_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m05_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m05_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4988,9 +5294,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5034,9 +5343,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5080,9 +5392,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06dem3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06dem3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5121,9 +5436,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06dem4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06dem4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06dem4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5167,9 +5485,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5213,9 +5534,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q10",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q10",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q10"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5259,9 +5583,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q11",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q11",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q11"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5305,9 +5632,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5351,9 +5681,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5397,9 +5730,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5443,9 +5779,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5489,9 +5828,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5535,9 +5877,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5581,9 +5926,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5627,9 +5975,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5668,9 +6019,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5714,9 +6068,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5755,9 +6112,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m06_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m06_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m06_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5801,9 +6161,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5847,9 +6210,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5893,9 +6259,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5939,9 +6308,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q10",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q10",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q10"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -5985,9 +6357,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q11",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q11",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q11"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6031,9 +6406,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6077,9 +6455,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6123,9 +6504,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6169,9 +6553,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6215,9 +6602,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6261,9 +6651,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6307,9 +6700,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6353,9 +6749,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6399,9 +6798,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6445,9 +6847,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6486,9 +6891,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m07_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m07_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m07_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6532,9 +6940,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6578,9 +6989,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6624,9 +7038,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6670,9 +7087,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6716,9 +7136,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6762,9 +7185,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6808,9 +7234,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6854,9 +7283,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6900,9 +7332,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6941,9 +7376,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -6982,9 +7420,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m08_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m08_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m08_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7023,9 +7464,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7069,9 +7513,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7115,9 +7562,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7161,9 +7611,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7207,9 +7660,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7253,9 +7709,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7299,9 +7758,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7345,9 +7807,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7391,9 +7856,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09Q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09Q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09Q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7437,9 +7905,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7488,9 +7959,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09_bf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09_bf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09_bf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7529,9 +8003,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m09_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m09_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m09_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7580,9 +8057,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10dem1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10dem1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10dem1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7631,9 +8111,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10dem2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10dem2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10dem2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7677,9 +8160,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7728,9 +8214,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7774,9 +8263,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7825,9 +8317,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7871,9 +8366,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7917,9 +8415,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7958,9 +8459,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -7999,9 +8503,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m10_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m10_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m10_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8040,9 +8547,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem11",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11dem11",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11dem11"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8081,9 +8591,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem12",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11dem12",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11dem12"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8127,9 +8640,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11dem13",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11dem13",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11dem13"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8178,9 +8694,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11Q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11Q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8229,9 +8748,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8280,9 +8802,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11Q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11Q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8331,9 +8856,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11Q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11Q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8377,9 +8905,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11Q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11Q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8428,9 +8959,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11Q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11Q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11Q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8474,9 +9008,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8515,9 +9052,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m11_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m11_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m11_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8552,9 +9092,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011enonce_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011enonce_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011enonce_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8594,9 +9137,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q1_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q1_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q1_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8636,9 +9182,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q2_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q2_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q2_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8678,9 +9227,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q3_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q3_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q3_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8720,9 +9272,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q4_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q4_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q4_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8762,9 +9317,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q5_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q5_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q5_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8804,9 +9362,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q6_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q6_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q6_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8846,9 +9407,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m12_examj2011q7_online",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m12_examj2011q7_online",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m12_examj2011q7_online"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8887,9 +9451,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/m1real",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m1real",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m1real"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8929,9 +9496,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -8971,9 +9541,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9013,9 +9586,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9055,9 +9631,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9097,9 +9676,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q5",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q5",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q5"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9139,9 +9721,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q6",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q6",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q6"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9181,9 +9766,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX12_examj2011q7",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX12_examj2011q7",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX12_examj2011q7"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9227,9 +9815,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX1Q19",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX1Q19",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX1Q19"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9273,9 +9864,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX2ec2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX2ec2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX2ec2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9324,9 +9918,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX2Q2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX2Q2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX2Q2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9370,9 +9967,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX3Q8",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX3Q8",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX3Q8"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9416,9 +10016,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/mX3Q9",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mX3Q9",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mX3Q9"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -9453,9 +10056,12 @@
             ],
             "url": "https://inginious.org/course/uclouvain-cs1-java/rev_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "rev_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "rev_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         }
     ],
@@ -9464,6 +10070,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-08T12:03:59.259Z",
+    "extraction_date": "2019-12-08T22:44:06.753Z",
     "url": "https://github.com/UCL-INGI/CS1-Java"
 }

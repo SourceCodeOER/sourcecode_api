@@ -32,9 +32,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/bilan_hashing",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bilan_hashing",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bilan_hashing"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -78,9 +81,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/bilan_m1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bilan_m1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bilan_m1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -129,9 +135,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/bilan_m2_global_warming",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bilan_m2_global_warming",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bilan_m2_global_warming"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -175,9 +184,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/bilan_m4_incrementalhash",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bilan_m4_incrementalhash",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bilan_m4_incrementalhash"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -216,9 +228,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/bilan_m5_huffman",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bilan_m5_huffman",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bilan_m5_huffman"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -267,9 +282,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/bilan_m6_cc",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bilan_m6_cc",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bilan_m6_cc"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -309,9 +327,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/closestpair",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "closestpair",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "closestpair"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -356,9 +377,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/EXAM0119LinearProbing",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "EXAM0119LinearProbing",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "EXAM0119LinearProbing"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -402,9 +426,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/globalwarming_graph",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "globalwarming_graph",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "globalwarming_graph"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -448,9 +475,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/globalwarming_unionfind",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "globalwarming_unionfind",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "globalwarming_unionfind"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -495,9 +525,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/m1stack",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m1stack",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m1stack"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -537,9 +570,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/m1stacktests",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m1stacktests",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m1stacktests"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -578,9 +614,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/m2bilanqcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "m2bilanqcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "m2bilanqcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -624,9 +663,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/median",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "median",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "median"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -666,9 +708,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/p1circularlinkedlist",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "p1circularlinkedlist",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "p1circularlinkedlist"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -713,9 +758,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part1CircularLinkedList",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part1CircularLinkedList",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part1CircularLinkedList"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -765,9 +813,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part2GlobalWarming",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part2GlobalWarming",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part2GlobalWarming"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -807,9 +858,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part2Median",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part2Median",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part2Median"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -849,9 +903,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part2MergeSort",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part2MergeSort",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part2MergeSort"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -886,9 +943,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part2QCM",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part2QCM",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part2QCM"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -928,9 +988,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part2UnionIntervals",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part2UnionIntervals",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part2UnionIntervals"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -980,9 +1043,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART3Bst",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART3Bst",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART3Bst"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1022,9 +1088,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART3OrderedBstIterator",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART3OrderedBstIterator",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART3OrderedBstIterator"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1059,9 +1128,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART3Qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART3Qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART3Qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1101,9 +1173,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART3QcmBt",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART3QcmBt",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART3QcmBt"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1143,9 +1218,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART3Rbt",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART3Rbt",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART3Rbt"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1180,9 +1258,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART3WriteUnittestsRedBlackTree",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART3WriteUnittestsRedBlackTree",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART3WriteUnittestsRedBlackTree"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1222,9 +1303,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part4IncrementalHash",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part4IncrementalHash",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part4IncrementalHash"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1264,9 +1348,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part4QcmHashing",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part4QcmHashing",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part4QcmHashing"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1306,9 +1393,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part4QcmRk",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part4QcmRk",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part4QcmRk"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1343,9 +1433,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part4RabinKarp",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part4RabinKarp",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part4RabinKarp"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1385,9 +1478,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/PART5BinaryHeapPush",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PART5BinaryHeapPush",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PART5BinaryHeapPush"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1427,9 +1523,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part5GlobalWarming",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part5GlobalWarming",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part5GlobalWarming"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1464,9 +1563,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part5Heap",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part5Heap",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part5Heap"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1501,9 +1603,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part5Huffman",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part5Huffman",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part5Huffman"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1538,9 +1643,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part5UnionFind",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part5UnionFind",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part5UnionFind"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1585,9 +1693,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6BreadthFirstPaths",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6BreadthFirstPaths",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6BreadthFirstPaths"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1637,9 +1748,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6ConnectedComponents",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6ConnectedComponents",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6ConnectedComponents"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1679,9 +1793,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6DepthFirstPaths",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6DepthFirstPaths",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6DepthFirstPaths"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1721,9 +1838,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6Digraph",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6Digraph",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6Digraph"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1763,9 +1883,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6DijkstraForWordTransformation",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6DijkstraForWordTransformation",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6DijkstraForWordTransformation"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1810,9 +1933,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6GlobalWarming",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6GlobalWarming",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6GlobalWarming"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1852,9 +1978,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/Part6Maze",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Part6Maze",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Part6Maze"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1889,9 +2018,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/participation_rules",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "participation_rules",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "participation_rules"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1930,9 +2062,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexamen_rabinkarp",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexamen_rabinkarp",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexamen_rabinkarp"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1976,9 +2111,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_bfs",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_bfs",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_bfs"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2023,9 +2161,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_bloomfilter",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_bloomfilter",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_bloomfilter"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2064,9 +2205,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_dfs",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_dfs",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_dfs"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2105,9 +2249,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_heap",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_heap",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_heap"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2151,9 +2298,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_merge_sort",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_merge_sort",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_merge_sort"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2192,9 +2342,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_redblacktree",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_redblacktree",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_redblacktree"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2233,9 +2386,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_tree_qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_tree_qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_tree_qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2274,9 +2430,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/preexam_unionfind",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "preexam_unionfind",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "preexam_unionfind"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2320,9 +2479,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/whiteexam2016bst",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "whiteexam2016bst",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "whiteexam2016bst"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2361,9 +2523,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1121-2016/whiteexam2016qcm",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "whiteexam2016qcm",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "whiteexam2016qcm"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         }
     ],
@@ -2372,6 +2537,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-08T12:04:27.476Z",
+    "extraction_date": "2019-12-08T22:43:53.325Z",
     "url": "https://github.com/UCL-INGI/LSINF1121-Data-Structures-And-Algorithms"
 }

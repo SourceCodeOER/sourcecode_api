@@ -142,11 +142,10 @@ module.exports = async function (options) {
             // To allow file uploads, we need some extra metadata
             if (course_match.length > 0) {
                 exercise["archive_properties"] = {
-                    "type": "inginious",
                     // relative path, in order to be cross platform and handle multiple cases
                     // So I used / instead of the ugly \\ of Windows for path
-                    "exercise_folder": slash(path.relative(gitFolder, dirname(exercise_data))),
-                    "course_yaml": slash(path.relative(gitFolder, course_match))
+                    "folders": [slash(path.relative(gitFolder, dirname(exercise_data)))],
+                    "files": [slash(path.relative(gitFolder, course_match))]
                 }
             }
 

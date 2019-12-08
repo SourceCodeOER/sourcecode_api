@@ -50,9 +50,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleCoverage",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "$test$/exampleCoverage",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "$test$/exampleCoverage"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -105,9 +108,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/$test$\\exampleJavaGrading",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "$test$/exampleJavaGrading",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "$test$/exampleJavaGrading"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -156,9 +162,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AbstractClass",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "AbstractClass",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "AbstractClass"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -202,9 +211,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/AccessModifiers",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "AccessModifiers",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "AccessModifiers"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -253,9 +265,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Array2D",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Array2D",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Array2D"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -299,9 +314,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ASCIIDecoder",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ASCIIDecoder",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ASCIIDecoder"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -350,9 +368,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BlackBox",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "BlackBox",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "BlackBox"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -401,9 +422,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BoundedBuffer",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "BoundedBuffer",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "BoundedBuffer"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -447,9 +471,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/BubbleSortInvariant",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "BubbleSortInvariant",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "BubbleSortInvariant"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -493,9 +520,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Casting",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Casting",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Casting"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -544,9 +574,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CircularLL",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "CircularLL",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "CircularLL"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -590,9 +623,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "CodeAccuracy",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "CodeAccuracy"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -641,9 +677,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CodeAccuracy2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "CodeAccuracy2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "CodeAccuracy2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -687,9 +726,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CommonErrors",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "CommonErrors",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "CommonErrors"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -733,9 +775,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorAndCollections",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ComparatorAndCollections",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ComparatorAndCollections"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -784,9 +829,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComparatorvsComparable",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ComparatorvsComparable",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ComparatorvsComparable"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -835,9 +883,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityArraySearch",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ComplexityArraySearch",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ComplexityArraySearch"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -881,9 +932,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexityMCQ1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ComplexityMCQ1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ComplexityMCQ1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -927,9 +981,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/complexityMCQ2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "complexityMCQ2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "complexityMCQ2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -973,9 +1030,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ComplexitySpaceMCQ",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ComplexitySpaceMCQ",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ComplexitySpaceMCQ"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1024,9 +1084,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Coverage",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Coverage",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Coverage"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1075,9 +1138,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/CyclicBarrier",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "CyclicBarrier",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "CyclicBarrier"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1126,9 +1192,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Factory",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Factory",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Factory"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1177,9 +1246,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Fibonacci",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Fibonacci",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Fibonacci"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1228,9 +1300,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FList",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "FList",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "FList"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1279,9 +1354,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FListMergeSort",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "FListMergeSort",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "FListMergeSort"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1330,9 +1408,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/FTree",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "FTree",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "FTree"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1381,9 +1462,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Future",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Future",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Future"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1432,9 +1516,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Generics",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Generics"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1483,9 +1570,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Generics2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Generics2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1534,9 +1624,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Generics3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Generics3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Generics3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1585,9 +1678,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/HanoiTower",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "HanoiTower",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "HanoiTower"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1636,9 +1732,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/InfiniteStreams",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "InfiniteStreams",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "InfiniteStreams"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1687,9 +1786,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Inheritance",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Inheritance",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Inheritance"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1738,9 +1840,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Introduction",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Introduction",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Introduction"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1789,9 +1894,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LambdaExpressioninJava",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "LambdaExpressioninJava",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "LambdaExpressioninJava"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1840,9 +1948,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/LearnException",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "LearnException",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "LearnException"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1891,9 +2002,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MakeMistakeToUnderstandThem",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "MakeMistakeToUnderstandThem",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "MakeMistakeToUnderstandThem"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1942,9 +2056,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MaximumSumSubarray",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "MaximumSumSubarray",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "MaximumSumSubarray"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1983,9 +2100,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MergeSortImplementation",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "MergeSortImplementation",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "MergeSortImplementation"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2034,9 +2154,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/MyArrayList",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "MyArrayList",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "MyArrayList"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2085,9 +2208,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Observer",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Observer",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Observer"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2136,9 +2262,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Optional",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Optional",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Optional"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2187,9 +2316,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ParallelelMergeSort",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ParallelelMergeSort",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ParallelelMergeSort"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2238,9 +2370,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/PostScript",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PostScript",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PostScript"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2289,9 +2424,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ProducerConsumer",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ProducerConsumer",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ProducerConsumer"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2340,9 +2478,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/QueueWithStacks",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "QueueWithStacks",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "QueueWithStacks"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2391,9 +2532,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SharedCounter",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "SharedCounter",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "SharedCounter"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2437,9 +2581,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesImplementation",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "SieveOfEratosthenesImplementation",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "SieveOfEratosthenesImplementation"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2478,9 +2625,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/SieveOfEratosthenesMCQ",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "SieveOfEratosthenesMCQ",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "SieveOfEratosthenesMCQ"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2529,9 +2679,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StackWithQueue",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "StackWithQueue",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "StackWithQueue"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2580,9 +2733,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Streams",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Streams"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2631,9 +2787,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Streams2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Streams2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2682,9 +2841,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/StringUtils",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "StringUtils",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "StringUtils"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2733,9 +2895,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ThreadsIntroduction",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ThreadsIntroduction",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ThreadsIntroduction"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2784,9 +2949,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeCombineWith",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "TreeCombineWith",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "TreeCombineWith"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2835,9 +3003,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeInorder",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "TreeInorder",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "TreeInorder"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2886,9 +3057,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/TreeSame",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "TreeSame",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "TreeSame"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2937,9 +3111,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/valley",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "valley",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "valley"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2983,9 +3160,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/ValueOrReference",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "ValueOrReference",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "ValueOrReference"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3034,9 +3214,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Visitor",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Visitor",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Visitor"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3085,9 +3268,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/VisitorBasic",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "VisitorBasic",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "VisitorBasic"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         }
     ],
@@ -3096,6 +3282,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-08T12:05:29.544Z",
+    "extraction_date": "2019-12-08T22:44:13.627Z",
     "url": "https://github.com/UCL-INGI/LEPL1402"
 }

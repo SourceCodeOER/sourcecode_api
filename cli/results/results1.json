@@ -36,9 +36,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/absolute_value",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "absolute_value",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "absolute_value"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -87,9 +90,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/advanced_queue",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "advanced_queue",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "advanced_queue"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -138,9 +144,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/alist",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "alist",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "alist"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -196,9 +205,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/array_mmap",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "array_mmap",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "array_mmap"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -247,9 +259,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "asm1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "asm1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -298,9 +313,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "asm2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "asm2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -349,9 +367,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm3",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "asm3",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "asm3"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -400,9 +421,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/asm4",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "asm4",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "asm4"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -455,9 +479,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/basic_linked_list",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "basic_linked_list",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "basic_linked_list"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -501,9 +528,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_leftmost",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bits_leftmost",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bits_leftmost"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -547,9 +577,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_rightmost",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bits_rightmost",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bits_rightmost"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -593,9 +626,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_spin",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bits_spin",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bits_spin"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -639,9 +675,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_strong",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bits_strong",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bits_strong"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -685,9 +724,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bits_sum",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bits_sum",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bits_sum"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -731,9 +773,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bitwise-ops",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bitwise-ops",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bitwise-ops"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -777,9 +822,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/bookstore",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "bookstore",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "bookstore"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -832,9 +880,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/BST",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "BST",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "BST"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -874,9 +925,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/BST-Insert_Delete",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "BST-Insert_Delete",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "BST-Insert_Delete"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -920,9 +974,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/btree-access",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "btree-access",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "btree-access"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -966,9 +1023,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/calloc2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "calloc2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "calloc2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1017,9 +1077,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/cmp_func",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "cmp_func",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "cmp_func"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1068,9 +1131,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/commandetest",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "commandetest",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "commandetest"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1118,9 +1184,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/count_zero",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "count_zero",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "count_zero"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1155,9 +1224,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/dames",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "dames",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "dames"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1206,9 +1278,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/DoubleLL",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "DoubleLL",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "DoubleLL"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1252,9 +1327,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/EmployeList",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "EmployeList",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "EmployeList"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1298,9 +1376,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/factorial",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "factorial",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "factorial"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1340,9 +1421,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Filemap",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Filemap",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Filemap"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1391,9 +1475,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/fork",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "fork",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "fork"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1437,9 +1524,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/gcd",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "gcd",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "gcd"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1483,9 +1573,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/hexadecimal",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "hexadecimal",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "hexadecimal"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1529,9 +1622,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/index-text",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "index-text",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "index-text"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1575,9 +1671,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/insertion-sort",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "insertion-sort",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "insertion-sort"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1626,9 +1725,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/intersection",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "intersection",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "intersection"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1668,9 +1770,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_lists_1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "linked_lists_1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "linked_lists_1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1710,9 +1815,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_lists_2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "linked_lists_2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "linked_lists_2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1761,9 +1869,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/linked_structs",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "linked_structs",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "linked_structs"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1807,9 +1918,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/main_argc",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "main_argc",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "main_argc"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1849,9 +1963,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/malloc",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "malloc",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "malloc"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1895,9 +2012,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/matrix-mult",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "matrix-mult",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "matrix-mult"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -1945,9 +2065,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/mini-projet-string",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "mini-projet-string",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "mini-projet-string"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2000,9 +2123,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/modem_read",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "modem_read",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "modem_read"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2051,9 +2177,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/multi-free",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "multi-free",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "multi-free"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2097,9 +2226,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/my-sem",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "my-sem",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "my-sem"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2143,9 +2275,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/my_strlen",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "my_strlen",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "my_strlen"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2194,9 +2329,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/order_relation_linked_list",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "order_relation_linked_list",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "order_relation_linked_list"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2226,9 +2364,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/p3check",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "p3check",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "p3check"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2272,9 +2413,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/palindrome",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "palindrome",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "palindrome"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2323,9 +2467,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/PC",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "PC",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "PC"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2369,9 +2516,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/pointer_types",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "pointer_types",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "pointer_types"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2415,9 +2565,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/poly",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "poly",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "poly"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2466,9 +2619,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/printf",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "printf",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "printf"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2517,9 +2673,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/reverse",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "reverse",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "reverse"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2563,9 +2722,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/rpn-calc",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "rpn-calc",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "rpn-calc"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2609,9 +2771,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/run_redir",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "run_redir",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "run_redir"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2654,9 +2819,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_ctf1",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s1_ctf1",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s1_ctf1"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2695,9 +2863,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_ctf2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s1_ctf2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s1_ctf2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2740,9 +2911,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_diff",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s1_diff",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s1_diff"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2781,9 +2955,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_grep",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s1_grep",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s1_grep"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2826,9 +3003,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_pipes",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s1_pipes",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s1_pipes"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2871,9 +3051,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s1_tar",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s1_tar",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s1_tar"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2930,9 +3113,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s2_make",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s2_make"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -2984,9 +3170,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make_calc",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s2_make_calc",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s2_make_calc"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3033,9 +3222,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s2_make_mcq",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s2_make_mcq",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s2_make_mcq"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3077,9 +3269,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_cunit_basics",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s3_cunit_basics",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s3_cunit_basics"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3126,9 +3321,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s3_make",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s3_make"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3170,9 +3368,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make_mcq",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s3_make_mcq",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s3_make_mcq"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3224,9 +3425,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s3_make_tests",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s3_make_tests",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s3_make_tests"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3282,9 +3486,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s4_file_save_struct",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s4_file_save_struct",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s4_file_save_struct"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3344,9 +3551,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s4_read_file_array_integer",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s4_read_file_array_integer",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s4_read_file_array_integer"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3398,9 +3608,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_big_array_get_set",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s5_big_array_get_set",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s5_big_array_get_set"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3460,9 +3673,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_file_copy",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s5_file_copy",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s5_file_copy"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3510,9 +3726,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/s5_file_exists",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "s5_file_exists",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "s5_file_exists"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3556,9 +3775,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Search_and_replace",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Search_and_replace",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Search_and_replace"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3602,9 +3824,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/set_bit",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "set_bit",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "set_bit"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3644,9 +3869,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/shell",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "shell",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "shell"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3695,9 +3923,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/simple_stack",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "simple_stack",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "simple_stack"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3746,9 +3977,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/sleep_malloc",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "sleep_malloc",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "sleep_malloc"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3783,9 +4017,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/soumission-projet-fractale",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "soumission-projet-fractale",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "soumission-projet-fractale"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3843,9 +4080,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/stack_vs_heap",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "stack_vs_heap",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "stack_vs_heap"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3889,9 +4129,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/static_counter",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "static_counter",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "static_counter"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3939,9 +4182,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/strcpy",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "strcpy",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "strcpy"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -3990,9 +4236,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/strsplit",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "strsplit",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "strsplit"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4041,9 +4290,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/swap",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "swap",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "swap"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4091,9 +4343,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/swap2int",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "swap2int",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "swap2int"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4137,9 +4392,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/tab_find",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "tab_find",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "tab_find"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4188,9 +4446,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/tri",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "tri",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "tri"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4229,9 +4490,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/truefalse",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "truefalse",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "truefalse"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4275,9 +4539,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/types",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "types",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "types"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4321,9 +4588,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/types2",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "types2",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "types2"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         },
         {
@@ -4372,9 +4642,12 @@
             ],
             "url": "https://inginious.info.ucl.ac.be/course/LSINF1252/Vectorfile",
             "archive_properties": {
-                "type": "inginious",
-                "exercise_folder": "Vectorfile",
-                "course_yaml": "course.yaml"
+                "folders": [
+                    "Vectorfile"
+                ],
+                "files": [
+                    "course.yaml"
+                ]
             }
         }
     ],
@@ -4383,6 +4656,6 @@
         "1": "Misconception",
         "2": "autres"
     },
-    "extraction_date": "2019-12-08T12:03:40.060Z",
+    "extraction_date": "2019-12-08T22:44:25.118Z",
     "url": "https://github.com/UCL-INGI/LSINF1252"
 }
