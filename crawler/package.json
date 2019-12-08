@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "LSINF1252": "node index.js --settings demo/settings1.json",
-    "LEPL1402": "node index.js --settings demo/settings2.json",
-    "CS1-Java": "node index.js --settings demo/settings3.json",
-    "LSINF1121": "node index.js --settings demo/settings4.json",
-    "JobBlockly": "node index.js --settings demo/settings5.json",
-    "Cuisine-Algorithmique": "node index.js --settings demo/settings6.json"
+    "LSINF1252": "node index.js crawler --settings demo/settings1.json",
+    "LEPL1402": "node index.js crawler --settings demo/settings2.json",
+    "CS1-Java": "node index.js crawler --settings demo/settings3.json",
+    "LSINF1121": "node index.js crawler --settings demo/settings4.json",
+    "JobBlockly": "node index.js crawler --settings demo/settings5.json",
+    "Cuisine-Algorithmique": "node index.js crawler --settings demo/settings6.json"
   },
   "author": "jy95",
   "repository": {
