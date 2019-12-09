@@ -2,5 +2,5 @@
   "outputFile" : "./results-with-files/results2.json",
   "inputFile": "./results/results2.json",
   "baseFolder": "./temp/LEPL1402",
-  "tempFolder": "./results-with-files/LEPL1402"
+  "zipFolder": "./results-with-files/LEPL1402"
 }

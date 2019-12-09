@@ -2,5 +2,5 @@
   "outputFile" : "./results-with-files/results6.json",
   "inputFile": "./results/results6.json",
   "baseFolder": "./temp/cuisine-algorithmique",
-  "tempFolder": "./results-with-files/cuisine-algorithmique"
+  "zipFolder": "./results-with-files/cuisine-algorithmique"
 }

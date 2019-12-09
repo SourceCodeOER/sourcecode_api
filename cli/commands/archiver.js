@@ -1,4 +1,4 @@
-const {promises: fs, readFileSync, existsSync} = require("fs");
+const {promises: fs, readFileSync, existsSync, createWriteStream} = require("fs");
 const path = require("path");
 const archiver = require('archiver');
 
@@ -73,38 +73,75 @@ const exists = (dir) => {
     }
 };
 
-async function add_zip_files_to_exercises(argv) {
-    return argv.inputFile.exercises.map((exercise, index) => {
-        // to skip some exercises that doesn't have file or have already a file
-        if (!exercise.hasOwnProperty("archive_properties") || exercise.hasOwnProperty("file")) {
-            return exercise;
-        }
-        // if we already have created the file but because of whatever error, we were unable to save it
-        // We must strip out from title special characters :
-        const clean_title = exercise.title.replace(/[&\/\\#,+()$~%.'":*?<>{}\[\]]/g, '');
-        const filename = `SourceCode-exercise-${index}-${clean_title}.zip`;
-        const storage_path = path.resolve(argv.zipFolder, filename);
+// Zip file with max compression; to save space
+const createZipArchive = () => archiver('zip', {
+    zlib: {level: 9} // Sets the compression level.
+});
 
-        // Correct the mistake now
-        if (exists(storage_path)){
+async function add_zip_files_to_exercises(argv) {
+
+    return Promise.all(
+        argv
+            .inputFile
+            .exercises
+            .map(async (exercise, index) => handle_single_exercise(argv, exercise, index))
+    );
+}
+
+// To handle a single exercise
+async function handle_single_exercise(argv, exercise, index) {
+// to skip some exercises that doesn't have file or have already a file
+    if (!exercise.hasOwnProperty("archive_properties") || exercise.hasOwnProperty("file")) {
+        return exercise;
+    }
+    // if we already have created the file but because of whatever error, we were unable to save it
+    // We must strip out from title special characters :
+    const clean_title = exercise.title.replace(/[&\/\\#,+()$~%.'":*?<>{}\[\]]/g, '');
+    const filename = `SourceCode-exercise-${index}-${clean_title}.zip`;
+    const storage_path = path.resolve(argv.zipFolder, filename);
+
+    // Correct the mistake now
+    if (exists(storage_path)) {
+        return Object.assign({}, exercise, {
+            file: storage_path
+        })
+    }
+
+    // the file doesn't exist, we can create it , if conditions are meet
+    if (exercise.hasOwnProperty("archive_properties")) {
+        const archiveProperties = exercise.archive_properties;
+        const something_to_add = [
+            archiveProperties.files,
+            archiveProperties.folders
+        ].some((resource) => resource.length > 0);
+
+        if (something_to_add) {
+            // set up variables needed for that
+            let archive = createZipArchive();
+            let output = createWriteStream(storage_path);
+            // add directories
+            for (const folder of archiveProperties.folders) {
+                const folderPath = path.resolve(argv.baseFolder, folder);
+                archive.directory(folderPath);
+            }
+            // add files
+            for (const file of archiveProperties.files) {
+                const filePath = path.resolve(argv.baseFolder, file);
+                archive.file(filePath);
+            }
+
+            // pipe archive data to the file
+            archive.pipe(output);
+
+            // Wait for completion
+            await archive.finalize();
+
+            // Finally, add this file into the exercise
             return Object.assign({}, exercise, {
                 file: storage_path
             })
         }
-
-        // the file doesn't exist, we can create it , if conditions are meet
-        if (exercise.hasOwnProperty("archive_properties")) {
-            const archiveProperties = exercise.archive_properties;
-            const something_to_add = [
-                archiveProperties.files,
-                archiveProperties.folders
-            ].some((resource) => resource.length > 0);
-
-            if (something_to_add) {
-                // TODO
-            }
-
-        }
+    } else {
         return exercise;
-    });
+    }
 }
