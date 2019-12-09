@@ -1,7 +1,0 @@
-{
-  "url": "https://github.com/UCL-INGI/CS1-Java",
-  "strategy": "inginious-git",
-  "mustSend": true,
-  "debug": true,
-  "resultFile": "./results/results3.json"
-}

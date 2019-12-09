@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  description: "API for exercises library"
+  description: "API for Source Code"
   version: "1.0.0"
-  title: "Exercises Library"
+  title: "Source Code"
   license:
     name: "MIT"
     url: "https://choosealicense.com/licenses/mit/"
@@ -617,7 +617,7 @@ components:
         title:
           type: string
           example: "A Super Exercise"
-          minLength: 5
+          minLength: 3
           maxLength: 100
           description: "The title of this exercise"
         description:
@@ -1004,6 +1004,7 @@ components:
           type: string
           example: "[LSINF1252]"
           maxLength: 100
+          minLength: 1
         tags:
           description: "An array of tags IDS"
           type: array

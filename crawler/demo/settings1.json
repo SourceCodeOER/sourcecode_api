@@ -1,7 +1,0 @@
-{
-  "url": "https://github.com/UCL-INGI/LSINF1252",
-  "strategy": "inginious-git",
-  "mustSend": true,
-  "debug": true,
-  "resultFile": "./results/results1.json"
-}
