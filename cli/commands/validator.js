@@ -39,11 +39,14 @@ const tagsSchema = Joi
         Joi
             .object({
                 text: Joi.string().required(),
-                category: Joi
-                    .ref("/own_categories", {
-                        adjust: (v) => Object.values(v),
-                        in: true
-                    })
+                category: Joi.valid(
+                    Joi
+                        .ref("/own_categories", {
+                                adjust: (v) => Object.keys(v).map(s => Number(s)),
+                                in: true
+                            }
+                        )
+                )
             }),
         // either a auto generated tag
         Joi
@@ -75,6 +78,7 @@ const archiveSchemas = Joi
             )
             .required()
     })
+    .unknown(true)
     .optional();
 
 const mainSchema = Joi.object({
@@ -88,7 +92,7 @@ const mainSchema = Joi.object({
                 .object({
                     title: Joi.string().required(),
                     description: Joi.string().required(),
-                    //tags: tagsSchema,
+                    tags: tagsSchema,
                     url: Joi
                         .string()
                         .optional()
