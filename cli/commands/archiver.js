@@ -38,7 +38,6 @@ exports = module.exports = {
             .argv;
     },
     "handler": function (argv) {
-        // TODO
         const updated_exercises = argv.inputFile.exercises.map(exercise => {
             // to skip some exercises that doesn't have file or have already a file
             if (!exercise.hasOwnProperty("archive_properties") || exercise.hasOwnProperty("file")) {
@@ -49,7 +48,14 @@ exports = module.exports = {
             }
             return exercise;
         });
-        console.log();
+        const result = Object.assign({}, argv.inputFile, {
+            "exercises": updated_exercises,
+            "archive_date": new Date()
+        });
+        fs
+            .writeFile(argv.outputFile, JSON.stringify(result, null, 4))
+            .then(() => console.log("Correctly generate and add files to exercises"))
+            .catch((err) => console.error(err));
     }
 };
 
