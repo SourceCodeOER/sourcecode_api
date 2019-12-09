@@ -1,5 +1,6 @@
 {
   "outputFile" : "./results-with-files/results3.json",
   "inputFile": "./results/results3.json",
-  "baseFolder": "./temp/CS1-Java"
+  "baseFolder": "./temp/CS1-Java",
+  "tempFolder": "./results-with-files/CS1-Java"
 }

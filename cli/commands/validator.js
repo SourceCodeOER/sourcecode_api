@@ -7,6 +7,7 @@ const auto_generated_tags_categories = ["_PLATFORM_", "_SOURCE_", "_COURSE_", "_
 const linux_absolute_path = /^(?:(\/[^/ ]*)+\/?)$/;
 const window_absolute_path = /^[a-zA-Z]:\\.*$/;
 const is_absolute_path = new RegExp("(" + linux_absolute_path.source + ")|(" + window_absolute_path.source + ")");
+const flat = arr => [].concat(...arr);
 
 exports = module.exports = {
     "command": "validator",
@@ -42,13 +43,16 @@ const tagsSchema = Joi
                 category: Joi.valid(
                     Joi
                         .ref("/own_categories", {
-                                adjust: (v) => Object
-                                    .keys(v)
-                                    .map(s => {
-                                        // As JSON doesn't allow to have number as key ( but JS yes), little trick here
-                                        let maybeANumber = Number(s);
-                                        return (isNaN(maybeANumber)) ? s : maybeANumber;
-                                    }),
+                                adjust: (v) =>
+                                    flat(
+                                        Object
+                                            .keys(v)
+                                            .map(s => {
+                                                // As JSON doesn't allow to have number as key ( but JS yes), little trick here
+                                                let maybeANumber = Number(s);
+                                                return (isNaN(maybeANumber)) ? s : [maybeANumber, s];
+                                            })
+                                    ),
                                 in: true
                             }
                         )

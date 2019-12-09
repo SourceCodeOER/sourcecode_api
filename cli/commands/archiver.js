@@ -22,10 +22,18 @@ exports = module.exports = {
                 description: "Absolute path to the base folder where are located the exercises described in inputFile",
                 alias: "root"
             })
+            .option("zipFolder", {
+                type: "string",
+                description: "Absolute path to a folder where we can stored the generated zip files",
+                alias: "temp"
+            })
             .config("settings", "Absolute path to a JSON config file for archiver", (configPath) => {
                 return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));
             })
             .coerce("baseFolder", (arg) => {
+                return path.resolve(arg);
+            })
+            .coerce("zipFolder", (arg) => {
                 return path.resolve(arg);
             })
             .coerce("outputFile", (arg) => {
@@ -38,24 +46,22 @@ exports = module.exports = {
             .argv;
     },
     "handler": function (argv) {
-        const updated_exercises = argv.inputFile.exercises.map(exercise => {
-            // to skip some exercises that doesn't have file or have already a file
-            if (!exercise.hasOwnProperty("archive_properties") || exercise.hasOwnProperty("file")) {
-                return exercise;
-            }
-            if (exercise.hasOwnProperty("archive_properties")) {
-                console.log("")
-            }
-            return exercise;
-        });
-        const result = Object.assign({}, argv.inputFile, {
-            "exercises": updated_exercises,
-            "archive_date": new Date()
-        });
+        // creates the temp folder if not exist yet to store zip files
         fs
-            .writeFile(argv.outputFile, JSON.stringify(result, null, 4))
+            .mkdir(argv.zipFolder, {recursive: true})
+            .then(() => add_zip_files_to_exercises(argv))
+            .then((updated_exercises) => {
+                // append results with previous object
+                return Promise.resolve(Object.assign({}, argv.inputFile, {
+                    "exercises": updated_exercises,
+                    "archive_date": new Date()
+                }));
+            })
+            .then((result) => fs.writeFile(argv.outputFile, JSON.stringify(result, null, 4)))
             .then(() => console.log("Correctly generate and add files to exercises"))
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                console.error(err);
+            });
     }
 };
 
@@ -66,3 +72,39 @@ const exists = (dir) => {
         return false;
     }
 };
+
+async function add_zip_files_to_exercises(argv) {
+    return argv.inputFile.exercises.map((exercise, index) => {
+        // to skip some exercises that doesn't have file or have already a file
+        if (!exercise.hasOwnProperty("archive_properties") || exercise.hasOwnProperty("file")) {
+            return exercise;
+        }
+        // if we already have created the file but because of whatever error, we were unable to save it
+        // We must strip out from title special characters :
+        const clean_title = exercise.title.replace(/[&\/\\#,+()$~%.'":*?<>{}\[\]]/g, '');
+        const filename = `SourceCode-exercise-${index}-${clean_title}.zip`;
+        const storage_path = path.resolve(argv.zipFolder, filename);
+
+        // Correct the mistake now
+        if (exists(storage_path)){
+            return Object.assign({}, exercise, {
+                file: storage_path
+            })
+        }
+
+        // the file doesn't exist, we can create it , if conditions are meet
+        if (exercise.hasOwnProperty("archive_properties")) {
+            const archiveProperties = exercise.archive_properties;
+            const something_to_add = [
+                archiveProperties.files,
+                archiveProperties.folders
+            ].some((resource) => resource.length > 0);
+
+            if (something_to_add) {
+                // TODO
+            }
+
+        }
+        return exercise;
+    });
+}
