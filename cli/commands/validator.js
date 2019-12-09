@@ -42,7 +42,13 @@ const tagsSchema = Joi
                 category: Joi.valid(
                     Joi
                         .ref("/own_categories", {
-                                adjust: (v) => Object.keys(v).map(s => Number(s)),
+                                adjust: (v) => Object
+                                    .keys(v)
+                                    .map(s => {
+                                        // As JSON doesn't allow to have number as key ( but JS yes), little trick here
+                                        let maybeANumber = Number(s);
+                                        return (isNaN(maybeANumber)) ? s : maybeANumber;
+                                    }),
                                 in: true
                             }
                         )
