@@ -119,15 +119,16 @@ async function handle_single_exercise(argv, exercise, index) {
             // set up variables needed for that
             let archive = createZipArchive();
             let output = createWriteStream(storage_path);
+            // thanks to relative path, we can have a clean archive
             // add directories
             for (const folder of archiveProperties.folders) {
                 const folderPath = path.resolve(argv.baseFolder, folder);
-                archive.directory(folderPath);
+                archive.directory(folderPath, folder);
             }
             // add files
             for (const file of archiveProperties.files) {
                 const filePath = path.resolve(argv.baseFolder, file);
-                archive.file(filePath);
+                archive.file(filePath, {name: file});
             }
 
             // pipe archive data to the file
