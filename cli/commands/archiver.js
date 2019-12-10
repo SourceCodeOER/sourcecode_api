@@ -78,6 +78,21 @@ const createZipArchive = () => archiver('zip', {
     zlib: {level: 9} // Sets the compression level.
 });
 
+// Credits to https://stackoverflow.com/a/1917041/6149867
+function sharedStart(array){
+    let A= array.concat().sort(), a1= A[0], a2= A[A.length-1], L= a1.length, i= 0;
+    while(i<L && a1.charAt(i)=== a2.charAt(i)) i++;
+    return a1.substring(0, i);
+}
+
+// To remove efficiently prefix in files / folders and handle multiple case
+function length_of_common_prefix(prefix) {
+    // cross platform solution
+    const symbol = prefix.includes("/") ? "/" : "\\";
+    const last_occurrence = prefix.lastIndexOf(symbol);
+    return (last_occurrence === -1) ? 0 : last_occurrence
+}
+
 async function add_zip_files_to_exercises(argv) {
 
     return Promise.all(
@@ -119,16 +134,24 @@ async function handle_single_exercise(argv, exercise, index) {
             // set up variables needed for that
             let archive = createZipArchive();
             let output = createWriteStream(storage_path);
+            // as it is better to have a flat structure inside the zip file , we must strip the common prefix out
+            const commonPrefixLength = length_of_common_prefix(
+                sharedStart([
+                    ...archiveProperties.folders,
+                    ...archiveProperties.files
+                ])
+            );
+
             // thanks to relative path, we can have a clean archive
             // add directories
             for (const folder of archiveProperties.folders) {
                 const folderPath = path.resolve(argv.baseFolder, folder);
-                archive.directory(folderPath, folder);
+                archive.directory(folderPath, folder.substring(commonPrefixLength));
             }
             // add files
             for (const file of archiveProperties.files) {
                 const filePath = path.resolve(argv.baseFolder, file);
-                archive.file(filePath, {name: file});
+                archive.file(filePath, {name: file.substring(commonPrefixLength)});
             }
 
             // pipe archive data to the file
