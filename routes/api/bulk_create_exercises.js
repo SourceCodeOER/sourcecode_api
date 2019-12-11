@@ -25,9 +25,7 @@ function handle_both_content_type(req) {
             // to delete directly files that shouldn't be add as there is n
             "unmatched_files": [],
             // exercises with their file (here as we have
-            "exercises:": req.body.map(exercise => {
-                return Object.assign({}, exercise, {file: null});
-            })
+            "exercises": req.body.map(exercise => Object.assign({}, exercise, {file: null}))
         }
     } else {
         // multipart/form-data : the most horrible case ( at least one files to add )
