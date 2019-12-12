@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+// guarded routes
+const passport = require('passport');
+
 const models = require('../../models');
 const Promise = require("bluebird");
 
@@ -52,74 +55,91 @@ router.get("/:exerciseId", (req, res, next) => {
 
 });
 
-// TODO later secure that to prevent some mad genius to do stuff they can't
-router.put("/:exerciseId", (req, res, next) => {
+router.put("/:exerciseId",
+    passport.authenticate("jwt", {
+        failWithError: true,
+        session: false
+    }),
+    (req, res, next) => {
 
-    const id = parseInt(req.params.exerciseId, 10);
-    // distinguish already present tags from new tags
-    const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
+        const id = parseInt(req.params.exerciseId, 10);
+        // distinguish already present tags from new tags
+        const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
-    // did the user provide us a file to store ?
-    const file = (Array.isArray(req.files)) ? req.files[0] : null;
-    const exercise_data = (req.files === undefined)
-        ? req.body
-        : Object.assign({}, req.body, {
-            file: file
-        });
+        // did the user provide us a file to store ?
+        const file = (Array.isArray(req.files)) ? req.files[0] : null;
+        const exercise_data = (req.files === undefined)
+            ? req.body
+            : Object.assign({}, req.body, {
+                file: file
+            });
 
-    return find_exercise_tags_and_search_possible_new_tags_match(
-        [id, req.body.version, new_tags, already_present_tags]
-    )
-        .then(result => compute_tag_changes(result))
-        .then(([changes, tags_to_be_inserted]) => {
+        return find_exercise_tags_and_search_possible_new_tags_match(
+            [id, req.user, req.body.version, new_tags, already_present_tags]
+        )
+            .then(result => compute_tag_changes(result))
+            .then(([changes, tags_to_be_inserted]) => {
 
-            // transaction here as if anything bad happens, we don't commit that to database
-            return models
-                .sequelize
-                .transaction({
-                    isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
-                }, (t) => {
-                    // if new tags to insert, do that
-                    // if not, do nothing
-                    return insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t)
-                        .then((created_tags) => handle_all_cases_for_tags([id, changes, created_tags, t]))
-                        .then(() =>
-                            update_exercise([
-                                id,
-                                exercise_data,
-                                t
-                            ])
-                        )
-                })
-        })
-        .then(() => {
-            // everything works as expected : tell that to user
-            res.status(200).end();
-        })
-        .catch(/* istanbul ignore next */
-            err => {
-                const better_error = handle_upload_error(err);
-                next(better_error);
+                // transaction here as if anything bad happens, we don't commit that to database
+                return models
+                    .sequelize
+                    .transaction({
+                        isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+                    }, (t) => {
+                        // if new tags to insert, do that
+                        // if not, do nothing
+                        return insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t)
+                            .then((created_tags) => handle_all_cases_for_tags([id, changes, created_tags, t]))
+                            .then(() =>
+                                update_exercise([
+                                    id,
+                                    exercise_data,
+                                    t
+                                ])
+                            )
+                    })
             })
+            .then(() => {
+                // everything works as expected : tell that to user
+                res.status(200).end();
+            })
+            .catch(/* istanbul ignore next */
+                err => {
+                    const better_error = handle_upload_error(err);
+                    next(better_error);
+                })
 
-});
+    });
 
 module.exports = router;
 
 // some methods that made life easier with this hell of promise chaining
-function find_exercise_tags_and_search_possible_new_tags_match([id, version, new_tags, already_present_tags]) {
+function find_exercise_tags_and_search_possible_new_tags_match([id, user, version, new_tags, already_present_tags]) {
+
+    // an admin is allowed to modify whatever exercise but
+    // a user should only be allowed to change exercise metadata if he/she is the owner of that one
+    let whereOptions = [];
+
+    whereOptions.push({
+        id: id,
+        version: version
+    });
+
+    /* istanbul ignore next */
+    if (user.role !== "admin") {
+        whereOptions.push({
+            user_id: user.id
+        })
+    }
+
+
     return Promise.all([
         // Find current exercise version with its tags
         models
             .Exercise
             .findAll({
                 attributes: ["id"],
-                where: {
-                    [Op.and]: [
-                        {id: id},
-                        {version: version}
-                    ]
-                },
+                where: Object.assign({}, ...whereOptions),
                 include: [
                     {
                         model: models.Exercise_Tag,

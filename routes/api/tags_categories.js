@@ -20,7 +20,8 @@ router.get("/", (req, res, next) => {
             err => next(err))
 });
 
-router.put("/", passport.authenticate("jwt", {
+router.put("/",
+    passport.authenticate("jwt", {
         failWithError: true,
         session: false
     }),
