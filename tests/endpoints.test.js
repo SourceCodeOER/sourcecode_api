@@ -9,7 +9,8 @@ const user = {
 };
 const userName = "Eric Cartman";
 
-let JWT_TOKEN = "";
+let JWT_TOKEN = ""; // The admin user
+let JWT_TOKEN_2 = ""; // A simple user
 const tag_categories = ["source", "institution", "auteur"];
 const tags = ["java", "UCLOUVAIN", "Jacques Y", "github.com"];
 
@@ -24,12 +25,13 @@ function getRandomInt(min, max) {
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
-// For the basic set up : a user
+// For the basic set up : two user ( an admin and one that is not)
 async function setUpBasic() {
 
     const app = await require('../app.js');
     request = supertest(app);
 
+    // The admin user first
     await request
         .post("/auth/register")
         .set('Content-Type', 'application/json')
@@ -45,6 +47,24 @@ async function setUpBasic() {
 
     JWT_TOKEN = response.body.token;
     expect(typeof JWT_TOKEN).toBe('string');
+
+    // We must be able to register other user ( a simple one) for other useful cases
+    await request
+        .post("/auth/register")
+        .set('Content-Type', 'application/json')
+        .send(Object.assign({}, user, {fullName: "Super Voter", email: "yolo_voter24@uclouvain.be"}))
+        .expect(200);
+
+    let response2 = await request
+        .post("/auth/login")
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(Object.assign({}, user, {email: "yolo_voter24@uclouvain.be"}))
+        .expect(200);
+
+    JWT_TOKEN_2 = response2.body.token;
+    expect(typeof JWT_TOKEN).toBe('string');
+
     return "SET_UP_FINISHED"
 }
 
@@ -437,22 +457,6 @@ describe("Complex scenarios", () => {
         expect(data.metrics.votes).toBe(0);
         expect(data.metrics.avg_score).toBe(0);
 
-        // We must be able to register other user to also vote on this exercise
-        await request
-            .post("/auth/register")
-            .set('Content-Type', 'application/json')
-            .send(Object.assign({}, user, {fullName: "Super Voter", email: "yolo_voter24@uclouvain.be"}))
-            .expect(200);
-        // retrieve
-        response = await request
-            .post("/auth/login")
-            .set('Content-Type', 'application/json')
-            .set('Accept', 'application/json')
-            .send(Object.assign({}, user, {email: "yolo_voter24@uclouvain.be"}))
-            .expect(200);
-
-        const JWT_TOKEN_2 = response.body.token;
-
         // User 1 votes for this exercise
         await request
             .post("/api/vote_for_exercise")
@@ -666,6 +670,21 @@ describe("Validations testing", () => {
             .set('Content-Type', 'application/json')
             .send(Object.assign({}, user, {fullName: userName}))
             .expect(409);
+    });
+
+    it("PUT /api/tags : A simple user cannot modify a tag", async () => {
+       await request
+           .put("/api/tags")
+           .set('Content-Type', 'application/json')
+           .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+           .send({
+               "tag_id": 0,
+               "tag_text": "SomeTest",
+               "category_id": 0,
+               "isValidated": false,
+               "version": 0
+           })
+           .expect(403);
     });
 
 });
