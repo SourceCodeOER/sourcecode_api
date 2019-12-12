@@ -14,11 +14,22 @@ servers:
   - url: http://api.example.com/v1
     description: Optional server description, e.g. Main (production) server
 
+# To fast distinguish what could be done by guest, user and admin
+tags:
+  - name: guest
+    description: "Everything a(n) visitor / not authentified user could do"
+  - name: user
+    description: "Everything an authentified user could do (more than a guest)"
+  - name: admin
+    description: "Everything an administrator could do (more than an user)"
+
 paths:
   /auth/login:
     post:
       summary: "Logs user into the system"
       operationId: signIn
+      tags:
+        - guest
       requestBody:
         required: true
         content:
@@ -65,6 +76,8 @@ paths:
     post:
       summary: "Creates a new user into the system"
       operationId: register
+      tags:
+        - guest
       requestBody:
         required: true
         content:
@@ -96,6 +109,8 @@ paths:
     post:
       summary: "Creates a new exercise into the system"
       operationId: createSingleExercise
+      tags:
+        - user
       security:
         - bearerAuth: []
       requestBody:
@@ -134,6 +149,8 @@ paths:
     get:
       summary: "Retrieve this specific exercise data"
       operationId: getExerciseByID
+      tags:
+        - guest
       parameters:
         - name: id
           in: path
@@ -158,6 +175,8 @@ paths:
     put:
       summary: "Update this specific exercise data"
       operationId: UpdateExercise
+      tags:
+        - user
       security:
         - bearerAuth: []
       parameters:
@@ -203,6 +222,8 @@ paths:
   /api/search:
     post:
       summary: "Search exercises that matches criteria"
+      tags:
+        - guest
       operationId: searchExercises
       requestBody:
         required: true
@@ -232,6 +253,8 @@ paths:
   /api/tags:
     post:
       summary: "Submit a tag proposal"
+      tags:
+        - user
       operationId: submitTagProposal
       security:
         - bearerAuth: []
@@ -253,6 +276,8 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     put:
       summary: "Validate or modify a Tag"
+      tags:
+        - admin
       operationId: updateTag
       security:
         - bearerAuth: []
@@ -274,6 +299,8 @@ paths:
                 $ref: "#/components/schemas/ErrorObject"
     get:
       summary: "Retrieve all tags"
+      tags:
+        - guest
       operationId: getTags
       parameters:
         - in: query
@@ -323,6 +350,8 @@ paths:
     get:
       summary: "Retrieve only Tag categories"
       operationId: getTagCategories
+      tags:
+        - guest
       responses:
         '200':
           description: "An array of tag categories"
@@ -343,6 +372,8 @@ paths:
   /api/tags_by_categories:
     get:
       summary: "Retrieve Tag categories with their related tags"
+      tags:
+        - guest
       operationId: getTagCategoriesWithTags
       parameters:
         - in: query
@@ -388,6 +419,8 @@ paths:
   /api/bulk_create_exercises:
     post:
       summary: "Creates multiple exercises into the system"
+      tags:
+        - user
       operationId: createMultipleExercises
       security:
         - bearerAuth: []
@@ -445,6 +478,8 @@ paths:
   /api/bulk_create_or_find_tag_categories:
     post:
       summary: "Creates or Find tag categories"
+      tags:
+        - admin
       operationId: createOrFindTagCategories
       security:
         - bearerAuth: []
@@ -475,6 +510,8 @@ paths:
     post:
       summary: "Vote (or update the vote) of the current logged user for given exercise"
       operationId: "voteForExercise"
+      tags:
+        - user
       security:
         - bearerAuth: []
       requestBody:
@@ -512,6 +549,8 @@ paths:
     get:
       description: "Get all configurations of the current logged user"
       operationId: "FetchOwnConfigurations"
+      tags:
+        - user
       security:
         - bearerAuth: []
       responses:
@@ -533,6 +572,8 @@ paths:
     put:
       description: "Update a configuration"
       operationId: "UpdateConfiguration"
+      tags:
+        - user
       security:
         - bearerAuth: []
       requestBody:
@@ -554,6 +595,8 @@ paths:
     post:
       description: "Create a configuration"
       operationId: "CreateConfiguration"
+      tags:
+        - user
       security:
         - bearerAuth: []
       requestBody:
