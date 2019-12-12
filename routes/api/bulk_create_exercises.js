@@ -20,6 +20,8 @@ module.exports = function (req, res, next) {
 // as this endpoint has different schemas for content-type, I need this method for a clean code
 function handle_both_content_type(req) {
     // content-type is json : the most simple case (no files to store )
+    // TODO when express-openapi-validator validates my fixing PR for form-data bug , I will remove this line
+    /* istanbul ignore else */
     if (req.is('json')) {
         return {
             // to delete directly files that shouldn't be add as there is n

@@ -48,7 +48,7 @@ async function setUpBasic() {
     JWT_TOKEN = response.body.token;
     expect(typeof JWT_TOKEN).toBe('string');
 
-    // We must be able to register other user ( a simple one) for other useful cases
+    // We must be able to register other user ( a simple one) for other useful cases like voting
     await request
         .post("/auth/register")
         .set('Content-Type', 'application/json')
@@ -63,7 +63,7 @@ async function setUpBasic() {
         .expect(200);
 
     JWT_TOKEN_2 = response2.body.token;
-    expect(typeof JWT_TOKEN).toBe('string');
+    expect(typeof JWT_TOKEN_2).toBe('string');
 
     return "SET_UP_FINISHED"
 }
@@ -569,6 +569,31 @@ describe("Complex scenarios", () => {
         expect(response2.body[0].id).toBe(response.body[0].id);
         expect(response2.body[0].title).toBe(response.body[0].title);
     });
+
+    it("Scenario n°6 : Change a Tag Category", async () => {
+
+        // Retrieve created tag category
+        const response = await request
+            .get("/api/tags_categories")
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send()
+            .expect(200);
+
+        // Takes the first one
+        expect(Array.isArray(response.body)).toBe(true);
+        expect(response.body.length).toBeGreaterThanOrEqual(1);
+
+        await request
+            .put("/api/tags_categories")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send({
+                id: response.body[0].id,
+                category: response.body[0].category
+            })
+            .expect(200);
+    })
 });
 
 describe("Using multipart/form-data (instead of JSON)", () => {
