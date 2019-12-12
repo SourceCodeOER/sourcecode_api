@@ -15,30 +15,21 @@ const bulk_create_exercises = require("./bulk_create_exercises");
 const bulk_create_or_find_tag_categories = require("./bulk_create_or_find_tag_categories");
 const vote_for_exercise = require("./vote_for_exercise");
 
+// guarded router middleware
+const only_authentified_user = passport.authenticate("jwt", {
+    failWithError: true,
+    session: false
+});
+
 // delegate work of the api in other files
 router.use("/exercises", exercises);
 router.use("/tags", tags);
 router.use("/tags_categories", tags_categories);
-router.use("/configurations", passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-}), configurations);
-router.post("/create_exercise", passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-}), create_exercise);
-router.post("/bulk_create_exercises", passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-}), bulk_create_exercises);
-router.post("/bulk_create_or_find_tag_categories", passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-}), bulk_create_or_find_tag_categories);
-router.post("/vote_for_exercise", passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-}), vote_for_exercise);
+router.use("/configurations", only_authentified_user, configurations);
+router.post("/create_exercise", only_authentified_user, create_exercise);
+router.post("/bulk_create_exercises", only_authentified_user, bulk_create_exercises);
+router.post("/bulk_create_or_find_tag_categories", only_authentified_user, bulk_create_or_find_tag_categories);
+router.post("/vote_for_exercise", only_authentified_user, vote_for_exercise);
 router.post("/search", search);
 router.get("/tags_by_categories", tags_by_categories);
 
