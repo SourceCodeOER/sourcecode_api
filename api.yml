@@ -506,6 +506,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorObject"
+  /api/bulk_validate_exercises:
+    post:
+      summary: "Validate given exercises"
+      operationId: "ValidateExercises"
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: "An array of exercises IDs"
+              minItems: 1
+              items:
+                type: integer
+                minimum: 0
+                example: 42
+                description: "An exercise ID"
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
   /api/vote_for_exercise:
     post:
       summary: "Vote (or update the vote) of the current logged user for given exercise"
