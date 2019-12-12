@@ -53,14 +53,27 @@ module.exports = (sequelize, DataTypes) => {
                         attributes: []
                     }]
                 };
-                // if the user provide a title, we must add it to the where clause
-                // maybe later think of a way to have a more clean code
+                // if the user provide a title / isValidated check , we must add it to the where clause
                 if (parameters.hasOwnProperty("data") && parameters.data.hasOwnProperty("title")) {
-                    options.where = {
-                        title: {
-                            [Op.iLike]: `%${parameters.data.title}%`
-                        }
+                    let criteria = [];
+
+                    /* istanbul ignore else */
+                    if (parameters.data.hasOwnProperty("title")){
+                        criteria.push({
+                            title: {
+                                [Op.iLike]: `%${parameters.data.title}%`
+                            }
+                        });
                     }
+
+                    if (parameters.data.hasOwnProperty("state") && parameters.data.state !== "default") {
+                        criteria.push({
+                            isValidated: (parameters.data.state === "validated")
+                        });
+                    }
+
+                    // merge multiple criteria into the where
+                    options.where = Object.assign({}, ...criteria);
                 }
                 return options;
             },
@@ -97,41 +110,6 @@ module.exports = (sequelize, DataTypes) => {
                     ]
                 }
             },
-            // to build the final result
-            // for simplicity, we can invoke the scope ONLY when there is at least ONE item in ids
-            // This code is for legacy , in case you have to migrate from Postgresql to another database
-            /*
-            exercise_with_metrics_and_tags_and_categories_related() {
-                return {
-                    include: [
-                        // load tags linked to this exercise ( with their category included )
-                        // required : true for inner join (by default, it uses left outer join which is bad )
-                        {
-                            model: sequelize.models.Tag,
-                            as: "tags",
-                            required: true,
-                            // credits to Stackoverflow : https://stackoverflow.com/a/45093383/6149867
-                            through: {attributes: []}, //<-- this line will prevent mapping object from being added
-                            attributes: [
-                                ["id", "tag_id"],
-                                ["text", "tag_text"]
-                            ],
-                            include: [
-                                {
-                                    model: sequelize.models.Tag_Category,
-                                    as: "category",
-                                    required: true,
-                                    attributes: [
-                                        ["id", "category_id"],
-                                        ["kind", "category_text"]
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-         */
         }
     });
 
@@ -276,7 +254,7 @@ function whereConditionBuilder(parameters) {
         const counter = Object.keys(data).length;
 
         // no tags criteria given, simple case : just the join condition
-        // title criteria is handled somewhere else
+        // title/isValidated criteria is handled somewhere else
         if (counter === 0 || !data.hasOwnProperty("tags")) {
             return {}
         } else {

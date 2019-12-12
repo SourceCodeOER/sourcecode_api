@@ -119,7 +119,8 @@ describe("Simple case testing", () => {
                     [2, -3, 4],
                     37,
                     -42
-                ]
+                ],
+                "state": "validated"
             }
         };
         await search_exercise(0, criteria);

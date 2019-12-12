@@ -1058,6 +1058,11 @@ components:
                     minItems: 1 # Not allowing empty array if we use
               description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
               example: [-1, [2, 3]]
+            state:
+              type: string
+              enum: ["default", "validated", "pending"]
+              default: "default"
+              description: "Filter the exercises by their validity. The default value ('default') stands for no filtering."
     MultipleExercisesForm:
       type: array
       minItems: 1

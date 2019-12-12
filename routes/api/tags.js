@@ -50,13 +50,7 @@ router.get("/", (req, res, next) => {
             "version"
         ],
         // dynamic create the where clause
-        where: (conditions.length === 0)
-            ? {}
-            : (conditions.length === 1)
-                ? conditions[0]
-                : {
-                    [Op.and]: conditions
-                }
+        where: Object.assign({}, ...conditions)
     };
 
     return models
