@@ -23,7 +23,7 @@ const rst2md = (str) => {
     try {
         const result = child_process.spawnSync(
             "pandoc",
-            ["--from=rst", "--to=markdown"],
+            ["--from=rst", "--to=markdown-fenced_code_attributes"],
             {input: str, encoding: "utf-8"}
         );
         return result.stdout;

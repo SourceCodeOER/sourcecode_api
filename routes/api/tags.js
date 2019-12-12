@@ -8,6 +8,10 @@ const Op = Sequelize.Op;
 // to prevent duplicates in database
 const {find_tag_matches} = require("../utlis_fct");
 
+// guarded routes
+const passport = require('passport');
+const check_user_role = require("../../middlewares/check_user_role");
+
 // for fetching
 router.get("/", (req, res, next) => {
     const params = req.query.settings || {};
@@ -50,13 +54,7 @@ router.get("/", (req, res, next) => {
             "version"
         ],
         // dynamic create the where clause
-        where: (conditions.length === 0)
-            ? {}
-            : (conditions.length === 1)
-                ? conditions[0]
-                : {
-                    [Op.and]: conditions
-                }
+        where: Object.assign({}, ...conditions)
     };
 
     return models
@@ -68,58 +66,66 @@ router.get("/", (req, res, next) => {
 });
 
 // For update
-// TODO later secure that to prevent some mad genius to do stuff they can't
-router.put("/", (req, res, next) => {
-    const {
-        tag_id,
-        tag_text,
-        category_id,
-        isValidated,
-        version
-    } = req.body;
+router.put("/",
+    passport.authenticate("jwt", {
+        failWithError: true,
+        session: false
+    }),
+    check_user_role(["admin"]),
+    (req, res, next) => {
+        const {
+            tag_id,
+            tag_text,
+            category_id,
+            isValidated,
+            version
+        } = req.body;
 
-    // cannot use here findByPk as it ignores my where clause
-    return models
-        .Tag
-        .findAll({
-            where: {
-                [Op.and]: [
-                    {
-                        id: tag_id
-                    },
-                    {
-                        version: version
+        // cannot use here findByPk as it ignores my where clause
+        return models
+            .Tag
+            .findAll({
+                where: {
+                    [Op.and]: [
+                        {
+                            id: tag_id
+                        },
+                        {
+                            version: version
+                        }
+                    ]
+                },
+                rejectOnEmpty: true
+            })
+            .then(([instance]) => {
+                return instance.update({
+                    category_id: category_id,
+                    text: tag_text,
+                    isValidated: isValidated
+                });
+            })
+            .then(() => {
+                res.status(200).end();
+            })
+            .catch(/* istanbul ignore next */
+                err => {
+                    if (err instanceof Sequelize.EmptyResultError) {
+                        let error = new Error("Resource not found / Outdated version");
+                        error.message = "It seems you are using an outdated version of this resource : Operation denied";
+                        error.status = 409;
+                        next(error);
+                    } else {
+                        // default handler
+                        next(err);
                     }
-                ]
-            },
-            rejectOnEmpty: true
-        })
-        .then(([instance]) => {
-            return instance.update({
-                category_id: category_id,
-                text: tag_text,
-                isValidated: isValidated
-            });
-        })
-        .then(() => {
-            res.status(200).end();
-        })
-        .catch(/* istanbul ignore next */
-            err => {
-                if (err instanceof Sequelize.EmptyResultError) {
-                    let error = new Error("Resource not found / Outdated version");
-                    error.message = "It seems you are using an outdated version of this resource : Operation denied";
-                    error.status = 409;
-                    next(error);
-                } else {
-                    // default handler
-                    next(err);
-                }
-            });
-});
+                });
+    });
 
 // create a Tag Proposal
-router.post("/", (req, res, next) => {
+router.post("/", passport.authenticate("jwt", {
+    failWithError: true,
+    session: false
+}), (req, res, next) => {
     const creationDate = new Date();
     const {
         text,
