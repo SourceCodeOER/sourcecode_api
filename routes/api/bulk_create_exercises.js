@@ -73,4 +73,5 @@ function handle_both_content_type(req) {
 
 // Thanks to Taq Karim , this one line
 // https://medium.com/dailyjs/rewriting-javascript-converting-an-array-of-objects-to-an-object-ec579cafbfc7
+/* istanbul ignore next */
 const arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map(item => ({[item[keyField]]: item})));

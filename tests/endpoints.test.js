@@ -209,7 +209,7 @@ describe("Complex scenarios", () => {
                 .post("/api/tags")
                 .set('Authorization', 'bearer ' + JWT_TOKEN)
                 .set('Content-Type', 'application/json')
-                .send({text: tag, category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]})
+                .send({text: tag, category_id: tag_categories_ids[0]})
         }));
         expect(response).toHaveLength(tags.length);
 
@@ -227,9 +227,9 @@ describe("Complex scenarios", () => {
             "description": "Some verrrrrrrrrry long description here",
             // try to use both existent tags and not
             tags: some_tags_ids.concat(
-                ["SOME_TAG1", "SOME_TAG2", "SOME_TAG3"].map(tag => ({
+                ["SOME_TAG1", "SOME_TAG2", "SOME_TAG3", "some_Tag3"].map(tag => ({
                     text: tag,
-                    category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]
+                    category_id: tag_categories_ids[0]
                 }))
             )
         };

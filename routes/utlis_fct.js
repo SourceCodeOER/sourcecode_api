@@ -123,17 +123,17 @@ module.exports = {
 
                     // collect all the tags to be inserted ( thanks to partition )
                     // to prevent dummy insert, only takes unique elements
-                    const tags_to_be_inserted = uniqWith(
-                        []
-                            .concat(...exercises_with_tags_partition
-                                .map(exercise => exercise.tags[1]))
-                        , isEqual);
+                    const all_tags_in_exercises = [].concat(
+                        ...exercises_with_tags_partition.map(exercise => exercise.tags[1])
+                    );
+                    const tags_to_be_inserted = find_unique_tags(all_tags_in_exercises);
 
                     // find possible match for not existent tags
                     return find_tag_matches(tags_to_be_inserted)
                         .then(result => {
                             const tag_dictionary = build_dictionary_for_matching_process(result);
-                            return matching_process2(tags_to_be_inserted, tag_dictionary);
+                            const reduced_dictionary = dictionary_for_similarity(tag_dictionary);
+                            return matching_process2(tags_to_be_inserted, tag_dictionary, reduced_dictionary);
                         }).then(
                             ([existent_tags, really_new_tags]) => {
                                 return Promise.all([
@@ -163,7 +163,7 @@ module.exports = {
                         ).then(([existent_tags, inserted_tags]) => {
                             // now time to bind inserted tags with their exercise
                             // merge both array for reconciliation
-                            let tags_dictionary = build_dictionary_for_matching_process(existent_tags.concat(inserted_tags));
+                            let tags_dictionary = build_dictionary_for_matching_process(existent_tags.concat(...inserted_tags));
                             const exercises_with_tags = reconcile_exercises_with_tags(exercises_with_tags_partition, tags_dictionary);
                             // Finally bulk insert all of these
                             return Promise.all(exercises_with_tags.map(
@@ -346,16 +346,15 @@ function find_tag_matches(new_tags) {
 }
 
 // Promise that try to match new_tags with the result in DB
+// As I only
 function matching_process(already_present_tags, new_tags, tag_dictionary) {
     return new Promise(resolve => {
-        // do the matching process here
-        const [has_match, no_match] = find_match(tag_dictionary, new_tags);
-        // takes the first match
+        // I must rely on my function to correctly find a good match for tag
+        const reduced_dictionary = dictionary_for_similarity(tag_dictionary);
+        const [has_match, no_match] = super_matching_process(new_tags, tag_dictionary, reduced_dictionary);
         resolve([
             already_present_tags.concat(
-                has_match.map(tag => {
-                    return tag_dictionary[tag.text.toLowerCase()][tag.category_id][0].id
-                })
+                ...has_match.map(tag => tag.id)
             ),
             no_match
         ]);
@@ -364,50 +363,97 @@ function matching_process(already_present_tags, new_tags, tag_dictionary) {
 
 // ONLY FOR BULK INSERT, we need a mutated version of the matching_process
 // As we need all the information for later, I cannot use only ID like the original version
-function matching_process2(new_tags, tag_dictionary) {
+function matching_process2(new_tags, tag_dictionary, reduced_dictionary) {
     return new Promise(resolve => {
         // do the matching process here
-        const [has_match, no_match] = find_match(tag_dictionary, new_tags);
-        resolve([
-            has_match.map(tag => tag_dictionary[tag.text.toLowerCase()][tag.category_id][0])
-            ,
-            no_match
-        ])
+        const [has_match, no_match] = super_matching_process(new_tags, tag_dictionary, reduced_dictionary);
+        resolve(
+            [
+                has_match,
+                no_match
+            ]
+        );
     });
 }
 
-// inner function used in matching_process
-function find_match(tag_dictionary, new_tags) {
-    return partition(new_tags,
-        tag =>
-            tag.text.toLowerCase() in tag_dictionary
-            && tag.category_id in tag_dictionary[tag.text.toLowerCase()]
+// Dictionary to handle similar tag contents
+function dictionary_for_similarity(tag_dictionary) {
+    return Object
+        .entries(tag_dictionary)
+        .map(([key, values]) => ({
+                "original_key": key,
+                "lower_key": key.toLowerCase(),
+                "categories": Object.keys(values)
+            })
+        );
+}
+
+// To find similar tags and match them
+// to handle multiple case, we need the real keys of the dictionary and the categories linked to that name
+// reduced_dictionary should be dictionary_for_similarity(tag_dictionary)
+// PS: I pass that by argument because of multiple exercise ( recreates n times the same time is a performance issue )
+function super_matching_process(new_tags, tag_dictionary, reduced_dictionary) {
+    // try to find matches
+    const new_tags_with_maybe_the_existent_tag = new_tags.map(
+        tag => {
+            const maybeAKeyMatch = reduced_dictionary.find(t => {
+                return isEqual(tag.text.toLowerCase(), t.lower_key) && t.categories.includes(tag.category_id.toString())
+            });
+
+            // Handle both cases : if we found a match or not
+            return [
+                maybeAKeyMatch !== undefined,
+                (maybeAKeyMatch !== undefined)
+                    ? tag_dictionary[maybeAKeyMatch.original_key][tag.category_id][0]
+                    : tag
+            ];
+        }
     );
+    // Does something similar to partition method of Lodash but here I have no choice ^^
+    return new_tags_with_maybe_the_existent_tag.reduce((acc, curr) => {
+        const index = (curr[0] === true) ? 0 : 1;
+        acc[index] = acc[index].concat(curr[1]);
+        return acc;
+    }, [[], []]);
 }
 
 // for bulky insert, we need a function close to matching_process but adapted to this situation
 // since it is required to have a match for each tags, we could simplify that
 function reconcile_exercises_with_tags(exercises_with_tags_partition, tag_dictionary) {
     // useful for later
-    const tags_keys = Object.keys(tag_dictionary).map(key => ({original_key: key, lower_key: key.toLowerCase()}));
+    const reduced_dictionary = dictionary_for_similarity(tag_dictionary);
+
     return exercises_with_tags_partition.map(exercise => {
         // concat the existent tags with newly created
+        const uniqTags = find_unique_tags(exercise.tags[1]);
+        const [has_match, no_match ] = super_matching_process(uniqTags, tag_dictionary, reduced_dictionary);
+
+        const found_matches = has_match.map(tag => tag.id);
+
         const tags = exercise.tags[0].concat(
-            exercise.tags[1].map(tag => {
-                // We must handle the case where a similar text already exist in database (but not the same typo )
-                // Thanks to tags_keys, we can retrieve the correct text for dictionary
-                const lower_key = tag.text.toLowerCase();
-                const tag_text = (tag_dictionary.hasOwnProperty(tag.text))
-                    ? tag.text
-                    : tags_keys
-                        .filter(tag_tuple => tag_tuple.lower_key === lower_key)
-                        .slice(0, 1)
-                        .reduce((_prev, current) => {
-                            return current.original_key;
-                        }, "");
-                return tag_dictionary[tag_text][tag.category_id][0].id;
-            })
+            // We must handle the case where a similar text already exist in database (but not the same typo )
+            // Thanks to super_matching_process and previous pre/post conditions, every tag will have a match
+            // and an id
+            ...found_matches
         );
         return [exercise, tags];
     });
+}
+
+// To find unique tags given in an array
+function find_unique_tags(tags_array) {
+    return uniqWith(
+        tags_array,
+        (tag1, tag2) => {
+            // the perfect case
+            if (isEqual(tag1, tag2)) {
+                return true;
+            } else {
+                // similar tag : same category but different case ("c" and "C")
+
+                return tag1.category_id === tag2.category_id
+                    && isEqual(tag1.text.toLowerCase(), tag2.text.toLowerCase());
+            }
+        }
+    );
 }
