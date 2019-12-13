@@ -10,6 +10,11 @@ const {find_tag_matches} = require("../utlis_fct");
 
 // guarded routes
 const passport = require('passport');
+// guarded router middleware
+const only_authentified_user = passport.authenticate("jwt", {
+    failWithError: true,
+    session: false
+});
 const check_user_role = require("../../middlewares/check_user_role");
 
 // for fetching
@@ -67,10 +72,7 @@ router.get("/", (req, res, next) => {
 
 // For update
 router.put("/",
-    passport.authenticate("jwt", {
-        failWithError: true,
-        session: false
-    }),
+    only_authentified_user,
     check_user_role(["admin"]),
     (req, res, next) => {
         const {
@@ -122,37 +124,36 @@ router.put("/",
     });
 
 // create a Tag Proposal
-router.post("/", passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-}), (req, res, next) => {
-    const creationDate = new Date();
-    const {
-        text,
-        category_id
-    } = req.body;
+router.post("/",
+    only_authentified_user,
+    (req, res, next) => {
+        const creationDate = new Date();
+        const {
+            text,
+            category_id
+        } = req.body;
 
-    // find tag matches for new_tags if already existing
-    return find_tag_matches([{category_id, text}])
-        .then(result => {
-            // if no match, this is truly a new tag to be add ( otherwise do nothing )
-            return (result.length > 0)
-                ? Promise.resolve()
-                : models
-                    .Tag
-                    .create({
-                        text: text,
-                        category_id: category_id,
-                        // by default, consider a tag as not official
-                        isValidated: false,
-                        // some date
-                        updateAt: creationDate,
-                        createAt: creationDate
-                    })
-        })
-        .then(() => res.status(200).end())
-        .catch(/* istanbul ignore next */
-            err => next(err));
-});
+        // find tag matches for new_tags if already existing
+        return find_tag_matches([{category_id, text}])
+            .then(result => {
+                // if no match, this is truly a new tag to be add ( otherwise do nothing )
+                return (result.length > 0)
+                    ? Promise.resolve()
+                    : models
+                        .Tag
+                        .create({
+                            text: text,
+                            category_id: category_id,
+                            // by default, consider a tag as not official
+                            isValidated: false,
+                            // some date
+                            updateAt: creationDate,
+                            createAt: creationDate
+                        })
+            })
+            .then(() => res.status(200).end())
+            .catch(/* istanbul ignore next */
+                err => next(err));
+    });
 
 module.exports = router;
