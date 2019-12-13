@@ -1,11 +1,19 @@
-# Exercises Library API  [![Build Status](https://travis-ci.com/jy95/sourcecode_api.svg?branch=master)](https://travis-ci.com/jy95/sourcecode_api)  [![codecov](https://codecov.io/gh/jy95/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/jy95/sourcecode_api)
+# Source Code API  [![Build Status](https://travis-ci.com/jy95/sourcecode_api.svg?branch=master)](https://travis-ci.com/jy95/sourcecode_api)  [![codecov](https://codecov.io/gh/jy95/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/jy95/sourcecode_api)
+> the new open source catalogue of computer exercises
 
-description TODO
+Like Open Educational Resources, Source Code offers the possibility for educational teams to
+collaborate on the problem of creating and sharing exercises.  
+The latter consists in referencing IT resources, by allowing a diverse audience to benefit from all contributions.  
+As the catalogue expands, it will become an essential resource for all.
 
 ## Requirements
 
 - PostgreSQL 12
 - Node.js 10+ 
+
+## Documentation
+
+For more examples and API details, see [API documentation](https://jy95.github.io/sourcecode_api/)
 
 ## Set up
 
@@ -26,19 +34,11 @@ DROP SCHEMA IF EXISTS exercises_library CASCADE;
 CREATE SCHEMA exercises_library;
 ```
 
-4. Run the API (only for letting Sequelize initialize your models in database ) 
+4. Apply all Sequelize migrations to let Sequelize initialize your models in database 
 
 ```
-npm start
-# after some times
-CTRL-C
+npm run migrate:reset 
 ```
-
-5. Use all seeders in folder `seeders` to feed your database
-```
-npx sequelize-cli db:seed:all --debug
-```
-( More info in seeders in [Sequelize docs](https://sequelize.org/master/manual/migrations.html#creating-first-seed) )
 
 ## Starting the API
 
@@ -46,8 +46,7 @@ npx sequelize-cli db:seed:all --debug
 npm start
 ```
 
-This will start the application and create an sqlite database in your app dir.
-Just open [http://localhost:3000](http://localhost:3000).
+This will start the API that you reach on [http://localhost:3000](http://localhost:3000).
 
 ## How to generate ... ?
 
