@@ -13,7 +13,7 @@ As the catalogue expands, it will become an essential resource for all.
 
 ## Documentation
 
-For more examples and API details, see [API documentation](https://jy95.github.io/sourcecode_api/)
+For more examples and API details, see [API documentation](https://jy95.github.io/sourcecode_api/) ([or build it yourself !](#documentation))
 
 ## Set up
 
