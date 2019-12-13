@@ -530,9 +530,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorObject"
-  /api/bulk_validate_exercises:
-    post:
-      summary: "Validate given exercises"
+  /api/bulk_modify_exercises_validity:
+    put:
+      summary: "Validate / Unvalidate given exercises"
       operationId: "ValidateExercises"
       tags:
         - admin
@@ -543,14 +543,24 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              description: "An array of exercises IDs"
-              minItems: 1
-              items:
-                type: integer
-                minimum: 0
-                example: 42
-                description: "An exercise ID"
+              type: object
+              properties:
+                exercises:
+                  type: array
+                  description: "An array of exercises IDs"
+                  minItems: 1
+                  items:
+                    type: integer
+                    minimum: 0
+                    example: 42
+                    description: "An exercise ID"
+                state:
+                  type: boolean
+                  description: "Should the given exercises be validated or not ?"
+                  default: true
+                  example: false
+              required:
+                - exercises
       responses:
         '200':
           description: "OK"

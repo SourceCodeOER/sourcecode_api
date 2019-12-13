@@ -445,7 +445,8 @@ function find_unique_tags(tags_array) {
     return uniqWith(
         tags_array,
         (tag1, tag2) => {
-            // the perfect case
+            // the perfect case (but life isn't perfect ^^)
+            /* istanbul ignore if */
             if (isEqual(tag1, tag2)) {
                 return true;
             } else {

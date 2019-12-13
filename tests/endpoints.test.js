@@ -191,7 +191,7 @@ describe("Simple case testing", () => {
 });
 
 describe("Complex scenarios", () => {
-    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times", async () => {
+    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times and then Validate it", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk_create_or_find_tag_categories")
@@ -291,6 +291,18 @@ describe("Complex scenarios", () => {
                     {text: "TRY 1", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
                     {text: "TRY 2", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
                 ])
+            });
+
+        expect(response.status).toBe(200);
+
+        // 3. Finally validate the exercise
+        response = await request
+            .put("/api/bulk_modify_exercises_validity")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                exercises: [data.id],
+                state: true
             });
 
         expect(response.status).toBe(200);
