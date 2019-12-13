@@ -13,7 +13,7 @@ As the catalogue expands, it will become an essential resource for all.
 
 ## Documentation
 
-For more examples and API details, see [API documentation](https://jy95.github.io/sourcecode_api/) ([or build it yourself !](#documentation))
+For more examples and API details, see [API documentation](https://jy95.github.io/sourcecode_api/) ([or build it yourself !](#how-to-generate--))
 
 ## Set up
 
@@ -39,6 +39,10 @@ CREATE SCHEMA exercises_library;
 ```
 npm run migrate:reset 
 ```
+
+## How do I populate the database quickly with my exercises ? 
+
+This API is delivered with a very complete CLI tool to handle the different possible situations (the sources can be found [here](/cli)). You will find more information on its [documentation](/cli/README.md).
 
 ## Starting the API
 
