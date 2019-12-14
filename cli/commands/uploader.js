@@ -25,11 +25,13 @@ exports = module.exports = {
             })
             .option("resultFile", {
                 type: "string",
-                description: "Absolute path to the generated file by crawler"
+                description: "Absolute path to the generated file by crawler",
+                demandOption: true
             })
             .option("user", {
                 type: "string",
-                description: "Absolute path to a JSON file that contains credentials like this : {\"email\": \"\", \"password\":  \"\" } "
+                description: 'Absolute path to a JSON file that contains admin credentials like this : {"email": "", "password": ""}',
+                demandOption: true
             })
             .config("settings", "Absolute path to a JSON config file for uploader", (configPath) => {
                 return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));

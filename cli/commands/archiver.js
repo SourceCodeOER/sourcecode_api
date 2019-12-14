@@ -11,21 +11,25 @@ exports = module.exports = {
                 alias: "in",
                 type: "string",
                 description: "Absolute path to a JSON file the archiver could read crawler result",
+                demandOption: true
             })
             .option("outputFile", {
                 alias: "out",
                 type: "string",
                 description: "Absolute path to a JSON file the archiver could saves its results",
+                demandOption: true
             })
             .option("baseFolder", {
                 type: "string",
                 description: "Absolute path to the base folder where are located the exercises described in inputFile",
-                alias: "root"
+                alias: "root",
+                demandOption: true
             })
             .option("zipFolder", {
                 type: "string",
                 description: "Absolute path to a folder where we can stored the generated zip files",
-                alias: "temp"
+                alias: "temp",
+                demandOption: true
             })
             .config("settings", "Absolute path to a JSON config file for archiver", (configPath) => {
                 return JSON.parse(readFileSync(path.resolve(configPath), 'utf-8'));
