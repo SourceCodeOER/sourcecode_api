@@ -1,4 +1,4 @@
-# Source Code API  [![Build Status](https://travis-ci.com/jy95/sourcecode_api.svg?branch=master)](https://travis-ci.com/jy95/sourcecode_api)  [![codecov](https://codecov.io/gh/jy95/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/jy95/sourcecode_api)
+# Source Code API  [![Build Status](https://travis-ci.com/SourceCodeOER/sourcecode_api.svg?branch=master)](https://travis-ci.com/SourceCodeOER/sourcecode_api)  [![codecov](https://codecov.io/gh/SourceCodeOER/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/SourceCodeOER/sourcecode_api)
 > the new open source catalogue of computer exercises
 
 Like Open Educational Resources, Source Code offers the possibility for educational teams to
@@ -13,7 +13,7 @@ As the catalogue expands, it will become an essential resource for all.
 
 ## Documentation
 
-For more examples and API details, see [API documentation](https://jy95.github.io/sourcecode_api/) ([or build it yourself !](#how-to-generate--))
+For more examples and API details, see [API documentation](https://sourcecodeoer.github.io/sourcecode_api/) ([or build it yourself !](#how-to-generate--))
 
 ## Set up
 
@@ -42,7 +42,7 @@ npm run migrate:reset
 
 ## How do I populate the database quickly with my exercises ? 
 
-This API is delivered with a very complete CLI tool to handle the different possible situations (the sources can be found [here](/cli)). You will find more information on its [documentation](/cli/README.md).
+This API is delivered with a very complete CLI tool to handle the different possible situations (the sources can be found [here](https://github.com/SourceCodeOER/cli)). You will find more information on its [documentation](https://github.com/SourceCodeOER/cli/blob/master/README.md).
 
 ## Starting the API
 
