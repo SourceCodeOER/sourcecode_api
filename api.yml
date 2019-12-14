@@ -4,8 +4,8 @@ info:
   version: "1.0.0"
   title: "Source Code"
   license:
-    name: "MIT"
-    url: "https://choosealicense.com/licenses/mit/"
+    name: "GPL-3.0-or-later"
+    url: "https://choosealicense.com/licenses/gpl-3.0/"
 
 # Pas utile pour l'instant mais c'est mieux pour après
 servers:

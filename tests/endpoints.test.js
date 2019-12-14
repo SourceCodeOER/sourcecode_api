@@ -661,6 +661,41 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         expect(exercise2.data[0].tags).toHaveLength(exercise.data[0].tags.length);
 
     });
+
+    it("Should be able to upload multiple exercises with their linked files", async () => {
+
+        // retrieve some tag categories
+        let response = await request
+            .post("/api/bulk_create_or_find_tag_categories")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(tag_categories)
+            .expect(200);
+        expect(response.body).toHaveLength(tag_categories.length);
+
+        // files linked to exercises
+        const files = ["file.zip", "file2.zip"].map((filename, index) => ({
+            "filename": filename,
+            "path": path.resolve(__dirname, "./" + filename),
+            "exercise": index
+        }));
+
+        // an array of exercises
+        const exercises = [...Array(3).keys()].map((number) => ({
+            "description": "HELLO WORLD",
+            "url": "https://inginious.info.ucl.ac.be/",
+            "title": "SOME MULTIPLE UPLOAD WITH FILE " + (number + 1),
+            "tags": ["java", "Java", "JaVA"].map(tag => ({
+                "category_id": response.body[0].id,
+                "text": tag
+            }))
+        }));
+
+        let result = await multiple_upload_with_files_request(exercises, files);
+        expect(result.status).toBe(200);
+
+    });
 });
 
 describe("Validations testing", () => {
@@ -710,18 +745,18 @@ describe("Validations testing", () => {
     });
 
     it("PUT /api/tags : A simple user cannot modify a tag", async () => {
-       await request
-           .put("/api/tags")
-           .set('Content-Type', 'application/json')
-           .set('Authorization', 'bearer ' + JWT_TOKEN_2)
-           .send({
-               "tag_id": 0,
-               "tag_text": "SomeTest",
-               "category_id": 0,
-               "isValidated": false,
-               "version": 0
-           })
-           .expect(403);
+        await request
+            .put("/api/tags")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .send({
+                "tag_id": 0,
+                "tag_text": "SomeTest",
+                "category_id": 0,
+                "isValidated": false,
+                "version": 0
+            })
+            .expect(403);
     });
 
 });
@@ -744,4 +779,52 @@ async function search_exercise(expected_count, search_criteria) {
     }
     expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
     return response.body;
+}
+
+// to prepare a supertest instance with
+function multiple_upload_with_files_request(exercises, files) {
+
+    // build the request now
+    let requestInstance = request
+        .post("/api/bulk_create_exercises")
+        .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+    // Add all given files
+    for (const file of files) {
+        requestInstance.attach("files", file.path)
+    }
+
+    // Add the mapping between exercises and files
+    files.forEach((file, index) => {
+        const sub_field = "filesMapping[" + index + "]";
+        requestInstance.field(sub_field + "[filename]", file.filename);
+        requestInstance.field(sub_field + "[exercise]", file.exercise);
+    });
+
+    // Add the exercises metadata
+    exercises.forEach((exercise, index) => {
+
+        // since tags are more complicated to deal with, I must handle them separately
+        const exercise_tags = exercise.tags;
+        delete exercise.tags;
+
+        const sub_field = "exercisesData[" + index + "]";
+
+        // for other properties of exercise, it is pretty easy to handle them
+        Object.entries(exercise).forEach(([key, value]) => {
+            requestInstance.field(sub_field + "[" + key + "]", value);
+        });
+
+        // for tags, we have to use this ugly way because of supertest
+        const sub_tag_field = sub_field + "[tags]";
+
+        exercise_tags.forEach((tag, index) => {
+            const sub_tag_field_index = sub_tag_field + "[" + index + "]";
+            Object.entries(tag).forEach(([key, value]) => {
+                requestInstance.field(sub_tag_field_index + "[" + key + "]", value);
+            });
+        });
+    });
+
+    return requestInstance;
 }
