@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 const path = require('path');
 const {promises: fs, readFileSync} = require("fs");
-const DEFAULT_WORKING_FOLDER = path.resolve(__dirname, ".." , "./temp");
 const PATH_FOR_STRATEGY = path.resolve(__dirname, "..", "./strategies");
-const DEBUG_FILE = path.resolve("../results.json");
+const DEBUG_FILE = path.resolve("./results.json");
 
 exports = module.exports = {
     "command": "crawler",
@@ -26,7 +25,7 @@ exports = module.exports = {
                 alias: "w",
                 type: "string",
                 description: "Absolute path to a folder where the crawler can do its stuff",
-                default: DEFAULT_WORKING_FOLDER
+                demandOption: true
             })
             .option("resultFile", {
                 alias: "out",

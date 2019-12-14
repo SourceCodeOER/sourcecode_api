@@ -17,7 +17,8 @@ exports = module.exports = {
             .option("inputFile", {
                 alias: "in",
                 type: "string",
-                description: "Absolute path to a JSON file the validator could check",
+                demandOption: true,
+                description: "Absolute path to a JSON file the validator could check"
             })
             .coerce("inputFile", (arg) => {
                 return JSON.parse(readFileSync(path.resolve(arg), 'utf-8'));

@@ -1,0 +1,7 @@
+# Not useful folder for API
+cli/
+coverage/
+docs/
+uploads/
+files/
+.idea
