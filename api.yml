@@ -549,6 +549,7 @@ paths:
                   type: array
                   description: "An array of exercises IDs"
                   minItems: 1
+                  uniqueItems: true
                   items:
                     type: integer
                     minimum: 0
@@ -561,6 +562,34 @@ paths:
                   example: false
               required:
                 - exercises
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorObject"
+  /api/bulk_delete_exercises:
+    delete:
+      summary: "Delete given exercises"
+      operationId: "DeleteExercises"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: "An array of exercises IDs"
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: integer
+                minimum: 0
+                example: 42
+                description: "An exercise ID"
       responses:
         '200':
           description: "OK"
