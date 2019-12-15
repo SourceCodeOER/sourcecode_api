@@ -1,8 +1,5 @@
 const models = require('../../../models');
 const Promise = require("bluebird");
-const Sequelize = require("sequelize");
-
-const partition = require('lodash.partition');
 
 module.exports = function (req, res, next) {
     Promise.all(

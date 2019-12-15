@@ -576,6 +576,10 @@ paths:
     delete:
       summary: "Delete given exercises"
       operationId: "DeleteExercises"
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -840,8 +844,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/TagWithCategory'
-# Each exercise has a least one tag
-              minItems: 1
               uniqueItems: true
           required:
             - metrics

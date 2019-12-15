@@ -59,13 +59,21 @@ module.exports = {
                         exercises_data.map((exercise) => {
                                 // manually build the good result
                                 const exercise_id = exercise.get("id");
-                                let tags_for_exercise = tags_data_map[exercise_id][0].toJSON();
                                 let exercise_json = exercise.toJSON();
-                                delete tags_for_exercise["exercise_id"];
+
                                 // metrics.avg_score should be a number with only 2 decimal
                                 exercise_json["metrics"]["avg_score"] = Number(
                                     parseFloat(exercise_json["metrics"]["avg_score"]).toFixed(2)
                                 );
+                                // With some scenarios ( like /bulk_delete_tags ),
+                                // it might be possible that we have no tags for this exercise
+                                // So we need this workaround to deal with every possible situation
+                                /* istanbul ignore next */
+                                let tags_for_exercise = (tags_data_map.hasOwnProperty(exercise_id))
+                                    ? tags_data_map[exercise_id][0].toJSON()
+                                    : {"tags": []};
+
+                                delete tags_for_exercise["exercise_id"];
                                 return Object.assign({}, exercise_json, tags_for_exercise)
                             }
                         )
@@ -426,7 +434,7 @@ function reconcile_exercises_with_tags(exercises_with_tags_partition, tag_dictio
     return exercises_with_tags_partition.map(exercise => {
         // concat the existent tags with newly created
         const uniqTags = find_unique_tags(exercise.tags[1]);
-        const [has_match, no_match ] = super_matching_process(uniqTags, tag_dictionary, reduced_dictionary);
+        const [has_match, no_match] = super_matching_process(uniqTags, tag_dictionary, reduced_dictionary);
 
         const found_matches = has_match.map(tag => tag.id);
 
