@@ -1,4 +1,5 @@
 const models = require('../models');
+const fileManager = require("./files_manager");
 const Promise = require("bluebird");
 
 const Sequelize = require("sequelize");
@@ -8,16 +9,6 @@ const partition = require('lodash.partition');
 const groupBy = require('lodash.groupby');
 const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
-const {resolve: path_resolve} = require("path");
-const del = require('del');
-
-const {FILES_FOLDER} = require("../config/storage_paths");
-const moveFile = require('move-file');
-// fct that return the promise of moving the file to destination
-const move_promise = (file) => moveFile(
-    file.path,
-    path_resolve(FILES_FOLDER, file.filename), {overwrite: false}
-);
 
 // Some utilities functions commonly used
 module.exports = {
@@ -114,6 +105,7 @@ module.exports = {
     // Promise to store bulky exercise(s)
     bulky_store_exercises(user, exercises) {
         const creationDate = new Date();
+        const no_file = [null, undefined];
         return new Promise((resolve, reject) => {
             return models
                 .sequelize
@@ -193,19 +185,13 @@ module.exports = {
                     resolve()
                 }).catch(/* istanbul ignore next */
                     err => {
-                        const no_file = [null, undefined];
                         const files_to_be_deleted = exercises
                             .filter((exercise) => !no_file.includes(exercise.file))
-                            .map(exercise => exercise.file.path);
-                        del(files_to_be_deleted)
-                            .then(() => reject(err))
-                            .catch(/* istanbul ignore next */() => {
-                                console.log("One or more file(s) cannot be deleted - You should probably delete it/them manually");
-                                files_to_be_deleted.forEach((file) => {
-                                    console.log("\t" + file);
-                                });
-                                reject(err);
-                            });
+                            .map(exercise => exercise.file);
+
+                        fileManager
+                            .delete_temp_files(files_to_be_deleted)
+                            .then(() => reject(err));
                     });
         });
     }
@@ -249,7 +235,9 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
         Promise.all(
             [
                 // if a file was provided, we must be able to store it
-                (exercise_data.file !== null) ? move_promise(exercise_data.file) : Promise.resolve(),
+                (exercise_data.file !== null)
+                    ? fileManager.move_file_to_destination_folder(exercise_data.file)
+                    : Promise.resolve(),
                 // create the exercise with given information
                 models
                     .Exercise
@@ -312,18 +300,16 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
             })
             .then((result) => resolve(result))
             .catch(/* istanbul ignore next */(err) => {
+
                 // delete uploaded file in the two folder
-                const files_to_deleted = (exercise_data.file !== null)
-                    ? [exercise_data.file.path, path_resolve(FILES_FOLDER, exercise_data.file.filename)]
-                    : [];
-                del(files_to_deleted)
-                    .then(() => reject(err))
-                    .catch(/* istanbul ignore next */() => {
-                        files_to_deleted.forEach((file) => {
-                            console.log(file + " cannot be deleted - You should probably delete it manually");
-                        });
-                        reject(err);
-                    });
+                const hasFile = (exercise_data.file !== null);
+                const tempFile = (hasFile) ? [exercise_data.file] : [];
+                const storedFile = (hasFile) ? [exercise_data.file.filename] : [];
+
+                fileManager
+                    .delete_temp_files(tempFile)
+                    .then(() => fileManager.delete_stored_files(storedFile))
+                    .then(() => reject(err));
             })
     });
 }
@@ -434,7 +420,7 @@ function reconcile_exercises_with_tags(exercises_with_tags_partition, tag_dictio
     return exercises_with_tags_partition.map(exercise => {
         // concat the existent tags with newly created
         const uniqTags = find_unique_tags(exercise.tags[1]);
-        const [has_match, no_match] = super_matching_process(uniqTags, tag_dictionary, reduced_dictionary);
+        const [has_match, _no_match] = super_matching_process(uniqTags, tag_dictionary, reduced_dictionary);
 
         const found_matches = has_match.map(tag => tag.id);
 
