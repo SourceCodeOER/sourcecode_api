@@ -1,6 +1,6 @@
 const {
     bulky_store_exercises
-} = require("../utlis_fct");
+} = require("../../utlis_fct");
 const del = require('del');
 
 module.exports = function (req, res, next) {
