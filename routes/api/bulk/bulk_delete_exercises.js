@@ -19,10 +19,13 @@ module.exports = function (req, res, next) {
             return models
                 .Exercise
                 .findAll({
-                    attributes: ["url"],
+                    attributes: ["file"],
                     where: {
-                        url: {
+                        file: {
                             [Op.ne]: null
+                        },
+                        id: {
+                            [Op.in]: req.body
                         }
                     }
                 }, {
@@ -31,7 +34,7 @@ module.exports = function (req, res, next) {
                     return Promise.all([
                         // return the filenames that should be deleted
                         Promise.resolve(
-                            files.map(file => file.url)
+                            files.map(file => file.file)
                         ),
                         // delete exercises (and everything else related too)
                         models
