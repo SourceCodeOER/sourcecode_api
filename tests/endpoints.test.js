@@ -662,7 +662,7 @@ describe("Using multipart/form-data (instead of JSON)", () => {
 
     });
 
-    it("Should be able to upload multiple exercises with their linked files", async () => {
+    it("Should be able to upload multiple exercises with their linked files then delete one of them", async () => {
 
         // retrieve some tag categories
         let response = await request
@@ -694,6 +694,27 @@ describe("Using multipart/form-data (instead of JSON)", () => {
 
         let result = await multiple_upload_with_files_request(exercises, files);
         expect(result.status).toBe(200);
+
+        const criteria = {
+            data: {
+                title: "SOME MULTIPLE UPLOAD WITH FILE"
+            }
+        };
+
+        result = await search_exercise(3, criteria);
+
+        // Take the first one to be deleted
+        await request
+            .delete("/api/bulk_delete_exercises")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send([
+                result.data[0].id
+            ])
+            .expect(200);
+
+        // Only one should be removed after that
+        await search_exercise(2, criteria);
 
     });
 });
@@ -769,8 +790,9 @@ async function search_exercise(expected_count, search_criteria) {
         .post("/api/search")
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(search_criteria)
-        .expect(200);
+        .send(search_criteria);
+
+    expect(response.status).toBe(200);
 
     expect(isObject(response.body)).toBeTruthy();
     expect(Array.isArray(response.body.data)).toBeTruthy();
