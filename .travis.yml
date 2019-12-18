@@ -7,7 +7,7 @@ cache:
 notifications:
   slack:
     on_success: change
-    on_failure: always
+    on_failure: change
 # Ugly fix found here : https://travis-ci.community/t/postgresql-11-2-cannot-connect/2680/5
 services:
   - postgresql

@@ -1,17 +1,17 @@
 paths:
   /api/exercises/{id}:
-    get:
-      summary: "Retrieve this specific exercise data"
-      operationId: getExerciseByID
-      tags:
-        - guest
-      parameters:
+    parameters:
         - name: id
           in: path
           description: "The exercise ID"
           required: true
           schema:
             type: integer
+    get:
+      summary: "Retrieve this specific exercise data"
+      operationId: getExerciseByID
+      tags:
+        - guest
       responses:
         '200':
           description: "Exercise data inside a JSON"
@@ -33,13 +33,6 @@ paths:
         - user
       security:
         - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: "The exercise ID"
-          required: true
-          schema:
-            type: integer
       requestBody:
         required: true
         content:
