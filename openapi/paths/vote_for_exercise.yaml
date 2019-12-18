@@ -1,0 +1,45 @@
+paths:
+  /api/vote_for_exercise:
+    post:
+      summary: "Vote (or update the vote) of the current logged user for given exercise"
+      operationId: "voteForExercise"
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                exercise_id:
+                  type: integer
+                  minimum: 0
+                  description: "The ID of the exercise we want to vote / modify a vote"
+                  example: 42
+                score:
+                  type: number
+                  format: double
+                  minimum: 0.0
+                  example: 5.0
+                  description: "The score we want to give to this exercise"
+              required:
+                - score
+                - exercise_id
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

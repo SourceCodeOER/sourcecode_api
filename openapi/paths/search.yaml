@@ -1,0 +1,32 @@
+paths:
+  /api/search:
+    post:
+      summary: "Search exercises that matches criteria"
+      tags:
+        - guest
+      operationId: searchExercises
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/SearchCriterias"
+            examples:
+              searchExample1:
+                $ref: "../examples.yaml#/examples/searchExample1"
+              searchExample2:
+                $ref: "../examples.yaml#/examples/searchExample2"           
+      responses:
+        '200':
+          description: "An object that contains the results and additionnal information"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/SearchResult"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"

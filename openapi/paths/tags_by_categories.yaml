@@ -1,0 +1,53 @@
+paths:
+  /api/tags_by_categories:
+    get:
+      summary: "Retrieve Tag categories with their related tags"
+      tags:
+        - guest
+      operationId: getTagCategoriesWithTags
+      parameters:
+        - in: query
+          style: form
+          name: settings
+          explode: true
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  state:
+                    type: string
+                    enum: ["default", "validated", "pending"]
+                    default: "default"
+                    description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
+                  onlySelected:
+                    type: array
+                    description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
+                    default: []
+                    uniqueItems: true
+                    items:
+                      type: integer
+                      minimum: 0
+                      example: 42
+                      description: "A Tag Category ID"
+      responses:
+        '200':
+          description: "An array of Tag category with their related tags"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../definitions.yaml#/components/schemas/TagCategoryWithTags"
+                uniqueItems: true
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

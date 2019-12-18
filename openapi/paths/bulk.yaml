@@ -1,0 +1,171 @@
+paths:
+  /api/bulk_delete_exercises:
+    delete:
+      summary: "Delete given exercises"
+      operationId: "DeleteExercises"
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: "An array of exercises IDs"
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: integer
+                minimum: 0
+                example: 42
+                description: "An exercise ID"
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/bulk_modify_exercises_validity:
+    put:
+      summary: "Validate / Unvalidate given exercises"
+      operationId: "ValidateExercises"
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                exercises:
+                  type: array
+                  description: "An array of exercises IDs"
+                  minItems: 1
+                  uniqueItems: true
+                  items:
+                    type: integer
+                    minimum: 0
+                    example: 42
+                    description: "An exercise ID"
+                state:
+                  type: boolean
+                  description: "Should the given exercises be validated or not ?"
+                  default: true
+                  example: false
+              required:
+                - exercises
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/bulk_create_or_find_tag_categories:
+    post:
+      summary: "Creates or Find tag categories"
+      tags:
+        - admin
+      operationId: createOrFindTagCategories
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/TagCategoriesForm"
+      responses:
+        '200':
+          description: "An array of tag categories"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../definitions.yaml#/components/schemas/Tag_Category"
+                uniqueItems: true
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/bulk_create_exercises:
+    post:
+      summary: "Creates multiple exercises into the system"
+      tags:
+        - user
+      operationId: createMultipleExercises
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/MultipleExercisesForm"
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                exercisesData:
+                  $ref: "../definitions.yaml#/components/schemas/MultipleExercisesForm"
+                files:
+                  type: array
+                  description: "The sources of the exercises, each in zip format"
+                  minItems: 1
+                  items:
+                    type: string
+                    format: binary
+                    description: "The source of an exercise, in zip format"
+                filesMapping:
+                  type: array
+                  description: "Mapping between the given file (to find out which data belong to exercise)"
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      filename:
+                        type: string
+                        description: "The name of the given source file"
+                        example: "file1.zip"
+                      exercise:
+                        type: integer
+                        description: "The location of the related exercise in the exercisesData array"
+                    required:
+                      - filename
+                      - exercise
+              required:
+                - exercisesData
+                - files
+                - filesMapping
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

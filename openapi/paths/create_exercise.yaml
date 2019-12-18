@@ -1,0 +1,45 @@
+paths:
+  /api/create_exercise:
+    post:
+      summary: "Creates a new exercise into the system"
+      operationId: createSingleExercise
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/ExerciseForm"
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "../definitions.yaml#/components/schemas/ExerciseForm"
+                - type: object
+                  properties:
+                    exerciseFile:
+                      type: string
+                      format: binary
+                      description: "The sources of this exercise, in zip format"
+                  required:
+                    - exerciseFile
+            encoding:
+              exerciseFile:
+              # MIME for zip https://stackoverflow.com/a/7027582/6149867
+                contentType: application/zip, application/x-zip-compressed, multipart/x-zip
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+components:
+  securitySchemes:
+    $ref: "../security.yaml#/components/securitySchemes"
