@@ -2,7 +2,6 @@ const models = require('../../models');
 const Promise = require("bluebird");
 
 const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
 
 // function for bulky inner select
 const build_search_result = require("../utlis_fct").build_search_result;
