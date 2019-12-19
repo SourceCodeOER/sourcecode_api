@@ -188,6 +188,23 @@ describe("Simple case testing", () => {
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);
     });
+
+    it("GET /auth/me", async () => {
+        const response = await request
+            .get("/auth/me")
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+        expect(response.status).toBe(200);
+        expect(isObject(response.body)).toBeTruthy();
+        expect(response.body.hasOwnProperty("email")).toBeTruthy();
+        expect(response.body.hasOwnProperty("fullName")).toBeTruthy();
+        expect(response.body.hasOwnProperty("role")).toBeTruthy();
+        expect(response.body.hasOwnProperty("password")).toBeFalsy();
+        expect(response.body.fullName).toBe(userName);
+        expect(response.body.email).toBe(user.email);
+        expect(response.body.role).toBe("admin");
+    })
 });
 
 describe("Complex scenarios", () => {

@@ -4,7 +4,7 @@ const router = express.Router();
 // guarded routes
 const passport = require('passport');
 // guarded router middleware
-const only_authentified_user = passport.authenticate("jwt", {
+const only_authenticated_user = passport.authenticate("jwt", {
     failWithError: true,
     session: false
 });
@@ -18,9 +18,9 @@ const updateTag = require("./updateTag");
 // for fetching
 router.get("/", getTags);
 // For update
-router.put("/", only_authentified_user, check_user_role(["admin"]), updateTag);
+router.put("/", only_authenticated_user, check_user_role(["admin"]), updateTag);
 // create a Tag Proposal
-router.post("/", only_authentified_user, submitTagProposal);
+router.post("/", only_authenticated_user, submitTagProposal);
 
 
 module.exports = router;
