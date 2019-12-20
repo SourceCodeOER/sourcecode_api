@@ -11,19 +11,17 @@ const router = express.Router();
 // guarded endpoints
 const check_user_role = require("../../../middlewares/check_user_role");
 
-// as the common path start by /bulk_ (maybe rewrite that soon )
-router.delete("/bulk_delete_exercises",
-    check_user_role(["admin"]),
-    bulk_delete_exercises
-);
+// bulk actions allowed for any user/admin (some preconditions could be present)
+router.delete("/delete_exercises", bulk_delete_exercises);
+router.post("/create_exercises", bulk_create_exercises);
 
-router.put("/bulk_modify_exercises_validity",
+// only for admins
+router.put("/modify_exercises_validity",
     check_user_role(["admin"]),
     bulk_modify_exercises_validity
 );
 
-router.post("/bulk_create_exercises", bulk_create_exercises);
-router.post("/bulk_create_or_find_tag_categories",
+router.post("/create_or_find_tag_categories",
     check_user_role(["admin"]),
     bulk_create_or_find_tag_categories
 );

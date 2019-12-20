@@ -34,6 +34,6 @@ router.use("/exercises", exercises);
 router.use("/tags", tags);
 router.use("/tags_categories", tags_categories);
 router.use("/configurations", only_authenticated_user, configurations);
-router.use(only_authenticated_user, bulk_endpoints);
+router.use("/bulk", only_authenticated_user, bulk_endpoints);
 
 module.exports = router;
