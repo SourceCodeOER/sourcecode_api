@@ -205,7 +205,7 @@ describe("Simple case testing", () => {
         expect(response.body.fullName).toBe(userName);
         expect(response.body.email).toBe(user.email);
         expect(response.body.role).toBe("admin");
-    })
+    });
 });
 
 describe("Complex scenarios", () => {
@@ -270,6 +270,16 @@ describe("Complex scenarios", () => {
 
         let data = response.data[0];
         expect(data.version).toBe(0);
+
+        // A simple user should not be able to delete that one as it doesn't belong to him/her
+        await request
+            .delete("/api/bulk/delete_exercises")
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .send([
+                data.id
+            ])
+            .expect(403);
 
         // test most updates cases : keep tags / add & remove
         // 1. Only changed description
