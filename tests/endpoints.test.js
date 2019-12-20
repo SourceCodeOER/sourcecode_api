@@ -140,7 +140,8 @@ describe("Simple case testing", () => {
                     37,
                     -42
                 ],
-                "state": "validated"
+                "state": "validated",
+                "user_ids": [1, 2, 3]
             }
         };
         await search_exercise(0, criteria);
