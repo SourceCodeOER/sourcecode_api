@@ -367,6 +367,15 @@ components:
               enum: ["default", "validated", "pending"]
               default: "default"
               description: "Filter the exercises by their validity. The default value ('default') stands for no filtering."
+            user_ids:
+              type: array
+              description: "Filter the exercises by their creators."
+              minItems: 1
+              items:
+                type: integer
+                minimum: 0
+                description: "An user ID"
+              uniqueItems: true
     MultipleExercisesForm:
       type: array
       minItems: 1

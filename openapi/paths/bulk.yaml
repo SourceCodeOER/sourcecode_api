@@ -1,9 +1,11 @@
 paths:
-  /api/bulk_delete_exercises:
+  /api/bulk/delete_exercises:
     delete:
       summary: "Delete given exercises"
+      description: "Delete given exercises. An simple user can only delete his/her own exercises (no restriction for admin)"
       operationId: "DeleteExercises"
       tags:
+        - user
         - admin
       security:
         - bearerAuth: []
@@ -31,7 +33,7 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
-  /api/bulk_modify_exercises_validity:
+  /api/bulk/modify_exercises_validity:
     put:
       summary: "Validate / Unvalidate given exercises"
       operationId: "ValidateExercises"
@@ -73,7 +75,7 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
-  /api/bulk_create_or_find_tag_categories:
+  /api/bulk/create_or_find_tag_categories:
     post:
       summary: "Creates or Find tag categories"
       tags:
@@ -104,7 +106,7 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
-  /api/bulk_create_exercises:
+  /api/bulk/create_exercises:
     post:
       summary: "Creates multiple exercises into the system"
       tags:

@@ -80,7 +80,48 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
-
+  /auth/me:
+    get:
+      summary: "Fetch information about the current logged user"
+      operationId: "me"
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "User data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    example: "jy95@perdu.com"
+                  fullName:
+                    type: string
+                    example: "Alexandre Dewit"
+                    description: "The full name of this new user"
+                    minLength: 1
+                    maxLength: 50
+                  role:
+                    type: string
+                    enum: [admin, user]
+                    default: user
+                    description: "The type of user we are"
+                required:
+                  - email
+                  - fullName
+                  - role
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
 components:
   schemas:
     Auth:
@@ -105,3 +146,6 @@ components:
           description: The JWT Token
       required:
         - token
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

@@ -28,6 +28,8 @@ paths:
     $ref: 'openapi/paths/auth.yaml#/paths/~1auth~1login'
   /auth/register:
     $ref: 'openapi/paths/auth.yaml#/paths/~1auth~1register'
+  /auth/me:
+    $ref: 'openapi/paths/auth.yaml#/paths/~1auth~1me'
   /api/create_exercise:
     $ref: 'openapi/paths/create_exercise.yaml#/paths/~1api~1create_exercise'
   /api/exercises/{id}:
@@ -40,14 +42,14 @@ paths:
     $ref: 'openapi/paths/tags_categories.yaml#/paths/~1api~1tags_categories'
   /api/tags_by_categories:
     $ref: 'openapi/paths/tags_by_categories.yaml#/paths/~1api~1tags_by_categories'
-  /api/bulk_create_exercises:
-    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk_create_exercises'
-  /api/bulk_create_or_find_tag_categories:
-    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk_create_or_find_tag_categories'
-  /api/bulk_modify_exercises_validity:
-    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk_modify_exercises_validity'
-  /api/bulk_delete_exercises:
-    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk_delete_exercises'
+  /api/bulk/create_exercises:
+    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1create_exercises'
+  /api/bulk/create_or_find_tag_categories:
+    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1create_or_find_tag_categories'
+  /api/bulk/modify_exercises_validity:
+    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1modify_exercises_validity'
+  /api/bulk/delete_exercises:
+    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1delete_exercises'
   /api/vote_for_exercise:
     $ref: 'openapi/paths/vote_for_exercise.yaml#/paths/~1api~1vote_for_exercise'
   /api/configurations:
