@@ -1,0 +1,151 @@
+paths:
+  /auth/login:
+    post:
+      summary: "Logs user into the system"
+      operationId: signIn
+      tags:
+        - guest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Auth"
+      responses:
+        '200':
+          description: A JSON containing the JWT Token and some information about the user
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/JWTToken"
+                  - type: object
+                    description: Some basic information on this user
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          fullName:
+                            type: string
+                            description: "The full name of this user"
+                            example: "Alexandre Dewit"
+                            minLength: 1
+                            maxLength: 50
+                          role:
+                            type: string
+                            enum: [admin, user]
+                            description: "What kind of user are we ?"  
+                        required:
+                          - fullName
+                          - role
+                    required:
+                      - user
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /auth/register:
+    post:
+      summary: "Creates a new user into the system"
+      operationId: register
+      tags:
+        - guest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/Auth"
+                - type: object
+                  properties:
+                    fullName:
+                      type: string
+                      example: "Alexandre Dewit"
+                      description: "The full name of this new user"
+                      minLength: 1
+                      maxLength: 50
+                  required:
+                    - fullName
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /auth/me:
+    get:
+      summary: "Fetch information about the current logged user"
+      operationId: "me"
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "User data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    example: "jy95@perdu.com"
+                  fullName:
+                    type: string
+                    example: "Alexandre Dewit"
+                    description: "The full name of this new user"
+                    minLength: 1
+                    maxLength: 50
+                  role:
+                    type: string
+                    enum: [admin, user]
+                    default: user
+                    description: "The type of user we are"
+                required:
+                  - email
+                  - fullName
+                  - role
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+components:
+  schemas:
+    Auth:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "jy95@perdu.com"
+        password:
+          type: string
+          format: password
+          example: "42"
+      required:
+        - email
+        - password
+    JWTToken:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The JWT Token
+      required:
+        - token
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

@@ -1,0 +1,446 @@
+components:
+  schemas:
+    ErrorObject:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The main error message ( for example "Bad Request", "Unauthorized", etc. )
+        errors:
+          type: array
+          items:
+            type: object
+            description: Explanation about an error
+      required:
+        - message
+        - errors
+# Basic model of a Exercise 
+    BasicExerciseModel:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "A Super Exercise"
+          minLength: 3
+          maxLength: 100
+          description: "The title of this exercise"
+        description:
+          type: string
+          maxLength: 5000
+          example: "..."
+          description: "The preamble of this exercise"
+      required:
+        - title
+        - description
+# If already in database, we have other fields (in addition of the basic Model)
+    AlreadyPresentExerciseModel:
+      allOf:
+        - $ref: '#/components/schemas/BasicExerciseModel'
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 42
+              minimum: 0
+              description: "The Id of this exercise"
+            version:
+              type: integer
+              example: 42
+              minimum: 0
+              description: "The version of this exercise (optimistic lock)"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2019-10-26 21:46:02.325+02"
+              description: "Date of creation of this exercise"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2019-10-26 21:46:02.325+02"
+              description: "Date of the latest update of this exercise"
+            isValidated:
+              type: boolean
+              description: "Is this exercise validated by an admin ?"
+              example: false
+            file:
+              type: string
+              nullable: true
+              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{filename}"
+              example: "sources-88af5adc-1837-11ea-8d71-362b9e155667.zip"
+            url:
+              type: string
+              pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
+              example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+              nullable: true
+              description: "If not null, the link to the exercise on a plateform"
+          required:
+            - id
+            - version
+            - createdAt
+            - updatedAt
+            - isValidated
+            - file
+            - url
+# For search / get context, we have other fields (in addition of the AlreadyPresentExerciseModel )
+    SearchableExerciseModel:
+      allOf:
+        - $ref: "#/components/schemas/AlreadyPresentExerciseModel"
+        - type: object
+          properties:
+            metrics:
+              type: object
+              properties:
+                votes:
+                  type: integer
+                  example: 42
+                  minimum: 0
+                  description: "Number of votes for this exercise"
+                avg_score:
+                  type: number
+                  minimum: 0.0
+                  example: 5.0
+                  description: "The average score of this exercise"
+              required:
+                - votes
+                - avg_score
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/TagWithCategory'
+              uniqueItems: true
+          required:
+            - metrics
+            - tags
+# A Tag Category
+    Tag_Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 0
+          example: 42
+          description: "The Id of this Tag_Category"
+        category:
+          type: string
+          example: "difficulty"
+          minLength: 3
+          maxLength: 100
+          description: "The text of this Tag_Category"
+      required:
+        - id
+        - category
+# A Tag
+    Tag:
+      type: object
+      properties:
+        tag_id:
+          type: integer
+          example: 42
+          minimum: 0
+          description: "The Id of this Tag"
+        tag_text:
+          type: string
+          example: "easy"
+          minLength: 1
+          maxLength: 100
+          description: "The text of this Tag"
+      required:
+        - tag_id
+        - tag_text
+# Tag with Tag category
+    TagWithCategory:
+      allOf:
+        - $ref: "#/components/schemas/Tag"
+        - type: object
+          properties:
+            category:
+              type: object
+              properties:
+                category_text:
+                  type: string
+                  example: "difficulty"
+                  minLength: 3
+                  maxLength: 100
+                  description: "The text of the Tag Category linked with this tag"
+                category_id:
+                  type: integer
+                  example: 42
+                  minimum: 0
+                  description: "The category ID linked with this tag"
+              required:
+                - category_text
+                - category_id
+          required:
+            - category
+    TagCategoryWithTags:
+      allOf:
+        - $ref: "#/components/schemas/Tag_Category"
+        - type: object
+          properties:
+            tags:
+              type: array
+              description: "An array of related tags to this Tag Category"
+              minItems: 1
+              uniqueItems: true
+              items:
+                $ref: "#/components/schemas/Tag"
+          required:
+            - tags
+# Tag proposal
+    TagProposal:
+      type: object
+      properties:
+        text:
+          type: string
+          example: "easy"
+          minLength: 1
+          maxLength: 100
+          description: "The text of this Tag"
+        category_id:
+          type: integer
+          minimum: 0
+          example: 42
+          description: "the category id to which this tag is related"
+      required:
+        - text
+        - category_id
+# Tag updated / validated
+    TagFull:
+      allOf:
+        - $ref: "#/components/schemas/Tag"
+        - type: object
+          properties:
+            category_id:
+              type: integer
+              example: 42
+              minimum: 0
+              description: "the category id to which it is related"
+            isValidated:
+              type: boolean
+              example: false
+              description: "Is this tag validated or not"
+            version:
+              type: integer
+              minimum: 0
+              description: "The version of this exercise (optimistic lock)"
+              example: 42 
+          required:
+            - category_id
+            - isValidated
+            - version
+# When we want to upload a new exercise, we need other fields for that
+    ExerciseForm:
+      allOf:
+        - $ref: "#/components/schemas/BasicExerciseModel"
+        - type: object
+          properties:
+            tags:
+              type: array
+              items:
+                oneOf:
+                  - type: integer
+                    minimum: 0
+                    description: "A Tag ID ( already existent in database )"
+                  - $ref: "#/components/schemas/TagProposal"
+                    description: "A not-existent Tag we want to add"
+              description: "Mixed array that contains existent tag(s) or not"
+              uniqueItems: true
+              minItems: 1 # We must always put at least one tag in the database
+            url:
+              type: string
+              pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
+              example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
+              nullable: true
+              description: "If not null, the link to the exercise on a plateform"
+          required:
+            - tags
+# When we want to update a already existent exercise, we also need the version
+    ExerciseUpdateForm:
+      allOf:
+        - $ref: "#/components/schemas/ExerciseForm"
+        - type: object
+          properties:
+            version:
+              type: integer
+              description: "The version of this exercise (optimistic lock)"
+              minimum: 0
+              example: 42
+          required:
+            - version
+# Result after a call to /search
+    SearchResult:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: "Fields for pagination"
+          properties:
+            currentPage:
+              type: integer
+              example: 1
+              minimum: 1
+              description: "Current number of page"
+              default: 1
+            totalItems:
+              type: integer
+              example: 42
+              minimum: 0
+              description: "How much exercises match the given criterias"
+            totalPages:
+              type: integer
+              minimum: 0
+              example: 5
+              description: "How much pages of exercises match the given criterias"
+            pageSize:
+              type: integer
+              minimum: 0
+              example: 10
+              default: 10
+              description: "How many entries of exercises on each page"
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/SearchableExerciseModel" 
+            description: "An array of exercise data"
+      required:
+        - metadata
+        - data
+# Common criteria ( for pagination )
+    CommonCriterias:
+      type: object
+      properties:
+        limit:
+          type: integer
+          minimum: 0
+          description: "Maximal number of items we want to retrieve"
+          example: 42
+        offset:
+          type: integer
+          minimum: 0
+          description: "Number of items we want to skip (useful with limit for pagination)"
+          example: 42
+# Search criteria
+    SearchCriterias:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: "Fields for pagination"
+          properties:
+            page:
+              type: integer
+              description: "Page number (start at 1)"
+              minimum: 1
+              default: 1
+              example: 1
+            size:
+              type: integer
+              minimum: 0
+              description: "Number of items by page"
+              default: 10
+              example: 10
+        data:
+          type: object
+          description: "Search criterias"
+          properties:
+            title:
+              type: string
+              description: "Something we want to find inside the title of exercises"
+              maxLength: 100
+              example: "SINF2MS"
+            tags:
+              type: array
+              items:
+                oneOf:
+                  - type: integer
+                    format: int32
+                    example: 1
+                  - type: array
+                    items:
+                      type: integer
+                      format: int32
+                    minItems: 1 # Not allowing empty array if we use
+              description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
+              example: [-1, [2, 3]]
+            state:
+              type: string
+              enum: ["default", "validated", "pending"]
+              default: "default"
+              description: "Filter the exercises by their validity. The default value ('default') stands for no filtering."
+            user_ids:
+              type: array
+              description: "Filter the exercises by their creators."
+              minItems: 1
+              items:
+                type: integer
+                minimum: 0
+                description: "An user ID"
+              uniqueItems: true
+    MultipleExercisesForm:
+      type: array
+      minItems: 1
+      items:
+        $ref: "#/components/schemas/ExerciseForm" 
+        description: "An array of exercises"
+    TagCategoriesForm:
+      type: array
+      minItems: 1
+      items:
+        oneOf:
+          - type: string
+            description: "The name of the Tag Category"
+            example: "author"
+          - type: object
+            description: "Category to add, under one that already exists"
+            properties:
+              text:
+                type: string
+                description: "The name of the Tag Category"
+                example: "author"
+                minLength: 3
+                maxLength: 100
+              category:
+                type: integer
+                format: int32
+                minimum: 0
+                description: "The ID of the Tag Category parent"
+            required:
+              - text
+              - category
+# Configurations
+    ConfigurationProposal:
+      type: object
+      properties:
+        name:
+          description: "The name of this configuration"
+          type: string
+          example: "All Java exercises"
+        title:
+          description: "The used title for search"
+          type: string
+          example: "[LSINF1252]"
+          maxLength: 100
+          minLength: 1
+        tags:
+          description: "An array of tags IDS"
+          type: array
+          example: [42]
+          items:
+            type: integer
+            minimum: 0
+          minLength: 1
+      required:
+        - name
+        - tags
+    ExistentConfiguration:
+      allOf:
+        - $ref: "#/components/schemas/ConfigurationProposal"
+        - type: object
+          properties:
+            id:
+              description: "The id of this configuration"
+              type: integer
+              minimum: 0
+              example: 42
+          required:
+            - id

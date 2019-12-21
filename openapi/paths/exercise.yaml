@@ -1,0 +1,73 @@
+paths:
+  /api/exercises/{id}:
+    parameters:
+        - name: id
+          in: path
+          description: "The exercise ID"
+          required: true
+          schema:
+            type: integer
+    get:
+      summary: "Retrieve this specific exercise data"
+      operationId: getExerciseByID
+      tags:
+        - guest
+      responses:
+        '200':
+          description: "Exercise data inside a JSON"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/SearchableExerciseModel"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+    put:
+      summary: "Update this specific exercise data"
+      operationId: UpdateExercise
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/ExerciseUpdateForm"
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "../definitions.yaml#/components/schemas/ExerciseUpdateForm"
+                - type: object
+                  description: "If we want to also to change the sources zip file of this exercise"
+                  properties:
+                    exerciseFile:
+                      type: string
+                      format: binary
+                      description: "The sources of this exercise, in zip format"
+                  required:
+                    - exerciseFile
+            encoding:
+              exerciseFile:
+              # MIME for zip https://stackoverflow.com/a/7027582/6149867
+                contentType: application/zip, application/x-zip-compressed, multipart/x-zip
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"
