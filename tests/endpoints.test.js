@@ -808,6 +808,34 @@ describe("Validations testing", () => {
             .expect(403);
     });
 
+    it("PUT /api/tags_categories : A simple user cannot modify a tag category", async () => {
+        await request
+            .put("/api/tags_categories")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .send({
+                id: 42,
+                category: "HACKERMAN"
+            })
+            .expect(403);
+    });
+
+    it("PUT /api/exercises/{id} : Required an account", async () => {
+        await request
+            .put("/api/exercises/42")
+            .set('Content-Type', 'application/json')
+            .send({
+                "title": "A Super Exercise",
+                "description": "...",
+                "tags": [
+                    0
+                ],
+                "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams",
+                "version": 42
+            })
+            .expect(401);
+    });
+
 });
 
 // utilities functions
