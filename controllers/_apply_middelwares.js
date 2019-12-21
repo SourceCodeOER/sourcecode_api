@@ -44,8 +44,10 @@ module.exports = function (app) {
                     }
                 });
                 break;
+            /* istanbul ignore next */
             default:
                 // do nothing
+                /* istanbul ignore next */
                 next();
         }
     });

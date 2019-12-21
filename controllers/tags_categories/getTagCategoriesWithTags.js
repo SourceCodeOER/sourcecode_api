@@ -9,18 +9,24 @@ module.exports = function (req, res, next) {
         onlySelected: params.onlySelected || []
     };
 
+    let criteria = [];
+
+    /* istanbul ignore if */
+    if (settings.onlySelected.length > 0) {
+        criteria.push({
+            id: {
+                [Op.in]: settings.onlySelected
+            }
+        });
+    }
+
     let options = {
         attributes: [
             "id",
             ["kind", "category"]
         ],
-        where: (settings.onlySelected.length > 0)
-            ? {
-                id: {
-                    [Op.in]: settings.onlySelected
-                }
-            }
-            : {},
+        // dynamic create the where clause
+        where: Object.assign({}, ...criteria),
         include: [
             {
                 // by default, it will do a left join, just change that to a inner join
@@ -31,11 +37,15 @@ module.exports = function (req, res, next) {
                     ["id", "tag_id"],
                     ["text", "tag_text"]
                 ],
-                where: (settings.state !== "default")
-                    ? {
-                        isValidated: settings.state === "validated"
-                    }
-                    : {}
+                where: Object
+                    .assign({},
+                        ...(
+                            (settings.state !== "default")
+                                /* istanbul ignore next */
+                                ? [{isValidated: settings.state === "validated"}]
+                                : []
+                        )
+                    )
             }
         ]
     };
