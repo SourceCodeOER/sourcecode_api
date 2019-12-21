@@ -5,6 +5,8 @@ paths:
       tags:
         - guest
       operationId: getTagCategoriesWithTags
+      x-controller: tags_categories
+      x-operation: getTagCategoriesWithTags
       parameters:
         - in: query
           style: form

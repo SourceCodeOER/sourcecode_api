@@ -3,6 +3,8 @@ paths:
     get:
       description: "Get all configurations of the current logged user"
       operationId: "FetchOwnConfigurations"
+      x-controller: configurations
+      x-operation: FetchOwnConfigurations
       tags:
         - user
       security:
@@ -26,6 +28,8 @@ paths:
     put:
       description: "Update a configuration"
       operationId: "UpdateConfiguration"
+      x-controller: configurations
+      x-operation: UpdateConfiguration
       tags:
         - user
       security:
@@ -49,6 +53,8 @@ paths:
     post:
       description: "Create a configuration"
       operationId: "CreateConfiguration"
+      x-controller: configurations
+      x-operation: CreateConfiguration
       tags:
         - user
       security:

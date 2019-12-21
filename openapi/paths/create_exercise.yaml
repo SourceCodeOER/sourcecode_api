@@ -3,6 +3,8 @@ paths:
     post:
       summary: "Creates a new exercise into the system"
       operationId: createSingleExercise
+      x-controller: exercises
+      x-operation: createSingleExercise
       tags:
         - user
       security:

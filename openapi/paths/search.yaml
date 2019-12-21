@@ -5,6 +5,8 @@ paths:
       tags:
         - guest
       operationId: searchExercises
+      x-controller: exercises
+      x-operation: searchExercises
       requestBody:
         required: true
         content:

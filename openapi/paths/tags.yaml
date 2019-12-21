@@ -5,6 +5,8 @@ paths:
       tags:
         - user
       operationId: submitTagProposal
+      x-controller: tags
+      x-operation: submitTagProposal
       security:
         - bearerAuth: []
       requestBody:
@@ -28,6 +30,8 @@ paths:
       tags:
         - admin
       operationId: updateTag
+      x-controller: tags
+      x-operation: updateTag
       security:
         - bearerAuth: []
       requestBody:
@@ -51,6 +55,8 @@ paths:
       tags:
         - guest
       operationId: getTags
+      x-controller: tags
+      x-operation: getTags
       parameters:
         - in: query
           style: form

@@ -3,6 +3,8 @@ paths:
     post:
       summary: "Vote (or update the vote) of the current logged user for given exercise"
       operationId: "voteForExercise"
+      x-controller: exercises
+      x-operation: voteForExercise
       tags:
         - user
       security:

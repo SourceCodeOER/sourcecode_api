@@ -10,6 +10,8 @@ paths:
     get:
       summary: "Retrieve this specific exercise data"
       operationId: getExerciseByID
+      x-controller: exercises
+      x-operation: getExerciseByID
       tags:
         - guest
       responses:
@@ -29,6 +31,8 @@ paths:
     put:
       summary: "Update this specific exercise data"
       operationId: UpdateExercise
+      x-controller: exercises
+      x-operation: UpdateExercise
       tags:
         - user
       security:

@@ -4,6 +4,8 @@ paths:
       summary: "Delete given exercises"
       description: "Delete given exercises. An simple user can only delete his/her own exercises (no restriction for admin)"
       operationId: "DeleteExercises"
+      x-controller: bulk
+      x-operation: DeleteExercises
       tags:
         - user
         - admin
@@ -37,6 +39,8 @@ paths:
     put:
       summary: "Validate / Unvalidate given exercises"
       operationId: "ValidateExercises"
+      x-controller: bulk
+      x-operation: ValidateExercises
       tags:
         - admin
       security:
@@ -81,6 +85,8 @@ paths:
       tags:
         - admin
       operationId: createOrFindTagCategories
+      x-controller: bulk
+      x-operation: createOrFindTagCategories
       security:
         - bearerAuth: []
       requestBody:
@@ -112,6 +118,8 @@ paths:
       tags:
         - user
       operationId: createMultipleExercises
+      x-controller: bulk
+      x-operation: createMultipleExercises
       security:
         - bearerAuth: []
       requestBody:

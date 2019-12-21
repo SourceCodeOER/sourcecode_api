@@ -3,6 +3,8 @@ paths:
     get:
       summary: "Retrieve only Tag categories"
       operationId: getTagCategories
+      x-controller: tags_categories
+      x-operation: getTagCategories
       tags:
         - guest
       responses:
@@ -25,6 +27,8 @@ paths:
     put:
       summary: "Update a Tag category"
       operationId: updateTagCategory
+      x-controller: tags_categories
+      x-operation: updateTagCategory
       security:
         - bearerAuth: []
       tags:

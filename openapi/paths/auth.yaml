@@ -3,6 +3,8 @@ paths:
     post:
       summary: "Logs user into the system"
       operationId: signIn
+      x-controller: auth
+      x-operation: signIn
       tags:
         - guest
       requestBody:
@@ -51,6 +53,8 @@ paths:
     post:
       summary: "Creates a new user into the system"
       operationId: register
+      x-controller: auth
+      x-operation: register
       tags:
         - guest
       requestBody:
@@ -84,6 +88,8 @@ paths:
     get:
       summary: "Fetch information about the current logged user"
       operationId: "me"
+      x-controller: auth
+      x-operation: me
       tags:
         - user
       security:
