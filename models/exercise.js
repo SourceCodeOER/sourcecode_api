@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 
 module.exports = (sequelize, DataTypes) => {
     let Exercise = sequelize.define('Exercise', {
-        title : {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -54,11 +54,11 @@ module.exports = (sequelize, DataTypes) => {
                     }]
                 };
                 // if the user provide a title / isValidated check , we must add it to the where clause
-                if (parameters.hasOwnProperty("data") && parameters.data.hasOwnProperty("title")) {
+                if (parameters.hasOwnProperty("data")) {
                     let criteria = [];
 
                     /* istanbul ignore else */
-                    if (parameters.data.hasOwnProperty("title")){
+                    if (parameters.data.hasOwnProperty("title")) {
                         criteria.push({
                             title: {
                                 [Op.iLike]: `%${parameters.data.title}%`
@@ -69,6 +69,14 @@ module.exports = (sequelize, DataTypes) => {
                     if (parameters.data.hasOwnProperty("state") && parameters.data.state !== "default") {
                         criteria.push({
                             isValidated: (parameters.data.state === "validated")
+                        });
+                    }
+
+                    if (parameters.data.hasOwnProperty("user_ids")) {
+                        criteria.push({
+                            user_id: {
+                                [Op.in]: parameters.data["user_ids"]
+                            }
                         });
                     }
 
@@ -85,13 +93,13 @@ module.exports = (sequelize, DataTypes) => {
             },
             // filter exercises ids
             filter_exercises_ids(ids) {
-                  return {
-                      where: {
-                          id: {
-                              [Op.in]: ids
-                          }
-                      }
-                  }
+                return {
+                    where: {
+                        id: {
+                            [Op.in]: ids
+                        }
+                    }
+                }
             },
             // include the metrics part
             with_exercise_metrics() {
@@ -157,13 +165,13 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     // when an exercise is created in database, automatically create a Exercise_Metrics row
-    Exercise.addHook("afterCreate", "auto_create_exercise_metrics", function(exercise, options) {
+    Exercise.addHook("afterCreate", "auto_create_exercise_metrics", function (exercise, options) {
         return exercise
             .sequelize
             .models
             .Exercise_Metrics
             .create({
-               exercise_id:  exercise.id
+                exercise_id: exercise.id
             }, {
                 transaction: options.transaction
             });

@@ -1,8 +1,4 @@
-const models = require('../../models');
-const Promise = require("bluebird");
-
 const partition = require('lodash.partition');
-const Sequelize = require("sequelize");
 
 // delegate tag matching process to specialized functions
 const {
