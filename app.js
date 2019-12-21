@@ -55,7 +55,7 @@ module.exports = new Promise((resolve, reject) => {
 
     // initialize the enforcer
     try {
-        const enforcer = Enforcer(spec, {requestBodyAllowedMethods: {"delete": true}});
+        const enforcer = Enforcer(spec, {componentOptions: {requestBodyAllowedMethods: {"delete": true}} });
         enforcer
             .controllers(controllerDirectory)
             .then(() => {
