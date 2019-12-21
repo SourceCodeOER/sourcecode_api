@@ -6,7 +6,7 @@ const Sequelize = require("sequelize");
 
 module.exports = (req, res, next) => {
 
-    const id = parseInt(req.params.exerciseId, 10);
+    const id = parseInt(req.params.id, 10);
 
     // check if id exist in database
     return models

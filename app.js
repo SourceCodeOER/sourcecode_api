@@ -82,10 +82,11 @@ module.exports = new Promise((resolve, reject) => {
 
                 resolve(app);
             })
-            .catch(err => {
+            .catch(/* istanbul ignore next */err => {
                 throw err;
             });
     } catch (err) {
+        /* istanbul ignore next */
         reject(err);
     }
 });

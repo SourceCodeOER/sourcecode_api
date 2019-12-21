@@ -15,7 +15,7 @@ const {
 
 module.exports = (req, res, next) => {
 
-    const id = parseInt(req.params.exerciseId, 10);
+    const id = parseInt(req.params.id, 10);
     // distinguish already present tags from new tags
     const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
