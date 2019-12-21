@@ -364,8 +364,8 @@ components:
               example: [-1, [2, 3]]
             state:
               type: string
-              enum: ["default", "validated", "pending"]
-              default: "default"
+              enum: [default, validated, pending]
+              default: default
               description: "Filter the exercises by their validity. The default value ('default') stands for no filtering."
             user_ids:
               type: array

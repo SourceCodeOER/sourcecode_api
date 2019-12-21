@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
             attributes: {exclude: ['password']}
         })
         .then((user) => {
-            res.send(user);
+            res.send(user.toJSON());
         })
         .catch(/* istanbul ignore next */
             err => next(err));

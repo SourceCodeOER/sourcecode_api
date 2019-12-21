@@ -43,7 +43,7 @@ module.exports = function (req, res, next) {
     return models
         .Tag_Category
         .findAll(options)
-        .then(result => res.send(result))
+        .then(result => res.send(result.map(cat => cat.toJSON())))
         .catch(/* istanbul ignore next */
             err => next(err));
 };
