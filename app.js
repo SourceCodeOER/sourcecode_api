@@ -59,7 +59,9 @@ module.exports = new Promise((resolve, reject) => {
         // settings for file upload
         multerOpts: {
             storage: multer_storage
-        }
+        },
+        // TODO remove that when documentation is ready / updated
+        ignorePaths: /.*\/(?:auth\/(?:me|update))$/
     })
         .install(app)
         .then(() => {

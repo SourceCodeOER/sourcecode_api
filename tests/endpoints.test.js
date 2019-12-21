@@ -76,9 +76,9 @@ beforeAll(() => {
 });
 
 describe("Simple case testing", () => {
-    it("POST /api/bulk_create_or_find_tag_categories", async () => {
+    it("POST /api/bulk/create_or_find_tag_categories", async () => {
         const response = await request
-            .post("/api/bulk_create_or_find_tag_categories")
+            .post("/api/bulk/create_or_find_tag_categories")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
@@ -140,7 +140,8 @@ describe("Simple case testing", () => {
                     37,
                     -42
                 ],
-                "state": "validated"
+                "state": "validated",
+                "user_ids": [1, 2, 3]
             }
         };
         await search_exercise(0, criteria);
@@ -188,13 +189,30 @@ describe("Simple case testing", () => {
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);
     });
+
+    it("GET /auth/me", async () => {
+        const response = await request
+            .get("/auth/me")
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+        expect(response.status).toBe(200);
+        expect(isObject(response.body)).toBeTruthy();
+        expect(response.body.hasOwnProperty("email")).toBeTruthy();
+        expect(response.body.hasOwnProperty("fullName")).toBeTruthy();
+        expect(response.body.hasOwnProperty("role")).toBeTruthy();
+        expect(response.body.hasOwnProperty("password")).toBeFalsy();
+        expect(response.body.fullName).toBe(userName);
+        expect(response.body.email).toBe(user.email);
+        expect(response.body.role).toBe("admin");
+    });
 });
 
 describe("Complex scenarios", () => {
     it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times and then Validate it", async () => {
         // retrieve some tag categories
         let response = await request
-            .post("/api/bulk_create_or_find_tag_categories")
+            .post("/api/bulk/create_or_find_tag_categories")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
@@ -234,7 +252,7 @@ describe("Complex scenarios", () => {
             )
         };
         await request
-            .post("/api/bulk_create_exercises")
+            .post("/api/bulk/create_exercises")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send([
@@ -252,6 +270,16 @@ describe("Complex scenarios", () => {
 
         let data = response.data[0];
         expect(data.version).toBe(0);
+
+        // A simple user should not be able to delete that one as it doesn't belong to him/her
+        await request
+            .delete("/api/bulk/delete_exercises")
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .send([
+                data.id
+            ])
+            .expect(403);
 
         // test most updates cases : keep tags / add & remove
         // 1. Only changed description
@@ -297,7 +325,7 @@ describe("Complex scenarios", () => {
 
         // 3. Finally validate the exercise
         response = await request
-            .put("/api/bulk_modify_exercises_validity")
+            .put("/api/bulk/modify_exercises_validity")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
@@ -312,7 +340,7 @@ describe("Complex scenarios", () => {
     it("Scenario n°2 : Creates a single exercise with (no) existent tag(s) and add tags later", async () => {
         // retrieve some tag categories
         let response = await request
-            .post("/api/bulk_create_or_find_tag_categories")
+            .post("/api/bulk/create_or_find_tag_categories")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
@@ -666,7 +694,7 @@ describe("Using multipart/form-data (instead of JSON)", () => {
 
         // retrieve some tag categories
         let response = await request
-            .post("/api/bulk_create_or_find_tag_categories")
+            .post("/api/bulk/create_or_find_tag_categories")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
@@ -705,7 +733,7 @@ describe("Using multipart/form-data (instead of JSON)", () => {
 
         // Take the first one to be deleted
         await request
-            .delete("/api/bulk_delete_exercises")
+            .delete("/api/bulk/delete_exercises")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send([
@@ -808,7 +836,7 @@ function multiple_upload_with_files_request(exercises, files) {
 
     // build the request now
     let requestInstance = request
-        .post("/api/bulk_create_exercises")
+        .post("/api/bulk/create_exercises")
         .set('Authorization', 'bearer ' + JWT_TOKEN);
 
     // Add all given files

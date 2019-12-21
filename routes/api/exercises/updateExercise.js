@@ -1,117 +1,68 @@
-const express = require('express');
-const router = express.Router();
-
-// guarded routes
-const passport = require('passport');
-
-const models = require('../../models');
 const Promise = require("bluebird");
-
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 const partition = require('lodash.partition');
 const difference = require('lodash.difference');
 
-const {resolve: path_resolve} = require("path");
-const del = require('del');
-
-const {FILES_FOLDER} = require("../../config/storage_paths");
-const moveFile = require('move-file');
-// fct that return the promise of moving the file to destination
-const move_promise = (file) => moveFile(
-    file.path,
-    path_resolve(FILES_FOLDER, file.filename), {overwrite: false}
-);
-
-// function for bulky inner select
+const models = require('../../../models');
+const filesManager = require("../../files_manager");
 const {
-    build_search_result,
     find_tag_matches,
     build_dictionary_for_matching_process,
     matching_process
-} = require("../utlis_fct");
+} = require("../../utlis_fct");
 
-router.get("/:exerciseId", (req, res, next) => {
+module.exports = (req, res, next) => {
 
     const id = parseInt(req.params.exerciseId, 10);
+    // distinguish already present tags from new tags
+    const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
-    // check if id exist in database
-    return models
-        .Exercise
-        .findByPk(id, {
-            attributes: [
-                Sequelize.literal(1)
-            ],
-            rejectOnEmpty: true
-        }).then((result) => {
-            return build_search_result([id]);
-        }).then(data => {
-            // data is an array : I just need the first item
-            res.json(data[0]);
-        }).catch(err => {
-            next(err);
-        })
+    // did the user provide us a file to store ?
+    const file = (Array.isArray(req.files)) ? req.files[0] : null;
+    const exercise_data = (req.files === undefined)
+        ? req.body
+        : Object.assign({}, req.body, {
+            file: file
+        });
 
-});
+    return find_exercise_tags_and_search_possible_new_tags_match(
+        [id, req.user, req.body.version, new_tags, already_present_tags]
+    )
+        .then(result => compute_tag_changes(result))
+        .then(([changes, tags_to_be_inserted]) => {
 
-router.put("/:exerciseId",
-    passport.authenticate("jwt", {
-        failWithError: true,
-        session: false
-    }),
-    (req, res, next) => {
-
-        const id = parseInt(req.params.exerciseId, 10);
-        // distinguish already present tags from new tags
-        const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
-
-        // did the user provide us a file to store ?
-        const file = (Array.isArray(req.files)) ? req.files[0] : null;
-        const exercise_data = (req.files === undefined)
-            ? req.body
-            : Object.assign({}, req.body, {
-                file: file
-            });
-
-        return find_exercise_tags_and_search_possible_new_tags_match(
-            [id, req.user, req.body.version, new_tags, already_present_tags]
-        )
-            .then(result => compute_tag_changes(result))
-            .then(([changes, tags_to_be_inserted]) => {
-
-                // transaction here as if anything bad happens, we don't commit that to database
-                return models
-                    .sequelize
-                    .transaction({
-                        isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
-                    }, (t) => {
-                        // if new tags to insert, do that
-                        // if not, do nothing
-                        return insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t)
-                            .then((created_tags) => handle_all_cases_for_tags([id, changes, created_tags, t]))
-                            .then(() =>
-                                update_exercise([
-                                    id,
-                                    exercise_data,
-                                    t
-                                ])
-                            )
-                    })
-            })
-            .then(() => {
-                // everything works as expected : tell that to user
-                res.status(200).end();
-            })
-            .catch(/* istanbul ignore next */
-                err => {
-                    const better_error = handle_upload_error(err);
-                    next(better_error);
+            // transaction here as if anything bad happens, we don't commit that to database
+            return models
+                .sequelize
+                .transaction({
+                    isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+                }, (t) => {
+                    // if new tags to insert, do that
+                    // if not, do nothing
+                    return insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t)
+                        .then((created_tags) => handle_all_cases_for_tags([id, changes, created_tags, t]))
+                        .then(() =>
+                            update_exercise([
+                                id,
+                                exercise_data,
+                                t
+                            ])
+                        )
                 })
+        })
+        .then(() => {
+            // everything works as expected : tell that to user
+            res.status(200).end();
+        })
+        .catch(/* istanbul ignore next */
+            err => {
+                const better_error = handle_upload_error(err);
+                next(better_error);
+            })
 
-    });
-
-module.exports = router;
+};
 
 // some methods that made life easier with this hell of promise chaining
 function find_exercise_tags_and_search_possible_new_tags_match([id, user, version, new_tags, already_present_tags]) {
@@ -289,7 +240,7 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
 
 function update_exercise([id, body, t]) {
     // useful if we need to destroy it if upload failed
-    const new_file_location = (body.hasOwnProperty("file") && body.file !== null) ? [body.file.path] : [];
+    const new_file_location = (body.hasOwnProperty("file") && body.file !== null) ? [body.file] : [];
     return new Promise((resolve, reject) => {
         return models
             .Exercise
@@ -325,7 +276,7 @@ function update_exercise([id, body, t]) {
                         Promise.resolve(instance.get("file")),
                         // upload the new file (if asked)
                         (body.hasOwnProperty("file") && body.file !== null)
-                            ? move_promise(body.file)
+                            ? filesManager.move_file_to_destination_folder(body.file)
                             : Promise.resolve(),
                         // modify the row in db
                         instance.update(properties, {transaction: t})
@@ -333,21 +284,15 @@ function update_exercise([id, body, t]) {
             })
             .then(([old_file, _a, _b]) => {
                 // if provided, the new file was correctly uploaded : we still have to destroy the old one (if exist)
-                del((old_file !== null) ? [path_resolve(FILES_FOLDER, old_file)] : [])
+                filesManager
+                    .delete_stored_files((old_file !== null) ? [old_file] : [])
                     .then(() => resolve())
-                    .catch(/* istanbul ignore next */() => {
-                        console.log(old_file + "cannot be deleted - You should probably delete it/them manually");
-                        resolve();
-                    });
             })
             .catch(/* istanbul ignore next */(err) => {
                 // we failed to upload the new file ; remove it from uploads folder
-                del(new_file_location)
-                    .then(() => reject(err))
-                    .catch(/* istanbul ignore next */() => {
-                        console.log(new_file_location[0] + "cannot be deleted - You should probably delete it/them manually");
-                        reject(err);
-                    });
+                filesManager
+                    .delete_temp_files(new_file_location)
+                    .then(() => reject(err));
             })
     });
 

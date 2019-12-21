@@ -4,7 +4,7 @@ const router  = express.Router();
 const auth = require("./auth");
 const api = require("./api");
 
-// for auth sign/register endpoints
+// for auth endpoints
 router.use("/auth", auth);
 // for api endpoints
 router.use("/api", api);
