@@ -428,7 +428,7 @@ components:
           items:
             type: integer
             minimum: 0
-          minLength: 1
+          minItems: 1
       required:
         - name
         - tags
