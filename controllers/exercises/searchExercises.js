@@ -71,7 +71,7 @@ module.exports = function (req, res, next) {
                 metadata: updated_metadata
             });
         })
-        .then(result => res.json(result))
+        .then(result => res.send(result))
         .catch(/* istanbul ignore next */
             err => next(err));
 };

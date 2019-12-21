@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
             return build_search_result([id]);
         }).then(data => {
             // data is an array : I just need the first item
-            res.json(data[0]);
+            res.send(data[0]);
         }).catch(err => {
             next(err);
         })

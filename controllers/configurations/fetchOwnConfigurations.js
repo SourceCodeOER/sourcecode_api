@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
             }
         })
         .then(configurations =>
-            res.json(
+            res.send(
                 configurations.map(
                     configuration => ({
                         name: configuration.get("name"),

@@ -50,7 +50,7 @@ module.exports = (req, res, next) => {
     return models
         .Tag
         .findAll(options)
-        .then(result => res.json(result))
+        .then(result => res.send(result))
         .catch(/* istanbul ignore next */
             err => next(err));
 };

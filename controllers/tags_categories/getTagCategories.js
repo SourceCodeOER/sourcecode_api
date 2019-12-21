@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
                 ["kind", "category"]
             ]
         })
-        .then((result) => res.json(result))
+        .then((result) => res.send(result))
         .catch(/* istanbul ignore next */
             err => next(err))
 };

@@ -82,11 +82,11 @@ paths:
   /api/bulk/create_or_find_tag_categories:
     post:
       summary: "Creates or Find tag categories"
+      x-controller: bulk
+      x-operation: createOrFindTagCategories
       tags:
         - admin
       operationId: createOrFindTagCategories
-      x-controller: bulk
-      x-operation: createOrFindTagCategories
       security:
         - bearerAuth: []
       requestBody:

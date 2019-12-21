@@ -64,6 +64,9 @@ module.exports = new Promise((resolve, reject) => {
                 // Passport Js must have that
                 app.use(passport.initialize());
 
+                // apply other middleware before enforcer
+                require("./controllers/_apply_middelwares")(app);
+
                 // add enforcer multer middleware
                 app.use(enforcerMulter(enforcer, storage));
 
