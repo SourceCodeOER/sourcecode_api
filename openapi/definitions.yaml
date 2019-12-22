@@ -51,12 +51,12 @@ components:
             createdAt:
               type: string
               format: date-time
-              example: "2019-10-26 21:46:02.325+02"
+              example: "2019-12-22T15:18:31.090Z"
               description: "Date of creation of this exercise"
             updatedAt:
               type: string
               format: date-time
-              example: "2019-10-26 21:46:02.325+02"
+              example: "2019-12-22T15:19:33.473Z"
               description: "Date of the latest update of this exercise"
             isValidated:
               type: boolean
