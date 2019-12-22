@@ -1,5 +1,6 @@
 // Sequelize for error handeling
 const Sequelize = require("sequelize");
+const debug = require("../controllers/_common/debug");
 
 module.exports = function () {
     return function (err, req, res, next) {
@@ -50,7 +51,19 @@ module.exports = function () {
             custom_err.is_custom = true;
             custom_err.dev_errors = [err];
         }
+        // just log
+        debug.tracker("%s %s - %d : %s",
+            req.method,
+            req.url,
+            custom_err.status || 500,
+            (req.is("json"))
+                ? "application/json"
+                : (req.is("multipart"))
+                ? "multipart/*"
+                : "urlencoded",
+        );
+        // if we want to inspect that later
+        debug.errors("%O", err);
         next(custom_err)
-
     }
 };

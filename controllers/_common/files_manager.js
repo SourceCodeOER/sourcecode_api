@@ -3,6 +3,7 @@ const moveFile = require('move-file');
 const del = require('del');
 const {resolve: path_resolve} = require("path");
 const {FILES_FOLDER} = require("../../config/storage_paths");
+const debug = require("./debug");
 
 // function to remove given files array
 // if it is a multer object, we can extract the storage (else rely on given paths )
@@ -16,9 +17,8 @@ function delete_files(filesArray, isMulterObject = true) {
         del(paths)
             .then(() => resolve())
             .catch(/* istanbul ignore next */() => {
-                paths.forEach((file) => {
-                    console.log(file + " cannot be deleted - You should probably delete it manually");
-                });
+                debug.files("One or multiple couldn't be deleted - You should probably delete them manually");
+                debug.files("%O", paths);
                 resolve()
             })
     });
