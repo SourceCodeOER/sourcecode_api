@@ -20,8 +20,7 @@ const helmet = require('helmet');
 
 // OpenAPI V3 validation middleware
 const Enforcer = require("openapi-enforcer-middleware");
-// TEMPORARY use my fork to wait that my PR is merged
-const enforcerMulter = require('@jy95/openapi-enforcer-multer');
+const enforcerMulter = require('openapi-enforcer-multer');
 const spec = path.join(__dirname, 'api.yml');
 const controllerDirectory = path.resolve(__dirname, 'controllers');
 

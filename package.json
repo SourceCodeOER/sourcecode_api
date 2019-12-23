@@ -16,7 +16,6 @@
   "author": "jy95",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@jy95/openapi-enforcer-multer": "^0.1.0",
     "bcrypt": "^3.0.6",
     "bluebird": "^3.7.2",
     "body-parser": "latest",
@@ -37,6 +36,7 @@
     "multer": "^1.4.2",
     "openapi-enforcer": "^1.6.5",
     "openapi-enforcer-middleware": "^1.1.8",
+    "openapi-enforcer-multer": "^0.1.2",
     "passport": "^0.4.0",
     "passport-json": "^1.2.0",
     "passport-jwt": "^4.0.0",
