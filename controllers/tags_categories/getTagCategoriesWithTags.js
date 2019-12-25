@@ -53,7 +53,9 @@ module.exports = function (req, res, next) {
     return models
         .Tag_Category
         .findAll(options)
-        .then(result => res.send(result.map(cat => cat.toJSON())))
+        .then(result => res.send(
+            result.map(/* istanbul ignore next */cat => cat.toJSON()))
+        )
         .catch(/* istanbul ignore next */
             err => next(err));
 };
