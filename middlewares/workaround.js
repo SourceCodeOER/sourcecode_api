@@ -1,6 +1,6 @@
 module.exports = function () {
     return (req, res, next) => {
-        // workaround to correctly convert
+        // workaround to correctly convert object in multipart case
         if (req.is("multipart")) {
             const original_properties = Object
                 .entries(req.body)

@@ -25,6 +25,9 @@ function getRandomInt(min, max) {
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
+// to encode array with url encoded things
+const arrToString = (arr) => "%5B" + arr.join("%2C") + "%5D";
+
 // For the basic set up : two user ( an admin and one that is not)
 async function setUpBasic() {
 
@@ -186,7 +189,10 @@ describe("Simple case testing", () => {
 
     it("GET /api/tags with all settings used", async () => {
         const response = await request
-            .get("/api/tags?settings={\"state\":\"pending\",\"tags_ids\":[1,2,3,4],\"categories_ids\":[1,2,3]}")
+            .get("/api/tags")
+            .query('state=pending')
+            .query('tags_ids=' + arrToString([1,2,3,4]))
+            .query('categories_ids=' + arrToString([1,2,3]))
             .set('Accept', 'application/json')
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);

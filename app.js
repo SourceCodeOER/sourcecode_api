@@ -11,6 +11,7 @@ const passport = require('passport');
 const error_prettier = require("./middlewares/errors-beautifier");
 const default_error_handler = require("./middlewares/default_error_handler");
 const not_found_handler = require("./middlewares/not_found");
+const queryParametersFix = require("./middlewares/queryparameters");
 
 // location of stored files to serve as static
 const {FILES_FOLDER} = require("./config/storage_paths");
@@ -39,7 +40,7 @@ module.exports = new Promise((resolve, reject) => {
     app.use(helmet());
     app.use(logger('dev'));
     app.use(bodyParser.json({limit: '10mb'}));
-    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(bodyParser.urlencoded({extended: true}));
     app.use(cookieParser());
 
     // Gives the Swagger UI Viewer
@@ -51,6 +52,9 @@ module.exports = new Promise((resolve, reject) => {
     // Serves stored files with this endpoint
     /* istanbul ignore next */
     app.use("/files", express.static(FILES_FOLDER));
+
+    // To allow Arrays in query parameters
+    app.use(queryParametersFix());
 
     // main API setup
 
