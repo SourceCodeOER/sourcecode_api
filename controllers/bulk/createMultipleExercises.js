@@ -33,7 +33,7 @@ function handle_both_content_type(req) {
         // mapping between uploaded filename and exercise
         const filesMapping = arrayToObject(req.body.filesMapping, "exercise");
         // map that uses "filename" as key and file
-        const files = arrayToObject(req.files, "originalname");
+        const files = arrayToObject(req.files.files, "originalname");
 
         // exercises with(out) file
         const exercises = req.body.exercisesData.map((exercise, index) => {
@@ -59,7 +59,7 @@ function handle_both_content_type(req) {
 
         // It will work but I don't want to test that ;)
         /* istanbul ignore next */
-        const unmatched_files = req.files
+        const unmatched_files = req.files.files
             .filter(f => !matched_files.includes(f.originalname))
             .map(f => f.path);
 

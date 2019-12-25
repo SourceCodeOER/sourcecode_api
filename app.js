@@ -73,6 +73,9 @@ module.exports = new Promise((resolve, reject) => {
                 // add enforcer multer middleware
                 app.use(enforcerMulter(enforcer, storage));
 
+                // temporary workaround : just the time it will be fixed (or not ^^)
+                app.use(require("./middlewares/workaround")());
+
                 // add the enforcer middleware runner to the express app
                 app.use(enforcer.middleware());
 
