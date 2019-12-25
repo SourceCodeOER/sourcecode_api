@@ -1,0 +1,83 @@
+paths:
+  /api/configurations:
+    get:
+      description: "Get all configurations of the current logged user"
+      operationId: "FetchOwnConfigurations"
+      x-controller: configurations
+      x-operation: FetchOwnConfigurations
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "An array of configurations"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../definitions.yaml#/components/schemas/ExistentConfiguration"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+    put:
+      description: "Update a configuration"
+      operationId: "UpdateConfiguration"
+      x-controller: configurations
+      x-operation: UpdateConfiguration
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/ExistentConfiguration"
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+    post:
+      description: "Create a configuration"
+      operationId: "CreateConfiguration"
+      x-controller: configurations
+      x-operation: CreateConfiguration
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/ConfigurationProposal"
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

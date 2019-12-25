@@ -25,15 +25,18 @@ module.exports = function () {
         mkdirSync(FILES_FOLDER, { recursive: true });
     }
 
-    return multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, UPLOAD_FOLDER)
-        },
-        filename: function (req, file, cb) {
-            // Since we only used zip , give unique uuid based on timestamp
-            const generate_unique_filename = "sources-" + uuidv1() + ".zip";
-            cb(null, generate_unique_filename)
-        }
+    return multer({
+        storage: multer.diskStorage({
+            destination: function (req, file, cb) {
+                cb(null, UPLOAD_FOLDER)
+            },
+            filename: function (req, file, cb) {
+                // Since we only used zip , give unique uuid based on timestamp
+                const generate_unique_filename = "sources-" + uuidv1() + ".zip";
+                cb(null, generate_unique_filename)
+            }
+        }),
+        //limits: { fileSize: 200000 }
     });
 }
 

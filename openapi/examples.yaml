@@ -1,0 +1,17 @@
+# Examples for /search
+examples:
+  searchExample1:
+    description: "Search the first 10 exercises that have 'Java' in their title and have some specific tags ( 1 AND (2 OR 3 OR 4) )"
+    value:
+      data:
+        title: "Java"
+        tags: [1, [2, 3, 4]]
+  searchExample2:
+    description: "Search the exercises on page 2 that have 'Java' in their title but with specific tags ( (NOT 1) AND (2 OR 3)  )"
+    value:
+      metadata:
+        page: 2
+        size: 10
+      data:
+        title: "Java"
+        tags: [-1, [2, 3]]

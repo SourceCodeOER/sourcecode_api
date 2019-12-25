@@ -1,0 +1,56 @@
+paths:
+  /api/tags_categories:
+    get:
+      summary: "Retrieve only Tag categories"
+      operationId: getTagCategories
+      x-controller: tags_categories
+      x-operation: getTagCategories
+      tags:
+        - guest
+      responses:
+        '200':
+          description: "An array of tag categories"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../definitions.yaml#/components/schemas/Tag_Category"
+                uniqueItems: true
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+    put:
+      summary: "Update a Tag category"
+      operationId: updateTagCategory
+      x-controller: tags_categories
+      x-operation: updateTagCategory
+      security:
+        - bearerAuth: []
+      tags:
+        - admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/Tag_Category"
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

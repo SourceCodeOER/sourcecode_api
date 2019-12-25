@@ -1,0 +1,108 @@
+paths:
+  /api/tags:
+    post:
+      summary: "Submit a tag proposal"
+      tags:
+        - user
+      operationId: submitTagProposal
+      x-controller: tags
+      x-operation: submitTagProposal
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/TagProposal"
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+    put:
+      summary: "Validate or modify a Tag"
+      tags:
+        - admin
+      operationId: updateTag
+      x-controller: tags
+      x-operation: updateTag
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/TagFull"
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+    get:
+      summary: "Retrieve all tags"
+      tags:
+        - guest
+      operationId: getTags
+      x-controller: tags
+      x-operation: getTags
+      parameters:
+        - in: query
+          style: form
+          name: settings
+          explode: true
+          schema:
+            type: object
+            properties:
+              tags_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 0
+                minItems: 1
+                description: "Only consider the given tag ID(S)"
+              categories_ids:
+                type: array
+                items:
+                  type: integer
+                  minimum: 0
+                minItems: 1
+                description: "Only consider the given tag categories ID(S)"
+              state:
+                type: string
+                enum: ["default", "validated", "pending"]
+                default: "default"
+                description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
+      responses:
+        '200':
+          description: "An array of tag"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../definitions.yaml#/components/schemas/TagFull"
+                uniqueItems: true
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../security.yaml#/components/securitySchemes/bearerAuth"

@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const debug = require('debug')('express-sequelize');
+const debug = require('debug')('sourcecode_api:start');
 const http = require('http');
 const models = require('../models');
 
