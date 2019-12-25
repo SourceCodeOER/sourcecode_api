@@ -4,7 +4,9 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = (req, res, next) => {
-    const params = req.query;
+    // TODO I will remove the ternary when bug for that is fixed in openapi-enforcer
+    /* istanbul ignore next */
+    const params = (req.query.settings) ? req.query.settings : req.query;
     const settings = {
         tags_ids: params.tags_ids || [],
         categories_ids: params.categories_ids || [],

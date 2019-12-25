@@ -55,12 +55,12 @@ module.exports = function () {
         debug.tracker("%s %s - %d : %s",
             req.method,
             req.url,
-            custom_err.status || 500,
-            (req.is("json"))
+            custom_err.status /* istanbul ignore next */ || 500,
+            /* istanbul ignore next */ (req.is("json"))
                 ? "application/json"
                 : (req.is("multipart"))
-                ? "multipart/*"
-                : "urlencoded",
+                    ? "multipart/*"
+                    : "urlencoded",
         );
         // if we want to inspect that later
         debug.errors("%O", err);

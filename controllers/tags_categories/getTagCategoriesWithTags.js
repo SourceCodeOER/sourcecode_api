@@ -3,7 +3,8 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function (req, res, next) {
-    const params = req.query;
+    // TODO I will remove the ternary when bug for that is fixed in openapi-enforcer
+    const params = (req.query.settings) ? req.query.settings : req.query;
     const settings = {
         state: params.state || "default",
         onlySelected: params.onlySelected || []

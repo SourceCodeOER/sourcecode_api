@@ -16,7 +16,13 @@ module.exports = function () {
                         // Set the prototype (needed for later)
                         return Object.assign(parent, result);
                     } else {
-                        return val;
+                        // maybe a JSON object : who know
+                        try {
+                            const converted = JSON.parse(val);
+                            return converted;
+                        }catch (e) {
+                            return val;
+                        }
                     }
                 }
             );
