@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = (req, res, next) => {
-    const params = req.query.settings || {};
+    const params = req.query;
     const settings = {
         tags_ids: params.tags_ids || [],
         categories_ids: params.categories_ids || [],

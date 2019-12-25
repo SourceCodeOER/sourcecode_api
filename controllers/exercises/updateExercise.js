@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
     const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
     // did the user provide us a file to store ?
-    const file = (Array.isArray(req.files)) ? req.files[0] : null;
+    const file = (req.files && req.files.exerciseFile) ? req.files.exerciseFile : null;
     const exercise_data = (req.files === undefined)
         ? req.body
         : Object.assign({}, req.body, {

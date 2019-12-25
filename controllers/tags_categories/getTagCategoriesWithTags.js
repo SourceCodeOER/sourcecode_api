@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function (req, res, next) {
-    const params = req.query.settings || {};
+    const params = req.query;
     const settings = {
         state: params.state || "default",
         onlySelected: params.onlySelected || []

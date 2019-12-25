@@ -62,6 +62,16 @@ async function setUpBasic() {
         .send(Object.assign({}, user, {email: "yolo_voter24@uclouvain.be"}))
         .expect(200);
 
+    // creates some tags categories
+    const response3 = await request
+        .post("/api/bulk/create_or_find_tag_categories")
+        .set('Authorization', 'bearer ' + JWT_TOKEN)
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(tag_categories)
+        .expect(200);
+    expect(response3.body).toHaveLength(tag_categories.length);
+
     JWT_TOKEN_2 = response2.body.token;
     expect(typeof JWT_TOKEN_2).toBe('string');
 
@@ -689,7 +699,6 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         expect(exercise2.data[0].tags).toHaveLength(exercise.data[0].tags.length);
 
     });
-
     it("Should be able to upload multiple exercises with their linked files then delete one of them", async () => {
 
         // retrieve some tag categories
