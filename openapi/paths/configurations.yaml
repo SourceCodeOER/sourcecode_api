@@ -11,13 +11,13 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          description: "An array of configurations"
+          description: "An array of configurations with their related tags"
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "../definitions.yaml#/components/schemas/ExistentConfiguration"
+                  $ref: "../definitions.yaml#/components/schemas/ExistentConfigurationWithTags"
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"

@@ -117,10 +117,15 @@ paths:
                     enum: [admin, user]
                     default: user
                     description: "The type of user we are"
+                  id:
+                    type: integer
+                    description: "The UUID of this user"
+                    example: 42
                 required:
                   - email
                   - fullName
                   - role
+                  - id
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"

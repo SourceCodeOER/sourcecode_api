@@ -420,7 +420,7 @@ components:
           type: string
           example: "[LSINF1252]"
           maxLength: 100
-          minLength: 1
+          minLength: 0
         tags:
           description: "An array of tags IDS"
           type: array
@@ -444,3 +444,31 @@ components:
               example: 42
           required:
             - id
+    ExistentConfigurationWithTags:
+      type: object
+      properties:
+        name:
+          description: "The name of this configuration"
+          type: string
+          example: "All Java exercises"
+        title:
+          description: "The used title for search"
+          type: string
+          example: "[LSINF1252]"
+          maxLength: 100
+          minLength: 0
+        id:
+          description: "The id of this configuration"
+          type: integer
+          minimum: 0
+          example: 42
+        tags:
+          type: array
+          description: "The linked tags to this configuration"
+          items:
+            $ref: "#/components/schemas/TagFull"
+      required:
+        - name
+        - title
+        - id
+        - tags

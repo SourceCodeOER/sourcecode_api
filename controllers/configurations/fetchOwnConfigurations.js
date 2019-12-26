@@ -9,9 +9,18 @@ module.exports = (req, res, next) => {
                 exclude: ["user_id"]
             },
             include: [{
-                model: models.Configuration_Tag,
-                as: "tags",
-                attributes: ["tag_id"],
+                model: models.Tag,
+                as: "Tags",
+                attributes: [
+                    ["id", "tag_id"],
+                    ["text","tag_text"],
+                    "category_id",
+                    "isValidated",
+                    "version"
+                ],
+                through: {
+                    attributes: []
+                },
                 required: true,
             }],
             where: {
@@ -25,7 +34,7 @@ module.exports = (req, res, next) => {
                         name: configuration.get("name"),
                         title: configuration.get("title"),
                         id: configuration.get("id"),
-                        tags: configuration.get("tags").map(tag => tag.get("tag_id"))
+                        tags: configuration.get("Tags").map(tag => tag.toJSON())
                     })
                 )
             )
