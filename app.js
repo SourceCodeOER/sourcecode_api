@@ -22,7 +22,7 @@ const helmet = require('helmet');
 // OpenAPI V3 validation middleware
 const Enforcer = require("openapi-enforcer-middleware");
 // temporary use my fork with the issue fixed
-const enforcerMulter = require('@jy95/openapi-enforcer-multer');
+const enforcerMulter = require('openapi-enforcer-multer');
 const spec = path.join(__dirname, 'api.yml');
 const controllerDirectory = path.resolve(__dirname, 'controllers');
 
