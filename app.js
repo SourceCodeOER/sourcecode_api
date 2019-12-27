@@ -65,6 +65,7 @@ module.exports = new Promise((resolve, reject) => {
                 requestBodyAllowedMethods: {"delete": true},
                 exceptionSkipCodes: ["WSCH001"]
             },
+            resValidate: false
         });
         enforcer
             .controllers(controllerDirectory)
