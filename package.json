@@ -21,6 +21,7 @@
     "bluebird": "^3.7.2",
     "body-parser": "latest",
     "cookie-parser": "^1.4.4",
+    "connect-chain-if": "^1.0.0",
     "cross-env": "^6.0.3",
     "debug": "latest",
     "del": "^5.1.0",
@@ -52,7 +53,6 @@
     "@types/jest": "latest",
     "@types/sequelize": "latest",
     "@types/supertest": "latest",
-    "connect-chain-if": "^1.0.0",
     "jest": "^24.9.0",
     "redoc-cli": "latest",
     "supertest": "^5.0.0-0"
