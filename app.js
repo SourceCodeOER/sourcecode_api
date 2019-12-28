@@ -22,7 +22,7 @@ const helmet = require('helmet');
 // OpenAPI V3 validation middleware
 const Enforcer = require("openapi-enforcer-middleware");
 // temporary use my fork with the issue fixed
-const enforcerMulter = require('@jy95/openapi-enforcer-multer');
+const enforcerMulter = require('openapi-enforcer-multer');
 const spec = path.join(__dirname, 'api.yml');
 const controllerDirectory = path.resolve(__dirname, 'controllers');
 
@@ -65,6 +65,7 @@ module.exports = new Promise((resolve, reject) => {
                 requestBodyAllowedMethods: {"delete": true},
                 exceptionSkipCodes: ["WSCH001"]
             },
+            resValidate: false
         });
         enforcer
             .controllers(controllerDirectory)
@@ -77,9 +78,6 @@ module.exports = new Promise((resolve, reject) => {
 
                 // add enforcer multer middleware
                 app.use(enforcerMulter(enforcer, storage));
-
-                // temporary workaround : just the time it will be fixed (or not ^^)
-                app.use(require("./middlewares/workaround")());
 
                 // add the enforcer middleware runner to the express app
                 app.use(enforcer.middleware());
