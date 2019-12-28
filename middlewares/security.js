@@ -28,7 +28,8 @@ const common_middleware = (extracted_required_roles) => (req, res, next) => {
     });
 };
 
-function extract_required_roles(tags = []) {
+/* istanbul ignore next */
+function extract_required_roles(tags= []) {
     let requiredRoles = tags.filter(tag => user_roles.includes(tag));
     // an admin is also capable to do what a simple user can do
     if (requiredRoles.includes("user")) {
@@ -38,7 +39,7 @@ function extract_required_roles(tags = []) {
 }
 
 module.exports = () => (req, res, next) => {
-    const operation = (req.operation) ? req.operation : {};
+    const operation = (req.operation) ? req.operation /* istanbul ignore next */ : {};
     // each controller has it own rules but some common behaviour can be inferred using the tags
     const extracted_required_roles = extract_required_roles(operation.tags);
     const subChain = main_middleware_chain(operation, extracted_required_roles);

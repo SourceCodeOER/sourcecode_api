@@ -769,7 +769,7 @@ describe("Validations testing", () => {
             .post("/auth/login")
             .set('Content-Type', 'application/xml')
             .send()
-            .expect(415);
+            .expect(400);
     });
 
     it("POST /login : Bad request", async () => {
