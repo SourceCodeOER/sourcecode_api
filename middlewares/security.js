@@ -18,17 +18,8 @@ const user_roles = ["guest", "user", "admin"];
 
 // middleware
 const common_middleware = (extracted_required_roles) => (req, res, next) => {
-    chain([
-        chain.if(
-            // if not a guest, check credentials of this user
-            !extracted_required_roles.includes("guest"),
-            [
-                only_authenticated_user,
-                check_user_role(extracted_required_roles)
-            ],
-            pass_middleware,
-        )
-    ])(req, res, (err) => {
+    const subChain = common_middleware_chain(extracted_required_roles);
+    chain(subChain)(req, res, (err) => {
         if (err) {
             next(err);
         } else {
@@ -37,25 +28,12 @@ const common_middleware = (extracted_required_roles) => (req, res, next) => {
     });
 };
 
-
 module.exports = () => (req, res, next) => {
     const operation = (req.operation) ? req.operation : {};
     // each controller has it own rules but some common behaviour can be inferred using the tags
     const extracted_required_roles = (operation.tags || []).filter(tag => user_roles.includes(tag));
-    chain([
-        // apply common
-        chain.if(
-            extracted_required_roles.length > 0,
-            common_middleware,
-            pass_middleware
-        ),
-        // if extra rules / middleware(s) should be used inside this controller
-        chain.if(
-            rules.hasOwnProperty(operation["x-controller"]),
-            rules[operation["x-controller"]](operation),
-            pass_middleware
-        )
-    ])(req, res, (err) => {
+    const subChain = main_middleware_chain(operation, extracted_required_roles);
+    chain(subChain)(req, res, (err) => {
         if (err) {
             next(err);
         } else {
@@ -91,3 +69,31 @@ const rules = {
         next();
     }
 };
+
+// middleware chains
+const main_middleware_chain = (operation, extracted_required_roles) => [
+    // apply common middleware
+    chain.if(
+        extracted_required_roles.length > 0,
+        common_middleware(extracted_required_roles),
+        pass_middleware
+    ),
+    // if extra rules / middleware(s) should be used inside this controller
+    chain.if(
+        rules.hasOwnProperty(operation["x-controller"]),
+        rules[operation["x-controller"]](operation),
+        pass_middleware
+    )
+];
+
+const common_middleware_chain = (extracted_required_roles) => [
+    chain.if(
+        // if not a guest, check credentials of this user
+        !extracted_required_roles.includes("guest"),
+        [
+            only_authenticated_user,
+            check_user_role(extracted_required_roles)
+        ],
+        pass_middleware,
+    )
+];
