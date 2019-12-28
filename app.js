@@ -12,6 +12,7 @@ const error_prettier = require("./middlewares/errors-beautifier");
 const default_error_handler = require("./middlewares/default_error_handler");
 const not_found_handler = require("./middlewares/not_found");
 const queryParametersFix = require("./middlewares/queryparameters");
+const securityCheck = require("./middlewares/security");
 
 // location of stored files to serve as static
 const {FILES_FOLDER} = require("./config/storage_paths");
@@ -21,7 +22,6 @@ const helmet = require('helmet');
 
 // OpenAPI V3 validation middleware
 const Enforcer = require("openapi-enforcer-middleware");
-// temporary use my fork with the issue fixed
 const enforcerMulter = require('openapi-enforcer-multer');
 const spec = path.join(__dirname, 'api.yml');
 const controllerDirectory = path.resolve(__dirname, 'controllers');
@@ -57,9 +57,8 @@ module.exports = new Promise((resolve, reject) => {
     app.use(queryParametersFix());
 
     // main API setup
-
-    // initialize the enforcer
     try {
+        // initialize the enforcer
         const enforcer = Enforcer(spec, {
             componentOptions: {
                 requestBodyAllowedMethods: {"delete": true},
@@ -67,14 +66,13 @@ module.exports = new Promise((resolve, reject) => {
             },
             resValidate: false
         });
+        // check if the client is allowed on this endpoint
+        enforcer.use(securityCheck());
         enforcer
             .controllers(controllerDirectory)
             .then(() => {
                 // Passport Js must have that
                 app.use(passport.initialize());
-
-                // apply other middleware before enforcer
-                require("./controllers/_apply_middelwares")(app);
 
                 // add enforcer multer middleware
                 app.use(enforcerMulter(enforcer, storage));
