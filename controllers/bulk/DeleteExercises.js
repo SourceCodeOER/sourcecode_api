@@ -1,13 +1,13 @@
-const models = require('../../models');
-const fileManager = require("../_common/files_manager");
-
 const Promise = require("bluebird");
-
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+const models = require('../../models');
+const fileManager = require("../_common/files_manager");
+const {check_credentials_on_exercises} = require("../_common/utlis_fct");
+
 module.exports = function (req, res, next) {
-    return prevent_security_issue(req.user, req.body)
+    return check_credentials_on_exercises(req.user, req.body)
         .then(() => delete_exercises(req.body))
         .then(([files, destroyedRowNumber]) => {
             console.log("Successfully destroy row(s) " + destroyedRowNumber);
@@ -18,47 +18,6 @@ module.exports = function (req, res, next) {
         .catch(/* istanbul ignore next */
             (err) => next(err));
 };
-
-// As this endpoint is available for any type of user, we must prevent deletions of other exercise(s)
-// if we aren't an admin
-function prevent_security_issue({role, id}, exercises_ids) {
-    return new Promise((resolve, reject) => {
-        if (role === "admin") {
-            resolve();
-        } else {
-            models
-                .Exercise
-                .findAll({
-                    attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('user_id')), 'user']],
-                    where: {
-                        id: {
-                            [Op.in]: exercises_ids
-                        }
-                    }
-                }, {
-                    rejectOnEmpty: true
-                })
-                .then((exercises_creators) => {
-                    const all_from_this_user = exercises_creators
-                        .map(creator => creator.user)
-                        .every((creator) => creator === id);
-                    // I don't want to create a complete test case just for that
-                    /* istanbul ignore if */
-                    if (all_from_this_user) {
-                        resolve();
-                    } else {
-                        let error = new Error("FORBIDDEN");
-                        error.message = "It seems you tried to delete somebody else exercise(s) : " +
-                            "This incident will be reported";
-                        error.status = 403;
-                        throw error;
-                    }
-                })
-                .catch(/* istanbul ignore next */
-                    (err) => reject(err));
-        }
-    })
-}
 
 function delete_exercises(exercises_ids) {
     // transaction here as if anything bad happens, we don't commit that to database

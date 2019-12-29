@@ -10,7 +10,8 @@ const filesManager = require("../_common/files_manager");
 const {
     find_tag_matches,
     build_dictionary_for_matching_process,
-    matching_process
+    matching_process,
+    check_credentials_on_exercises
 } = require("../_common/utlis_fct");
 
 module.exports = (req, res, next) => {
@@ -27,9 +28,12 @@ module.exports = (req, res, next) => {
             file: file
         });
 
-    return find_exercise_tags_and_search_possible_new_tags_match(
-        [id, req.user, req.body.version, new_tags, already_present_tags]
-    )
+    return check_credentials_on_exercises(req.user, [id])
+        .then(() =>
+            find_exercise_tags_and_search_possible_new_tags_match(
+                [id, req.user, req.body.version, new_tags, already_present_tags]
+            )
+        )
         .then(result => compute_tag_changes(result))
         .then(([changes, tags_to_be_inserted]) => {
 
@@ -239,8 +243,6 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
 }
 
 function update_exercise([id, body, t]) {
-    // useful if we need to destroy it if upload failed
-    const new_file_location = (body.hasOwnProperty("file") && body.file !== null) ? [body.file] : [];
     return new Promise((resolve, reject) => {
         return models
             .Exercise
@@ -306,3 +308,5 @@ function handle_upload_error(err) {
         return err;
     }
 }
+
+// Prevent not authorized user to modify a

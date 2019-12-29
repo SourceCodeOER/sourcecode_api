@@ -774,8 +774,7 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             //.set('Content-Type', "multipart/form-data")
             .attach("exerciseFile", example_zip_file)
             .field(exercise_data)
-            .field("tags[0][text]", "MULTI PART exercise")
-            .field("tags[0][category_id]", 1)
+            .field("tags[0]", 42)
             .expect(401);
     });
 });

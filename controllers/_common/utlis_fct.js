@@ -83,6 +83,8 @@ module.exports = {
     // to create the dictionary used for matching_process
     "build_dictionary_for_matching_process": build_dictionary_for_matching_process,
 
+    "check_credentials_on_exercises": check_credentials_on_exercises,
+
     // To store a single exercise
     store_single_exercise(user, exercise_data, existent_tags, really_new_tags) {
         return new Promise((resolve, reject) => {
@@ -448,4 +450,44 @@ function find_unique_tags(tags_array) {
             }
         }
     );
+}
+
+// For UPDATE / DELETE operations on exercises, we must verify that user is allowed to do that
+function check_credentials_on_exercises({role, id}, exercises_ids) {
+    return new Promise((resolve, reject) => {
+        if (role === "admin") {
+            resolve();
+        } else {
+            models
+                .Exercise
+                .findAll({
+                    attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('user_id')), 'user']],
+                    where: {
+                        id: {
+                            [Op.in]: exercises_ids
+                        }
+                    }
+                }, {
+                    rejectOnEmpty: true
+                })
+                .then((exercises_creators) => {
+                    const all_from_this_user = exercises_creators
+                        .map(creator => creator.get("user"))
+                        .every((creator) => creator === id);
+                    // I don't want to create a complete test case just for that
+                    /* istanbul ignore if */
+                    if (all_from_this_user) {
+                        resolve();
+                    } else {
+                        let error = new Error("FORBIDDEN");
+                        error.message = "It seems you tried to delete somebody else exercise(s) : " +
+                            "This incident will be reported";
+                        error.status = 403;
+                        throw error;
+                    }
+                })
+                .catch(/* istanbul ignore next */
+                    (err) => reject(err));
+        }
+    })
 }

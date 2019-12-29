@@ -83,7 +83,6 @@ module.exports = new Promise((resolve, reject) => {
 
                 // remove temp files if an error occurs (if provided)
                 app.use(removeTempFiles());
-
                 // catch 404 and forward to error handler
                 app.use(not_found_handler());
                 // for production, hides Sequelize messages under "general" message
