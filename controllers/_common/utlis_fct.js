@@ -301,14 +301,11 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
             .then((result) => resolve(result))
             .catch(/* istanbul ignore next */(err) => {
 
-                // delete uploaded file in the two folder
-                const hasFile = (exercise_data.file !== null);
-                const tempFile = (hasFile) ? [exercise_data.file] : [];
-                const storedFile = (hasFile) ? [exercise_data.file.filename] : [];
-
+                // delete uploaded file in storage folder
+                // let the middleware destroy the file in temp folder
+                const storedFile = (exercise_data.file !== null) ? [exercise_data.file.filename] : [];
                 fileManager
-                    .delete_temp_files(tempFile)
-                    .then(() => fileManager.delete_stored_files(storedFile))
+                    .delete_stored_files(storedFile)
                     .then(() => reject(err));
             })
     });

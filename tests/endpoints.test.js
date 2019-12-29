@@ -760,6 +760,24 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         await search_exercise(2, criteria);
 
     });
+    it("A guest should not be allowed to create an exercise with(out) a file", async () => {
+        const title = "MULTIPART FORM TESTING 1";
+        const exercise_data = {
+            "title": title,
+            "description": "HELLO WORLD",
+            "url": "https://inginious.info.ucl.ac.be/"
+        };
+
+        await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + "NOT_A_TOKEN")
+            //.set('Content-Type', "multipart/form-data")
+            .attach("exerciseFile", example_zip_file)
+            .field(exercise_data)
+            .field("tags[0][text]", "MULTI PART exercise")
+            .field("tags[0][category_id]", 1)
+            .expect(401);
+    });
 });
 
 describe("Validations testing", () => {

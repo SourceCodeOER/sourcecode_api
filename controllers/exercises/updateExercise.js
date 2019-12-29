@@ -288,12 +288,7 @@ function update_exercise([id, body, t]) {
                     .delete_stored_files((old_file !== null) ? [old_file] : [])
                     .then(() => resolve())
             })
-            .catch(/* istanbul ignore next */(err) => {
-                // we failed to upload the new file ; remove it from uploads folder
-                filesManager
-                    .delete_temp_files(new_file_location)
-                    .then(() => reject(err));
-            })
+            .catch(/* istanbul ignore next */ (err) => reject(err))
     });
 
 }

@@ -13,6 +13,7 @@ const default_error_handler = require("./middlewares/default_error_handler");
 const not_found_handler = require("./middlewares/not_found");
 const queryParametersFix = require("./middlewares/queryparameters");
 const securityCheck = require("./middlewares/security");
+const removeTempFiles = require("./middlewares/remove_temp_files");
 
 // location of stored files to serve as static
 const {FILES_FOLDER} = require("./config/storage_paths");
@@ -79,6 +80,9 @@ module.exports = new Promise((resolve, reject) => {
 
                 // add the enforcer middleware runner to the express app
                 app.use(enforcer.middleware());
+
+                // remove temp files if an error occurs (if provided)
+                app.use(removeTempFiles());
 
                 // catch 404 and forward to error handler
                 app.use(not_found_handler());
