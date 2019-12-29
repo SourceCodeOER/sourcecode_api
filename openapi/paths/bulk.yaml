@@ -35,14 +35,16 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
-  /api/bulk/modify_exercises_validity:
+  /api/bulk/modify_exercises_status:
     put:
-      summary: "Validate / Unvalidate given exercises"
-      operationId: "ValidateExercises"
+      summary: "Change the status of given exercises"
+      description: "Change the status of given exercises. An simple user can only modify his/her own exercises (no restriction for admin)"
+      operationId: "ChangeExercisesStatus"
       x-controller: bulk
-      x-operation: ValidateExercises
+      x-operation: ChangeExercisesStatus
       tags:
         - admin
+        - user
       security:
         - bearerAuth: []
       requestBody:
@@ -50,25 +52,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                exercises:
-                  type: array
-                  description: "An array of exercises IDs"
-                  minItems: 1
-                  uniqueItems: true
-                  items:
-                    type: integer
-                    minimum: 0
-                    example: 42
-                    description: "An exercise ID"
-                state:
-                  type: boolean
-                  description: "Should the given exercises be validated or not ?"
-                  default: true
-                  example: false
-              required:
-                - exercises
+              $ref: "#/components/schemas/ChangeExercisesStatus"
       responses:
         '200':
           description: "OK"
@@ -179,3 +163,22 @@ components:
   securitySchemes:
     bearerAuth:
       $ref: "../security.yaml#/components/securitySchemes/bearerAuth"
+  schemas:
+    ChangeExercisesStatus:
+      type: object
+      properties:
+        exercises:
+          type: array
+          description: "An array of exercises IDs"
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: integer
+            minimum: 0
+            example: 42
+            description: "An exercise ID"
+        state:
+          $ref: "../definitions.yaml#/components/schemas/State"
+      required:
+        - exercises
+        - state

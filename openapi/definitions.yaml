@@ -14,6 +14,25 @@ components:
       required:
         - message
         - errors
+# Common enum used everywhere
+    State:
+      type: string
+      enum: [CREATED,PENDING,VALIDATED,NOT_VALIDATED]
+      example: PENDING
+      description: |
+        Status of the exercise into the system. Currently, 4 states are possibles : 
+
+        1. CREATED : The default state (for example when a exercise is inserted into the system)
+        2. PENDING : When an exercise is ready for review
+        3. VALIDATED : When an exercise is validated by an admin
+        4. NOT_VALIDATED : When an exercise is refused by an admin
+    StateFilter:
+      description: Filter the exercises by their state
+      anyOf:
+        - $ref: "#/components/schemas/State"
+        - type: string
+          enum: [DEFAULT]
+          description: The default value ('default') stands for no filtering.
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object
@@ -58,10 +77,9 @@ components:
               format: date-time
               example: "2019-12-22T15:19:33.473Z"
               description: "Date of the latest update of this exercise"
-            isValidated:
-              type: boolean
-              description: "Is this exercise validated by an admin ?"
-              example: false
+            state:
+              allOf:
+                - $ref: "#/components/schemas/State"
             file:
               type: string
               nullable: true
@@ -78,7 +96,7 @@ components:
             - version
             - createdAt
             - updatedAt
-            - isValidated
+            - state
             - file
             - url
 # For search / get context, we have other fields (in addition of the AlreadyPresentExerciseModel )
@@ -363,10 +381,8 @@ components:
               description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
               example: [-1, [2, 3]]
             state:
-              type: string
-              enum: [default, validated, pending]
-              default: default
-              description: "Filter the exercises by their validity. The default value ('default') stands for no filtering."
+              allOf:
+                - $ref: "#/components/schemas/StateFilter"
             user_ids:
               type: array
               description: "Filter the exercises by their creators."
