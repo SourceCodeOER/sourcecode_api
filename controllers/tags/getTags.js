@@ -4,13 +4,18 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = (req, res, next) => {
-    // TODO I will remove the ternary when bug for that is fixed in openapi-enforcer
-    /* istanbul ignore next */
-    const params = (req.query.settings) ? req.query.settings : req.query;
+    const params = req.query;
+    const arrayOfIntegersOnly = (key) => (Array.isArray(params[key]))
+        ? params[key].filter(s => !isNaN(s)).map(s => parseInt(s))
+        : [];
+    const onlyString = (key, defaultValue) => (typeof params[key] === "string")
+        ? params[key]
+        : defaultValue;
+
     const settings = {
-        tags_ids: params.tags_ids || [],
-        categories_ids: params.categories_ids || [],
-        state: params.state || "default"
+        tags_ids: arrayOfIntegersOnly("tags_ids"),
+        categories_ids: arrayOfIntegersOnly("categories_ids"),
+        state: onlyString("state", "default")
     };
 
     let conditions = [];
