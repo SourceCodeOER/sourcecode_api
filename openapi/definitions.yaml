@@ -28,7 +28,7 @@ components:
         4. NOT_VALIDATED : When an exercise is refused by an admin
     StateFilter:
       description: Filter the exercises by their state
-      anyOf:
+      oneOf:
         - $ref: "#/components/schemas/State"
         - type: string
           enum: [DEFAULT]
@@ -78,8 +78,7 @@ components:
               example: "2019-12-22T15:19:33.473Z"
               description: "Date of the latest update of this exercise"
             state:
-              allOf:
-                - $ref: "#/components/schemas/State"
+              $ref: "#/components/schemas/State"
             file:
               type: string
               nullable: true

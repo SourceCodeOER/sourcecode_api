@@ -37,7 +37,7 @@ CREATE SCHEMA exercises_library;
 4. Apply all Sequelize migrations to let Sequelize initialize your models in database 
 
 ```
-npm run migrate:reset 
+npm run migrate
 ```
 
 ## How do I populate the database quickly with my exercises ? 

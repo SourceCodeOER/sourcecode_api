@@ -142,15 +142,15 @@ describe("Simple case testing", () => {
 
     it("POST /api/search with no exercise", async () => {
         const criteria = {
-            data: {
-                title: "HELLO WORLD",
-                tags: [
+            "data": {
+                "title": "HELLO WORLD",
+                "tags": [
                     1,
                     [2, -3, 4],
                     37,
                     -42
                 ],
-                "state": "validated",
+                "state": "VALIDATED",
                 "user_ids": [1, 2, 3]
             }
         };
