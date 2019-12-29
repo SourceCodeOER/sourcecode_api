@@ -26,13 +26,6 @@ components:
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
-    StateFilter:
-      description: Filter the exercises by their state
-      oneOf:
-        - $ref: "#/components/schemas/State"
-        - type: string
-          enum: [DEFAULT]
-          description: The default value ('default') stands for no filtering.
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object
@@ -380,7 +373,7 @@ components:
               description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
               example: [-1, [2, 3]]
             state:
-              $ref: "#/components/schemas/StateFilter"
+              $ref: "#/components/schemas/State"
             user_ids:
               type: array
               description: "Filter the exercises by their creators."

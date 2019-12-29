@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
 
-                    if (parameters.data.hasOwnProperty("state") && parameters.data.state !== "DEFAULT") {
+                    if (parameters.data.hasOwnProperty("state")) {
                         criteria.push({
                             state: enumObj[parameters.data.state]
                         });
