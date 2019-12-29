@@ -8,7 +8,7 @@ paths:
       x-controller: exercises
       x-operation: searchExercises
       requestBody:
-        required: true
+        required: false
         content:
           application/json:
             schema:

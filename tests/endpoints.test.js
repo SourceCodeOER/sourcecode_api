@@ -25,9 +25,6 @@ function getRandomInt(min, max) {
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
-// to encode array with url encoded things
-const arrToString = (arr) => "%5B" + arr.join("%2C") + "%5D";
-
 // For the basic set up : two user ( an admin and one that is not)
 async function setUpBasic() {
 
@@ -145,15 +142,15 @@ describe("Simple case testing", () => {
 
     it("POST /api/search with no exercise", async () => {
         const criteria = {
-            data: {
-                title: "HELLO WORLD",
-                tags: [
+            "data": {
+                "title": "HELLO WORLD",
+                "tags": [
                     1,
                     [2, -3, 4],
                     37,
                     -42
                 ],
-                "state": "validated",
+                "state": "VALIDATED",
                 "user_ids": [1, 2, 3]
             }
         };
@@ -191,8 +188,9 @@ describe("Simple case testing", () => {
         const response = await request
             .get("/api/tags")
             .query('state=pending')
-            .query('tags_ids=' + arrToString([1,2,3,4]))
-            .query('categories_ids=' + arrToString([1,2,3]))
+            .query('tags_ids[]=1')
+            .query('tags_ids[]=2')
+            .query('categories_ids[]=' + 1)
             .set('Accept', 'application/json')
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);
@@ -200,7 +198,9 @@ describe("Simple case testing", () => {
 
     it("GET /api/tags_by_categories with all settings used", async () => {
         const response = await request
-            .get("/api/tags_by_categories?settings={\"state\":\"pending\",\"onlySelected\":[1,2,3,4]}")
+            .get("/api/tags_by_categories")
+            .query('state=pending')
+            .query('onlySelected[]=1')
             .set('Accept', 'application/json')
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);
@@ -341,16 +341,15 @@ describe("Complex scenarios", () => {
 
         // 3. Finally validate the exercise
         response = await request
-            .put("/api/bulk/modify_exercises_validity")
+            .put("/api/bulk/modify_exercises_status")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 exercises: [data.id],
-                state: true
+                state: "VALIDATED"
             });
 
         expect(response.status).toBe(200);
-
     });
 
     it("Scenario n°2 : Creates a single exercise with (no) existent tag(s) and add tags later", async () => {
@@ -760,6 +759,23 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         await search_exercise(2, criteria);
 
     });
+    it("A guest should not be allowed to create an exercise with(out) a file", async () => {
+        const title = "MULTIPART FORM TESTING 1";
+        const exercise_data = {
+            "title": title,
+            "description": "HELLO WORLD",
+            "url": "https://inginious.info.ucl.ac.be/"
+        };
+
+        await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + "NOT_A_TOKEN")
+            //.set('Content-Type', "multipart/form-data")
+            .attach("exerciseFile", example_zip_file)
+            .field(exercise_data)
+            .field("tags[0]", 42)
+            .expect(401);
+    });
 });
 
 describe("Validations testing", () => {
@@ -769,7 +785,7 @@ describe("Validations testing", () => {
             .post("/auth/login")
             .set('Content-Type', 'application/xml')
             .send()
-            .expect(415);
+            .expect(400);
     });
 
     it("POST /login : Bad request", async () => {

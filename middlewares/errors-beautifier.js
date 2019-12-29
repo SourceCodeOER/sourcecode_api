@@ -45,7 +45,13 @@ module.exports = function () {
             /* istanbul ignore next */
             default:
                 is_custom = false;
-                custom_err = Object.assign(err);
+                // An error of the validator has always a status code we can extract
+                if (err.hasOwnProperty("exception")) {
+                    custom_err = Object.assign(err.exception);
+                    custom_err.status = err.statusCode;
+                } else {
+                    custom_err = Object.assign(err);
+                }
         }
         if (is_custom) {
             custom_err.is_custom = true;

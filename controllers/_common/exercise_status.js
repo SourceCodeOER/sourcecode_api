@@ -1,0 +1,6 @@
+module.exports = {
+    CREATED: "CREATED",
+    PENDING: "PENDING",
+    VALIDATED: "VALIDATED",
+    NOT_VALIDATED: "NOT_VALIDATED"
+};

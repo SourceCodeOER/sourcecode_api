@@ -1,7 +1,7 @@
 const createOrFindTagCategories = require("./bulk/createOrFindTagCategories");
 const createMultipleExercises = require("./bulk/createMultipleExercises");
 const DeleteExercises = require("./bulk/DeleteExercises");
-const ValidateExercises = require("./bulk/ValidateExercises");
+const ChangeExercisesStatus = require("./bulk/ChangeExercisesStatus");
 
 module.exports = function () {
     // useful for Dependency Injection
@@ -12,7 +12,7 @@ module.exports = function () {
     controller.createOrFindTagCategories = createOrFindTagCategories;
     controller.createMultipleExercises = createMultipleExercises;
     controller.DeleteExercises = DeleteExercises;
-    controller.ValidateExercises = ValidateExercises;
+    controller.ChangeExercisesStatus = ChangeExercisesStatus;
 
     return controller;
 };

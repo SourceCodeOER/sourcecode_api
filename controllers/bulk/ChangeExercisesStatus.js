@@ -6,7 +6,7 @@ const Op = Sequelize.Op;
 
 module.exports = function (req, res, next) {
 
-    const isValidated = req.body.state /* istanbul ignore next */ || true;
+    const state = req.body.state;
 
     return models
         .sequelize
@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
                 }).then((exercises) => {
                     return Promise.all(
                         exercises.map( (exercise) => exercise.update({
-                            isValidated: isValidated
+                            state: state
                         }, {
                             transaction: t
                         }))

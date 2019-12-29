@@ -3,6 +3,9 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+const enumObj = require("../controllers/_common/exercise_status");
+let enumValues = Object.values(enumObj);
+
 module.exports = (sequelize, DataTypes) => {
     let Exercise = sequelize.define('Exercise', {
         title: {
@@ -17,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
-        isValidated: {
-            type: DataTypes.BOOLEAN,
+        state: {
+            type: DataTypes.ENUM(enumValues),
             allowNull: false,
-            defaultValue: false
+            defaultValue: enumObj.CREATED
         },
         url: {
             type: DataTypes.STRING,
@@ -66,9 +69,9 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
 
-                    if (parameters.data.hasOwnProperty("state") && parameters.data.state !== "default") {
+                    if (parameters.data.hasOwnProperty("state")) {
                         criteria.push({
-                            isValidated: (parameters.data.state === "validated")
+                            state: enumObj[parameters.data.state]
                         });
                     }
 
