@@ -248,7 +248,8 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                             title: exercise_data.title,
                             description: exercise_data.description,
                             user_id: user.id,
-                            isValidated: false, // even imported by admin, this exercise must be verified
+                            // No need to set the status : by default it will be "CREATED"
+                            // even imported by admin, this exercise must be verified
                             // some timestamps must be inserted
                             updatedAt: creationDate,
                             createdAt: creationDate,

@@ -69,9 +69,9 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
 
-                    if (parameters.data.hasOwnProperty("state") && parameters.data.state !== "default") {
+                    if (parameters.data.hasOwnProperty("state") && parameters.data.state !== "DEFAULT") {
                         criteria.push({
-                            isValidated: (parameters.data.state === "validated")
+                            state: enumObj[parameters.data.state]
                         });
                     }
 

@@ -157,8 +157,6 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
-
-
 components:
   securitySchemes:
     bearerAuth:

@@ -381,8 +381,7 @@ components:
               description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
               example: [-1, [2, 3]]
             state:
-              allOf:
-                - $ref: "#/components/schemas/StateFilter"
+              $ref: "#/components/schemas/StateFilter"
             user_ids:
               type: array
               description: "Filter the exercises by their creators."

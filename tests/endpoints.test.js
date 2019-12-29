@@ -341,16 +341,15 @@ describe("Complex scenarios", () => {
 
         // 3. Finally validate the exercise
         response = await request
-            .put("/api/bulk/modify_exercises_validity")
+            .put("/api/bulk/modify_exercises_status")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 exercises: [data.id],
-                state: true
+                state: "VALIDATED"
             });
 
         expect(response.status).toBe(200);
-
     });
 
     it("Scenario n°2 : Creates a single exercise with (no) existent tag(s) and add tags later", async () => {
