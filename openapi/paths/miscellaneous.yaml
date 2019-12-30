@@ -1,0 +1,30 @@
+paths:
+  /files/{file}:
+    parameters:
+        - name: file
+          in: path
+          description: "The path to the file we want to access"
+          example: "someFile.zip"
+          required: true
+          schema:
+            type: string
+    get:
+      summary: "Download a stored file on the API"
+      operationId: downloadFile
+      tags:
+        - guest
+      responses:
+        '200':
+          description: "The file"
+          content:
+            "*/*":
+              schema:
+                type: string
+                format: binary
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
