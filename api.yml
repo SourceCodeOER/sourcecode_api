@@ -54,6 +54,8 @@ paths:
     $ref: 'openapi/paths/vote_for_exercise.yaml#/paths/~1api~1vote_for_exercise'
   /api/configurations:
     $ref: 'openapi/paths/configurations.yaml#/paths/~1api~1configurations'
+  /files/{file}:
+    $ref: 'openapi/paths/miscellaneous.yaml#/paths/~1files~1%7Bfile%7D'
 
 components:
   securitySchemes:

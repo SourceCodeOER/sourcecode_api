@@ -42,7 +42,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "../definitions.yaml#/components/schemas/ExerciseUpdateForm"
+              allOf:
+                - $ref: "../definitions.yaml#/components/schemas/ExerciseUpdateForm"
+                - type: object
+                  properties:
+                    removePreviousFile:
+                      type: boolean
+                      default: false
+                      example: true
+                      description: "If set to true, the API will delete the previous file when updating the exercise"
           multipart/form-data:
             schema:
               allOf:
