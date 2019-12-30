@@ -44,13 +44,16 @@ module.exports = function () {
                 break;
             /* istanbul ignore next */
             default:
-                is_custom = false;
                 // An error of the validator has always a status code we can extract
                 if (err.hasOwnProperty("exception")) {
-                    custom_err = Object.assign(err.exception);
                     custom_err.status = err.statusCode;
+                    custom_err.message = err.message;
                 } else {
-                    custom_err = Object.assign(err);
+                    is_custom = true;
+                    custom_err.status = err.status || 500;
+                    custom_err.message = (custom_err.status === 500)
+                        ? "An Internal Error occurs : A team of highly trained monkeys has been dispatched"
+                        : err.message;
                 }
         }
         if (is_custom) {
