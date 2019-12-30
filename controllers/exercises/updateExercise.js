@@ -21,12 +21,9 @@ module.exports = (req, res, next) => {
     const [already_present_tags, new_tags] = partition(req.body.tags, obj => Number.isInteger(obj));
 
     // did the user provide us a file to store ?
-    const file = (req.files && req.files.exerciseFile) ? req.files.exerciseFile : null;
-    const exercise_data = (req.files === undefined)
-        ? req.body
-        : Object.assign({}, req.body, {
-            file: file
-        });
+    const exercise_data = Object.assign({}, req.body, {
+        file: (req.files && req.files.exerciseFile) ? req.files.exerciseFile : null
+    });
 
     return check_credentials_on_exercises(req.user, [id])
         .then(() =>
@@ -263,11 +260,14 @@ function update_exercise([id, body, t]) {
                     description: body.description,
                 };
                 // handle optional properties updates
-                // It would be stupid to lose our file when we simply update the title of an exercise, no ?
                 if (body.hasOwnProperty("url")) {
                     properties["url"] = body.url;
                 }
-                if (body.hasOwnProperty("file")) {
+                // user has the possibility to delete/replace his/her own file
+                const shouldRemovePreviousFile = (body.file !== null)
+                    || (body.hasOwnProperty("removePreviousFile") && body["removePreviousFile"])
+                    || false;
+                if (shouldRemovePreviousFile) {
                     properties["file"] = (body.file !== null) ? body.file.filename : null;
                 }
 
@@ -275,19 +275,22 @@ function update_exercise([id, body, t]) {
                 return Promise.all(
                     [
                         // get the previously inserted filename
-                        Promise.resolve(instance.get("file")),
+                        Promise.resolve({
+                            file: instance.get("file"),
+                            shouldRemove: shouldRemovePreviousFile
+                        }),
                         // upload the new file (if asked)
-                        (body.hasOwnProperty("file") && body.file !== null)
+                        (body.file !== null)
                             ? filesManager.move_file_to_destination_folder(body.file)
                             : Promise.resolve(),
                         // modify the row in db
                         instance.update(properties, {transaction: t})
                     ]);
             })
-            .then(([old_file, _a, _b]) => {
+            .then(([{file, shouldRemove}, _a, _b]) => {
                 // if provided, the new file was correctly uploaded : we still have to destroy the old one (if exist)
                 filesManager
-                    .delete_stored_files((old_file !== null) ? [old_file] : [])
+                    .delete_stored_files((shouldRemove && file !== null) ? [file] : [])
                     .then(() => resolve())
             })
             .catch(/* istanbul ignore next */ (err) => reject(err))

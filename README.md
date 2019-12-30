@@ -28,16 +28,10 @@ npm install
 npx sequelize db:create
 ```
 
-3. Creates the schema `exercises_library` in this database
+3. Creates the schema `exercises_library` in this database and  
+   Apply all Sequelize migrations to let Sequelize initialize your models in database : 
 ```
-DROP SCHEMA IF EXISTS exercises_library CASCADE;
-CREATE SCHEMA exercises_library;
-```
-
-4. Apply all Sequelize migrations to let Sequelize initialize your models in database 
-
-```
-npm run migrate
+npm run setUp
 ```
 
 ## How do I populate the database quickly with my exercises ? 

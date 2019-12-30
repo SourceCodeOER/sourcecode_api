@@ -20,14 +20,6 @@ SET row_security = off;
 -- Name: exercises_library; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
--- DONT TOUCH THIS AS I NEED THAT
--- I use a schema for easily delete / regenerate these table
-DROP SCHEMA IF EXISTS exercises_library CASCADE;
-CREATE SCHEMA exercises_library;
-
-
-ALTER SCHEMA exercises_library OWNER TO postgres;
-
 --
 -- Name: enum_Users_role; Type: TYPE; Schema: exercises_library; Owner: postgres
 --
