@@ -3,11 +3,11 @@ const chain = require('connect-chain-if');
 
 // middleware
 const check_user_role = require("./check_user_role");
+// Additional Rule for endpoints
+// Mostly useless from now but it can help if we have to add additional middleware(s)
+const rules = require("./rules");
+// common middleware(s)
 const only_authenticated_user = passport.authenticate("jwt", {
-    failWithError: true,
-    session: false
-});
-const login_verification = passport.authenticate('json', {
     failWithError: true,
     session: false
 });
@@ -50,34 +50,6 @@ module.exports = () => (req, res, next) => {
             next();
         }
     });
-};
-
-// Additional Rule for endpoints
-// Mostly useless from now but it can help if we have to add additional middleware(s)
-const rules = {
-    "auth": (operation) => (req, res, next) => {
-        // for sign, we must use another middleware
-        if (operation["x-operation"] === "signIn") {
-            login_verification(req, res, next);
-        } else {
-            next();
-        }
-    },
-    "bulk": (_operation) => (_req, _res, next) => {
-        next();
-    },
-    "configurations": (_operation) => (_req, _res, next) => {
-        next();
-    },
-    "exercises": (_operation) => (_req, _res, next) => {
-        next();
-    },
-    "tags": (_operation) => (_req, _res, next) => {
-        next();
-    },
-    "tags_categories": (_operation) => (_req, _res, next) => {
-        next();
-    }
 };
 
 // middleware chains

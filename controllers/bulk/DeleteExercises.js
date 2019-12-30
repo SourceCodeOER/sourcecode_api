@@ -4,11 +4,10 @@ const Op = Sequelize.Op;
 
 const models = require('../../models');
 const fileManager = require("../_common/files_manager");
-const {check_credentials_on_exercises} = require("../_common/utlis_fct");
 
 module.exports = function (req, res, next) {
-    return check_credentials_on_exercises(req.user, req.body)
-        .then(() => delete_exercises(req.body))
+
+    return delete_exercises(req.body)
         .then(([files, destroyedRowNumber]) => {
             console.log("Successfully destroy row(s) " + destroyedRowNumber);
             fileManager
