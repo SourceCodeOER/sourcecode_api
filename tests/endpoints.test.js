@@ -307,7 +307,8 @@ describe("Complex scenarios", () => {
                 title: data.title,
                 version: data.version,
                 description: data.description + "API4FUN",
-                tags: data.tags.map(tag => tag.tag_id)
+                tags: data.tags.map(tag => tag.tag_id),
+                removePreviousFile: true,
             });
 
         expect(response.status).toBe(200);

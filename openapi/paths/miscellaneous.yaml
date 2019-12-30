@@ -17,7 +17,7 @@ paths:
         '200':
           description: "The file"
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: string
                 format: binary

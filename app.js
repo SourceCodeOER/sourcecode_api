@@ -63,7 +63,7 @@ module.exports = new Promise((resolve, reject) => {
         const enforcer = Enforcer(spec, {
             componentOptions: {
                 requestBodyAllowedMethods: {"delete": true},
-                exceptionSkipCodes: ["WSCH001"]
+                exceptionSkipCodes: ["WSCH001", "WMED001"]
             },
             resValidate: false
         });
