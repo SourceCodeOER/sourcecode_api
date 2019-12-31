@@ -367,7 +367,7 @@ components:
               description: "Number of items by page"
               default: 10
               example: 10
-        include:
+        includeOptions:
           $ref: "#/components/schemas/IncludeOptions"
         data:
           type: object
