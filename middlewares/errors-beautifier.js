@@ -56,6 +56,7 @@ module.exports = function () {
                         : err.message;
                 }
         }
+        /* istanbul ignore else */
         if (is_custom) {
             custom_err.is_custom = true;
             custom_err.dev_errors = [err];
