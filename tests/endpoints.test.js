@@ -560,6 +560,19 @@ describe("Complex scenarios", () => {
         response = await search_exercise(1, criteria);
         expect(response.data[0].metrics.votes).toBe(2);
         expect(response.data[0].metrics.avg_score).toBe(3.5);
+
+        const check = await request
+            .get("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .query('includeOptions%5BincludeCreator%5D=true')
+            .query('includeOptions%5BincludeMetrics%5D=false')
+            .send();
+
+        expect(check.status).toBe(200);
+        expect(check.body.hasOwnProperty("metrics")).toBeFalsy();
+        expect(check.body.hasOwnProperty("creator")).toBeTruthy();
+        expect(check.body.hasOwnProperty("vote")).toBeTruthy();
+        expect(check.body.vote).toBe(5.0);
     });
 
     it("Scenario n°5 : Creates a configuration and update it", async () => {
