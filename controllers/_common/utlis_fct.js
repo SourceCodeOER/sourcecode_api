@@ -13,7 +13,10 @@ const isEqual = require('lodash.isequal');
 // Some utilities functions commonly used
 module.exports = {
     // return "data" result for /search and /exercise/{id}
-    build_search_result(ids) {
+    build_search_result(ids, {
+        includeCreator = false,
+        includeMetrics = true
+    } = {}) {
 
         return new Promise((resolve, reject) => {
             // For Postgres, we have a much better way to handle this case
@@ -22,16 +25,29 @@ module.exports = {
             // 1. Database can more easily cache rows
             // 2. Inner join with more of 3 tables with millions of rows is a memory leak
             // 3. More easily to maintain that
+
+            // Default scope for Exercise
+            let exerciseScope = [
+                "default_attributes_for_bulk",
+                {method: ["filter_exercises_ids", ids]},
+            ];
+
+            // If asked, add the metrics exercises
+            if (includeMetrics) {
+                exerciseScope.push("with_exercise_metrics");
+            }
+
+            // If asked, add the creator of exercise
+            if (includeCreator) {
+                exerciseScope.push("with_exercise_creator");
+            }
+
             Promise
                 .all([
-                    // exercises with their metrics
+                    // exercises
                     models
                         .Exercise
-                        .scope([
-                            "default_attributes_for_bulk",
-                            {method: ["filter_exercises_ids", ids]},
-                            "with_exercise_metrics"
-                        ])
+                        .scope(exerciseScope)
                         // no order by needed as rows in database will be returned sequentially for that part
                         .findAll(),
                     // get the tag(s) (with the category ) for exercise(s)
@@ -52,10 +68,14 @@ module.exports = {
                                 const exercise_id = exercise.get("id");
                                 let exercise_json = exercise.toJSON();
 
-                                // metrics.avg_score should be a number with only 2 decimal
-                                exercise_json["metrics"]["avg_score"] = Number(
-                                    parseFloat(exercise_json["metrics"]["avg_score"]).toFixed(2)
-                                );
+                                // only apply this logic when we have a metric object inside exercise
+                                if (includeMetrics) {
+                                    // metrics.avg_score should be a number with only 2 decimal
+                                    exercise_json["metrics"]["avg_score"] = Number(
+                                        parseFloat(exercise_json["metrics"]["avg_score"]).toFixed(2)
+                                    );
+                                }
+
                                 // With some scenarios ( like /bulk_delete_tags ),
                                 // it might be possible that we have no tags for this exercise
                                 // So we need this workaround to deal with every possible situation

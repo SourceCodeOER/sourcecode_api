@@ -121,6 +121,23 @@ module.exports = (sequelize, DataTypes) => {
                     ]
                 }
             },
+            // include the creator of the exercise
+            with_exercise_creator() {
+                return {
+                    include: [
+                        // include basic information on exercise creator
+                        {
+                            model: sequelize.models.User,
+                            as: "creator",
+                            required: true,
+                            attributes: [
+                                ["fullName", "fullName"],
+                                ["email", "email"]
+                            ]
+                        }
+                    ]
+                }
+            }
         }
     });
 
