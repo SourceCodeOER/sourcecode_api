@@ -16,18 +16,6 @@ const pass_middleware = function (req, res, next) {
 };
 const user_roles = ["guest", "user", "admin"];
 
-// middleware
-const common_middleware = (extracted_required_roles) => (req, res, next) => {
-    const subChain = common_middleware_chain(extracted_required_roles);
-    chain(subChain)(req, res, (err) => {
-        if (err) {
-            next(err);
-        } else {
-            next();
-        }
-    });
-};
-
 /* istanbul ignore next */
 function extract_required_roles(tags= []) {
     let requiredRoles = tags.filter(tag => user_roles.includes(tag));
@@ -40,9 +28,15 @@ function extract_required_roles(tags= []) {
 
 module.exports = () => (req, res, next) => {
     const operation = (req.operation) ? req.operation /* istanbul ignore next */ : {};
-    // each controller has it own rules but some common behaviour can be inferred using the tags
+
+    // each controller has it own rules but some common behaviour can be inferred using some properties
     const extracted_required_roles = extract_required_roles(operation.tags);
-    const subChain = main_middleware_chain(operation, extracted_required_roles);
+    const needSecurity = operation.hasOwnProperty("security") && operation.security.every(s => s.hasOwnProperty("bearerAuth"));
+    const bearerAuthProvided = (req.headers['Authorization'] || req.headers['authorization'] || undefined) !== undefined;
+
+    const options = {operation, roles: extracted_required_roles, needSecurity, bearerAuthProvided};
+    // run the middleware
+    const subChain = main_middleware_chain(options);
     chain(subChain)(req, res, (err) => {
         if (err) {
             next(err);
@@ -52,12 +46,19 @@ module.exports = () => (req, res, next) => {
     });
 };
 
+// operation.hasOwnProperty("security") && operation.security.every(s => s.hasOwnProperty("bearerAuth"))
 // middleware chains
-const main_middleware_chain = (operation, extracted_required_roles) => [
-    // apply common middleware
+const main_middleware_chain = ({operation, roles, needSecurity, bearerAuthProvided}) => [
+    // First check : if we need security or have a bearerAuth, we must check that
     chain.if(
-        extracted_required_roles.length > 0,
-        common_middleware(extracted_required_roles),
+        bearerAuthProvided || needSecurity,
+        only_authenticated_user,
+        pass_middleware
+    ),
+    // Second check : the type of user allowed in this endpoint
+    chain.if(
+        roles.length > 0 && !roles.includes("guest"),
+        check_user_role(roles),
         pass_middleware
     ),
     // if extra rules / middleware(s) should be used inside this controller
@@ -65,17 +66,5 @@ const main_middleware_chain = (operation, extracted_required_roles) => [
         rules.hasOwnProperty(operation["x-controller"]),
         rules[operation["x-controller"]](operation),
         pass_middleware
-    )
-];
-
-const common_middleware_chain = (extracted_required_roles) => [
-    chain.if(
-        // if not a guest, check credentials of this user
-        !extracted_required_roles.includes("guest"),
-        [
-            only_authenticated_user,
-            check_user_role(extracted_required_roles)
-        ],
-        pass_middleware,
     )
 ];

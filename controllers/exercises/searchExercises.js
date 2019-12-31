@@ -42,7 +42,7 @@ function buildResult(params) {
                 data: []
             })
         } else {
-            build_search_result(ids)
+            build_search_result(ids, params["includeOptions"])
                 .then(data => {
                     resolve({
                         metadata: {
@@ -68,7 +68,8 @@ module.exports = function (req, res, next) {
         .then(result => {
             return buildResult({
                 result: result,
-                metadata: updated_metadata
+                metadata: updated_metadata,
+                includeOptions: req.body.includeOptions
             });
         })
         .then(result => res.send(result))

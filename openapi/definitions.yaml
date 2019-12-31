@@ -26,6 +26,19 @@ components:
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
+# To control include for Exercise
+    IncludeOptions:
+      type: object
+      description: "To include additional properties when fetching exercise(s)"
+      properties:
+        includeCreator:
+          type: boolean
+          default: false
+          description: "Must we include the creator of exercise(s) ?"
+        includeMetrics:
+          type: boolean
+          default: true
+          description: "Must we include the metrics of exercise(s) ?"
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object
@@ -99,6 +112,7 @@ components:
           properties:
             metrics:
               type: object
+              description: "The metrics of the exercise (present only if includeMetrics is true)"
               properties:
                 votes:
                   type: integer
@@ -118,8 +132,12 @@ components:
               items:
                 $ref: '#/components/schemas/TagWithCategory'
               uniqueItems: true
+            creator:
+              allOf:
+                - type: object
+                  description: "The creator of the exercise (present only if includeMetrics is true)"
+                - $ref: "#/components/schemas/BasicUser"
           required:
-            - metrics
             - tags
 # A Tag Category
     Tag_Category:
@@ -349,6 +367,8 @@ components:
               description: "Number of items by page"
               default: 10
               example: 10
+        includeOptions:
+          $ref: "#/components/schemas/IncludeOptions"
         data:
           type: object
           description: "Search criterias"
@@ -479,3 +499,17 @@ components:
         - title
         - id
         - tags
+    BasicUser:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "jy95@perdu.com"
+          description: "The email of the user"
+        fullName:
+          type: string
+          example: "Alexandre Dewit"
+          description: "The full name of the user"
+          minLength: 1
+          maxLength: 50

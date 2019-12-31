@@ -7,20 +7,37 @@ paths:
           required: true
           schema:
             type: integer
+        - name: includeOptions
+          in: query
+          description: "To include additional properties when fetching exercise"
+          schema:
+            $ref: "../definitions.yaml#/components/schemas/IncludeOptions"
     get:
       summary: "Retrieve this specific exercise data"
       operationId: getExerciseByID
       x-controller: exercises
       x-operation: getExerciseByID
+      security:
+        - {}
+        - bearerAuth: []
       tags:
         - guest
+        - user
       responses:
         '200':
           description: "Exercise data inside a JSON"
           content:
             application/json:
               schema:
-                $ref: "../definitions.yaml#/components/schemas/SearchableExerciseModel"
+                allOf:
+                  - $ref: "../definitions.yaml#/components/schemas/SearchableExerciseModel"
+                  - type: object
+                    properties:
+                      vote:
+                        type: number
+                        minimum: 0.0
+                        example: 5.0
+                        description: "If this endpoint was used by an authentified user, it will fetch his/her vote if it exists"
         # Definition of all error statuses
         default:
           description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
