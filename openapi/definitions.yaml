@@ -513,3 +513,6 @@ components:
           description: "The full name of the user"
           minLength: 1
           maxLength: 50
+      required:
+        - email
+        - fullName
