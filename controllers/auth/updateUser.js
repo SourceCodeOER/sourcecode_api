@@ -5,8 +5,13 @@ module.exports = function (req, res, next) {
     let newProperties = {
         "email": req.body.email,
         "fullName": req.body.fullName,
-        "password": req.body.password,
     };
+
+    /* istanbul ignore else */
+    if (req.body.password) {
+        newProperties["password"] = req.body.password;
+    }
+
     /* istanbul ignore if */
     if (req.body.role) {
         newProperties["role"] = req.body.role;

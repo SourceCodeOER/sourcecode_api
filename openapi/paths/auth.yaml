@@ -153,8 +153,6 @@ paths:
                       type: integer
                       description: "The UUID of this user. By default, it will take the one of logged user"
                       example: 42
-                  required:
-                    - password
       responses:
         '200':
           description: "OK"
