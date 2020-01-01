@@ -26,6 +26,15 @@ components:
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
+    Roles:
+      type: string
+      enum: [admin, user]
+      default: user
+      description: |
+        The type of user. Currently, 2 types are possibles :
+
+        1. user : The defaut ( an simple registered user )
+        2. admin : User with additional credentials
 # To control include for Exercise
     IncludeOptions:
       type: object
@@ -513,3 +522,6 @@ components:
           description: "The full name of the user"
           minLength: 1
           maxLength: 50
+      required:
+        - email
+        - fullName

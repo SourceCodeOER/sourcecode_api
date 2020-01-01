@@ -222,6 +222,17 @@ describe("Simple case testing", () => {
         expect(response.body.email).toBe(user.email);
         expect(response.body.role).toBe("admin");
     });
+
+    it("PUT /auth/update", async () => {
+        await request
+            .put("/auth/update")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send(
+                Object.assign({}, user, {"fullName": userName})
+            )
+            .expect(200);
+    });
 });
 
 describe("Complex scenarios", () => {
@@ -575,7 +586,7 @@ describe("Complex scenarios", () => {
         expect(check.body.vote).toBe(5.0);
     });
 
-    it("Scenario n°5 : Creates a configuration and update it", async () => {
+    it("Scenario n°5 : Creates a configuration / update it then delete it", async () => {
         // creates some tags ( it is not important if validated or not )
         const responses = await Promise.all(tags.map(tag => {
             request
@@ -637,6 +648,16 @@ describe("Complex scenarios", () => {
         expect(response2.body[0].name).not.toBe(response.body[0].name);
         expect(response2.body[0].id).toBe(response.body[0].id);
         expect(response2.body[0].title).toBe(response.body[0].title);
+
+        // should be able to delete it
+        await request
+            .delete("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                id: response2.body[0].id
+            })
+            .expect(200);
     });
 
     it("Scenario n°6 : Change a Tag Category", async () => {
@@ -881,6 +902,19 @@ describe("Validations testing", () => {
             .expect(401);
     });
 
+    it("PUT /auth/update : An simple user cannot become an admin", async () => {
+        await request
+            .put("/auth/update")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .send({
+                "email": "jy95@perdu.com",
+                "fullName": "HACKERMAN",
+                "password": "42",
+                "role": "admin",
+            })
+            .expect(403);
+    });
 });
 
 // utilities functions
