@@ -70,3 +70,10 @@ Using [openapi-generator](https://openapi-generator.tech/) :
 ```
 npx openapi-generator validate -i api.yml
 ```
+
+## A single yaml file that contains all the API (Useful for Postman for instance) ?
+
+Using [speccy](https://github.com/wework/speccy) : 
+```
+npx speccy resolve api.yml -o spec-output.yaml
+```
