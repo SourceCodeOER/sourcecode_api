@@ -2,6 +2,28 @@
 
 const bcrypt = require('bcrypt');
 
+// To encrypt password before creating / updating an instance
+const SALT_WORK_FACTOR = 10;
+const encryptPassword = (user, _options) => {
+    // to handle both creating / update scenario here
+    /* istanbul ignore else */
+    if (user.changed("password")) {
+        return bcrypt
+            .genSalt(SALT_WORK_FACTOR)
+            .then(salt => {
+                return bcrypt.hash(user.password, salt);
+            }).then(hash => {
+                // replace the password with the hash and pass on the user object to whoever should require it.
+                user.password = hash;
+                return Promise.resolve(user);
+            }).catch(/* istanbul ignore next */
+                err => Promise.reject(err)
+            );
+    } else {
+        return Promise.resolve(user);
+    }
+};
+
 module.exports = (sequelize, DataTypes) => {
     let User = sequelize.define('User', {
         email: {
@@ -73,20 +95,8 @@ module.exports = (sequelize, DataTypes) => {
 
     // This hook is called when an entry is being added to the back end.
     // This method is used to hash the password before storing it in our database.
-    User.addHook('beforeCreate', (user, _options) => {
-        const SALT_WORK_FACTOR = 10;
-        return bcrypt.genSalt(SALT_WORK_FACTOR)
-            .then(salt => {
-                return bcrypt.hash(user.password, salt);
-            }).then(hash => {
-                // replace the password with the hash and pass on the user object to whoever should require it.
-                user.password = hash;
-                return Promise.resolve(user);
-            }).catch(/* istanbul ignore next */
-                err => Promise.reject(err)
-            );
-    });
+    User.addHook('beforeCreate', encryptPassword);
+    User.addHook('beforeUpdate', encryptPassword);
 
     return User
-
 };

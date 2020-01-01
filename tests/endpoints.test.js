@@ -222,6 +222,17 @@ describe("Simple case testing", () => {
         expect(response.body.email).toBe(user.email);
         expect(response.body.role).toBe("admin");
     });
+
+    it("PUT /auth/update", async () => {
+        await request
+            .put("/auth/update")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send(
+                Object.assign({}, user, {"fullName": userName})
+            )
+            .expect(200);
+    });
 });
 
 describe("Complex scenarios", () => {
@@ -891,6 +902,19 @@ describe("Validations testing", () => {
             .expect(401);
     });
 
+    it("PUT /auth/update : An simple user cannot become an admin", async () => {
+        await request
+            .put("/auth/update")
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .send({
+                "email": "jy95@perdu.com",
+                "fullName": "HACKERMAN",
+                "password": "42",
+                "role": "admin",
+            })
+            .expect(403);
+    });
 });
 
 // utilities functions
