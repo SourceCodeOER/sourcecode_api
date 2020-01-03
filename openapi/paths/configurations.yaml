@@ -9,6 +9,16 @@ paths:
         - user
       security:
         - bearerAuth: []
+      parameters:
+        - in: "query"
+          name: ids
+          description: "Array of configuration ids you want to search"
+          schema:
+            type: array
+            items:
+              type: integer
+              minimum: 0
+              description: An configuration ID
       responses:
         '200':
           description: "An array of configurations with their related tags"

@@ -170,6 +170,16 @@ describe("Simple case testing", () => {
             .expect(200);
     });
 
+    it("GET /api/configurations with settings", async () => {
+        await request
+            .get("/api/configurations")
+            .query('ids%5B0%5D=1')
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json')
+            .send()
+            .expect(200);
+    });
+
     it("PUT /api/configurations without a valid configuration", async () => {
         await request
             .put("/api/configurations")

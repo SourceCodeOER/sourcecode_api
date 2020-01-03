@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: "API for Source Code"
   version: "1.0.0"
-  title: "Source Code"
+  title: "Source Code API"
   license:
     name: "GPL-3.0-or-later"
     url: "https://choosealicense.com/licenses/gpl-3.0/"
