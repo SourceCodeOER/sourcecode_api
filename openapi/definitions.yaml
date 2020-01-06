@@ -440,6 +440,8 @@ components:
               ]
             ```
           type: array
+          # A security to prevent mad guys to destroy API
+          maxItems: 6
           items:
             type: object
             properties:
