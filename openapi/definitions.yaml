@@ -349,76 +349,67 @@ components:
       required:
         - metadata
         - data
-# Common criteria ( for pagination )
-    CommonCriterias:
+# Search criteria components
+    PaginationCriterias:
       type: object
+      description: "Fields for pagination"
       properties:
-        limit:
+        page:
+          type: integer
+          description: "Page number (start at 1)"
+          minimum: 1
+          default: 1
+          example: 1
+        size:
           type: integer
           minimum: 0
-          description: "Maximal number of items we want to retrieve"
-          example: 42
-        offset:
-          type: integer
-          minimum: 0
-          description: "Number of items we want to skip (useful with limit for pagination)"
-          example: 42
+          description: "Number of items by page"
+          default: 10
+          example: 10
+    SearchDataCriterias:
+      type: object
+      description: "Search criterias"
+      properties:
+        title:
+          type: string
+          description: "Something we want to find inside the title of exercises"
+          maxLength: 100
+          example: "SINF2MS"
+        tags:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+                format: int32
+                example: 1
+              - type: array
+                items:
+                  type: integer
+                  format: int32
+                minItems: 1 # Not allowing empty array if we use
+                description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
+                example: [-1, [2, 3]]
+        state:
+          $ref: "#/components/schemas/State"
+        user_ids:
+          type: array
+          description: "Filter the exercises by their creators."
+          minItems: 1
+          items:
+            type: integer
+            minimum: 0
+            description: "An user ID"
+          uniqueItems: true
 # Search criteria
     SearchCriterias:
       type: object
       properties:
         metadata:
-          type: object
-          description: "Fields for pagination"
-          properties:
-            page:
-              type: integer
-              description: "Page number (start at 1)"
-              minimum: 1
-              default: 1
-              example: 1
-            size:
-              type: integer
-              minimum: 0
-              description: "Number of items by page"
-              default: 10
-              example: 10
+          $ref: "#/components/schemas/PaginationCriterias"
         includeOptions:
           $ref: "#/components/schemas/IncludeOptions"
         data:
-          type: object
-          description: "Search criterias"
-          properties:
-            title:
-              type: string
-              description: "Something we want to find inside the title of exercises"
-              maxLength: 100
-              example: "SINF2MS"
-            tags:
-              type: array
-              items:
-                oneOf:
-                  - type: integer
-                    format: int32
-                    example: 1
-                  - type: array
-                    items:
-                      type: integer
-                      format: int32
-                    minItems: 1 # Not allowing empty array if we use
-              description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
-              example: [-1, [2, 3]]
-            state:
-              $ref: "#/components/schemas/State"
-            user_ids:
-              type: array
-              description: "Filter the exercises by their creators."
-              minItems: 1
-              items:
-                type: integer
-                minimum: 0
-                description: "An user ID"
-              uniqueItems: true
+          $ref: "#/components/schemas/SearchDataCriterias"
     MultipleExercisesForm:
       type: array
       minItems: 1
