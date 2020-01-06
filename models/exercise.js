@@ -6,6 +6,13 @@ const Op = Sequelize.Op;
 const enumObj = require("../controllers/_common/exercise_status");
 let enumValues = Object.values(enumObj);
 
+const operations = {
+    "<=": Op.lte,
+    "<": Op.lt,
+    ">=": Op.gte,
+    ">": Op.gt
+};
+
 module.exports = (sequelize, DataTypes) => {
     let Exercise = sequelize.define('Exercise', {
         title: {
@@ -48,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
                     attributes: ["id"],
                     limit: metadata.size,
                     offset: (metadata.page - 1) * metadata.size,
+                    // need to have access to metrics for some filtering stuff
                     include: [{
                         model: sequelize.models.Exercise_Metrics,
                         required: true,
@@ -277,30 +285,49 @@ function tagsConditionsBuilder(tags) {
     };
 }
 
+// properties we need to check for whereConditionBuilder
+const metricsPropertiesToCheck = ["tags", "vote"];
+
 // where condition builder for find_exercises_ids_with_given_criteria
 function whereConditionBuilder(parameters) {
 
     // does the user provide us filter criteria
-    if (parameters.hasOwnProperty("data")) {
-
-        // maybe find a better way to generate that part
-        const data = parameters.data;
-        const counter = Object.keys(data).length;
-
-        // no tags criteria given, simple case : just the join condition
-        // title/isValidated criteria is handled somewhere else
-        if (counter === 0 || !data.hasOwnProperty("tags")) {
-            return {}
-        } else {
-            // we have at least a tag criteria
-            return {
-                [Op.and]: [
-                    tagsConditionsBuilder(data.tags)
-                ]
-            }
-        }
-    } else {
-        // no criteria given, simple case : just the join condition
+    if (
+        (!parameters.hasOwnProperty("data"))
+        ||
+        metricsPropertiesToCheck
+            .map(key => parameters.data.hasOwnProperty(key))
+            .every(b => !b)
+    ) {
         return {}
+    } else {
+        // at least one criteria was given
+        const data = parameters.data;
+        const criteria = [];
+
+        // tag criteria was given
+        /* istanbul ignore else */
+        if (data.hasOwnProperty("tags")) {
+            criteria.push(
+                tagsConditionsBuilder(data.tags)
+            );
+        }
+
+        // vote criteria was given
+        if (data.hasOwnProperty("vote")) {
+            const {operator, value} = data.vote;
+            criteria.push(
+                Sequelize.where(
+                    Sequelize.col("avg_vote_score"),
+                    operations[operator],
+                    value
+                )
+            )
+        }
+
+        // at least one criteria was given because of the executed path
+        return {
+            [Op.and]: criteria
+        };
     }
 }

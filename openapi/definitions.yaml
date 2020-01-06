@@ -139,6 +139,7 @@ components:
                 avg_score:
                   type: number
                   minimum: 0.0
+                  maximum: 5.0
                   example: 5.0
                   description: "The average score of this exercise"
               required:
@@ -386,9 +387,9 @@ components:
                 items:
                   type: integer
                   format: int32
-                minItems: 1 # Not allowing empty array if we use
-                description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
-                example: [-1, [2, 3]]
+                minItems: 1 # Not allowing empty array if we use it
+          description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
+          example: [-1, [2, 3]]
         state:
           $ref: "#/components/schemas/State"
         user_ids:
@@ -400,6 +401,23 @@ components:
             minimum: 0
             description: "An user ID"
           uniqueItems: true
+        vote:
+          description: "Only take exercises that meet a given threshold"
+          type: object
+          properties:
+            operator:
+              description: "The operation we want to apply"
+              type: string
+              enum: ['<=', '<', '>=', '>']
+            value:
+              description: "The threshold value"
+              type: number
+              minimum: 0.0
+              maximum: 5.0
+              example: 5.0
+          required:
+            - operator
+            - value
 # Search criteria
     SearchCriterias:
       type: object
