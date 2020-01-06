@@ -71,9 +71,14 @@ module.exports = {
                 .then(([exercises_data, tags_data]) => {
                     // key : exercise_id
                     const tags_data_map = groupBy(tags_data, "exercise_id");
+                    const exercises_data_map = groupBy(exercises_data, "id");
                     resolve(
-                        exercises_data.map((exercise) => {
-                                // manually build the good result
+                        ids
+                            // handle the case if the exercise doesn't exist anymore because someone deleted it
+                            .filter(id => exercises_data_map.hasOwnProperty(id))
+                            // manually build the good result
+                            .map(id => {
+                                let exercise = exercises_data_map[id][0];
                                 const exercise_id = exercise.get("id");
                                 let exercise_json = exercise.toJSON();
                                 let optionalProperties = {};
@@ -98,9 +103,8 @@ module.exports = {
                                 }
 
                                 return Object.assign({}, exercise_json, optionalProperties)
-                            }
-                        )
-                    )
+                            })
+                    );
                 }).catch(/* istanbul ignore next */
                 err => reject(err));
 
