@@ -15,7 +15,8 @@ module.exports = (req, res, next) => {
     const settings = {
         tags_ids: arrayOfIntegersOnly("tags_ids"),
         categories_ids: arrayOfIntegersOnly("categories_ids"),
-        state: onlyString("state", "default")
+        state: onlyString("state", "default"),
+        title: onlyString("title", ''),
     };
 
     let conditions = [];
@@ -39,6 +40,13 @@ module.exports = (req, res, next) => {
                 [Op.in]: settings.categories_ids
             }
         })
+    }
+    if (settings.title.length > 0) {
+        conditions.push({
+            text: {
+                [Op.iLike]: `%${settings.title}%`
+            }
+        });
     }
 
     // create the findOptions

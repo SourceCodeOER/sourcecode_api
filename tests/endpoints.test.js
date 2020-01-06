@@ -205,6 +205,7 @@ describe("Simple case testing", () => {
             .query('tags_ids[]=1')
             .query('tags_ids[]=2')
             .query('categories_ids[]=' + 1)
+            .query('title=hero')
             .set('Accept', 'application/json')
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);

@@ -84,6 +84,9 @@ paths:
                 enum: ["default", "validated", "pending"]
                 default: "default"
                 description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
+              title:
+                type: string
+                description: "Filter the tags by their text (case-insensitive comparison)"
       responses:
         '200':
           description: "An array of tag"
