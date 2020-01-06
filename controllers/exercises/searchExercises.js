@@ -13,11 +13,24 @@ const METADATA = {
 // return ids of exercises that match
 function find_exercises_ids_with_given_criteria(parameters, metadata) {
 
+    let exercise_scopes = [];
+
+    // handle the filtering here
+    exercise_scopes.push({
+        method: ["find_exercises_ids_with_given_criteria", [parameters, metadata]]
+    });
+
+    // handle sorting
+    if (Array.isArray(parameters.orderBy)) {
+        exercise_scopes.push({
+            method: ["orderByClauses", parameters.orderBy]
+        })
+    }
+
     return models
         .Exercise
-        .scope({
-            method: ["find_exercises_ids_with_given_criteria", [parameters, metadata]]
-        }).findAndCountAll({
+        .scope(exercise_scopes)
+        .findAndCountAll({
             attributes: ["id"]
         });
 }

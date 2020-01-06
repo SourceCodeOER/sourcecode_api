@@ -156,7 +156,15 @@ describe("Simple case testing", () => {
                     "operator": "<=",
                     "value": 5.0
                 }
-            }
+            },
+            "orderBy": [
+                {"field": "id", "value": "ASC"},
+                {"field": "state", "value": "DESC"},
+                {"field": "avg_score", "value": "ASC"},
+                {"field": "date", "value": "DESC"},
+                {"field": "title", "value": "ASC"},
+                {"field": "vote_count", "value": "DESC"},
+            ]
         };
         await search_exercise(0, criteria);
     });

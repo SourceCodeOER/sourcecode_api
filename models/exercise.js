@@ -6,7 +6,8 @@ const Op = Sequelize.Op;
 const enumObj = require("../controllers/_common/exercise_status");
 let enumValues = Object.values(enumObj);
 
-const operations = {
+// Useful for vote filtering (and maybe other things later)
+const OPERATIONS = {
     "<=": Op.lte,
     "<": Op.lt,
     ">=": Op.gte,
@@ -48,6 +49,36 @@ module.exports = (sequelize, DataTypes) => {
         // https://sequelize.org/master/manual/scopes.html
         scopes: {
 
+            // to deal with the horrible order by clauses generically generated
+            orderByClauses(fields) {
+                // To handle order by clauses
+                // the last item in the values array will be the choice of the user (instead of the '')
+                const ORDER_BY_FIELDS = {
+                    "state": ["state", ''],
+                    "id": ["id", ''],
+                    "title": ["title", ''],
+                    "date": ['updatedAt', ''],
+                    "avg_score": [
+                        {model: sequelize.models.Exercise_Metrics, as: "metrics"},
+                        'avg_vote_score',
+                        ''
+                    ],
+                    "vote_count": [
+                        {model: sequelize.models.Exercise_Metrics, as: "metrics"},
+                        'vote_count',
+                        ''
+                    ],
+                };
+                return {
+                    order: fields.map(field => {
+                        let order_by_clause = ORDER_BY_FIELDS[field.field];
+                        // Remove the last empty value so that we can add
+                        order_by_clause.pop();
+                        order_by_clause.push(field.value);
+                        return order_by_clause;
+                    })
+                };
+            },
             // to find exercise(s) that match criteria
             find_exercises_ids_with_given_criteria([parameters, metadata]) {
                 // options for sequelize query builder
@@ -319,7 +350,7 @@ function whereConditionBuilder(parameters) {
             criteria.push(
                 Sequelize.where(
                     Sequelize.col("avg_vote_score"),
-                    operations[operator],
+                    OPERATIONS[operator],
                     value
                 )
             )

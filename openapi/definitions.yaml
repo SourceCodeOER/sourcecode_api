@@ -428,6 +428,41 @@ components:
           $ref: "#/components/schemas/IncludeOptions"
         data:
           $ref: "#/components/schemas/SearchDataCriterias"
+        orderBy:
+          description: |
+            If you wish to order the provided result, use this parameter.
+
+            For example, if you wish to first sort by date descending then by title ascending, you could achieve that with : 
+            ```
+              [ 
+                {"field": "date", "value": "DESC"},
+                {"field": "title", "value": "ASC"}
+              ]
+            ```
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: |
+                  The field we want to use for sorting. Currently, you have the following possibilities :
+
+                  1. state : the state of the exercise
+                  2. id : the id of the exercise
+                  3. title : the title of the exercise
+                  4. date : the date of the last modification of the exercise 
+                  5. avg_score : the average score of the exercise
+                  6. vote_count : the number of voters for this exercise
+                enum: ['state', 'id', 'title', 'date', 'avg_score', 'vote_count']
+              value:
+                type: string
+                enum: ["ASC", "DESC"]
+                description: |
+                  The order we want to sort the related field : 
+
+                  - ASC : ASCENDING sorting
+                  - DESC : DESCENDING sorting
     MultipleExercisesForm:
       type: array
       minItems: 1
