@@ -15,7 +15,8 @@ module.exports = (req, res, next) => {
     const settings = {
         tags_ids: arrayOfIntegersOnly("tags_ids"),
         categories_ids: arrayOfIntegersOnly("categories_ids"),
-        state: onlyString("state", "default")
+        state: onlyString("state", "default"),
+        title: onlyString("title", ''),
     };
 
     let conditions = [];
@@ -40,22 +41,23 @@ module.exports = (req, res, next) => {
             }
         })
     }
+    if (settings.title.length > 0) {
+        conditions.push({
+            text: {
+                [Op.iLike]: `%${settings.title}%`
+            }
+        });
+    }
 
     // create the findOptions
     const options = {
-        attributes: [
-            ["id", "tag_id"],
-            ["text", "tag_text"],
-            "category_id",
-            "isValidated",
-            "version"
-        ],
         // dynamic create the where clause
         where: Object.assign({}, ...conditions)
     };
 
     return models
         .Tag
+        .scope('common_attributes')
         .findAll(options)
         .then(result => res.send(result.map(tag => tag.toJSON())))
         .catch(/* istanbul ignore next */

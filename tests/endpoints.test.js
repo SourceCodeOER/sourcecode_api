@@ -151,8 +151,20 @@ describe("Simple case testing", () => {
                     -42
                 ],
                 "state": "VALIDATED",
-                "user_ids": [1, 2, 3]
-            }
+                "user_ids": [1, 2, 3],
+                "vote": {
+                    "operator": "<=",
+                    "value": 5.0
+                }
+            },
+            "orderBy": [
+                {"field": "id", "value": "ASC"},
+                {"field": "state", "value": "DESC"},
+                {"field": "avg_score", "value": "ASC"},
+                {"field": "date", "value": "DESC"},
+                {"field": "title", "value": "ASC"},
+                {"field": "vote_count", "value": "DESC"},
+            ]
         };
         await search_exercise(0, criteria);
     });
@@ -201,6 +213,7 @@ describe("Simple case testing", () => {
             .query('tags_ids[]=1')
             .query('tags_ids[]=2')
             .query('categories_ids[]=' + 1)
+            .query('title=hero')
             .set('Accept', 'application/json')
             .expect(200);
         expect(Array.isArray(response.body)).toBe(true);
@@ -587,10 +600,14 @@ describe("Complex scenarios", () => {
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .query('includeOptions%5BincludeCreator%5D=true')
             .query('includeOptions%5BincludeMetrics%5D=false')
+            .query('includeOptions%5BincludeDescription%5D=false')
+            .query('includeOptions%5BincludeTags%5D=false')
             .send();
 
         expect(check.status).toBe(200);
         expect(check.body.hasOwnProperty("metrics")).toBeFalsy();
+        expect(check.body.hasOwnProperty("description")).toBeFalsy();
+        expect(check.body.hasOwnProperty("tags")).toBeFalsy();
         expect(check.body.hasOwnProperty("creator")).toBeTruthy();
         expect(check.body.hasOwnProperty("vote")).toBeTruthy();
         expect(check.body.vote).toBe(5.0);

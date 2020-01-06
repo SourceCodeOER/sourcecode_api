@@ -6,6 +6,14 @@ const Op = Sequelize.Op;
 const enumObj = require("../controllers/_common/exercise_status");
 let enumValues = Object.values(enumObj);
 
+// Useful for vote filtering (and maybe other things later)
+const OPERATIONS = {
+    "<=": Op.lte,
+    "<": Op.lt,
+    ">=": Op.gte,
+    ">": Op.gt
+};
+
 module.exports = (sequelize, DataTypes) => {
     let Exercise = sequelize.define('Exercise', {
         title: {
@@ -41,6 +49,36 @@ module.exports = (sequelize, DataTypes) => {
         // https://sequelize.org/master/manual/scopes.html
         scopes: {
 
+            // to deal with the horrible order by clauses generically generated
+            orderByClauses(fields) {
+                // To handle order by clauses
+                // the last item in the values array will be the choice of the user (instead of the '')
+                const ORDER_BY_FIELDS = {
+                    "state": ["state", ''],
+                    "id": ["id", ''],
+                    "title": ["title", ''],
+                    "date": ['updatedAt', ''],
+                    "avg_score": [
+                        {model: sequelize.models.Exercise_Metrics, as: "metrics"},
+                        'avg_vote_score',
+                        ''
+                    ],
+                    "vote_count": [
+                        {model: sequelize.models.Exercise_Metrics, as: "metrics"},
+                        'vote_count',
+                        ''
+                    ],
+                };
+                return {
+                    order: fields.map(field => {
+                        let order_by_clause = ORDER_BY_FIELDS[field.field];
+                        // Remove the last empty value so that we can add
+                        order_by_clause.pop();
+                        order_by_clause.push(field.value);
+                        return order_by_clause;
+                    })
+                };
+            },
             // to find exercise(s) that match criteria
             find_exercises_ids_with_given_criteria([parameters, metadata]) {
                 // options for sequelize query builder
@@ -48,6 +86,7 @@ module.exports = (sequelize, DataTypes) => {
                     attributes: ["id"],
                     limit: metadata.size,
                     offset: (metadata.page - 1) * metadata.size,
+                    // need to have access to metrics for some filtering stuff
                     include: [{
                         model: sequelize.models.Exercise_Metrics,
                         required: true,
@@ -92,6 +131,12 @@ module.exports = (sequelize, DataTypes) => {
             default_attributes_for_bulk: {
                 attributes: {
                     exclude: ["user_id"]
+                }
+            },
+            // if we want to exclude the description for bulky query
+            without_exercise_description: {
+                attributes: {
+                    exclude: ["description"]
                 }
             },
             // filter exercises ids
@@ -271,30 +316,49 @@ function tagsConditionsBuilder(tags) {
     };
 }
 
+// properties we need to check for whereConditionBuilder
+const metricsPropertiesToCheck = ["tags", "vote"];
+
 // where condition builder for find_exercises_ids_with_given_criteria
 function whereConditionBuilder(parameters) {
 
     // does the user provide us filter criteria
-    if (parameters.hasOwnProperty("data")) {
-
-        // maybe find a better way to generate that part
-        const data = parameters.data;
-        const counter = Object.keys(data).length;
-
-        // no tags criteria given, simple case : just the join condition
-        // title/isValidated criteria is handled somewhere else
-        if (counter === 0 || !data.hasOwnProperty("tags")) {
-            return {}
-        } else {
-            // we have at least a tag criteria
-            return {
-                [Op.and]: [
-                    tagsConditionsBuilder(data.tags)
-                ]
-            }
-        }
-    } else {
-        // no criteria given, simple case : just the join condition
+    if (
+        (!parameters.hasOwnProperty("data"))
+        ||
+        metricsPropertiesToCheck
+            .map(key => parameters.data.hasOwnProperty(key))
+            .every(b => !b)
+    ) {
         return {}
+    } else {
+        // at least one criteria was given
+        const data = parameters.data;
+        const criteria = [];
+
+        // tag criteria was given
+        /* istanbul ignore else */
+        if (data.hasOwnProperty("tags")) {
+            criteria.push(
+                tagsConditionsBuilder(data.tags)
+            );
+        }
+
+        // vote criteria was given
+        if (data.hasOwnProperty("vote")) {
+            const {operator, value} = data.vote;
+            criteria.push(
+                Sequelize.where(
+                    Sequelize.col("avg_vote_score"),
+                    OPERATIONS[operator],
+                    value
+                )
+            )
+        }
+
+        // at least one criteria was given because of the executed path
+        return {
+            [Op.and]: criteria
+        };
     }
 }

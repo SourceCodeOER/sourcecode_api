@@ -15,7 +15,9 @@ module.exports = {
     // return "data" result for /search and /exercise/{id}
     build_search_result(ids, {
         includeCreator = false,
-        includeMetrics = true
+        includeMetrics = true,
+        includeDescription = true,
+        includeTags = true,
     } = {}) {
 
         return new Promise((resolve, reject) => {
@@ -42,6 +44,11 @@ module.exports = {
                 exerciseScope.push("with_exercise_creator");
             }
 
+            // If asked, don't include description
+            if (!includeDescription) {
+                exerciseScope.push("without_exercise_description");
+            }
+
             Promise
                 .all([
                     // exercises
@@ -50,23 +57,31 @@ module.exports = {
                         .scope(exerciseScope)
                         // no order by needed as rows in database will be returned sequentially for that part
                         .findAll(),
-                    // get the tag(s) (with the category ) for exercise(s)
-                    models
-                        .Exercise_Tag
-                        .scope([
-                            {method: ["filter_by_exercise_ids", ids]},
-                            "get_all_tags_with_related_category"
-                        ])
-                        .findAll()
+                    // get the tag(s) (with the category ) for exercise(s) if asked
+                    (includeTags)
+                        ? models
+                            .Exercise_Tag
+                            .scope([
+                                {method: ["filter_by_exercise_ids", ids]},
+                                "get_all_tags_with_related_category"
+                            ])
+                            .findAll()
+                        : Promise.resolve([])
                 ])
                 .then(([exercises_data, tags_data]) => {
                     // key : exercise_id
                     const tags_data_map = groupBy(tags_data, "exercise_id");
+                    const exercises_data_map = groupBy(exercises_data, "id");
                     resolve(
-                        exercises_data.map((exercise) => {
-                                // manually build the good result
+                        ids
+                            // handle the case if the exercise doesn't exist anymore because someone deleted it
+                            .filter(id => exercises_data_map.hasOwnProperty(id))
+                            // manually build the good result
+                            .map(id => {
+                                let exercise = exercises_data_map[id][0];
                                 const exercise_id = exercise.get("id");
                                 let exercise_json = exercise.toJSON();
+                                let optionalProperties = {};
 
                                 // only apply this logic when we have a metric object inside exercise
                                 if (includeMetrics) {
@@ -76,19 +91,20 @@ module.exports = {
                                     );
                                 }
 
-                                // With some scenarios ( like /bulk_delete_tags ),
-                                // it might be possible that we have no tags for this exercise
-                                // So we need this workaround to deal with every possible situation
-                                /* istanbul ignore next */
-                                let tags_for_exercise = (tags_data_map.hasOwnProperty(exercise_id))
-                                    ? tags_data_map[exercise_id][0].toJSON()
-                                    : {"tags": []};
+                                if (includeTags) {
+                                    // With some scenarios, it might be possible that we have no tags for this exercise
+                                    // So we need this workaround to deal with every possible situation
+                                    /* istanbul ignore next */
+                                    let tags_for_exercise = (tags_data_map.hasOwnProperty(exercise_id))
+                                        ? tags_data_map[exercise_id][0].toJSON()
+                                        : {"tags": []};
+                                    delete tags_for_exercise["exercise_id"];
+                                    optionalProperties = Object.assign(optionalProperties, tags_for_exercise);
+                                }
 
-                                delete tags_for_exercise["exercise_id"];
-                                return Object.assign({}, exercise_json, tags_for_exercise)
-                            }
-                        )
-                    )
+                                return Object.assign({}, exercise_json, optionalProperties)
+                            })
+                    );
                 }).catch(/* istanbul ignore next */
                 err => reject(err));
 

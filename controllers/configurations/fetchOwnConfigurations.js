@@ -46,7 +46,10 @@ module.exports = (req, res, next) => {
                 },
                 required: true,
             }],
-            where: Object.assign({}, ...whereConditions)
+            where: Object.assign({}, ...whereConditions),
+            order: [
+                ["id", "ASC"]
+            ]
         })
         .then(configurations =>
             res.send(

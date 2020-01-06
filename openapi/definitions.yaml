@@ -48,6 +48,14 @@ components:
           type: boolean
           default: true
           description: "Must we include the metrics of exercise(s) ?"
+        includeDescription:
+          type: boolean
+          default: true
+          description: "Must we include the description of exercise(s) ?"
+        includeTags:
+          type: boolean
+          default: true
+          description: "Must we include the tags of exercise(s) ?"
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object
@@ -63,9 +71,9 @@ components:
           maxLength: 5000
           example: "..."
           description: "The preamble of this exercise"
+          default: ""
       required:
         - title
-        - description
 # If already in database, we have other fields (in addition of the basic Model)
     AlreadyPresentExerciseModel:
       allOf:
@@ -131,6 +139,7 @@ components:
                 avg_score:
                   type: number
                   minimum: 0.0
+                  maximum: 5.0
                   example: 5.0
                   description: "The average score of this exercise"
               required:
@@ -138,6 +147,7 @@ components:
                 - avg_score
             tags:
               type: array
+              description: "The tags of the exercise (present only if includeTags is true)"
               items:
                 $ref: '#/components/schemas/TagWithCategory'
               uniqueItems: true
@@ -146,8 +156,6 @@ components:
                 - type: object
                   description: "The creator of the exercise (present only if includeMetrics is true)"
                 - $ref: "#/components/schemas/BasicUser"
-          required:
-            - tags
 # A Tag Category
     Tag_Category:
       type: object
@@ -220,7 +228,7 @@ components:
               minItems: 1
               uniqueItems: true
               items:
-                $ref: "#/components/schemas/Tag"
+                $ref: "#/components/schemas/TagFull"
           required:
             - tags
 # Tag proposal
@@ -342,76 +350,121 @@ components:
       required:
         - metadata
         - data
-# Common criteria ( for pagination )
-    CommonCriterias:
+# Search criteria components
+    PaginationCriterias:
       type: object
+      description: "Fields for pagination"
       properties:
-        limit:
+        page:
+          type: integer
+          description: "Page number (start at 1)"
+          minimum: 1
+          default: 1
+          example: 1
+        size:
           type: integer
           minimum: 0
-          description: "Maximal number of items we want to retrieve"
-          example: 42
-        offset:
-          type: integer
-          minimum: 0
-          description: "Number of items we want to skip (useful with limit for pagination)"
-          example: 42
+          description: "Number of items by page"
+          default: 10
+          example: 10
+    SearchDataCriterias:
+      type: object
+      description: "Search criterias"
+      properties:
+        title:
+          type: string
+          description: "Something we want to find inside the title of exercises"
+          maxLength: 100
+          example: "SINF2MS"
+        tags:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+                format: int32
+                example: 1
+              - type: array
+                items:
+                  type: integer
+                  format: int32
+                minItems: 1 # Not allowing empty array if we use it
+          description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
+          example: [-1, [2, 3]]
+        state:
+          $ref: "#/components/schemas/State"
+        user_ids:
+          type: array
+          description: "Filter the exercises by their creators."
+          minItems: 1
+          items:
+            type: integer
+            minimum: 0
+            description: "An user ID"
+          uniqueItems: true
+        vote:
+          description: "Only take exercises that meet a given threshold"
+          type: object
+          properties:
+            operator:
+              description: "The operation we want to apply"
+              type: string
+              enum: ['<=', '<', '>=', '>']
+            value:
+              description: "The threshold value"
+              type: number
+              minimum: 0.0
+              maximum: 5.0
+              example: 5.0
+          required:
+            - operator
+            - value
 # Search criteria
     SearchCriterias:
       type: object
       properties:
         metadata:
-          type: object
-          description: "Fields for pagination"
-          properties:
-            page:
-              type: integer
-              description: "Page number (start at 1)"
-              minimum: 1
-              default: 1
-              example: 1
-            size:
-              type: integer
-              minimum: 0
-              description: "Number of items by page"
-              default: 10
-              example: 10
+          $ref: "#/components/schemas/PaginationCriterias"
         includeOptions:
           $ref: "#/components/schemas/IncludeOptions"
         data:
-          type: object
-          description: "Search criterias"
-          properties:
-            title:
-              type: string
-              description: "Something we want to find inside the title of exercises"
-              maxLength: 100
-              example: "SINF2MS"
-            tags:
-              type: array
-              items:
-                oneOf:
-                  - type: integer
-                    format: int32
-                    example: 1
-                  - type: array
-                    items:
-                      type: integer
-                      format: int32
-                    minItems: 1 # Not allowing empty array if we use
-              description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
-              example: [-1, [2, 3]]
-            state:
-              $ref: "#/components/schemas/State"
-            user_ids:
-              type: array
-              description: "Filter the exercises by their creators."
-              minItems: 1
-              items:
-                type: integer
-                minimum: 0
-                description: "An user ID"
-              uniqueItems: true
+          $ref: "#/components/schemas/SearchDataCriterias"
+        orderBy:
+          description: |
+            If you wish to order the provided result, use this parameter.
+
+            For example, if you wish to first sort by date descending then by title ascending, you could achieve that with : 
+            ```
+              [ 
+                {"field": "date", "value": "DESC"},
+                {"field": "title", "value": "ASC"}
+              ]
+            ```
+          type: array
+          # A security to prevent mad guys to destroy API
+          maxItems: 6
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: |
+                  The field we want to use for sorting. Currently, you have the following possibilities :
+
+                  1. state : the state of the exercise
+                  2. id : the id of the exercise
+                  3. title : the title of the exercise
+                  4. date : the date of the last modification of the exercise 
+                  5. avg_score : the average score of the exercise
+                  6. vote_count : the number of voters for this exercise
+                enum: ['state', 'id', 'title', 'date', 'avg_score', 'vote_count']
+              value:
+                type: string
+                enum: ["ASC", "DESC"]
+                description: |
+                  The order we want to sort the related field : 
+
+                  - ASC : ASCENDING sorting
+                  - DESC : DESCENDING sorting
     MultipleExercisesForm:
       type: array
       minItems: 1
