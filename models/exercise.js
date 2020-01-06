@@ -94,6 +94,12 @@ module.exports = (sequelize, DataTypes) => {
                     exclude: ["user_id"]
                 }
             },
+            // if we want to exclude the description for bulky query
+            without_exercise_description: {
+                attributes: {
+                    exclude: ["description"]
+                }
+            },
             // filter exercises ids
             filter_exercises_ids(ids) {
                 return {

@@ -587,10 +587,14 @@ describe("Complex scenarios", () => {
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .query('includeOptions%5BincludeCreator%5D=true')
             .query('includeOptions%5BincludeMetrics%5D=false')
+            .query('includeOptions%5BincludeDescription%5D=false')
+            .query('includeOptions%5BincludeTags%5D=false')
             .send();
 
         expect(check.status).toBe(200);
         expect(check.body.hasOwnProperty("metrics")).toBeFalsy();
+        expect(check.body.hasOwnProperty("description")).toBeFalsy();
+        expect(check.body.hasOwnProperty("tags")).toBeFalsy();
         expect(check.body.hasOwnProperty("creator")).toBeTruthy();
         expect(check.body.hasOwnProperty("vote")).toBeTruthy();
         expect(check.body.vote).toBe(5.0);

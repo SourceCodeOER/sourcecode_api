@@ -257,7 +257,7 @@ function update_exercise([id, body, t]) {
                 // common properties for all exercises
                 let properties = {
                     title: body.title,
-                    description: body.description,
+                    description: body.description, // by default it will be empty thanks openapi-enforcer
                 };
                 // handle optional properties updates
                 if (body.hasOwnProperty("url")) {

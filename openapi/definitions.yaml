@@ -48,6 +48,14 @@ components:
           type: boolean
           default: true
           description: "Must we include the metrics of exercise(s) ?"
+        includeDescription:
+          type: boolean
+          default: true
+          description: "Must we include the description of exercise(s) ?"
+        includeTags:
+          type: boolean
+          default: true
+          description: "Must we include the tags of exercise(s) ?"
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object
@@ -63,9 +71,9 @@ components:
           maxLength: 5000
           example: "..."
           description: "The preamble of this exercise"
+          default: ""
       required:
         - title
-        - description
 # If already in database, we have other fields (in addition of the basic Model)
     AlreadyPresentExerciseModel:
       allOf:
@@ -138,6 +146,7 @@ components:
                 - avg_score
             tags:
               type: array
+              description: "The tags of the exercise (present only if includeTags is true)"
               items:
                 $ref: '#/components/schemas/TagWithCategory'
               uniqueItems: true
@@ -146,8 +155,6 @@ components:
                 - type: object
                   description: "The creator of the exercise (present only if includeMetrics is true)"
                 - $ref: "#/components/schemas/BasicUser"
-          required:
-            - tags
 # A Tag Category
     Tag_Category:
       type: object
