@@ -17,7 +17,21 @@ module.exports = (sequelize, DataTypes) => {
         // Enable optimistic locking.  When enabled, sequelize will add a version count attribute
         // to the model and throw an OptimisticLockingError error when stale instances are saved.
         // Set to true or a string with the attribute name you want to use to enable.
-        version: true
+        version: true,
+
+        // scopes : reuse more easily some common parts
+        // https://sequelize.org/master/manual/scopes.html
+        scopes: {
+            common_attributes: {
+                attributes: [
+                    ["id", "tag_id"],
+                    ["text", "tag_text"],
+                    "category_id",
+                    "isValidated",
+                    "version"
+                ]
+            }
+        }
     });
 
     Tag.associate = function (models) {

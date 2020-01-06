@@ -228,7 +228,7 @@ components:
               minItems: 1
               uniqueItems: true
               items:
-                $ref: "#/components/schemas/Tag"
+                $ref: "#/components/schemas/TagFull"
           required:
             - tags
 # Tag proposal
