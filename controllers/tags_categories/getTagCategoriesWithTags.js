@@ -50,6 +50,9 @@ module.exports = function (req, res, next) {
                         )
                     )
             }
+        ],
+        order: [
+            ["id", "ASC"]
         ]
     };
 
