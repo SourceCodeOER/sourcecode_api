@@ -38,7 +38,14 @@ module.exports = function (req, res, next) {
             {
                 // by default, it will do a left join, just change that to a inner join
                 required: true,
-                model: models.Tag.scope('common_attributes'),
+                model: models.Tag,
+                attributes: [
+                    ["id", "tag_id"],
+                    ["text", "tag_text"],
+                    "category_id",
+                    "isValidated",
+                    "version"
+                ],
                 as: "tags",
                 where: Object
                     .assign({},
