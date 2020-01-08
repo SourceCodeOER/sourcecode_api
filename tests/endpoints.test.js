@@ -710,7 +710,78 @@ describe("Complex scenarios", () => {
                 category: response.body[0].category
             })
             .expect(200);
-    })
+    });
+
+    it("Scenario n°7 : Creates a signle exercise wtih two tags, Deletes a tag then ", async () => {
+
+        // creates a tag category just for that purpose
+        const response = await request
+            .post("/api/bulk/create_or_find_tag_categories")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(["TEMP_category"]);
+        expect(response.status).toBe(200);
+        expect(Array.isArray(response.body)).toBeTruthy();
+        const categoryId = response.body[0].id;
+
+        // creates an exercise with two tags
+        const some_exercise_data = {
+            "title": "Exercise for delete scenario",
+            tags: ["TEMP_TAG-0", "TEMP_TAG-1", "TEMP_TAG-2"]
+                .map(tag => ({
+                    text: tag,
+                    category_id: categoryId
+                }))
+        };
+        await request
+            .post("/api/bulk/create_exercises")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send([
+                some_exercise_data
+            ])
+            .expect(200);
+
+        // fetch the tags linked to this exercise
+        let searchCriteria = {
+            includeOptions: {
+                includeTags: true,
+                includeMetrics: true
+            },
+            data: {
+                title: "Exercise for delete scenario"
+            }
+        };
+        let result = await search_exercise(1, searchCriteria);
+        const tags = result.data[0].tags.map(tag => tag.tag_id);
+
+        // delete multiple tags but keep one ( the first one )
+        let test = await request
+            .delete("/api/bulk/delete_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send(tags.slice(1));
+        expect(test.status).toBe(200);
+
+        // check that there is only a single tag now
+        result = await search_exercise(1, searchCriteria);
+        expect(result.data[0].tags).toHaveLength(1);
+
+        // delete the temp tags category to provoke the destruction of the last tags
+        await request
+            .delete("/api/bulk/delete_tags_categories")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send([
+                categoryId
+            ])
+            .expect(200);
+
+        // check that there is no tag left
+        result = await search_exercise(1, searchCriteria);
+        expect(result.data[0].tags).toHaveLength(0);
+    });
 });
 
 describe("Using multipart/form-data (instead of JSON)", () => {

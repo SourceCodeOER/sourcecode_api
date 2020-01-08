@@ -1,6 +1,7 @@
 "use strict";
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const difference = require('lodash.difference');
 
 module.exports = (sequelize, DataTypes) => {
     let ExerciseTag = sequelize.define(
@@ -148,6 +149,80 @@ module.exports = (sequelize, DataTypes) => {
                         )
                     )
                 });
+        }
+    );
+
+    // When some tags are deleted ( or a category that contains tags )
+    // We must update the "tags_ids" of given exercises
+    ExerciseTag.addHook(
+        "beforeBulkDestroy",
+        "auto_remove_tags_exercise_metrics",
+        (options) => {
+
+            // first retrieve exercise(s) and tags id(s) impacted by this delete
+            return sequelize
+                .models
+                .Exercise_Tag
+                .findAll({
+                    attributes: [
+                        ["exercise_id", "exercise"],
+                        ["tag_id", "tag"]
+                    ],
+                    where: options.where,
+                    transaction: options.transaction
+                })
+                .then((rows) => {
+                    const exercises = rows.map(r => r.get("exercise"));
+                    const tags = rows.map(r => r.get("tag"));
+                    return Promise.all([
+                        // Exercise_Metrics for exercises that should be modified
+                        sequelize
+                            .models
+                            .Exercise_Metrics
+                            .findAll({
+                                attributes: [
+                                    ["exercise_id", "exercise"],
+                                    ["tags_ids", "tags"]
+                                ],
+                                where: {
+                                    exercise_id: {
+                                        [Op.in]: exercises
+                                    }
+                                },
+                                transaction: options.transaction
+                            })
+                        ,
+                        // the tags that should be removed
+                        tags,
+                    ])
+                })
+                .then(([exercises_metrics, tagsToRemove]) => {
+                    // Good point with this implementation :
+                    // if there is no exercise with these tags, nothing extra will be done
+                    return Promise.all(
+                        exercises_metrics.map(metrics => {
+                            // compute the tags changes and del with every case
+                            // as empty array could occur, I must cast it every time to prevent an issue
+                            const newTagArray = Sequelize.cast(
+                                difference(metrics.get("tags"), tagsToRemove),
+                                "integer[]"
+                            );
+
+                            // execute the change order
+                            return sequelize
+                                .models
+                                .Exercise_Metrics
+                                .update({
+                                    tags_ids: newTagArray
+                                }, {
+                                    where: {
+                                        exercise_id: metrics.get("exercise")
+                                    },
+                                    transaction: options.transaction
+                                })
+                        })
+                    )
+                })
         }
     );
 
