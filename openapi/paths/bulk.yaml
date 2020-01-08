@@ -38,7 +38,15 @@ paths:
   /api/bulk/modify_exercises_status:
     put:
       summary: "Change the status of given exercises"
-      description: "Change the status of given exercises. An simple user can only modify his/her own exercises (no restriction for admin)"
+      description: |
+        Change the status of given exercises.   
+        
+        The following restrictions are applied on simple user(s) (no restriction for admin):  
+        
+        1. He/She can only modify his/her own exercises
+        2. Only the following states are allowed :  
+          - CREATED
+          - PENDING 
       operationId: "ChangeExercisesStatus"
       x-controller: bulk
       x-operation: ChangeExercisesStatus
