@@ -757,12 +757,12 @@ describe("Complex scenarios", () => {
         const tags = result.data[0].tags.map(tag => tag.tag_id);
 
         // delete multiple tags but keep one ( the first one )
-        await request
+        let test = await request
             .delete("/api/bulk/delete_tags")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send(tags.slice(1))
-            .expect(200);
+            .send(tags.slice(1));
+        expect(test.status).toBe(200);
 
         // check that there is only a single tag now
         result = await search_exercise(1, searchCriteria);

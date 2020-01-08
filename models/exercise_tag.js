@@ -154,7 +154,7 @@ module.exports = (sequelize, DataTypes) => {
 
     // When some tags are deleted ( or a category that contains tags )
     // We must update the "tags_ids" of given exercises
-    ExerciseTag.addScope(
+    ExerciseTag.addHook(
         "beforeBulkDestroy",
         "auto_remove_tags_exercise_metrics",
         (options) => {
@@ -205,7 +205,7 @@ module.exports = (sequelize, DataTypes) => {
                             // as empty array could occur, I must cast it every time to prevent an issue
                             const newTagArray = Sequelize.cast(
                                 difference(metrics.get("tags"), tagsToRemove),
-                                "ARRAY[]::integer[]"
+                                "integer[]"
                             );
 
                             // execute the change order

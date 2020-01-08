@@ -11,16 +11,29 @@ module.exports = function (req, res, next) {
             isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.SERIALIZABLE
         }, (t) => {
             return models
-                .Tag
+                .Exercise_Tag
                 .destroy({
-                    force: true, // even if it is in paranoid mode ;)
                     transaction: t,
                     where: {
-                        id: {
+                        tag_id: {
                             [Op.in]: req.body
                         }
                     }
                 })
+                .then(() => {
+                    // Finally remove the tags with force ( so drop cascade )
+                    return models
+                        .Tag
+                        .destroy({
+                            force: true, // even if it is in paranoid mode ;)
+                            transaction: t,
+                            where: {
+                                id: {
+                                    [Op.in]: req.body
+                                }
+                            }
+                        })
+                });
         })
         .then(() => res.status(200).end())
         .catch(/* istanbul ignore next */
