@@ -52,6 +52,10 @@ paths:
     $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1modify_exercises_status'
   /api/bulk/delete_exercises:
     $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1delete_exercises'
+  /api/bulk/delete_tags:
+    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1delete_tags'
+  /api/bulk/delete_tags_categories:
+    $ref: 'openapi/paths/bulk.yaml#/paths/~1api~1bulk~1delete_tags_categories'
   /api/vote_for_exercise:
     $ref: 'openapi/paths/vote_for_exercise.yaml#/paths/~1api~1vote_for_exercise'
   /api/configurations:

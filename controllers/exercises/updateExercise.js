@@ -209,7 +209,8 @@ function handle_all_cases_for_tags([id, changes, created_tags, t]) {
                                 }
                             ]
                         },
-                        transaction: t
+                        transaction: t,
+                        hooks: false // we have to disable the hook on them for no recompute things two times
                     })
             ]).then(() => {
                 // retrieve the new "tags_ids" array & update the Exercise_metrics row

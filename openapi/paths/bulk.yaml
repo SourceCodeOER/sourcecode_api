@@ -35,6 +35,76 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/bulk/delete_tags:
+    delete:
+      summary: "Delete given tags"
+      description: "Delete given tags."
+      operationId: "DeleteTags"
+      x-controller: bulk
+      x-operation: DeleteTags
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: "An array of tags IDs"
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: integer
+                minimum: 0
+                example: 42
+                description: "A tag ID"
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/bulk/delete_tags_categories:
+    delete:
+      summary: "Delete given tags categories"
+      description: "Delete given tags categories."
+      operationId: "DeleteTagCategories"
+      x-controller: bulk
+      x-operation: DeleteTagCategories
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: "An array of tag category IDs"
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: integer
+                minimum: 0
+                example: 42
+                description: "A tag category ID"
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
   /api/bulk/modify_exercises_status:
     put:
       summary: "Change the status of given exercises"
