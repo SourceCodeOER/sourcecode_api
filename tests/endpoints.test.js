@@ -256,6 +256,32 @@ describe("Simple case testing", () => {
             )
             .expect(200);
     });
+
+    it("GET /api/users", async () => {
+        const response = await request
+            .get("/api/users")
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("metadata")).toBeTruthy();
+        expect(response.body.hasOwnProperty("data")).toBeTruthy();
+        expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+    });
+
+    it("GET /api/users with all settings", async () => {
+        const response = await request
+            .get("/api/users")
+            .query('metadata%5Bsize%5D=10')
+            .query('metadata%5Bpage%5D=1')
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("metadata")).toBeTruthy();
+        expect(response.body.hasOwnProperty("data")).toBeTruthy();
+        expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+    });
 });
 
 describe("Complex scenarios", () => {
