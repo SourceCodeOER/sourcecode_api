@@ -29,9 +29,9 @@ paths:
   /auth/register:
     $ref: 'openapi/paths/auth.yaml#/paths/~1auth~1register'
   /auth/me:
-    $ref: 'openapi/paths/auth.yaml#/paths/~1auth~1me'
+    $ref: 'openapi/paths/users.yaml#/paths/~1auth~1me'
   /auth/update:
-    $ref: 'openapi/paths/auth.yaml#/paths/~1auth~1update'
+    $ref: 'openapi/paths/users.yaml#/paths/~1auth~1update'
   /api/create_exercise:
     $ref: 'openapi/paths/create_exercise.yaml#/paths/~1api~1create_exercise'
   /api/exercises/{id}:
@@ -60,6 +60,8 @@ paths:
     $ref: 'openapi/paths/vote_for_exercise.yaml#/paths/~1api~1vote_for_exercise'
   /api/configurations:
     $ref: 'openapi/paths/configurations.yaml#/paths/~1api~1configurations'
+  /api/users:
+    $ref: 'openapi/paths/users.yaml#/paths/~1api~1users'
   /files/{file}:
     $ref: 'openapi/paths/miscellaneous.yaml#/paths/~1files~1%7Bfile%7D'
 

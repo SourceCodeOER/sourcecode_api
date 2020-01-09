@@ -317,31 +317,7 @@ components:
       type: object
       properties:
         metadata:
-          type: object
-          description: "Fields for pagination"
-          properties:
-            currentPage:
-              type: integer
-              example: 1
-              minimum: 1
-              description: "Current number of page"
-              default: 1
-            totalItems:
-              type: integer
-              example: 42
-              minimum: 0
-              description: "How much exercises match the given criterias"
-            totalPages:
-              type: integer
-              minimum: 0
-              example: 5
-              description: "How much pages of exercises match the given criterias"
-            pageSize:
-              type: integer
-              minimum: 0
-              example: 10
-              default: 10
-              description: "How many entries of exercises on each page"
+          $ref: "#/components/schemas/PaginationResult"
         data:
           type: array
           items:
@@ -418,6 +394,32 @@ components:
           required:
             - operator
             - value
+    PaginationResult:
+      type: object
+      description: "Fields for pagination"
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+          minimum: 1
+          description: "Current number of page"
+          default: 1
+        totalItems:
+          type: integer
+          example: 42
+          minimum: 0
+          description: "How much items match the given criterias"
+        totalPages:
+          type: integer
+          minimum: 0
+          example: 5
+          description: "How much pages match the given criterias"
+        pageSize:
+          type: integer
+          minimum: 0
+          example: 10
+          default: 10
+          description: "How many entries on each page"
 # Search criteria
     SearchCriterias:
       type: object
