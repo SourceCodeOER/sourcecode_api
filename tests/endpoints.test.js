@@ -283,6 +283,26 @@ describe("Simple case testing", () => {
         expect(response.body.hasOwnProperty("data")).toBeTruthy();
         expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
     });
+
+    it("GET /api/tags_categories", async () => {
+        let response = await request
+            .get("/api/tags_categories");
+        expect(response.status).toBe(200);
+        expect(Array.isArray(response.body)).toBeTruthy();
+    });
+
+    it("GET /api/tags_categories with count properties", async () => {
+        let response = await request
+            .get("/api/tags_categories")
+            .query("fetchStats=1");
+        expect(response.status).toBe(200);
+        // check that the count is correct ( for example if someone creates a better version that mine with errors ^^)
+        expect(Array.isArray(response.body)).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total"))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_validated"))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_unvalidated"))).toBeTruthy();
+        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated))).toBeTruthy();
+    });
 });
 
 describe("Complex scenarios", () => {

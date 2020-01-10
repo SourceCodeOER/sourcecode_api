@@ -1,5 +1,4 @@
 'use strict';
-// Par example "fill the code", "easy", "java"
 module.exports = (sequelize, DataTypes) => {
     let Tag = sequelize.define("Tag", {
         text: {

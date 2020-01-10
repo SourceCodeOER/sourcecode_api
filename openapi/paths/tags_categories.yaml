@@ -7,6 +7,14 @@ paths:
       x-operation: getTagCategories
       tags:
         - guest
+      parameters:
+        - in: query
+          name: fetchStats
+          schema:
+            type: integer
+            enum: [0,1]
+            description: "If set to 1, it means that you enabled. Otherwise (0 or not defined), you disabled it"
+          description: "If enabled, you can retrieve extra properties with the tag category"
       responses:
         '200':
           description: "An array of tag categories"
@@ -15,7 +23,23 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "../definitions.yaml#/components/schemas/Tag_Category"
+                  allOf:
+                    - $ref: "../definitions.yaml#/components/schemas/Tag_Category"
+                    - type: object
+                      description: "If queryParameter 'fetchStats' is set to 1, you can retrieve the following count properties :"
+                      properties:
+                        total:
+                          type: integer
+                          description: "The total number of tags under this tag category"
+                          minimum: 0
+                        total_validated:
+                          type: integer
+                          description: "The total number of vamodated tags under this tag category"
+                          minimum: 0
+                        total_unvalidated:
+                          type: integer
+                          description: "The total number of vamodated tags under this tag category"
+                          minimum: 0                        
                 uniqueItems: true
         # Definition of all error statuses
         default:
