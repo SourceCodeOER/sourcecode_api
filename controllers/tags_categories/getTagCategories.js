@@ -9,6 +9,20 @@ module.exports = (req, res, next) => {
         ]
     };
 
+    /*
+    * If in any way the scope "count_summary" stop working ( should never happen but how knows ?)
+    * Here is the raw query to got the same result :
+    * */
+    // SELECT
+    //      "Tag_Category"."id",
+    //      "Tag_Category"."kind" AS "category",
+    //      COUNT(*) FILTER (WHERE "tags"."id" IS NOT NULL) AS "total",
+    //      COUNT(*) FILTER (WHERE "tags"."isValidated" = true) AS "total_validated",
+    //      COUNT(*) FILTER(WHERE "tags"."isValidated" = false) AS "total_unvalidated"
+    // FROM "exercises_library"."Tag_Categories" AS "Tag_Category"
+    // LEFT OUTER JOIN "exercises_library"."Tags" AS "tags" ON "Tag_Category"."id" = "tags"."category_id"
+    // GROUP BY "Tag_Category"."id", "Tag_Category"."kind";
+
     // Do we wish the simplest version of this endpoint or the most complex
     const withStats = req.query["fetchStats"]
         && !isNaN(req.query["fetchStats"])
