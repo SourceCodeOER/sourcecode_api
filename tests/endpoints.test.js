@@ -303,6 +303,60 @@ describe("Simple case testing", () => {
         expect(response.body.every(t => t.hasOwnProperty("total_unvalidated"))).toBeTruthy();
         expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated))).toBeTruthy();
     });
+
+    it("POST /api/bulk/create_tags", async () => {
+        // creates some tags categories
+        let response = await request
+            .post("/api/bulk/create_or_find_tag_categories")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(tag_categories);
+        expect(response.status).toBe(200);
+
+        const aTagCategory = response.body[0].id;
+        const someTags = [
+            {
+                text: "MASTER_TAG_1",
+                category_id: aTagCategory,
+                isValidated: true,
+            },
+            {
+                text: "MASTER_TAG_2",
+                category_id: aTagCategory,
+            }
+        ];
+
+        // insert two tags by admin
+        let response2 = await request
+            .post("/api/bulk/create_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(someTags);
+        expect(response2.status).toBe(200);
+
+        // Retrieve the tags and check it works as expected
+        response2 = await request
+            .get("/api/tags")
+            .query('title=MASTER_TAG_')
+            .set('Accept', 'application/json');
+        expect(response2.status).toBe(200);
+        expect(Array.isArray(response2.body)).toBeTruthy();
+        expect(response2.body).toHaveLength(2);
+
+        // check if given properties are satisfied
+        expect(someTags
+            .every(tag =>
+                response2.body
+                    .some(tag2 =>
+                        (tag.text === tag2.tag_text)
+                        && (tag2.category_id === aTagCategory)
+                        && (tag2.isValidated === (tag.isValidated || false))
+                    )
+            )
+        );
+    });
 });
 
 describe("Complex scenarios", () => {
@@ -319,21 +373,25 @@ describe("Complex scenarios", () => {
 
         const tag_categories_ids = response.body.map(category => category.id);
         // create some tags
-        response = await Promise.all(tags.map(tag => {
-            request
-                .post("/api/tags")
-                .set('Authorization', 'bearer ' + JWT_TOKEN)
-                .set('Content-Type', 'application/json')
-                .send({text: tag, category_id: tag_categories_ids[0]})
-        }));
-        expect(response).toHaveLength(tags.length);
+        response = await request
+            .post("/api/bulk/create_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(tags.map(tag => ({
+                text: tag,
+                category_id: tag_categories_ids[0]
+            })));
+        expect(response.status).toBe(200);
 
         // take some tags
         response = await request
             .get("/api/tags")
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
-        const some_tags_ids = response.body.map(tag => tag.id).slice(0, tags.length);
+        const some_tags_ids = response.body
+            .slice(0, Math.floor(tags.length / 2))
+            .map(tag => tag.tag_id);
 
         // creates one exercise
         const title = "HELLO WORLD";
