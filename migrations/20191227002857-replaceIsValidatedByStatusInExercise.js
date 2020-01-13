@@ -13,7 +13,7 @@ module.exports = {
             queryInterface.removeColumn(opts, "isValidated"),
             queryInterface.addColumn(opts, "state", {
                 type: Sequelize.ENUM(enumValues),
-                defaultValue: enumObj.PENDING
+                defaultValue: enumObj.DRAFT
             })
         ]);
     },

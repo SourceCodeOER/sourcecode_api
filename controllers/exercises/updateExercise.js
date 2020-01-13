@@ -11,8 +11,8 @@ const {
     find_tag_matches,
     build_dictionary_for_matching_process,
     matching_process,
-    check_credentials_on_exercises
 } = require("../_common/utlis_fct");
+const States = require("../_common/exercise_status");
 
 module.exports = (req, res, next) => {
 
@@ -25,12 +25,9 @@ module.exports = (req, res, next) => {
         file: (req.files && req.files.exerciseFile) ? req.files.exerciseFile : null
     });
 
-    return check_credentials_on_exercises(req.user, [id])
-        .then(() =>
-            find_exercise_tags_and_search_possible_new_tags_match(
-                [id, req.user, req.body.version, new_tags, already_present_tags]
-            )
-        )
+    return find_exercise_tags_and_search_possible_new_tags_match(
+        [id, req.user, req.body.version, new_tags, already_present_tags]
+    )
         .then(result => compute_tag_changes(result))
         .then(([changes, tags_to_be_inserted]) => {
 
@@ -264,6 +261,10 @@ function update_exercise([id, body, t]) {
                 if (body.hasOwnProperty("url")) {
                     properties["url"] = body.url;
                 }
+                if (body.hasOwnProperty("state")) {
+                    properties["state"] = States[body.state];
+                }
+
                 // user has the possibility to delete/replace his/her own file
                 const shouldRemovePreviousFile = (body.file !== null)
                     || (body.hasOwnProperty("removePreviousFile") && body["removePreviousFile"])

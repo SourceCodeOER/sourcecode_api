@@ -404,7 +404,8 @@ describe("Complex scenarios", () => {
                     text: tag,
                     category_id: tag_categories_ids[0]
                 }))
-            )
+            ),
+            "state": "DRAFT"
         };
         let responseTemp = await request
             .post("/api/bulk/create_exercises")
@@ -426,6 +427,7 @@ describe("Complex scenarios", () => {
 
         let data = response.data[0];
         expect(data.version).toBe(0);
+        expect(data.state).toBe("DRAFT");
 
         // A simple user should not be able to delete that one as it doesn't belong to him/her
         await request
@@ -449,6 +451,7 @@ describe("Complex scenarios", () => {
                 description: data.description + "API4FUN",
                 tags: data.tags.map(tag => tag.tag_id),
                 removePreviousFile: true,
+                state: "PENDING",
             });
 
         expect(response.status).toBe(200);
@@ -462,6 +465,7 @@ describe("Complex scenarios", () => {
         expect(isObject(response.body)).toBeTruthy();
         expect(response.body.version).toBe(1);
         expect(response.body.id).toBe(data.id);
+        expect(response.body.state).toBe("PENDING");
 
         // 2. Add / remove some tags ( difficult case )
         response = await request
@@ -1118,6 +1122,25 @@ describe("Validations testing", () => {
                 "role": "admin",
             })
             .expect(403);
+    });
+
+    it("POST /api/create_exercise : An simple user cannot insert a exercise with forbidden state", async () => {
+        // creates one exercise
+        const some_exercise_data = {
+            "title": "HELLO WORLD",
+            "description": "Some verrrrrrrrrry long description here",
+            tags: [{
+                text: "SOME_TAG1",
+                category_id: 42
+            }],
+            "state": "VALIDATED"
+        };
+        let responseTemp = await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(some_exercise_data);
+        expect(responseTemp.status).toBe(403);
     });
 });
 

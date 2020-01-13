@@ -115,7 +115,7 @@ paths:
         
         1. He/She can only modify his/her own exercises
         2. Only the following states are allowed :  
-          - CREATED
+          - DRAFT
           - PENDING 
       operationId: "ChangeExercisesStatus"
       x-controller: bulk
@@ -177,6 +177,16 @@ paths:
   /api/bulk/create_exercises:
     post:
       summary: "Creates multiple exercises into the system"
+      description: |
+        Creates multiple exercises into the system
+        By default (if nothing specified), an exercise will be in state "DRAFT". 
+
+        The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
+        
+        1. He/She can only modify his/her own exercises
+        2. Only the following states are allowed : 
+          - DRAFT  
+          - PENDING  
       tags:
         - user
       operationId: createMultipleExercises
