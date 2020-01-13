@@ -1,5 +1,6 @@
 const uuidv1 = require('uuid/v1'); // uuid timestamp
 const {existsSync, mkdirSync} = require("fs");
+const mimeTypes = require("mime-types");
 const multer = require("multer");
 const {FILES_FOLDER, UPLOAD_FOLDER} = require("./storage_paths");
 
@@ -31,8 +32,9 @@ module.exports = function () {
                 cb(null, UPLOAD_FOLDER)
             },
             filename: function (req, file, cb) {
-                // Since we only used zip , give unique uuid based on timestamp
-                const generate_unique_filename = "sources-" + uuidv1() + ".zip";
+                // whatever the file extension, give unique uuid based on timestamp
+                const extension = mimeTypes.extension(file.mimetype) /* istanbul ignore next */ || "zip";
+                const generate_unique_filename = `sources-${uuidv1()}.${extension}`;
                 cb(null, generate_unique_filename)
             }
         }),
