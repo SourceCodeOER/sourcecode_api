@@ -1,4 +1,6 @@
 'use strict';
+const Sequelize = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
     let Tag_Category = sequelize.define("Tag_Category", {
         kind: {
@@ -10,7 +12,52 @@ module.exports = (sequelize, DataTypes) => {
         // https://sequelize.org/master/manual/models-definition.html#configuration
 
         // don't add the timestamp attributes (updatedAt, createdAt)
-        timestamps: false
+        timestamps: false,
+
+        // scopes : reuse more easily some common parts
+        // https://sequelize.org/master/manual/scopes.html
+        scopes: {
+
+            // to get the following count
+            // - the number of tags for a category
+            // - the number of validated tags for a category
+            // - the number of unvalidated tags for a category
+            count_summary: function () {
+                // to generate the FILTER count attribute since this issue is still active and solution not merged
+                // https://github.com/sequelize/sequelize/issues/5732
+                // I created a simpler version of the proposal ( maybe refactor this code when this feature is on)
+                // more easier to do that PostgreSQL syntax directly that using litteral
+                // even guys at Sequelize use that kind of trick for mysql sum
+                // https://github.com/sequelize/sequelize/blob/master/test/integration/model/attributes/field.test.js#L483
+                // https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-AGGREGATES
+                const filterGen = (where) => Sequelize.literal(`COUNT(*) FILTER ${where}`);
+
+                return {
+                    attributes: [
+                        "id",
+                        ["kind", "category"],
+                        [
+                            filterGen(`(WHERE "tags"."id" IS NOT NULL)`),
+                            "total"
+                        ],
+                        [
+                            filterGen(`(WHERE "tags"."isValidated" = true)`),
+                            "total_validated"
+                        ],
+                        [
+                            filterGen(`(WHERE "tags"."isValidated" = false)`),
+                            "total_unvalidated"
+                        ],
+                    ],
+                    group: ["Tag_Category.id", "Tag_Category.kind"],
+                    include: [{
+                        model: sequelize.models.Tag,
+                        as: "tags",
+                        attributes: []
+                    }]
+                }
+            }
+        }
     });
 
     Tag_Category.associate = function (models) {

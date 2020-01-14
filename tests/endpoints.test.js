@@ -30,37 +30,38 @@ async function setUpBasic() {
 
     const app = await require('../app.js');
     request = supertest(app);
+    let result;
 
     // The admin user first
-    await request
+    result = await request
         .post("/auth/register")
         .set('Content-Type', 'application/json')
-        .send(Object.assign({}, user, {fullName: userName}))
-        .expect(200);
+        .send(Object.assign({}, user, {fullName: userName}));
+    expect(result.status).toBe(200);
 
     const response = await request
         .post("/auth/login")
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(user)
-        .expect(200);
+        .send(user);
+    expect(response.status).toBe(200);
 
     JWT_TOKEN = response.body.token;
     expect(typeof JWT_TOKEN).toBe('string');
 
     // We must be able to register other user ( a simple one) for other useful cases like voting
-    await request
+    result = await request
         .post("/auth/register")
         .set('Content-Type', 'application/json')
-        .send(Object.assign({}, user, {fullName: "Super Voter", email: "yolo_voter24@uclouvain.be"}))
-        .expect(200);
+        .send(Object.assign({}, user, {fullName: "Super Voter", email: "yolo_voter24@uclouvain.be"}));
+    expect(result.status).toBe(200);
 
     let response2 = await request
         .post("/auth/login")
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(Object.assign({}, user, {email: "yolo_voter24@uclouvain.be"}))
-        .expect(200);
+        .send(Object.assign({}, user, {email: "yolo_voter24@uclouvain.be"}));
+    expect(response2.status).toBe(200);
 
     // creates some tags categories
     const response3 = await request
@@ -68,8 +69,8 @@ async function setUpBasic() {
         .set('Authorization', 'bearer ' + JWT_TOKEN)
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(tag_categories)
-        .expect(200);
+        .send(tag_categories);
+    expect(response3.status).toBe(200);
     expect(response3.body).toHaveLength(tag_categories.length);
 
     JWT_TOKEN_2 = response2.body.token;
@@ -92,8 +93,8 @@ describe("Simple case testing", () => {
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
-            .send(tag_categories)
-            .expect(200);
+            .send(tag_categories);
+        expect(response.status).toBe(200);
         expect(response.body).toHaveLength(tag_categories.length);
     });
 
@@ -111,24 +112,24 @@ describe("Simple case testing", () => {
     it("GET /api/tags", async () => {
         const response = await request
             .get("/api/tags")
-            .set('Accept', 'application/json')
-            .expect(200);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBeTruthy();
     });
 
     it("GET /api/tags_by_categories", async () => {
         const response = await request
             .get("/api/tags_by_categories")
-            .set('Accept', 'application/json')
-            .expect(200);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBeTruthy();
     });
 
     it("GET /api/tags_by_categories", async () => {
         const response = await request
             .get("/api/tags_categories")
-            .set('Accept', 'application/json')
-            .expect(200);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBeTruthy();
     });
 
@@ -174,22 +175,22 @@ describe("Simple case testing", () => {
     });
 
     it("GET /api/configurations", async () => {
-        await request
+        let response = await request
             .get("/api/configurations")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Accept', 'application/json')
-            .send()
-            .expect(200);
+            .send();
+        expect(response.status).toBe(200);
     });
 
     it("GET /api/configurations with settings", async () => {
-        await request
+        let response = await request
             .get("/api/configurations")
             .query('ids%5B0%5D=1')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Accept', 'application/json')
-            .send()
-            .expect(200);
+            .send();
+        expect(response.status).toBe(200);
     });
 
     it("PUT /api/configurations without a valid configuration", async () => {
@@ -214,8 +215,8 @@ describe("Simple case testing", () => {
             .query('tags_ids[]=2')
             .query('categories_ids[]=' + 1)
             .query('title=hero')
-            .set('Accept', 'application/json')
-            .expect(200);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
     });
 
@@ -224,8 +225,8 @@ describe("Simple case testing", () => {
             .get("/api/tags_by_categories")
             .query('state=pending')
             .query('onlySelected[]=1')
-            .set('Accept', 'application/json')
-            .expect(200);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
     });
 
@@ -247,14 +248,114 @@ describe("Simple case testing", () => {
     });
 
     it("PUT /auth/update", async () => {
-        await request
+        let response = await request
             .put("/auth/update")
             .set('Content-Type', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .send(
                 Object.assign({}, user, {"fullName": userName})
+            );
+        expect(response.status).toBe(200);
+    });
+
+    it("GET /api/users", async () => {
+        const response = await request
+            .get("/api/users")
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("metadata")).toBeTruthy();
+        expect(response.body.hasOwnProperty("data")).toBeTruthy();
+        expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+    });
+
+    it("GET /api/users with all settings", async () => {
+        const response = await request
+            .get("/api/users")
+            .query('metadata%5Bsize%5D=10')
+            .query('metadata%5Bpage%5D=1')
+            .set('Accept', 'application/json')
+            .set('Authorization', 'bearer ' + JWT_TOKEN);
+
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("metadata")).toBeTruthy();
+        expect(response.body.hasOwnProperty("data")).toBeTruthy();
+        expect(response.body.data).toHaveLength(response.body.metadata.totalItems);
+    });
+
+    it("GET /api/tags_categories", async () => {
+        let response = await request
+            .get("/api/tags_categories");
+        expect(response.status).toBe(200);
+        expect(Array.isArray(response.body)).toBeTruthy();
+    });
+
+    it("GET /api/tags_categories with count properties", async () => {
+        let response = await request
+            .get("/api/tags_categories")
+            .query("fetchStats=1");
+        expect(response.status).toBe(200);
+        // check that the count is correct ( for example if someone creates a better version that mine with errors ^^)
+        expect(Array.isArray(response.body)).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total"))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_validated"))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_unvalidated"))).toBeTruthy();
+        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated))).toBeTruthy();
+    });
+
+    it("POST /api/bulk/create_tags", async () => {
+        // creates some tags categories
+        let response = await request
+            .post("/api/bulk/create_or_find_tag_categories")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(tag_categories);
+        expect(response.status).toBe(200);
+
+        const aTagCategory = response.body[0].id;
+        const someTags = [
+            {
+                text: "MASTER_TAG_1",
+                category_id: aTagCategory,
+                isValidated: true,
+            },
+            {
+                text: "MASTER_TAG_2",
+                category_id: aTagCategory,
+            }
+        ];
+
+        // insert two tags by admin
+        let response2 = await request
+            .post("/api/bulk/create_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(someTags);
+        expect(response2.status).toBe(200);
+
+        // Retrieve the tags and check it works as expected
+        response2 = await request
+            .get("/api/tags")
+            .query('title=MASTER_TAG_')
+            .set('Accept', 'application/json');
+        expect(response2.status).toBe(200);
+        expect(Array.isArray(response2.body)).toBeTruthy();
+        expect(response2.body).toHaveLength(2);
+
+        // check if given properties are satisfied
+        expect(someTags
+            .every(tag =>
+                response2.body
+                    .some(tag2 =>
+                        (tag.text === tag2.tag_text)
+                        && (tag2.category_id === aTagCategory)
+                        && (tag2.isValidated === (tag.isValidated || false))
+                    )
             )
-            .expect(200);
+        );
     });
 });
 
@@ -266,27 +367,31 @@ describe("Complex scenarios", () => {
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
-            .send(tag_categories)
-            .expect(200);
+            .send(tag_categories);
+        expect(response.status).toBe(200);
         expect(response.body).toHaveLength(tag_categories.length);
 
         const tag_categories_ids = response.body.map(category => category.id);
         // create some tags
-        response = await Promise.all(tags.map(tag => {
-            request
-                .post("/api/tags")
-                .set('Authorization', 'bearer ' + JWT_TOKEN)
-                .set('Content-Type', 'application/json')
-                .send({text: tag, category_id: tag_categories_ids[0]})
-        }));
-        expect(response).toHaveLength(tags.length);
+        response = await request
+            .post("/api/bulk/create_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(tags.map(tag => ({
+                text: tag,
+                category_id: tag_categories_ids[0]
+            })));
+        expect(response.status).toBe(200);
 
         // take some tags
         response = await request
             .get("/api/tags")
-            .set('Accept', 'application/json')
-            .expect(200);
-        const some_tags_ids = response.body.map(tag => tag.id).slice(0, tags.length);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
+        const some_tags_ids = response.body
+            .slice(0, Math.floor(tags.length / 2))
+            .map(tag => tag.tag_id);
 
         // creates one exercise
         const title = "HELLO WORLD";
@@ -299,15 +404,17 @@ describe("Complex scenarios", () => {
                     text: tag,
                     category_id: tag_categories_ids[0]
                 }))
-            )
+            ),
+            "state": "DRAFT"
         };
-        await request
+        let responseTemp = await request
             .post("/api/bulk/create_exercises")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send([
                 some_exercise_data
-            ]).expect(200);
+            ]);
+        expect(responseTemp.status).toBe(200);
 
         // research this exercise
         const criteria = {
@@ -320,6 +427,7 @@ describe("Complex scenarios", () => {
 
         let data = response.data[0];
         expect(data.version).toBe(0);
+        expect(data.state).toBe("DRAFT");
 
         // A simple user should not be able to delete that one as it doesn't belong to him/her
         await request
@@ -343,6 +451,7 @@ describe("Complex scenarios", () => {
                 description: data.description + "API4FUN",
                 tags: data.tags.map(tag => tag.tag_id),
                 removePreviousFile: true,
+                state: "PENDING",
             });
 
         expect(response.status).toBe(200);
@@ -356,6 +465,7 @@ describe("Complex scenarios", () => {
         expect(isObject(response.body)).toBeTruthy();
         expect(response.body.version).toBe(1);
         expect(response.body.id).toBe(data.id);
+        expect(response.body.state).toBe("PENDING");
 
         // 2. Add / remove some tags ( difficult case )
         response = await request
@@ -394,8 +504,8 @@ describe("Complex scenarios", () => {
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
-            .send(tag_categories)
-            .expect(200);
+            .send(tag_categories);
+        expect(response.status).toBe(200);
         expect(response.body).toHaveLength(tag_categories.length);
 
         // create some tags
@@ -465,18 +575,18 @@ describe("Complex scenarios", () => {
 
     it("Scenario n°3 : Creates a tag proposal / update it and try to recreate one similar", async () => {
         // creates a tag proposal
-        await request
+        let responseTmp = await request
             .post("/api/tags")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send({text: "UNVALIDATED_TAG", category_id: 1})
-            .expect(200);
+            .send({text: "UNVALIDATED_TAG", category_id: 1});
+        expect(responseTmp.status).toBe(200);
 
         // should be able to retrieve it
         const response = await request
             .get("/api/tags")
-            .set('Accept', 'application/json')
-            .expect(200);
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
         const created_tag = response
             .body
             .filter(tag => tag.tag_text === "UNVALIDATED_TAG" && tag.category_id === 1)
@@ -487,7 +597,7 @@ describe("Complex scenarios", () => {
         expect(created_tag.isValidated).toBe(false);
 
         // modify it to validate it
-        await request
+        responseTmp = await request
             .put("/api/tags")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
@@ -497,22 +607,22 @@ describe("Complex scenarios", () => {
                 category_id: created_tag.category_id,
                 version: created_tag.version,
                 isValidated: true
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
 
         // try to recreate it (for example if someone doesn't see the tag proposal)
-        await request
+        responseTmp = await request
             .post("/api/tags")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send({text: "UNVALIDATED_TAG", category_id: 1})
-            .expect(200);
+            .send({text: "UNVALIDATED_TAG", category_id: 1});
+        expect(responseTmp.status).toBe(200);
     });
 
     it("Scenario n°4 : Evaluates an exercise : multiple variation", async () => {
         const title = "SOME_EXERCISE_WITH_VOTES";
         // creates a single exercise
-        await request
+        let responseTmp = await request
             .post("/api/create_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
@@ -523,8 +633,8 @@ describe("Complex scenarios", () => {
                     "text": "JDG",
                     "category_id": 1
                 }]
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
 
         const criteria = {
             data: {
@@ -548,15 +658,15 @@ describe("Complex scenarios", () => {
         expect(data.metrics.avg_score).toBe(0);
 
         // User 1 votes for this exercise
-        await request
+        responseTmp = await request
             .post("/api/vote_for_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 exercise_id: data.id,
                 score: 3
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
 
         // We should see the change in this exercise data
         response = await search_exercise(1, criteria);
@@ -580,15 +690,15 @@ describe("Complex scenarios", () => {
         expect(response.data[0].metrics.avg_score).toBe(2.5);
 
         // User 1 wants to change his vote for this exercise
-        await request
+        responseTmp = await request
             .post("/api/vote_for_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 exercise_id: data.id,
                 score: 5.0
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
 
         // We should see the change in this exercise data
         response = await search_exercise(1, criteria);
@@ -624,9 +734,9 @@ describe("Complex scenarios", () => {
                 .expect(200)
         }));
         expect(responses).toHaveLength(tags.length);
-
+        let responseTmp;
         // creates a configuration
-        await request
+        responseTmp = await request
             .post("/api/configurations")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
@@ -634,24 +744,24 @@ describe("Complex scenarios", () => {
                 name: "UCLouvain exercises in Java",
                 title: "CS1-Java",
                 tags: [1]
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
 
         // should be able to find it in my configurations list
         const response = await request
             .get("/api/configurations")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Accept', 'application/json')
-            .send()
-            .expect(200);
+            .send();
 
+        expect(response.status).toBe(200);
         expect(response.body).toHaveLength(1);
         expect(response.body[0].tags).toHaveLength(1);
         expect(response.body[0].name).toBe("UCLouvain exercises in Java");
         expect(response.body[0].title).toBe("CS1-Java");
 
         // should be able to to update it
-        await request
+        responseTmp = await request
             .put("/api/configurations")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
@@ -660,31 +770,31 @@ describe("Complex scenarios", () => {
                 title: "CS1-Java",
                 tags: [2],
                 id: response.body[0].id
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
 
         // changes should be visible
         const response2 = await request
             .get("/api/configurations")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Accept', 'application/json')
-            .send()
-            .expect(200);
+            .send();
 
+        expect(response2.status).toBe(200);
         expect(response2.body[0].tags).not.toBe(response.body[0].tags);
         expect(response2.body[0].name).not.toBe(response.body[0].name);
         expect(response2.body[0].id).toBe(response.body[0].id);
         expect(response2.body[0].title).toBe(response.body[0].title);
 
         // should be able to delete it
-        await request
+        responseTmp = await request
             .delete("/api/configurations")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send({
                 id: response2.body[0].id
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
     });
 
     it("Scenario n°6 : Change a Tag Category", async () => {
@@ -694,22 +804,22 @@ describe("Complex scenarios", () => {
             .get("/api/tags_categories")
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
-            .send()
-            .expect(200);
+            .send();
+        expect(response.status).toBe(200);
 
         // Takes the first one
         expect(Array.isArray(response.body)).toBe(true);
         expect(response.body.length).toBeGreaterThanOrEqual(1);
 
-        await request
+        let responseTmp = await request
             .put("/api/tags_categories")
             .set('Content-Type', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .send({
                 id: response.body[0].id,
                 category: response.body[0].category
-            })
-            .expect(200);
+            });
+        expect(responseTmp.status).toBe(200);
     });
 
     it("Scenario n°7 : Creates a signle exercise wtih two tags, Deletes a tag then ", async () => {
@@ -734,14 +844,14 @@ describe("Complex scenarios", () => {
                     category_id: categoryId
                 }))
         };
-        await request
+        let responseTmp = await request
             .post("/api/bulk/create_exercises")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send([
                 some_exercise_data
-            ])
-            .expect(200);
+            ]);
+        expect(responseTmp.status).toBe(200);
 
         // fetch the tags linked to this exercise
         let searchCriteria = {
@@ -769,14 +879,14 @@ describe("Complex scenarios", () => {
         expect(result.data[0].tags).toHaveLength(1);
 
         // delete the temp tags category to provoke the destruction of the last tags
-        await request
+        responseTmp = await request
             .delete("/api/bulk/delete_tags_categories")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send([
                 categoryId
-            ])
-            .expect(200);
+            ]);
+        expect(responseTmp.status).toBe(200);
 
         // check that there is no tag left
         result = await search_exercise(1, searchCriteria);
@@ -802,21 +912,21 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             }
         };
 
-        await request
+        let responseTmp = await request
             .post("/api/create_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             //.set('Content-Type', "multipart/form-data")
             .attach("exerciseFile", example_zip_file)
             .field(exercise_data)
             .field("tags[0][text]", "MULTI PART exercise")
-            .field("tags[0][category_id]", 1)
-            .expect(200);
+            .field("tags[0][category_id]", 1);
+        expect(responseTmp.status).toBe(200);
 
         const exercise = await search_exercise(1, search_criteria);
         expect(exercise.data[0].file).not.toBe(null);
         expect(exercise.data[0].url).not.toBe(null);
 
-        await request
+        responseTmp = await request
             .put("/api/exercises/" + exercise.data[0].id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .attach("exerciseFile", example_zip_file)
@@ -826,8 +936,8 @@ describe("Using multipart/form-data (instead of JSON)", () => {
                 "version": 0
             })
             .field("tags[0][text]", "MULTI PART exercise")
-            .field("tags[0][category_id]", 1)
-            .expect(200);
+            .field("tags[0][category_id]", 1);
+        expect(responseTmp.status).toBe(200);
 
         const exercise2 = await search_exercise(1, search_criteria);
         expect(exercise2.data[0].file).not.toBe(exercise.data[0].file);
@@ -845,8 +955,8 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
-            .send(tag_categories)
-            .expect(200);
+            .send(tag_categories);
+        expect(response.status).toBe(200);
         expect(response.body).toHaveLength(tag_categories.length);
 
         // files linked to exercises
@@ -879,14 +989,14 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         result = await search_exercise(3, criteria);
 
         // Take the first one to be deleted
-        await request
+        let responseTmp = await request
             .delete("/api/bulk/delete_exercises")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
             .send([
                 result.data[0].id
-            ])
-            .expect(200);
+            ]);
+        expect(responseTmp.status).toBe(200);
 
         // Only one should be removed after that
         await search_exercise(2, criteria);
@@ -1012,6 +1122,25 @@ describe("Validations testing", () => {
                 "role": "admin",
             })
             .expect(403);
+    });
+
+    it("POST /api/create_exercise : An simple user cannot insert a exercise with forbidden state", async () => {
+        // creates one exercise
+        const some_exercise_data = {
+            "title": "HELLO WORLD",
+            "description": "Some verrrrrrrrrry long description here",
+            tags: [{
+                text: "SOME_TAG1",
+                category_id: 42
+            }],
+            "state": "VALIDATED"
+        };
+        let responseTemp = await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(some_exercise_data);
+        expect(responseTemp.status).toBe(403);
     });
 });
 

@@ -115,7 +115,7 @@ paths:
         
         1. He/She can only modify his/her own exercises
         2. Only the following states are allowed :  
-          - CREATED
+          - DRAFT
           - PENDING 
       operationId: "ChangeExercisesStatus"
       x-controller: bulk
@@ -177,6 +177,16 @@ paths:
   /api/bulk/create_exercises:
     post:
       summary: "Creates multiple exercises into the system"
+      description: |
+        Creates multiple exercises into the system
+        By default (if nothing specified), an exercise will be in state "DRAFT". 
+
+        The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
+        
+        1. He/She can only modify his/her own exercises
+        2. Only the following states are allowed : 
+          - DRAFT  
+          - PENDING  
       tags:
         - user
       operationId: createMultipleExercises
@@ -225,6 +235,43 @@ paths:
                 - exercisesData
                 - files
                 - filesMapping
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/bulk/create_tags:
+    post:
+      summary: "Creates multiple tags into the system"
+      tags:
+        - user
+      operationId: createMultipleTags
+      x-controller: bulk
+      x-operation: createMultipleTags
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                allOf:
+                  - $ref: "../definitions.yaml#/components/schemas/TagProposal"
+                  - type: object
+                    properties:
+                      isValidated:
+                        type: boolean
+                        example: false
+                        default: false
+                        description: "Should this tag validated or not ? By default, this tag is not validated"
       responses:
         '200':
           description: OK

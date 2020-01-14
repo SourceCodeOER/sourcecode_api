@@ -9,27 +9,24 @@ paths:
       x-operation: getTagCategoriesWithTags
       parameters:
         - in: query
-          style: form
-          name: settings
-          explode: true
+          name: state
           schema:
-              type: object
-              properties:
-                state:
-                  type: string
-                  enum: [default, validated, pending]
-                  default: default
-                  description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
-                onlySelected:
-                  type: array
-                  description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
-                  default: []
-                  uniqueItems: true
-                  items:
-                    type: integer
-                    minimum: 0
-                    example: 42
-                    description: "A Tag Category ID"
+            type: string
+            enum: [default, validated, pending]
+            default: default
+            description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
+        - in: query
+          name: onlySelected
+          schema:
+            type: array
+            description: "If not empty, only consider the given tag categories ID(S). If empty, no tag category is ignored"
+            default: []
+            uniqueItems: true
+            items:
+              type: integer
+              minimum: 0
+              example: 42
+              description: "A Tag Category ID"
       responses:
         '200':
           description: "An array of Tag category with their related tags"

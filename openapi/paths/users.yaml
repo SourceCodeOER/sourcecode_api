@@ -1,0 +1,124 @@
+paths:
+  /auth/me:
+    get:
+      summary: "Fetch information about the current logged user"
+      operationId: "me"
+      x-controller: users
+      x-operation: me
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "User data"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "../definitions.yaml#/components/schemas/BasicUser"
+                  - type: object
+                    properties:
+                      role:
+                        $ref: "../definitions.yaml#/components/schemas/Roles"
+                      id:
+                        type: integer
+                        description: "The UUID of this user"
+                        example: 42
+                    required:
+                      - role
+                      - id
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /auth/update:
+    put:
+      summary: "Update information about an user"
+      description: |
+        Any user can freely any information about (him/her)self (except the optional "id" / "role" fields ).  
+        An admin can freely update any user and it is the only one that can use the "id" / "role" fields.
+      operationId: "updateUser"
+      x-controller: users
+      x-operation: updateUser
+      tags:
+        - user
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "../definitions.yaml#/components/schemas/BasicUser"
+                - type: object
+                  properties:
+                    password:
+                      type: string
+                      format: password
+                      example: "42"
+                    role:
+                      $ref: "../definitions.yaml#/components/schemas/Roles"
+                    id:
+                      type: integer
+                      description: "The UUID of this user. By default, it will take the one of logged user"
+                      example: 42
+      responses:
+        '200':
+          description: "OK"
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/users:
+    get:
+      summary: "List users"
+      operationId: "ListUsers"
+      x-controller: users
+      x-operation: ListUsers
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: metadata
+          schema:
+            $ref: "../definitions.yaml#/components/schemas/PaginationCriterias"
+      responses:
+        '200':
+          description: "An list of Users with some metadata"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    $ref: "../definitions.yaml#/components/schemas/PaginationResult"
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: "../definitions.yaml#/components/schemas/BasicUser"
+                        - type: object
+                          properties:
+                            role:
+                              $ref: "../definitions.yaml#/components/schemas/Roles"
+                            id:
+                              type: integer
+                              description: "The UUID of this user"
+                              example: 42
+                          required:
+                            - role
+                            - id
+                required:
+                  - metadata
+                  - data

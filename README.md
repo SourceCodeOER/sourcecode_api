@@ -36,7 +36,7 @@ npm run setUp
 
 ## How do I populate the database quickly with my exercises ? 
 
-This API is delivered with a very complete CLI tool to handle the different possible situations (the sources can be found [here](https://github.com/SourceCodeOER/cli)). You will find more information on its [documentation](https://github.com/SourceCodeOER/cli/blob/master/README.md).
+This API is delivered with a very complete [CLI tool](https://github.com/SourceCodeOER/cli) to handle the different possible situations. You will find more information on its [documentation](https://github.com/SourceCodeOER/cli/blob/master/README.md).
 
 ## Starting the API
 
@@ -64,16 +64,27 @@ Using [redoc-cli](https://github.com/Redocly/redoc):
 npx redoc-cli bundle api.yml -o docs/index.html
 ```
 
-## How to validate API documentation ?
+### How to validate API documentation ?
 
 Using [openapi-generator](https://openapi-generator.tech/) :
 ```
 npx openapi-generator validate -i api.yml
 ```
 
-## A single yaml file that contains all the API (Useful for Postman for instance) ?
+### A single yaml file that contains all the API (Useful for Postman for instance) ?
 
 Using [speccy](https://github.com/wework/speccy) : 
 ```
 npx speccy resolve api.yml -o spec-output.yaml
 ```
+
+## Environment variables
+
+You can customize some parts of the API using the following environment variables :  
+
+| Environment variable name  | Purpose | Default value |
+|---|---|---|
+| PORT   | The port to use for the API | 3000  |
+| SECRET_PHRASE | The secretOrPrivateKey for [jwt.sign](https://github.com/auth0/node-jsonwebtoken#jwtsignpayload-secretorprivatekey-options-callback)  | "Super secured passphrase"   |
+| DEBUG  | To print relevant logs using [debug](https://www.npmjs.com/package/debug). Currently, you have the following choices : <br/> <br/> - `sourcecode_api:error_handler` : Print all errors <br/> - `sourcecode_api:error_tracker` : Print only failed requests errors <br/> - `sourcecode_api:files` : Print only files that couldn't deleted <br/> - `sequelize:*` : Print [sequelize](https://www.npmjs.com/package/sequelize) logs <br/> ...  |   |
+|   |   |   |

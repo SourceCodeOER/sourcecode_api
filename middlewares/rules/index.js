@@ -4,5 +4,6 @@ module.exports = {
     "configurations": require("./configurations"),
     "exercises": require("./exercises"),
     "tags": require("./tags"),
-    "tags_categories": require("./tags_categories")
+    "tags_categories": require("./tags_categories"),
+    "users": require("./users")
 };

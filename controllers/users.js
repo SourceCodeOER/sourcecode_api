@@ -1,5 +1,6 @@
-const login = require("./auth/login");
-const register = require("./auth/register");
+const me = require("./users/me");
+const updateUser = require("./users/updateUser");
+const ListUsers = require("./users/ListUsers");
 
 module.exports = function () {
     // useful for Dependency Injection
@@ -7,8 +8,9 @@ module.exports = function () {
     const controller = {};
 
     // add endpoints
-    controller.register = register;
-    controller.signIn = login;
+    controller.me = me;
+    controller.updateUser = updateUser;
+    controller.ListUsers = ListUsers;
 
     return controller;
 };

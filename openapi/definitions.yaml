@@ -17,12 +17,12 @@ components:
 # Common enum used everywhere
     State:
       type: string
-      enum: [CREATED,PENDING,VALIDATED,NOT_VALIDATED]
+      enum: [DRAFT,PENDING,VALIDATED,NOT_VALIDATED]
       example: PENDING
       description: |
         Status of the exercise into the system. Currently, 4 states are possibles : 
 
-        1. CREATED : The default state (for example when a exercise is inserted into the system)
+        1. DRAFT : The default state (for example when a exercise is inserted into the system)
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
@@ -297,6 +297,8 @@ components:
               example: "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams"
               nullable: true
               description: "If not null, the link to the exercise on a plateform"
+            state:
+              $ref: "#/components/schemas/State"
           required:
             - tags
 # When we want to update a already existent exercise, we also need the version
@@ -317,31 +319,7 @@ components:
       type: object
       properties:
         metadata:
-          type: object
-          description: "Fields for pagination"
-          properties:
-            currentPage:
-              type: integer
-              example: 1
-              minimum: 1
-              description: "Current number of page"
-              default: 1
-            totalItems:
-              type: integer
-              example: 42
-              minimum: 0
-              description: "How much exercises match the given criterias"
-            totalPages:
-              type: integer
-              minimum: 0
-              example: 5
-              description: "How much pages of exercises match the given criterias"
-            pageSize:
-              type: integer
-              minimum: 0
-              example: 10
-              default: 10
-              description: "How many entries of exercises on each page"
+          $ref: "#/components/schemas/PaginationResult"
         data:
           type: array
           items:
@@ -418,6 +396,37 @@ components:
           required:
             - operator
             - value
+    PaginationResult:
+      type: object
+      description: "Fields for pagination"
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+          minimum: 1
+          description: "Current number of page"
+          default: 1
+        totalItems:
+          type: integer
+          example: 42
+          minimum: 0
+          description: "How much items match the given criterias"
+        totalPages:
+          type: integer
+          minimum: 0
+          example: 5
+          description: "How much pages match the given criterias"
+        pageSize:
+          type: integer
+          minimum: 0
+          example: 10
+          default: 10
+          description: "How many entries on each page"
+      required:
+        - currentPage
+        - totalItems
+        - totalPages
+        - pageSize
 # Search criteria
     SearchCriterias:
       type: object

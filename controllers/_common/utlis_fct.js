@@ -10,6 +10,9 @@ const groupBy = require('lodash.groupby');
 const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
 
+// state
+const States = require("./exercise_status");
+
 // Some utilities functions commonly used
 module.exports = {
     // return "data" result for /search and /exercise/{id}
@@ -268,6 +271,19 @@ function build_dictionary_for_matching_process(result_in_db) {
 function store_single_exercise(user, exercise_data, existent_tags, really_new_tags, t) {
     // create exercise and new tags together
     const creationDate = new Date();
+    // data to be inserted
+    let exerciseData = {
+        title: exercise_data.title,
+        description: exercise_data.description /* istanbul ignore next */ || "",
+        user_id: user.id,
+        // some timestamps must be inserted
+        updatedAt: creationDate,
+        createdAt: creationDate,
+        // optional properties to add
+        url: exercise_data.url || null,
+        file: (exercise_data.file !== null) ? exercise_data.file.filename : null,
+        state: (exercise_data.state) ? States[exercise_data.state] : States.DRAFT
+    };
 
     return new Promise((resolve, reject) => {
         Promise.all(
@@ -280,19 +296,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                 models
                     .Exercise
                     .create(
-                        {
-                            title: exercise_data.title,
-                            description: exercise_data.description,
-                            user_id: user.id,
-                            // No need to set the status : by default it will be "CREATED"
-                            // even imported by admin, this exercise must be verified
-                            // some timestamps must be inserted
-                            updatedAt: creationDate,
-                            createdAt: creationDate,
-                            // optional properties to add
-                            url: exercise_data.url || null,
-                            file: (exercise_data.file !== null) ? exercise_data.file.filename : null
-                        },
+                        exerciseData,
                         {
                             transaction: t,
                             returning: ["id"]
@@ -517,7 +521,7 @@ function check_credentials_on_exercises({role, id}, exercises_ids) {
                         resolve();
                     } else {
                         let error = new Error("FORBIDDEN");
-                        error.message = "It seems you tried to delete somebody else exercise(s) : " +
+                        error.message = "It seems you tried to update / delete somebody else exercise(s) : " +
                             "This incident will be reported";
                         error.status = 403;
                         throw error;

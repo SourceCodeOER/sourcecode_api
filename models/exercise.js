@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         state: {
             type: DataTypes.ENUM(enumValues),
             allowNull: false,
-            defaultValue: enumObj.CREATED
+            defaultValue: enumObj.DRAFT
         },
         url: {
             type: DataTypes.STRING,

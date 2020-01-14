@@ -2,6 +2,16 @@ paths:
   /api/create_exercise:
     post:
       summary: "Creates a new exercise into the system"
+      description: |
+        Creates a new exercise into the system.
+        By default (if nothing specified), the exercise will be in state "DRAFT". 
+
+        The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
+        
+        1. He/She can only modify his/her own exercises
+        2. Only the following states are allowed : 
+          - DRAFT  
+          - PENDING  
       operationId: createSingleExercise
       x-controller: exercises
       x-operation: createSingleExercise

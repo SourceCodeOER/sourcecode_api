@@ -1,5 +1,5 @@
 module.exports = {
-    CREATED: "CREATED",
+    DRAFT: "DRAFT",
     PENDING: "PENDING",
     VALIDATED: "VALIDATED",
     NOT_VALIDATED: "NOT_VALIDATED"

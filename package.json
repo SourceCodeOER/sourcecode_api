@@ -34,6 +34,7 @@
     "lodash.isequal": "^4.5.0",
     "lodash.partition": "^4.6.0",
     "lodash.uniqwith": "^4.5.0",
+    "mime-types": "latest",
     "morgan": "^1.9.1",
     "move-file": "^1.2.0",
     "multer": "^1.4.2",
@@ -43,7 +44,7 @@
     "passport": "^0.4.1",
     "passport-json": "^1.2.0",
     "passport-jwt": "^4.0.0",
-    "pg": "^7.17.0",
+    "pg": "^7.17.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1",
@@ -56,7 +57,7 @@
     "@types/sequelize": "latest",
     "@types/supertest": "latest",
     "jest": "^24.9.0",
-    "redoc-cli": "latest",
+    "redoc-cli": "^0.9.5",
     "supertest": "^5.0.0-0"
   }
 }

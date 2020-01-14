@@ -1,5 +1,6 @@
 const createOrFindTagCategories = require("./bulk/createOrFindTagCategories");
 const createMultipleExercises = require("./bulk/createMultipleExercises");
+const createMultipleTags = require("./bulk/createMultipleTags");
 const DeleteExercises = require("./bulk/DeleteExercises");
 const ChangeExercisesStatus = require("./bulk/ChangeExercisesStatus");
 const DeleteTagCategories = require("./bulk/DeleteTagCategories");
@@ -13,6 +14,7 @@ module.exports = function () {
     // add endpoints
     controller.createOrFindTagCategories = createOrFindTagCategories;
     controller.createMultipleExercises = createMultipleExercises;
+    controller.createMultipleTags = createMultipleTags;
     controller.DeleteExercises = DeleteExercises;
     controller.ChangeExercisesStatus = ChangeExercisesStatus;
     controller.DeleteTagCategories = DeleteTagCategories;
