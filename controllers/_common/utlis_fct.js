@@ -63,17 +63,17 @@ module.exports = {
                     // get the tag(s) (with the category ) for exercise(s) if asked
                     (includeTags)
                         ? models
-                            .Exercise_Tag
+                            .Exercise
                             .scope([
-                                {method: ["filter_by_exercise_ids", ids]},
-                                "get_all_tags_with_related_category"
+                                {method: ["filter_exercises_ids", ids]},
+                                "with_related_tags_with_their_category"
                             ])
                             .findAll()
                         : Promise.resolve([])
                 ])
                 .then(([exercises_data, tags_data]) => {
                     // key : exercise_id
-                    const tags_data_map = groupBy(tags_data, "exercise_id");
+                    const tags_data_map = groupBy(tags_data.map(tags => tags.toJSON()), "exercise_id");
                     const exercises_data_map = groupBy(exercises_data, "id");
                     resolve(
                         ids
@@ -99,7 +99,7 @@ module.exports = {
                                     // So we need this workaround to deal with every possible situation
                                     /* istanbul ignore next */
                                     let tags_for_exercise = (tags_data_map.hasOwnProperty(exercise_id))
-                                        ? tags_data_map[exercise_id][0].toJSON()
+                                        ? tags_data_map[exercise_id][0]
                                         : {"tags": []};
                                     delete tags_for_exercise["exercise_id"];
                                     optionalProperties = Object.assign(optionalProperties, tags_for_exercise);
