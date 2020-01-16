@@ -188,7 +188,7 @@ describe("Simple case testing", () => {
     it("GET /api/configurations with settings", async () => {
         let response = await request
             .get("/api/configurations")
-            .query('ids%5B0%5D=1')
+            .query('ids=1')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Accept', 'application/json')
             .send();
@@ -213,9 +213,9 @@ describe("Simple case testing", () => {
         const response = await request
             .get("/api/tags")
             .query('state=pending')
-            .query('tags_ids[]=1')
-            .query('tags_ids[]=2')
-            .query('categories_ids[]=' + 1)
+            .query('tags_ids=1')
+            .query('tags_ids=2')
+            .query('categories_ids=' + 1)
             .query('title=hero')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
@@ -226,7 +226,7 @@ describe("Simple case testing", () => {
         const response = await request
             .get("/api/tags_by_categories")
             .query('state=pending')
-            .query('onlySelected[]=1')
+            .query('onlySelected=1')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);

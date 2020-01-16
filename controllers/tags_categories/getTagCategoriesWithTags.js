@@ -4,16 +4,10 @@ const Op = Sequelize.Op;
 
 module.exports = function (req, res, next) {
     const params = req.query;
-    const arrayOfIntegersOnly = (key) => (Array.isArray(params[key]))
-        ? params[key].filter(s => !isNaN(s)).map(s => parseInt(s))
-        : [];
-    const onlyString = (key, defaultValue) => (typeof params[key] === "string")
-        ? params[key]
-        : defaultValue;
 
     const settings = {
-        state: onlyString("state", "default"),
-        onlySelected: arrayOfIntegersOnly("onlySelected")
+        state: params.state || "default",
+        onlySelected: params.onlySelected || [],
     };
 
     let criteria = [];

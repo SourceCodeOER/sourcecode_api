@@ -10,6 +10,7 @@ paths:
         - name: includeOptions
           in: query
           description: "To include additional properties when fetching exercise"
+          style: deepObject
           schema:
             $ref: "../definitions.yaml#/components/schemas/IncludeOptions"
     get:

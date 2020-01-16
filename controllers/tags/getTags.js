@@ -5,18 +5,12 @@ const Op = Sequelize.Op;
 
 module.exports = (req, res, next) => {
     const params = req.query;
-    const arrayOfIntegersOnly = (key) => (Array.isArray(params[key]))
-        ? params[key].filter(s => !isNaN(s)).map(s => parseInt(s))
-        : [];
-    const onlyString = (key, defaultValue) => (typeof params[key] === "string")
-        ? params[key]
-        : defaultValue;
 
     const settings = {
-        tags_ids: arrayOfIntegersOnly("tags_ids"),
-        categories_ids: arrayOfIntegersOnly("categories_ids"),
-        state: onlyString("state", "default"),
-        title: onlyString("title", ''),
+        tags_ids: params.tags_ids || [],
+        categories_ids: params.categories_ids || [],
+        state: params.state || "default",
+        title: params.title || "",
     };
 
     let conditions = [];

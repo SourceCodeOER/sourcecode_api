@@ -4,8 +4,8 @@ const DEFAULT_SIZE_LIMIT = 10;
 const DEFAULT_PAGE = 1;
 
 module.exports = function (req, res, next) {
-    let size = (req.query.metadata) ? parseInt(req.query.metadata.size) : DEFAULT_SIZE_LIMIT;
-    let page = (req.query.metadata) ? parseInt(req.query.metadata.page) : DEFAULT_PAGE;
+    let size = (req.query.metadata) ? req.query.metadata.size : DEFAULT_SIZE_LIMIT;
+    let page = (req.query.metadata) ? req.query.metadata.page : DEFAULT_PAGE;
 
     let options = {
         limit: size,

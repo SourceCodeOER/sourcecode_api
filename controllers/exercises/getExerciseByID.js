@@ -9,19 +9,7 @@ module.exports = (req, res, next) => {
 
     const id = parseInt(req.params.id, 10);
     // query parameters
-    const options = (req.query["includeOptions"])
-        ? Object
-            .keys(req.query["includeOptions"])
-            .reduce((acc, key) => {
-                try {
-                    acc[key] = JSON.parse(req.query["includeOptions"][key]);
-                } finally {
-                    // noinspection ReturnInsideFinallyBlockJS
-                    return acc;
-                }
-            }, {})
-        : undefined;
-
+    const options = (req.query["includeOptions"]) ? req.query["includeOptions"] : undefined;
 
     // check if id exist in database
     return models
