@@ -17,15 +17,16 @@ components:
 # Common enum used everywhere
     State:
       type: string
-      enum: [DRAFT,PENDING,VALIDATED,NOT_VALIDATED]
+      enum: [DRAFT,PENDING,VALIDATED,NOT_VALIDATED,ARCHIVED]
       example: PENDING
       description: |
-        Status of the exercise into the system. Currently, 4 states are possibles : 
+        Status of the exercise into the system. Currently, 5 states are possibles : 
 
         1. DRAFT : The default state (for example when a exercise is inserted into the system)
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
+        5. ARCHIVED : When an exercise is archived / soft deleted
     Roles:
       type: string
       enum: [admin, user]
@@ -369,7 +370,11 @@ components:
           description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
           example: [-1, [2, 3]]
         state:
-          $ref: "#/components/schemas/State"
+          type: array
+          description: "Filter the exercises by their state. By default, no filtering is done."
+          items:
+            $ref: "#/components/schemas/State"
+          maxItems: 5
         user_ids:
           type: array
           description: "Filter the exercises by their creators."

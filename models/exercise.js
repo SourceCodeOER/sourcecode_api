@@ -84,8 +84,6 @@ module.exports = (sequelize, DataTypes) => {
                 // options for sequelize query builder
                 let options = {
                     attributes: ["id"],
-                    limit: metadata.size,
-                    offset: (metadata.page - 1) * metadata.size,
                     // need to have access to metrics for some filtering stuff
                     include: [{
                         model: sequelize.models.Exercise_Metrics,
@@ -95,6 +93,12 @@ module.exports = (sequelize, DataTypes) => {
                         attributes: []
                     }]
                 };
+                // if metadata were given
+                /* istanbul ignore else */
+                if (metadata) {
+                    options["limit"] = metadata.size;
+                    options["offset"] = (metadata.page - 1) * metadata.size;
+                }
                 // if the user provide a title / isValidated check , we must add it to the where clause
                 if (parameters.hasOwnProperty("data")) {
                     let criteria = [];
@@ -110,7 +114,9 @@ module.exports = (sequelize, DataTypes) => {
 
                     if (parameters.data.hasOwnProperty("state")) {
                         criteria.push({
-                            state: enumObj[parameters.data.state]
+                            state: {
+                                [Op.in]: parameters.data.state.map(s => enumObj[s])
+                            }
                         });
                     }
 

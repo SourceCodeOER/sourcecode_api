@@ -2,12 +2,13 @@ paths:
   /api/bulk/delete_exercises:
     delete:
       summary: "Delete given exercises"
-      description: "Delete given exercises. An simple user can only delete his/her own exercises (no restriction for admin)"
+      description: |
+        Permanently remove from system the given exercises. (No way to retrieve them after this)
+        Otherwise, if you simply want to soft delete/hide these exercises, use the endpoint to change their status to ARCHIVED.
       operationId: "DeleteExercises"
       x-controller: bulk
       x-operation: DeleteExercises
       tags:
-        - user
         - admin
       security:
         - bearerAuth: []
@@ -116,7 +117,8 @@ paths:
         1. He/She can only modify his/her own exercises
         2. Only the following states are allowed :  
           - DRAFT
-          - PENDING 
+          - PENDING
+          - ARCHIVED 
       operationId: "ChangeExercisesStatus"
       x-controller: bulk
       x-operation: ChangeExercisesStatus

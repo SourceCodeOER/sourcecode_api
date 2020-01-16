@@ -18,7 +18,7 @@ module.exports = (operation) => (req, res, next) => {
                     : _req.body.exercises;
                 check_credentials_on_exercises(_req.user, ids)
                     .then(() => _next())
-                    .catch((err) => _next(err));
+                    .catch(/* istanbul ignore next */(err) => _next(err));
             },
             pass_middleware
         ),
@@ -45,6 +45,7 @@ module.exports = (operation) => (req, res, next) => {
             pass_middleware
         )
     ])(req, res, (err) => {
+        /* istanbul ignore if */
         if (err) {
             next(err);
         } else {

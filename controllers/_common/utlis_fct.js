@@ -524,7 +524,7 @@ function check_credentials_on_exercises({role, id}, exercises_ids) {
                         error.message = "It seems you tried to update / delete somebody else exercise(s) : " +
                             "This incident will be reported";
                         error.status = 403;
-                        throw error;
+                        reject(error);
                     }
                 })
                 .catch(/* istanbul ignore next */

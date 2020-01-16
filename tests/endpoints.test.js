@@ -151,7 +151,7 @@ describe("Simple case testing", () => {
                     37,
                     -42
                 ],
-                "state": "VALIDATED",
+                "state": ["DRAFT", "PENDING", "VALIDATED", "NOT_VALIDATED", "ARCHIVED"],
                 "user_ids": [1, 2, 3],
                 "vote": {
                     "operator": "<=",
@@ -429,7 +429,7 @@ describe("Complex scenarios", () => {
         expect(data.version).toBe(0);
         expect(data.state).toBe("DRAFT");
 
-        // A simple user should not be able to delete that one as it doesn't belong to him/her
+        // A simple user should not be able to delete exercises
         await request
             .delete("/api/bulk/delete_exercises")
             .set('Accept', 'application/json')
@@ -439,20 +439,32 @@ describe("Complex scenarios", () => {
             ])
             .expect(403);
 
+        // A simple user should not be able to modify a exercise that doesn't belong to him
+        let newExerciseVersion = {
+            title: data.title,
+            version: data.version,
+            description: data.description + "API4FUN",
+            tags: data.tags.map(tag => tag.tag_id),
+            removePreviousFile: true,
+            state: "PENDING",
+        };
+
+        response = await request
+            .put("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(newExerciseVersion);
+
+        expect(response.status).toBe(403);
+
+
         // test most updates cases : keep tags / add & remove
         // 1. Only changed description
         response = await request
             .put("/api/exercises/" + data.id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send({
-                title: data.title,
-                version: data.version,
-                description: data.description + "API4FUN",
-                tags: data.tags.map(tag => tag.tag_id),
-                removePreviousFile: true,
-                state: "PENDING",
-            });
+            .send(newExerciseVersion);
 
         expect(response.status).toBe(200);
 
