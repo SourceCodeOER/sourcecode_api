@@ -3,8 +3,8 @@ paths:
     delete:
       summary: "Delete given exercises"
       description: |
-        Permanently remove from system the given exercises. (No way to retrieve them after this)
-        Otherwise, if you simply want to soft delete/hide these exercises, use the endpoint to change their status to ARCHIVED.
+        Permanently remove from system the given exercises. (No way to retrieve them after this)  
+        Otherwise, if you simply want to soft delete/hide these exercises, use [this endpoint](#operation/ChangeExercisesStatus) to change their status to ARCHIVED.
       operationId: "DeleteExercises"
       x-controller: bulk
       x-operation: DeleteExercises

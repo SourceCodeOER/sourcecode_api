@@ -99,23 +99,26 @@ module.exports = (sequelize, DataTypes) => {
                     options["limit"] = metadata.size;
                     options["offset"] = (metadata.page - 1) * metadata.size;
                 }
+                let criteria = [];
+
+                if (parameters.hasOwnProperty("filterOptions")) {
+                    /* istanbul ignore else */
+                    if (parameters.filterOptions.hasOwnProperty("state")) {
+                        criteria.push({
+                            state: {
+                                [Op.in]: parameters.filterOptions.state.map(s => enumObj[s])
+                            }
+                        });
+                    }
+                }
                 // if the user provide a title / isValidated check , we must add it to the where clause
                 if (parameters.hasOwnProperty("data")) {
-                    let criteria = [];
 
                     /* istanbul ignore else */
                     if (parameters.data.hasOwnProperty("title")) {
                         criteria.push({
                             title: {
                                 [Op.iLike]: `%${parameters.data.title}%`
-                            }
-                        });
-                    }
-
-                    if (parameters.data.hasOwnProperty("state")) {
-                        criteria.push({
-                            state: {
-                                [Op.in]: parameters.data.state.map(s => enumObj[s])
                             }
                         });
                     }
@@ -128,9 +131,9 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
 
-                    // merge multiple criteria into the where
-                    options.where = Object.assign({}, ...criteria);
                 }
+                // merge multiple criteria into the where
+                options.where = Object.assign({}, ...criteria);
                 return options;
             },
             // for bulky query, default attributes to show

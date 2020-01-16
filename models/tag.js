@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         Tag.belongsToMany(models.Exercise, {
             through: models.Exercise_Tag,
             timestamps: false,
-            as: "Exercises",
+            as: "exercises",
             foreignKey: {
                 name: "tag_id",
                 allowNull: false

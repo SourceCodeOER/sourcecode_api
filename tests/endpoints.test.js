@@ -151,12 +151,14 @@ describe("Simple case testing", () => {
                     37,
                     -42
                 ],
-                "state": ["DRAFT", "PENDING", "VALIDATED", "NOT_VALIDATED", "ARCHIVED"],
                 "user_ids": [1, 2, 3],
                 "vote": {
                     "operator": "<=",
                     "value": 5.0
                 }
+            },
+            "filterOptions": {
+                "state": ["DRAFT", "PENDING", "VALIDATED", "NOT_VALIDATED", "ARCHIVED"],
             },
             "orderBy": [
                 {"field": "id", "value": "ASC"},

@@ -57,6 +57,24 @@ components:
           type: boolean
           default: true
           description: "Must we include the tags of exercise(s) ?"
+# Advanced Filtering for Exercise
+    FilteringOptions:
+      type: object
+      description: |
+        To filter some properties when fetching exercise(s)
+      properties:
+        state:
+          type: array
+          description: "Filter the exercises by their state. By default, no filtering is done."
+          items:
+            $ref: "#/components/schemas/State"
+          maxItems: 5
+        tags:
+          type: string
+          description: |
+            Filter the tags linked to exercise by their validity. The default value ('default') stands for no filtering.
+          enum: ["default", "validated", "pending"]
+          default: "default"
 # Basic model of a Exercise 
     BasicExerciseModel:
       type: object
@@ -292,6 +310,7 @@ components:
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
               minItems: 1 # We must always put at least one tag in the database
+              maxItems: 25 # At some point, a limit is needed to prevent abuse
             url:
               type: string
               pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
@@ -369,12 +388,6 @@ components:
                 minItems: 1 # Not allowing empty array if we use it
           description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
           example: [-1, [2, 3]]
-        state:
-          type: array
-          description: "Filter the exercises by their state. By default, no filtering is done."
-          items:
-            $ref: "#/components/schemas/State"
-          maxItems: 5
         user_ids:
           type: array
           description: "Filter the exercises by their creators."
@@ -442,6 +455,8 @@ components:
           $ref: "#/components/schemas/IncludeOptions"
         data:
           $ref: "#/components/schemas/SearchDataCriterias"
+        filterOptions:
+          $ref: "#/components/schemas/FilteringOptions"
         orderBy:
           description: |
             If you wish to order the provided result, use this parameter.
