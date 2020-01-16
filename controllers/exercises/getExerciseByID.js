@@ -1,6 +1,7 @@
 // function for bulky inner select
 const models = require('../../models');
 const {build_search_result} = require("../_common/utlis_fct");
+const enumObj = require("../_common/exercise_status");
 
 const Sequelize = require("sequelize");
 
@@ -27,9 +28,31 @@ module.exports = (req, res, next) => {
         .Exercise
         .findByPk(id, {
             attributes: [
-                Sequelize.literal(1)
+                ["user_id", "user"],
+                ["state", "state"]
             ],
             rejectOnEmpty: true
+        }).then((result) => {
+            return new Promise((resolve, reject) => {
+                // If exercise is ARCHIVED and this exercise was not access by its creator or admin,
+                // a HTTP error should occur
+                if (result.get("state") === enumObj.ARCHIVED) {
+                    const passCriteria = [
+                        req.user && req.user.role === "admin",
+                        req.user && req.user.role !== "admin" && result.get("user") === req.user.id,
+                    ];
+                    if (passCriteria.includes(true)) {
+                        resolve();
+                    } else {
+                        let error = new Error("GONE");
+                        error.message = "This exercise was archived and thus no more publicly visible";
+                        error.status = 410;
+                        reject(error);
+                    }
+                } else {
+                    resolve();
+                }
+            });
         }).then((result) => {
             // If we have a user, we should try to fetch its vote for this exercise
             return Promise.all([

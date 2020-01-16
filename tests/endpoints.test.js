@@ -360,7 +360,7 @@ describe("Simple case testing", () => {
 });
 
 describe("Complex scenarios", () => {
-    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times and then Validate it", async () => {
+    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times and then update its status several times", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk/create_or_find_tag_categories")
@@ -507,6 +507,33 @@ describe("Complex scenarios", () => {
             });
 
         expect(response.status).toBe(200);
+
+        // 4. Archive this exercise
+        response = await request
+            .put("/api/bulk/modify_exercises_status")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                exercises: [data.id],
+                state: "ARCHIVED"
+            });
+
+        expect(response.status).toBe(200);
+
+        // Other user should not be able to fetch that
+        response = await request
+            .get("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(410);
+
+        // but its creator / admin should
+        response = await request
+            .get("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
+
     });
 
     it("Scenario n°2 : Creates a single exercise with (no) existent tag(s) and add tags later", async () => {
@@ -834,7 +861,7 @@ describe("Complex scenarios", () => {
         expect(responseTmp.status).toBe(200);
     });
 
-    it("Scenario n°7 : Creates a signle exercise wtih two tags, Deletes a tag then ", async () => {
+    it("Scenario n°7 : Creates a single exercise with two tags and deletes one tag", async () => {
 
         // creates a tag category just for that purpose
         const response = await request
