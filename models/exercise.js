@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
                 };
             },
             // to find exercise(s) that match criteria
-            find_exercises_ids_with_given_criteria([parameters, metadata]) {
+            find_exercises_ids_with_given_criteria({parameters, metadata}) {
                 // options for sequelize query builder
                 let options = {
                     attributes: ["id"],
