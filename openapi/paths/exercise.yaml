@@ -51,11 +51,11 @@ paths:
       description: |
         Update this specific exercise data
         The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
-        
+
         1. He/She can only modify his/her own exercises
-        2. Only the following states are allowed : 
-          - DRAFT  
-          - PENDING  
+        2. Only the following states are allowed :
+          - DRAFT
+          - PENDING
       operationId: UpdateExercise
       x-controller: exercises
       x-operation: UpdateExercise

@@ -160,6 +160,12 @@ describe("Simple case testing", () => {
             "filterOptions": {
                 "state": ["DRAFT", "PENDING", "VALIDATED", "NOT_VALIDATED", "ARCHIVED"],
             },
+            "includeOptions": {
+                "includeCreator": false,
+                "includeMetrics": false,
+                "includeDescription": false,
+                "includeTags": false
+            },
             "orderBy": [
                 {"field": "id", "value": "ASC"},
                 {"field": "state", "value": "DESC"},

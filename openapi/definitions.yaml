@@ -124,7 +124,7 @@ components:
             file:
               type: string
               nullable: true
-              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{filename}"
+              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{file}"
               example: "sources-88af5adc-1837-11ea-8d71-362b9e155667.zip"
             url:
               type: string
@@ -445,18 +445,10 @@ components:
         - totalItems
         - totalPages
         - pageSize
-# Search criteria
-    SearchCriterias:
+# Common criteria for export and search for exercises
+    CommonCriterias:
       type: object
       properties:
-        metadata:
-          $ref: "#/components/schemas/PaginationCriterias"
-        includeOptions:
-          $ref: "#/components/schemas/IncludeOptions"
-        data:
-          $ref: "#/components/schemas/SearchDataCriterias"
-        filterOptions:
-          $ref: "#/components/schemas/FilteringOptions"
         orderBy:
           description: |
             If you wish to order the provided result, use this parameter.
@@ -494,6 +486,20 @@ components:
 
                   - ASC : ASCENDING sorting
                   - DESC : DESCENDING sorting
+        data:
+          $ref: "#/components/schemas/SearchDataCriterias"
+        filterOptions:
+          $ref: "#/components/schemas/FilteringOptions"
+# Search criteria
+    SearchCriterias:
+      allOf:
+        - $ref: "#/components/schemas/CommonCriterias"
+        - type: object
+          properties:
+            metadata:
+              $ref: "#/components/schemas/PaginationCriterias"
+            includeOptions:
+              $ref: "#/components/schemas/IncludeOptions"
     MultipleExercisesForm:
       type: array
       minItems: 1
