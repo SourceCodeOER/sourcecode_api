@@ -195,9 +195,6 @@ module.exports = (sequelize, DataTypes) => {
             // retrieve all the tags of this exercise
             with_related_tags_with_their_category() {
                 return {
-                    attributes: [
-                        ["id", "exercise_id"]
-                    ],
                     include: [
                         {
                             model: sequelize.models.Tag,
@@ -206,16 +203,16 @@ module.exports = (sequelize, DataTypes) => {
                                 ["id", "tag_id"],
                                 ["text", "tag_text"]
                             ],
-                            // Not include temporary table data
-                            through: { attributes: [] },
-                            required: true,
+                            through: {attributes: []},
+                            // Handle the case where no tags exists for one exercise
+                            required: false,
                             include: [
                                 {
                                     model: sequelize.models.Tag_Category,
                                     as: "category",
                                     required: true,
                                     attributes: [
-                                        ["kind","category_text"],
+                                        ["kind", "category_text"],
                                         ["id", "category_id"]
                                     ]
                                 }
