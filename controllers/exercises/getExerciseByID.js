@@ -1,39 +1,48 @@
 // function for bulky inner select
 const models = require('../../models');
 const {build_search_result} = require("../_common/utlis_fct");
-
-const Sequelize = require("sequelize");
+const enumObj = require("../_common/exercise_status");
 
 module.exports = (req, res, next) => {
 
     const id = parseInt(req.params.id, 10);
     // query parameters
-    const options = (req.query["includeOptions"])
-        ? Object
-            .keys(req.query["includeOptions"])
-            .reduce((acc, key) => {
-                try {
-                    acc[key] = JSON.parse(req.query["includeOptions"][key]);
-                } finally {
-                    // noinspection ReturnInsideFinallyBlockJS
-                    return acc;
-                }
-            }, {})
-        : undefined;
-
+    const options = (req.query["includeOptions"]) ? req.query["includeOptions"] : undefined;
 
     // check if id exist in database
     return models
         .Exercise
         .findByPk(id, {
             attributes: [
-                Sequelize.literal(1)
+                ["user_id", "user"],
+                ["state", "state"]
             ],
             rejectOnEmpty: true
         }).then((result) => {
+            return new Promise((resolve, reject) => {
+                // If exercise is ARCHIVED and this exercise was not access by its creator or admin,
+                // a HTTP error should occur
+                if (result.get("state") === enumObj.ARCHIVED) {
+                    const passCriteria = [
+                        req.user && req.user.role === "admin",
+                        req.user && req.user.role !== "admin" && result.get("user") === req.user.id,
+                    ];
+                    if (passCriteria.includes(true)) {
+                        resolve();
+                    } else {
+                        let error = new Error("GONE");
+                        error.message = "This exercise was archived and thus no more publicly visible";
+                        error.status = 410;
+                        reject(error);
+                    }
+                } else {
+                    resolve();
+                }
+            });
+        }).then((_) => {
             // If we have a user, we should try to fetch its vote for this exercise
             return Promise.all([
-                build_search_result([id], options),
+                build_search_result([id], options, req.query),
                 (req.user) ? models.Notation.findAll({
                     attributes: [
                         ["note", "vote"]

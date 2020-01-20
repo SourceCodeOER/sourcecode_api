@@ -24,9 +24,7 @@ module.exports = (req, res, next) => {
     // GROUP BY "Tag_Category"."id", "Tag_Category"."kind";
 
     // Do we wish the simplest version of this endpoint or the most complex
-    const withStats = req.query["fetchStats"]
-        && !isNaN(req.query["fetchStats"])
-        && parseInt(req.query["fetchStats"]) === 1;
+    const withStats = req.query["fetchStats"] && req.query["fetchStats"] === 1;
     (
         (withStats)
             ? models.Tag_Category.scope("count_summary").findAll()

@@ -11,7 +11,6 @@ const passport = require('passport');
 const error_prettier = require("./middlewares/errors-beautifier");
 const default_error_handler = require("./middlewares/default_error_handler");
 const not_found_handler = require("./middlewares/not_found");
-const queryParametersFix = require("./middlewares/queryparameters");
 const securityCheck = require("./middlewares/security");
 const removeTempFiles = require("./middlewares/remove_temp_files");
 
@@ -53,9 +52,6 @@ module.exports = new Promise((resolve, reject) => {
     // Serves stored files with this endpoint
     /* istanbul ignore next */
     app.use("/files", express.static(FILES_FOLDER));
-
-    // To allow Arrays in query parameters
-    app.use(queryParametersFix());
 
     // main API setup
     try {

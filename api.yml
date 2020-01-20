@@ -36,6 +36,8 @@ paths:
     $ref: 'openapi/paths/create_exercise.yaml#/paths/~1api~1create_exercise'
   /api/exercises/{id}:
     $ref: 'openapi/paths/exercise.yaml#/paths/~1api~1exercises~1%7Bid%7D'
+  /api/export:
+    $ref: 'openapi/paths/exercise.yaml#/paths/~1api~1export'
   /api/search:
     $ref: 'openapi/paths/search.yaml#/paths/~1api~1search'
   /api/tags:

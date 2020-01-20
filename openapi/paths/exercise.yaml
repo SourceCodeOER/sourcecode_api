@@ -10,6 +10,7 @@ paths:
         - name: includeOptions
           in: query
           description: "To include additional properties when fetching exercise"
+          style: deepObject
           schema:
             $ref: "../definitions.yaml#/components/schemas/IncludeOptions"
     get:
@@ -50,11 +51,11 @@ paths:
       description: |
         Update this specific exercise data
         The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
-        
+
         1. He/She can only modify his/her own exercises
-        2. Only the following states are allowed : 
-          - DRAFT  
-          - PENDING  
+        2. Only the following states are allowed :
+          - DRAFT
+          - PENDING
       operationId: UpdateExercise
       x-controller: exercises
       x-operation: UpdateExercise
@@ -103,6 +104,105 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/export:
+    post:
+      operationId: ExportExercises
+      x-controller: exercises
+      x-operation: ExportExercises
+      description: |
+        To export exercises that match optional criteria.  
+
+        The JSON result is compliant with the [format](https://github.com/SourceCodeOER/cli#what-is-the-format-of-the-json-object-)
+        of our [cli](https://github.com/SourceCodeOER/cli) which means that if you wish to reupload the exercises in the future,
+        it's simple as you just have to rely on the [cli](https://github.com/SourceCodeOER/cli) command "uploader".
+        Please consider the following facts before using it : 
+          
+          1. Don't forget to rename the key "categories" to "own_categories"
+
+          2. If you wish to upload them without their files, remove the property "file" in each exercise : 
+            ```js
+              let json_result = { /* ... */ };
+              const exercisesWithoutFile = json_result["exercises"].map(exercise => {
+                  delete exercise["file"]
+                  return exercise;
+              });
+              Object.assign(json_result, { "exercises": exercisesWithoutFile });
+            ```
+
+          3. If you wish to upload them with their files, download their files and modify each property "file" according our [format](https://github.com/SourceCodeOER/cli#what-is-the-format-of-the-json-object-)
+        of our [cli](https://github.com/SourceCodeOER/cli).
+
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/CommonCriterias"  
+      responses:
+        '200':
+          description: "Exercises data inside a JSON"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exercises:
+                    description: "The fetched exercises (with their tags)"
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: "../definitions.yaml#/components/schemas/AlreadyPresentExerciseModel"
+                        - type: object
+                          properties:
+                            tags:
+                              type: array
+                              description: "The tags linked to this exercise"
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
+                                    description: "The text of this Tag"
+                                    example: "INGINIOUS"
+                                    minLength: 1
+                                    maxLength: 100
+                                  category:
+                                    type: integer
+                                    example: 42
+                                    minimum: 0
+                                    description: "The category of this tag"
+                                  isValidated:
+                                    type: boolean
+                                    default: false
+                                    example: false
+                                    description: "Is this tag validated or not ?"
+                                required:
+                                  - isValidated
+                                  - category
+                                  - text
+                          required:
+                            - tags
+                  categories:
+                    description: Map whose keys are the IDS of the categories and value their text
+                    type: object
+                    example:
+                      "1":  "source"
+                      "2": "institution"
+                      "3": "auteur"
+                required:
+                  - exercises
+                  - categories
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"        
 
 components:
   securitySchemes:

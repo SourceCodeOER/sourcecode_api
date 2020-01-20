@@ -16,12 +16,19 @@ const States = require("./exercise_status");
 // Some utilities functions commonly used
 module.exports = {
     // return "data" result for /search and /exercise/{id}
-    build_search_result(ids, {
-        includeCreator = false,
-        includeMetrics = true,
-        includeDescription = true,
-        includeTags = true,
-    } = {}) {
+    // This function takes 3 parameters (only the first one is mandatory)
+    // - ids : the ordered list of exercises ids we have to generate
+    // - the include options : to generate what the user asks
+    // - request : the full body of request
+    build_search_result(ids,
+                        {
+                            includeCreator = false,
+                            includeMetrics = true,
+                            includeDescription = true,
+                            includeTags = true,
+                        } = {},
+                        request
+    ) {
 
         return new Promise((resolve, reject) => {
             // For Postgres, we have a much better way to handle this case
@@ -52,28 +59,19 @@ module.exports = {
                 exerciseScope.push("without_exercise_description");
             }
 
-            Promise
-                .all([
-                    // exercises
-                    models
-                        .Exercise
-                        .scope(exerciseScope)
-                        // no order by needed as rows in database will be returned sequentially for that part
-                        .findAll(),
-                    // get the tag(s) (with the category ) for exercise(s) if asked
-                    (includeTags)
-                        ? models
-                            .Exercise_Tag
-                            .scope([
-                                {method: ["filter_by_exercise_ids", ids]},
-                                "get_all_tags_with_related_category"
-                            ])
-                            .findAll()
-                        : Promise.resolve([])
-                ])
-                .then(([exercises_data, tags_data]) => {
+            // If asked, include the tags
+            if (includeTags) {
+                exerciseScope.push(
+                    {method: ["with_related_tags_with_their_category", request.filterOptions]}
+                );
+            }
+
+            return models
+                .Exercise
+                .scope(exerciseScope)
+                .findAll()
+                .then((exercises_data) => {
                     // key : exercise_id
-                    const tags_data_map = groupBy(tags_data, "exercise_id");
                     const exercises_data_map = groupBy(exercises_data, "id");
                     resolve(
                         ids
@@ -82,9 +80,7 @@ module.exports = {
                             // manually build the good result
                             .map(id => {
                                 let exercise = exercises_data_map[id][0];
-                                const exercise_id = exercise.get("id");
                                 let exercise_json = exercise.toJSON();
-                                let optionalProperties = {};
 
                                 // only apply this logic when we have a metric object inside exercise
                                 if (includeMetrics) {
@@ -94,22 +90,11 @@ module.exports = {
                                     );
                                 }
 
-                                if (includeTags) {
-                                    // With some scenarios, it might be possible that we have no tags for this exercise
-                                    // So we need this workaround to deal with every possible situation
-                                    /* istanbul ignore next */
-                                    let tags_for_exercise = (tags_data_map.hasOwnProperty(exercise_id))
-                                        ? tags_data_map[exercise_id][0].toJSON()
-                                        : {"tags": []};
-                                    delete tags_for_exercise["exercise_id"];
-                                    optionalProperties = Object.assign(optionalProperties, tags_for_exercise);
-                                }
-
-                                return Object.assign({}, exercise_json, optionalProperties)
+                                return Object.assign({}, exercise_json)
                             })
                     );
                 }).catch(/* istanbul ignore next */
-                err => reject(err));
+                    err => reject(err));
 
         })
     },
@@ -524,7 +509,7 @@ function check_credentials_on_exercises({role, id}, exercises_ids) {
                         error.message = "It seems you tried to update / delete somebody else exercise(s) : " +
                             "This incident will be reported";
                         error.status = 403;
-                        throw error;
+                        reject(error);
                     }
                 })
                 .catch(/* istanbul ignore next */

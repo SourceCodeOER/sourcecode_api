@@ -4,10 +4,7 @@ const Op = Sequelize.Op;
 
 module.exports = (req, res, next) => {
     const params = req.query;
-    const arrayOfIntegersOnly = (key) => (Array.isArray(params[key]))
-        ? params[key].filter(s => !isNaN(s)).map(s => parseInt(s))
-        : [];
-    const ids = arrayOfIntegersOnly("ids");
+    const ids = params["ids"] || [];
 
     const tagAttributes = [
         ["id", "tag_id"],

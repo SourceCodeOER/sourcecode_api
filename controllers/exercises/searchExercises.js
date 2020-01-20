@@ -17,7 +17,7 @@ function find_exercises_ids_with_given_criteria(parameters, metadata) {
 
     // handle the filtering here
     exercise_scopes.push({
-        method: ["find_exercises_ids_with_given_criteria", [parameters, metadata]]
+        method: ["find_exercises_ids_with_given_criteria", {parameters, metadata}]
     });
 
     // handle sorting
@@ -55,7 +55,7 @@ function buildResult(params) {
                 data: []
             })
         } else {
-            build_search_result(ids, params["includeOptions"])
+            build_search_result(ids, params["request"]["includeOptions"], params["request"])
                 .then(data => {
                     resolve({
                         metadata: {
@@ -82,7 +82,7 @@ module.exports = function (req, res, next) {
             return buildResult({
                 result: result,
                 metadata: updated_metadata,
-                includeOptions: req.body.includeOptions
+                request: req.body,
             });
         })
         .then(result => res.send(result))

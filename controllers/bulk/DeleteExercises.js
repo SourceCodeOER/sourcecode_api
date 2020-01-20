@@ -8,8 +8,7 @@ const fileManager = require("../_common/files_manager");
 module.exports = function (req, res, next) {
 
     return delete_exercises(req.body)
-        .then(([files, destroyedRowNumber]) => {
-            console.log("Successfully destroy row(s) " + destroyedRowNumber);
+        .then(([files, _]) => {
             fileManager
                 .delete_stored_files(files)
                 .then(() => res.status(200).end());

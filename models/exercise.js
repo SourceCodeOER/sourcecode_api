@@ -80,12 +80,10 @@ module.exports = (sequelize, DataTypes) => {
                 };
             },
             // to find exercise(s) that match criteria
-            find_exercises_ids_with_given_criteria([parameters, metadata]) {
+            find_exercises_ids_with_given_criteria({parameters, metadata}) {
                 // options for sequelize query builder
                 let options = {
                     attributes: ["id"],
-                    limit: metadata.size,
-                    offset: (metadata.page - 1) * metadata.size,
                     // need to have access to metrics for some filtering stuff
                     include: [{
                         model: sequelize.models.Exercise_Metrics,
@@ -95,9 +93,26 @@ module.exports = (sequelize, DataTypes) => {
                         attributes: []
                     }]
                 };
+                // if metadata were given
+                /* istanbul ignore else */
+                if (metadata) {
+                    options["limit"] = metadata.size;
+                    options["offset"] = (metadata.page - 1) * metadata.size;
+                }
+                let criteria = [];
+
+                if (parameters.hasOwnProperty("filterOptions")) {
+                    /* istanbul ignore else */
+                    if (parameters.filterOptions.hasOwnProperty("state")) {
+                        criteria.push({
+                            state: {
+                                [Op.in]: parameters.filterOptions.state.map(s => enumObj[s])
+                            }
+                        });
+                    }
+                }
                 // if the user provide a title / isValidated check , we must add it to the where clause
                 if (parameters.hasOwnProperty("data")) {
-                    let criteria = [];
 
                     /* istanbul ignore else */
                     if (parameters.data.hasOwnProperty("title")) {
@@ -105,12 +120,6 @@ module.exports = (sequelize, DataTypes) => {
                             title: {
                                 [Op.iLike]: `%${parameters.data.title}%`
                             }
-                        });
-                    }
-
-                    if (parameters.data.hasOwnProperty("state")) {
-                        criteria.push({
-                            state: enumObj[parameters.data.state]
                         });
                     }
 
@@ -122,9 +131,9 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
 
-                    // merge multiple criteria into the where
-                    options.where = Object.assign({}, ...criteria);
                 }
+                // merge multiple criteria into the where
+                options.where = Object.assign({}, ...criteria);
                 return options;
             },
             // for bulky query, default attributes to show
@@ -179,6 +188,73 @@ module.exports = (sequelize, DataTypes) => {
                                 ["fullName", "fullName"],
                                 ["email", "email"]
                             ]
+                        }
+                    ]
+                }
+            },
+            // retrieve all the tags of this exercise
+            // filterOptions may be used if asked for one purpose : filter the extracted tags
+            with_related_tags_with_their_category(filterOptions) {
+                return {
+                    include: [
+                        {
+                            model: sequelize.models.Tag,
+                            as: "tags",
+                            attributes: [
+                                ["id", "tag_id"],
+                                ["text", "tag_text"],
+                                "isValidated"
+                            ],
+                            through: {attributes: []},
+                            // Handle the case where no tags exists for one exercise
+                            required: false,
+                            // if asked, only include some tags (and not all)
+                            where:
+                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                    ? {
+                                        isValidated: (filterOptions.tags === "validated")
+                                    }
+                                    : {}
+                            ,
+                            include: [
+                                {
+                                    model: sequelize.models.Tag_Category,
+                                    as: "category",
+                                    required: true,
+                                    attributes: [
+                                        ["kind", "category_text"],
+                                        ["id", "category_id"]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            // for /api/export
+            with_related_tags(filterOptions) {
+                return {
+                    include: [
+                        {
+                            model: sequelize.models.Tag,
+                            as: "tags",
+                            attributes: [
+                                ["text", "text"],
+                                ["category_id", "category"],
+                                "isValidated"
+                            ],
+                            through: {attributes: []},
+                            // if asked, only include some tags (and not all)
+                            where:
+                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                    ? {
+                                        isValidated: (filterOptions.tags === "validated")
+                                    }
+                                    : {}
+                            ,
+                            // Handle the case where no tags exists for one exercise
+                            required: false,
                         }
                     ]
                 }

@@ -14,52 +14,6 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
             tableName: "Exercises_Tags",
             scopes: {
-                // retrieve all the tags with their related category
-                // why a function ? because the evaluation of the scope as a function is deferred.
-                // https://github.com/sequelize/sequelize/issues/3963#issuecomment-153490510
-                get_all_tags_with_related_category: function () {
-                    return {
-                        attributes: [
-                            "exercise_id",
-                            [
-                                Sequelize.fn(
-                                    "array_to_json",
-                                    Sequelize.fn(
-                                        "array_agg",
-                                        Sequelize.fn(
-                                            "json_build_object",
-                                            "tag_id",
-                                            Sequelize.col("tag_id"),
-                                            "tag_text",
-                                            Sequelize.col("Tag.text"),
-                                            "category",
-                                            Sequelize.fn(
-                                                "json_build_object",
-                                                "category_text",
-                                                Sequelize.col("Tag->category.kind"),
-                                                "category_id",
-                                                Sequelize.col("Tag->category.id")
-                                            )
-                                        )
-                                    )
-                                ),
-                                "tags"
-                            ]
-                        ],
-                        include: [{
-                            model: sequelize.models.Tag,
-                            attributes: [],
-                            required: true,
-                            include: [{
-                                model: sequelize.models.Tag_Category,
-                                attributes: [],
-                                as: "category",
-                                required: true
-                            }]
-                        }],
-                        group: "exercise_id"
-                    }
-                },
                 filter_by_exercise_ids(ids) {
                     return {
                         where: {

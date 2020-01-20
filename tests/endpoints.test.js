@@ -151,20 +151,31 @@ describe("Simple case testing", () => {
                     37,
                     -42
                 ],
-                "state": "VALIDATED",
                 "user_ids": [1, 2, 3],
                 "vote": {
                     "operator": "<=",
                     "value": 5.0
                 }
             },
+            "filterOptions": {
+                "state": ["DRAFT", "PENDING", "VALIDATED", "NOT_VALIDATED", "ARCHIVED"],
+            },
+            "includeOptions": {
+                "includeCreator": false,
+                "includeMetrics": false,
+                "includeDescription": false,
+                "includeTags": false
+            },
             "orderBy": [
+                // When my issue in Sequelize is fixed, it will restore my tags length sorting :
+                // https://github.com/sequelize/sequelize/issues/11845
+                //{"field": "tags_count", "value": "DESC"},
                 {"field": "id", "value": "ASC"},
                 {"field": "state", "value": "DESC"},
                 {"field": "avg_score", "value": "ASC"},
                 {"field": "date", "value": "DESC"},
                 {"field": "title", "value": "ASC"},
-                {"field": "vote_count", "value": "DESC"},
+                {"field": "vote_count", "value": "DESC"}
             ]
         };
         await search_exercise(0, criteria);
@@ -186,7 +197,7 @@ describe("Simple case testing", () => {
     it("GET /api/configurations with settings", async () => {
         let response = await request
             .get("/api/configurations")
-            .query('ids%5B0%5D=1')
+            .query('ids=1')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Accept', 'application/json')
             .send();
@@ -211,9 +222,9 @@ describe("Simple case testing", () => {
         const response = await request
             .get("/api/tags")
             .query('state=pending')
-            .query('tags_ids[]=1')
-            .query('tags_ids[]=2')
-            .query('categories_ids[]=' + 1)
+            .query('tags_ids=1')
+            .query('tags_ids=2')
+            .query('categories_ids=' + 1)
             .query('title=hero')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
@@ -224,7 +235,7 @@ describe("Simple case testing", () => {
         const response = await request
             .get("/api/tags_by_categories")
             .query('state=pending')
-            .query('onlySelected[]=1')
+            .query('onlySelected=1')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
@@ -357,10 +368,21 @@ describe("Simple case testing", () => {
             )
         );
     });
+
+    it("Export all exercises without settings", async () => {
+        // Try to use at least one combination of everything possible
+        const response = await request
+            .post("/api/export")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send();
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("categories"));
+        expect(response.body.hasOwnProperty("exercises"));
+    });
 });
 
 describe("Complex scenarios", () => {
-    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times and then Validate it", async () => {
+    it("Scenario n°1 : Creates a exercise / Find it / Update it 2 times and then update its status several times", async () => {
         // retrieve some tag categories
         let response = await request
             .post("/api/bulk/create_or_find_tag_categories")
@@ -429,7 +451,7 @@ describe("Complex scenarios", () => {
         expect(data.version).toBe(0);
         expect(data.state).toBe("DRAFT");
 
-        // A simple user should not be able to delete that one as it doesn't belong to him/her
+        // A simple user should not be able to delete exercises
         await request
             .delete("/api/bulk/delete_exercises")
             .set('Accept', 'application/json')
@@ -439,20 +461,32 @@ describe("Complex scenarios", () => {
             ])
             .expect(403);
 
+        // A simple user should not be able to modify a exercise that doesn't belong to him
+        let newExerciseVersion = {
+            title: data.title,
+            version: data.version,
+            description: data.description + "API4FUN",
+            tags: data.tags.map(tag => tag.tag_id),
+            removePreviousFile: true,
+            state: "PENDING",
+        };
+
+        response = await request
+            .put("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(newExerciseVersion);
+
+        expect(response.status).toBe(403);
+
+
         // test most updates cases : keep tags / add & remove
         // 1. Only changed description
         response = await request
             .put("/api/exercises/" + data.id)
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send({
-                title: data.title,
-                version: data.version,
-                description: data.description + "API4FUN",
-                tags: data.tags.map(tag => tag.tag_id),
-                removePreviousFile: true,
-                state: "PENDING",
-            });
+            .send(newExerciseVersion);
 
         expect(response.status).toBe(200);
 
@@ -495,6 +529,33 @@ describe("Complex scenarios", () => {
             });
 
         expect(response.status).toBe(200);
+
+        // 4. Archive this exercise
+        response = await request
+            .put("/api/bulk/modify_exercises_status")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send({
+                exercises: [data.id],
+                state: "ARCHIVED"
+            });
+
+        expect(response.status).toBe(200);
+
+        // Other user should not be able to fetch that
+        response = await request
+            .get("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(410);
+
+        // but its creator / admin should
+        response = await request
+            .get("/api/exercises/" + data.id)
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Accept', 'application/json');
+        expect(response.status).toBe(200);
+
     });
 
     it("Scenario n°2 : Creates a single exercise with (no) existent tag(s) and add tags later", async () => {
@@ -822,7 +883,7 @@ describe("Complex scenarios", () => {
         expect(responseTmp.status).toBe(200);
     });
 
-    it("Scenario n°7 : Creates a signle exercise wtih two tags, Deletes a tag then ", async () => {
+    it("Scenario n°7 : Creates a single exercise with two tags and deletes one tag", async () => {
 
         // creates a tag category just for that purpose
         const response = await request
@@ -859,6 +920,9 @@ describe("Complex scenarios", () => {
                 includeTags: true,
                 includeMetrics: true
             },
+            filterOptions: {
+                "tags": "pending"
+            },
             data: {
                 title: "Exercise for delete scenario"
             }
@@ -891,6 +955,33 @@ describe("Complex scenarios", () => {
         // check that there is no tag left
         result = await search_exercise(1, searchCriteria);
         expect(result.data[0].tags).toHaveLength(0);
+    });
+
+    it("Scenario n°8 : Export all exercises with all settings", async () => {
+        // Try to use at least one combination of everything possible
+        const response = await request
+            .post("/api/export")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send({
+                filterOptions: {
+                    state: ["VALIDATED", "ARCHIVED"],
+                    tags: "pending"
+                },
+                "orderBy": [
+                    // When my issue in Sequelize is fixed, it will restore my tags length sorting :
+                    // https://github.com/sequelize/sequelize/issues/11845
+                    //{"field": "tags_count", "value": "DESC"},
+                    {"field": "id", "value": "ASC"},
+                    {"field": "state", "value": "DESC"},
+                    {"field": "avg_score", "value": "ASC"},
+                    {"field": "date", "value": "DESC"},
+                    {"field": "title", "value": "ASC"},
+                    {"field": "vote_count", "value": "DESC"}
+                ]
+            });
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("categories"));
+        expect(response.body.hasOwnProperty("exercises"));
     });
 });
 

@@ -17,15 +17,16 @@ components:
 # Common enum used everywhere
     State:
       type: string
-      enum: [DRAFT,PENDING,VALIDATED,NOT_VALIDATED]
+      enum: [DRAFT,PENDING,VALIDATED,NOT_VALIDATED,ARCHIVED]
       example: PENDING
       description: |
-        Status of the exercise into the system. Currently, 4 states are possibles : 
+        Status of the exercise into the system. Currently, 5 states are possibles :
 
         1. DRAFT : The default state (for example when a exercise is inserted into the system)
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
+        5. ARCHIVED : When an exercise is archived / soft deleted
     Roles:
       type: string
       enum: [admin, user]
@@ -56,7 +57,25 @@ components:
           type: boolean
           default: true
           description: "Must we include the tags of exercise(s) ?"
-# Basic model of a Exercise 
+# Advanced Filtering for Exercise
+    FilteringOptions:
+      type: object
+      description: |
+        To filter some properties when fetching exercise(s)
+      properties:
+        state:
+          type: array
+          description: "Filter the exercises by their state. By default, no filtering is done."
+          items:
+            $ref: "#/components/schemas/State"
+          maxItems: 5
+        tags:
+          type: string
+          description: |
+            Filter the tags linked to exercise by their validity. The default value ('default') stands for no filtering.
+          enum: ["default", "validated", "pending"]
+          default: "default"
+# Basic model of a Exercise
     BasicExerciseModel:
       type: object
       properties:
@@ -105,7 +124,7 @@ components:
             file:
               type: string
               nullable: true
-              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{filename}"
+              description: "If not null, it is a uploaded file we can download with the GET endpoint /files/{file}"
               example: "sources-88af5adc-1837-11ea-8d71-362b9e155667.zip"
             url:
               type: string
@@ -268,7 +287,7 @@ components:
               type: integer
               minimum: 0
               description: "The version of this exercise (optimistic lock)"
-              example: 42 
+              example: 42
           required:
             - category_id
             - isValidated
@@ -291,6 +310,7 @@ components:
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
               minItems: 1 # We must always put at least one tag in the database
+              maxItems: 25 # At some point, a limit is needed to prevent abuse
             url:
               type: string
               pattern: '^https?:\/\/[^\s$.?#].[^\s]*$'
@@ -323,7 +343,7 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/SearchableExerciseModel" 
+            $ref: "#/components/schemas/SearchableExerciseModel"
             description: "An array of exercise data"
       required:
         - metadata
@@ -345,6 +365,7 @@ components:
           description: "Number of items by page"
           default: 10
           example: 10
+          maximum: 50
     SearchDataCriterias:
       type: object
       description: "Search criterias"
@@ -368,8 +389,6 @@ components:
                 minItems: 1 # Not allowing empty array if we use it
           description: "Tags search encoded in Conjunctive Normal Form. (for NOT predicat, use a negative integer)"
           example: [-1, [2, 3]]
-        state:
-          $ref: "#/components/schemas/State"
         user_ids:
           type: array
           description: "Filter the exercises by their creators."
@@ -427,23 +446,17 @@ components:
         - totalItems
         - totalPages
         - pageSize
-# Search criteria
-    SearchCriterias:
+# Common criteria for export and search for exercises
+    CommonCriterias:
       type: object
       properties:
-        metadata:
-          $ref: "#/components/schemas/PaginationCriterias"
-        includeOptions:
-          $ref: "#/components/schemas/IncludeOptions"
-        data:
-          $ref: "#/components/schemas/SearchDataCriterias"
         orderBy:
           description: |
             If you wish to order the provided result, use this parameter.
 
-            For example, if you wish to first sort by date descending then by title ascending, you could achieve that with : 
+            For example, if you wish to first sort by date descending then by title ascending, you could achieve that with :
             ```
-              [ 
+              [
                 {"field": "date", "value": "DESC"},
                 {"field": "title", "value": "ASC"}
               ]
@@ -462,7 +475,7 @@ components:
                   1. state : the state of the exercise
                   2. id : the id of the exercise
                   3. title : the title of the exercise
-                  4. date : the date of the last modification of the exercise 
+                  4. date : the date of the last modification of the exercise
                   5. avg_score : the average score of the exercise
                   6. vote_count : the number of voters for this exercise
                 enum: ['state', 'id', 'title', 'date', 'avg_score', 'vote_count']
@@ -470,15 +483,29 @@ components:
                 type: string
                 enum: ["ASC", "DESC"]
                 description: |
-                  The order we want to sort the related field : 
+                  The order we want to sort the related field :
 
                   - ASC : ASCENDING sorting
                   - DESC : DESCENDING sorting
+        data:
+          $ref: "#/components/schemas/SearchDataCriterias"
+        filterOptions:
+          $ref: "#/components/schemas/FilteringOptions"
+# Search criteria
+    SearchCriterias:
+      allOf:
+        - $ref: "#/components/schemas/CommonCriterias"
+        - type: object
+          properties:
+            metadata:
+              $ref: "#/components/schemas/PaginationCriterias"
+            includeOptions:
+              $ref: "#/components/schemas/IncludeOptions"
     MultipleExercisesForm:
       type: array
       minItems: 1
       items:
-        $ref: "#/components/schemas/ExerciseForm" 
+        $ref: "#/components/schemas/ExerciseForm"
         description: "An array of exercises"
     TagCategoriesForm:
       type: array

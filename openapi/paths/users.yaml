@@ -91,6 +91,7 @@ paths:
       parameters:
         - in: query
           name: metadata
+          style: deepObject
           schema:
             $ref: "../definitions.yaml#/components/schemas/PaginationCriterias"
       responses:
