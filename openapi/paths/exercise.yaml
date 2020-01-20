@@ -154,10 +154,45 @@ paths:
                     description: "The fetched exercises (with their tags)"
                     type: array
                     items:
-                      $ref: "../definitions.yaml#/components/schemas/AlreadyPresentExerciseModel"
+                      allOf:
+                        - $ref: "../definitions.yaml#/components/schemas/AlreadyPresentExerciseModel"
+                        - type: object
+                          properties:
+                            tags:
+                              type: array
+                              description: "The tags linked to this exercise"
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
+                                    description: "The text of this Tag"
+                                    example: "INGINIOUS"
+                                    minLength: 1
+                                    maxLength: 100
+                                  category:
+                                    type: integer
+                                    example: 42
+                                    minimum: 0
+                                    description: "The category of this tag"
+                                  isValidated:
+                                    type: boolean
+                                    default: false
+                                    example: false
+                                    description: "Is this tag validated or not ?"
+                                required:
+                                  - isValidated
+                                  - category
+                                  - text
+                          required:
+                            - tags
                   categories:
                     description: Map whose keys are the IDS of the categories and value their text
                     type: object
+                    example:
+                      "1":  "source"
+                      "2": "institution"
+                      "3": "auteur"
                 required:
                   - exercises
                   - categories

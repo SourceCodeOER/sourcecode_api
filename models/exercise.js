@@ -240,9 +240,8 @@ module.exports = (sequelize, DataTypes) => {
                             model: sequelize.models.Tag,
                             as: "tags",
                             attributes: [
-                                ["id", "tag_id"],
-                                ["text", "tag_text"],
-                                "category_id",
+                                ["text", "text"],
+                                ["category_id", "category"],
                                 "isValidated"
                             ],
                             through: {attributes: []},
