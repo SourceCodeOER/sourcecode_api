@@ -20,7 +20,7 @@ components:
       enum: [DRAFT,PENDING,VALIDATED,NOT_VALIDATED,ARCHIVED]
       example: PENDING
       description: |
-        Status of the exercise into the system. Currently, 5 states are possibles : 
+        Status of the exercise into the system. Currently, 5 states are possibles :
 
         1. DRAFT : The default state (for example when a exercise is inserted into the system)
         2. PENDING : When an exercise is ready for review
@@ -75,7 +75,7 @@ components:
             Filter the tags linked to exercise by their validity. The default value ('default') stands for no filtering.
           enum: ["default", "validated", "pending"]
           default: "default"
-# Basic model of a Exercise 
+# Basic model of a Exercise
     BasicExerciseModel:
       type: object
       properties:
@@ -287,7 +287,7 @@ components:
               type: integer
               minimum: 0
               description: "The version of this exercise (optimistic lock)"
-              example: 42 
+              example: 42
           required:
             - category_id
             - isValidated
@@ -343,7 +343,7 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/SearchableExerciseModel" 
+            $ref: "#/components/schemas/SearchableExerciseModel"
             description: "An array of exercise data"
       required:
         - metadata
@@ -365,6 +365,7 @@ components:
           description: "Number of items by page"
           default: 10
           example: 10
+          maximum: 50
     SearchDataCriterias:
       type: object
       description: "Search criterias"
@@ -453,9 +454,9 @@ components:
           description: |
             If you wish to order the provided result, use this parameter.
 
-            For example, if you wish to first sort by date descending then by title ascending, you could achieve that with : 
+            For example, if you wish to first sort by date descending then by title ascending, you could achieve that with :
             ```
-              [ 
+              [
                 {"field": "date", "value": "DESC"},
                 {"field": "title", "value": "ASC"}
               ]
@@ -474,7 +475,7 @@ components:
                   1. state : the state of the exercise
                   2. id : the id of the exercise
                   3. title : the title of the exercise
-                  4. date : the date of the last modification of the exercise 
+                  4. date : the date of the last modification of the exercise
                   5. avg_score : the average score of the exercise
                   6. vote_count : the number of voters for this exercise
                 enum: ['state', 'id', 'title', 'date', 'avg_score', 'vote_count']
@@ -482,7 +483,7 @@ components:
                 type: string
                 enum: ["ASC", "DESC"]
                 description: |
-                  The order we want to sort the related field : 
+                  The order we want to sort the related field :
 
                   - ASC : ASCENDING sorting
                   - DESC : DESCENDING sorting
@@ -504,7 +505,7 @@ components:
       type: array
       minItems: 1
       items:
-        $ref: "#/components/schemas/ExerciseForm" 
+        $ref: "#/components/schemas/ExerciseForm"
         description: "An array of exercises"
     TagCategoriesForm:
       type: array

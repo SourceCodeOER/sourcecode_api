@@ -167,12 +167,15 @@ describe("Simple case testing", () => {
                 "includeTags": false
             },
             "orderBy": [
+                // When my issue in Sequelize is fixed, it will restore my tags length sorting :
+                // https://github.com/sequelize/sequelize/issues/11845
+                //{"field": "tags_count", "value": "DESC"},
                 {"field": "id", "value": "ASC"},
                 {"field": "state", "value": "DESC"},
                 {"field": "avg_score", "value": "ASC"},
                 {"field": "date", "value": "DESC"},
                 {"field": "title", "value": "ASC"},
-                {"field": "vote_count", "value": "DESC"},
+                {"field": "vote_count", "value": "DESC"}
             ]
         };
         await search_exercise(0, criteria);
@@ -364,6 +367,17 @@ describe("Simple case testing", () => {
                     )
             )
         );
+    });
+
+    it("Export all exercises without settings", async () => {
+        // Try to use at least one combination of everything possible
+        const response = await request
+            .post("/api/export")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send();
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("categories"));
+        expect(response.body.hasOwnProperty("exercises"));
     });
 });
 
@@ -906,6 +920,9 @@ describe("Complex scenarios", () => {
                 includeTags: true,
                 includeMetrics: true
             },
+            filterOptions: {
+                "tags": "pending"
+            },
             data: {
                 title: "Exercise for delete scenario"
             }
@@ -938,6 +955,33 @@ describe("Complex scenarios", () => {
         // check that there is no tag left
         result = await search_exercise(1, searchCriteria);
         expect(result.data[0].tags).toHaveLength(0);
+    });
+
+    it("Scenario n°8 : Export all exercises with all settings", async () => {
+        // Try to use at least one combination of everything possible
+        const response = await request
+            .post("/api/export")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .send({
+                filterOptions: {
+                    state: ["VALIDATED", "ARCHIVED"],
+                    tags: "pending"
+                },
+                "orderBy": [
+                    // When my issue in Sequelize is fixed, it will restore my tags length sorting :
+                    // https://github.com/sequelize/sequelize/issues/11845
+                    //{"field": "tags_count", "value": "DESC"},
+                    {"field": "id", "value": "ASC"},
+                    {"field": "state", "value": "DESC"},
+                    {"field": "avg_score", "value": "ASC"},
+                    {"field": "date", "value": "DESC"},
+                    {"field": "title", "value": "ASC"},
+                    {"field": "vote_count", "value": "DESC"}
+                ]
+            });
+        expect(response.status).toBe(200);
+        expect(response.body.hasOwnProperty("categories"));
+        expect(response.body.hasOwnProperty("exercises"));
     });
 });
 

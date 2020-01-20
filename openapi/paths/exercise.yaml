@@ -104,6 +104,70 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /api/export:
+    post:
+      operationId: ExportExercises
+      x-controller: exercises
+      x-operation: ExportExercises
+      description: |
+        To export exercises that match optional criteria.  
+
+        The JSON result is compliant with the [format](https://github.com/SourceCodeOER/cli#what-is-the-format-of-the-json-object-)
+        of our [cli](https://github.com/SourceCodeOER/cli) which means that if you wish to reupload the exercises in the future,
+        it's simple as you just have to rely on the [cli](https://github.com/SourceCodeOER/cli) command "uploader".
+        Please consider the following facts before using it : 
+          
+          1. Don't forget to rename the key "categories" to "own_categories"
+
+          2. If you wish to upload them without their files, remove the property "file" in each exercise : 
+            ```js
+              let json_result = { /* ... */ };
+              const exercisesWithoutFile = json_result["exercises"].map(exercise => {
+                  delete exercise["file"]
+                  return exercise;
+              });
+              Object.assign(json_result, { "exercises": exercisesWithoutFile });
+            ```
+
+          3. If you wish to upload them with their files, download their files and modify each property "file" according our [format](https://github.com/SourceCodeOER/cli#what-is-the-format-of-the-json-object-)
+        of our [cli](https://github.com/SourceCodeOER/cli).
+
+      tags:
+        - admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions.yaml#/components/schemas/CommonCriterias"  
+      responses:
+        '200':
+          description: "Exercises data inside a JSON"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exercises:
+                    description: "The fetched exercises (with their tags)"
+                    type: array
+                    items:
+                      $ref: "../definitions.yaml#/components/schemas/AlreadyPresentExerciseModel"
+                  categories:
+                    description: Map whose keys are the IDS of the categories and value their text
+                    type: object
+                required:
+                  - exercises
+                  - categories
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"        
 
 components:
   securitySchemes:

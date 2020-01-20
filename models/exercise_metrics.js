@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         // the average score
         avg_vote_score: {
-            type: DataTypes.DECIMAL(3,2),
+            type: DataTypes.NUMERIC(3,2),
             defaultValue: 0.0,
             allowNull: false
         },

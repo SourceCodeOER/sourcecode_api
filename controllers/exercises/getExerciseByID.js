@@ -3,8 +3,6 @@ const models = require('../../models');
 const {build_search_result} = require("../_common/utlis_fct");
 const enumObj = require("../_common/exercise_status");
 
-const Sequelize = require("sequelize");
-
 module.exports = (req, res, next) => {
 
     const id = parseInt(req.params.id, 10);
@@ -41,10 +39,10 @@ module.exports = (req, res, next) => {
                     resolve();
                 }
             });
-        }).then((result) => {
+        }).then((_) => {
             // If we have a user, we should try to fetch its vote for this exercise
             return Promise.all([
-                build_search_result([id], options),
+                build_search_result([id], options, req.query),
                 (req.user) ? models.Notation.findAll({
                     attributes: [
                         ["note", "vote"]

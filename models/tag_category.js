@@ -56,6 +56,22 @@ module.exports = (sequelize, DataTypes) => {
                         attributes: []
                     }]
                 }
+            },
+            // To fetch all tag categories in a object like
+            // example: { "1" : "source", "2" : "institution", "3" : "auteur" }
+            allTagsCategoriesAsObject: function () {
+                return {
+                    attributes: [
+                        [
+                            Sequelize.fn(
+                                "json_object_agg",
+                                Sequelize.col("id"),
+                                Sequelize.col("kind")
+                            ),
+                            "categories"
+                        ]
+                    ]
+                }
             }
         }
     });

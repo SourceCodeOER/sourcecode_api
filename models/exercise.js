@@ -193,7 +193,8 @@ module.exports = (sequelize, DataTypes) => {
                 }
             },
             // retrieve all the tags of this exercise
-            with_related_tags_with_their_category() {
+            // filterOptions may be used if asked for one purpose : filter the extracted tags
+            with_related_tags_with_their_category(filterOptions) {
                 return {
                     include: [
                         {
@@ -201,11 +202,20 @@ module.exports = (sequelize, DataTypes) => {
                             as: "tags",
                             attributes: [
                                 ["id", "tag_id"],
-                                ["text", "tag_text"]
+                                ["text", "tag_text"],
+                                "isValidated"
                             ],
                             through: {attributes: []},
                             // Handle the case where no tags exists for one exercise
                             required: false,
+                            // if asked, only include some tags (and not all)
+                            where:
+                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                    ? {
+                                        isValidated: (filterOptions.tags === "validated")
+                                    }
+                                    : {}
+                            ,
                             include: [
                                 {
                                     model: sequelize.models.Tag_Category,
@@ -217,6 +227,35 @@ module.exports = (sequelize, DataTypes) => {
                                     ]
                                 }
                             ]
+                        }
+                    ]
+                }
+            },
+
+            // for /api/export
+            with_related_tags(filterOptions) {
+                return {
+                    include: [
+                        {
+                            model: sequelize.models.Tag,
+                            as: "tags",
+                            attributes: [
+                                ["id", "tag_id"],
+                                ["text", "tag_text"],
+                                "category_id",
+                                "isValidated"
+                            ],
+                            through: {attributes: []},
+                            // if asked, only include some tags (and not all)
+                            where:
+                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                    ? {
+                                        isValidated: (filterOptions.tags === "validated")
+                                    }
+                                    : {}
+                            ,
+                            // Handle the case where no tags exists for one exercise
+                            required: false,
                         }
                     ]
                 }

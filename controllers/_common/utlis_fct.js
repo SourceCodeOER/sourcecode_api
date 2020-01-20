@@ -16,12 +16,19 @@ const States = require("./exercise_status");
 // Some utilities functions commonly used
 module.exports = {
     // return "data" result for /search and /exercise/{id}
-    build_search_result(ids, {
-        includeCreator = false,
-        includeMetrics = true,
-        includeDescription = true,
-        includeTags = true,
-    } = {}) {
+    // This function takes 3 parameters (only the first one is mandatory)
+    // - ids : the ordered list of exercises ids we have to generate
+    // - the include options : to generate what the user asks
+    // - request : the full body of request
+    build_search_result(ids,
+                        {
+                            includeCreator = false,
+                            includeMetrics = true,
+                            includeDescription = true,
+                            includeTags = true,
+                        } = {},
+                        request
+    ) {
 
         return new Promise((resolve, reject) => {
             // For Postgres, we have a much better way to handle this case
@@ -54,10 +61,12 @@ module.exports = {
 
             // If asked, include the tags
             if (includeTags) {
-                exerciseScope.push("with_related_tags_with_their_category");
+                exerciseScope.push(
+                    {method: ["with_related_tags_with_their_category", request.filterOptions]}
+                );
             }
 
-            models
+            return models
                 .Exercise
                 .scope(exerciseScope)
                 .findAll()
@@ -85,7 +94,7 @@ module.exports = {
                             })
                     );
                 }).catch(/* istanbul ignore next */
-                err => reject(err));
+                    err => reject(err));
 
         })
     },
