@@ -152,6 +152,7 @@ describe("Simple case testing", () => {
                     -42
                 ],
                 "user_ids": [1, 2, 3],
+                "exercise_ids": [1, 2, 3],
                 "vote": {
                     "operator": "<=",
                     "value": 5.0

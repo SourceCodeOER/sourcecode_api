@@ -404,6 +404,15 @@ components:
             minimum: 0
             description: "An user ID"
           uniqueItems: true
+        exercise_ids:
+          type: array
+          description: "Filter the exercises by their ids."
+          minItems: 1
+          items:
+            type: integer
+            minimum: 0
+            description: "An exercise ID"
+          uniqueItems: true  
         vote:
           description: "Only take exercises that meet a given threshold"
           type: object

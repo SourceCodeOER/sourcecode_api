@@ -131,6 +131,14 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
 
+                    if (parameters.data.hasOwnProperty("exercise_ids")) {
+                        criteria.push({
+                            id: {
+                                [Op.in]: parameters.data["exercise_ids"]
+                            }
+                        });
+                    }
+
                 }
                 // merge multiple criteria into the where
                 options.where = Object.assign({}, ...criteria);
