@@ -234,8 +234,14 @@ components:
               required:
                 - category_text
                 - category_id
+            isValidated:
+              type: boolean
+              default: false
+              example: false
+              description: "Is this tag validated or not ?"
           required:
             - category
+            - isValidated
     TagCategoryWithTags:
       allOf:
         - $ref: "#/components/schemas/Tag_Category"
