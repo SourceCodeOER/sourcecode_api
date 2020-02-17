@@ -109,6 +109,41 @@ module.exports = {
 
     "check_credentials_on_exercises": check_credentials_on_exercises,
 
+    // To check that we have at least N validated tags
+    validated_tag_count(ids, required_number) {
+        return new Promise((resolve, reject) => {
+            // As https://github.com/sequelize/sequelize/issues/5732 is not implemented
+            // I will use a workaround ( like my scope "count_summary" )
+            const filterGen = (where) => Sequelize.literal(`COUNT(*) FILTER ${where}`);
+            models
+                .Tag
+                .findAll({
+                    attributes: [
+                        [
+                            filterGen(`(WHERE "Tag"."isValidated" = true)`),
+                            "total"
+                        ]
+                    ],
+                    where: {
+                        id: {
+                            [Op.in]: ids
+                        }
+                    }
+                }).then(([result]) => {
+                let count = parseInt(result.get("total"));
+                if (count >= required_number) {
+                    resolve();
+                } else {
+                    let error = new Error("Bad Request");
+                    error.message = `Required ${required_number} validated tag(s) - only ${count} is/are validated`;
+                    error.status = 400;
+                    reject(error);
+                }
+            }).catch(/* istanbul ignore next */
+                err => reject(err))
+        });
+    },
+
     // To store a single exercise
     store_single_exercise(user, exercise_data, existent_tags, really_new_tags) {
         return new Promise((resolve, reject) => {
@@ -311,6 +346,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
             ])
             .then(([_, exercise, tags]) => {
                 // add the newly created tags ids to array so that I can bulk insert easily
+                // TODO
                 const all_tags_ids = existent_tags.concat(
                     tags.map(tag => tag.id)
                 );
@@ -372,9 +408,12 @@ function matching_process(already_present_tags, new_tags, tag_dictionary) {
         const reduced_dictionary = dictionary_for_similarity(tag_dictionary);
         const [has_match, no_match] = super_matching_process(new_tags, tag_dictionary, reduced_dictionary);
         resolve([
-            already_present_tags.concat(
-                ...has_match.map(tag => tag.id)
-            ),
+            // Using a Set to prevent duplicate entries ( very rare case that could occur in some scenarios )
+            [...new Set(
+                already_present_tags.concat(
+                    ...has_match.map(tag => tag.id)
+                )
+            )],
             no_match
         ]);
     });

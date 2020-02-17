@@ -49,11 +49,12 @@ paths:
     put:
       summary: "Update this specific exercise data"
       description: |
-        Update this specific exercise data
-        The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
+        Update this specific exercise data  
+        You are free to add new tags / keywords but you **must** add at least 3 validated tags.
+        The following restrictions are applied on simple user(s) (no restriction for admin) :  
 
         1. He/She can only modify his/her own exercises
-        2. Only the following states are allowed :
+        2. Only the following states are allowed for the field "state" :
           - DRAFT
           - PENDING
       operationId: UpdateExercise

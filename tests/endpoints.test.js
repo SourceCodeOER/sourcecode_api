@@ -11,16 +11,9 @@ const userName = "Eric Cartman";
 
 let JWT_TOKEN = ""; // The admin user
 let JWT_TOKEN_2 = ""; // A simple user
-const tag_categories = ["source", "institution", "auteur"];
+const tag_categories = ["keywords", "source", "institution", "auteur"];
 const tags = ["java", "UCLOUVAIN", "Jacques Y", "github.com"];
 
-// credits to Mozilla
-// https://stackoverflow.com/a/1527820/6149867
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 // credits to https://stackoverflow.com/a/8511350/6149867
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
@@ -73,6 +66,20 @@ async function setUpBasic() {
     expect(response3.status).toBe(200);
     expect(response3.body).toHaveLength(tag_categories.length);
 
+    // creates some validated tags and store them into the first categories
+    const response4 = await request
+        .post("/api/bulk/create_tags")
+        .set('Authorization', 'bearer ' + JWT_TOKEN)
+        .set('Content-Type', 'application/json')
+        .send(
+            tags.map(tag => ({
+                text: tag,
+                category_id: 1,
+                isValidated: true
+            }))
+        );
+    expect(response4.status).toBe(200);
+
     JWT_TOKEN_2 = response2.body.token;
     expect(typeof JWT_TOKEN_2).toBe('string');
 
@@ -104,7 +111,7 @@ describe("Simple case testing", () => {
                 .post("/api/tags")
                 .set('Authorization', 'bearer ' + JWT_TOKEN)
                 .set('Content-Type', 'application/json')
-                .send({text: tag, category_id: getRandomInt(1, tag_categories.length)})
+                .send({text: tag, category_id: 1})
         }));
         expect(responses).toHaveLength(tags.length);
     });
@@ -413,7 +420,6 @@ describe("Complex scenarios", () => {
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
         const some_tags_ids = response.body
-            .slice(0, Math.floor(tags.length / 2))
             .map(tag => tag.tag_id);
 
         // creates one exercise
@@ -511,9 +517,9 @@ describe("Complex scenarios", () => {
                 title: data.title,
                 version: 1,
                 description: data.description + "API4FUN",
-                tags: data.tags.splice(0, 1).map(tag => tag.tag_id).concat([
-                    {text: "TRY 1", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
-                    {text: "TRY 2", category_id: tag_categories_ids[getRandomInt(0, tag_categories_ids.length - 1)]},
+                tags: data.tags.splice(0, 3).map(tag => tag.tag_id).concat([
+                    {text: "TRY 1", category_id: tag_categories_ids[0]},
+                    {text: "TRY 2", category_id: tag_categories_ids[0]},
                 ])
             });
 
@@ -582,22 +588,24 @@ describe("Complex scenarios", () => {
 
         const title = "MEAN_OF_LIFE_42";
         // creates a single exercise
+        const exerciseData = {
+            "title": title,
+            "description": "Random exercise",
+            "tags": [1, 2, 3, {
+                "text": "JDG",
+                "category_id": 1
+            }, {
+                "text": tags[2],
+                "category_id": 1
+            }],
+            "url": "https://inginious.info.ucl.ac.be/mycourses"
+        };
+
         response = await request
             .post("/api/create_exercise")
             .set('Authorization', 'bearer ' + JWT_TOKEN)
             .set('Content-Type', 'application/json')
-            .send({
-                "title": title,
-                "description": "Random exercise",
-                "tags": [1, 2, 3, {
-                    "text": "JDG",
-                    "category_id": 1
-                }, {
-                    "text": tags[2],
-                    "category_id": 1
-                }],
-                "url": "https://inginious.info.ucl.ac.be/mycourses"
-            });
+            .send(exerciseData);
 
         expect(response.status).toBe(200);
 
@@ -691,10 +699,14 @@ describe("Complex scenarios", () => {
             .send({
                 "title": title,
                 "description": "Random exercise",
-                "tags": ["JDG", "JDG-2", "JDG-3"].map(text => ({
-                    "text": text,
-                    "category_id": 1
-                }))
+                "tags": [1, 2, 3]
+                    .concat(
+                        ["JDG", "JDG-2", "JDG-3"]
+                            .map(text => ({
+                                "text": text,
+                                "category_id": 1
+                            }))
+                    )
             });
         expect(responseTmp.status).toBe(200);
 
@@ -1015,7 +1027,10 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .field("tags[1][text]", "MULTI PART exercise 2")
             .field("tags[1][category_id]", 1)
             .field("tags[2][text]", "MULTI PART exercise 3")
-            .field("tags[2][category_id]", 1);
+            .field("tags[2][category_id]", 1)
+            .field("tags[3]", 1)
+            .field("tags[4]", 2)
+            .field("tags[5]", 3);
         expect(responseTmp.status).toBe(200);
 
         const exercise = await search_exercise(1, search_criteria);
@@ -1036,7 +1051,10 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .field("tags[1][text]", "MULTI PART exercise 2")
             .field("tags[1][category_id]", 1)
             .field("tags[2][text]", "MULTI PART exercise 3")
-            .field("tags[2][category_id]", 1);
+            .field("tags[2][category_id]", 1)
+            .field("tags[3]", 1)
+            .field("tags[4]", 2)
+            .field("tags[5]", 3);
         expect(responseTmp.status).toBe(200);
 
         const exercise2 = await search_exercise(1, search_criteria);
@@ -1244,6 +1262,22 @@ describe("Validations testing", () => {
             .send(some_exercise_data);
         expect(responseTemp.status).toBe(403);
     });
+
+    it("POST /api/ : Cannot create/update an exercise with not expected validated tag count", async () => {
+        // creates one exercise with 2
+        const title = "HELLO WORLD";
+        const some_exercise_data = {
+            "title": title,
+            "description": "Some verrrrrrrrrry long description here",
+            tags: [1, 2, {"text": "lol", "category_id": 1}]
+        };
+        let responseTemp = await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN)
+            .set('Content-Type', 'application/json')
+            .send(some_exercise_data);
+        expect(responseTemp.status).toBe(400);
+    })
 });
 
 // utilities functions
