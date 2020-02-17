@@ -691,10 +691,10 @@ describe("Complex scenarios", () => {
             .send({
                 "title": title,
                 "description": "Random exercise",
-                "tags": [{
-                    "text": "JDG",
+                "tags": ["JDG", "JDG-2", "JDG-3"].map(text => ({
+                    "text": text,
                     "category_id": 1
-                }]
+                }))
             });
         expect(responseTmp.status).toBe(200);
 
@@ -1011,7 +1011,11 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .attach("exerciseFile", example_zip_file)
             .field(exercise_data)
             .field("tags[0][text]", "MULTI PART exercise")
-            .field("tags[0][category_id]", 1);
+            .field("tags[0][category_id]", 1)
+            .field("tags[1][text]", "MULTI PART exercise 2")
+            .field("tags[1][category_id]", 1)
+            .field("tags[2][text]", "MULTI PART exercise 3")
+            .field("tags[2][category_id]", 1);
         expect(responseTmp.status).toBe(200);
 
         const exercise = await search_exercise(1, search_criteria);
@@ -1028,7 +1032,11 @@ describe("Using multipart/form-data (instead of JSON)", () => {
                 "version": 0
             })
             .field("tags[0][text]", "MULTI PART exercise")
-            .field("tags[0][category_id]", 1);
+            .field("tags[0][category_id]", 1)
+            .field("tags[1][text]", "MULTI PART exercise 2")
+            .field("tags[1][category_id]", 1)
+            .field("tags[2][text]", "MULTI PART exercise 3")
+            .field("tags[2][category_id]", 1);
         expect(responseTmp.status).toBe(200);
 
         const exercise2 = await search_exercise(1, search_criteria);
@@ -1194,7 +1202,7 @@ describe("Validations testing", () => {
                 "title": "A Super Exercise",
                 "description": "...",
                 "tags": [
-                    0
+                    0,1,2
                 ],
                 "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams",
                 "version": 42
