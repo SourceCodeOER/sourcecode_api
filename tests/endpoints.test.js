@@ -1229,10 +1229,10 @@ describe("Validations testing", () => {
         const some_exercise_data = {
             "title": "HELLO WORLD",
             "description": "Some verrrrrrrrrry long description here",
-            tags: [{
-                text: "SOME_TAG1",
+            tags: ["SOME_TAG1", "SOME_TAG2", "SOME_TAG3"].map(text => ({
+                text: text,
                 category_id: 42
-            }],
+            })),
             "state": "VALIDATED"
         };
         let responseTemp = await request
