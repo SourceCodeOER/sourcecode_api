@@ -1117,6 +1117,8 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .attach("exerciseFile", example_zip_file)
             .field(exercise_data)
             .field("tags[0]", 42)
+            .field("tags[1]", 42)
+            .field("tags[2]", 42)
             .expect(401);
     });
 });
