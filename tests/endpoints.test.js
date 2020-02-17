@@ -1110,16 +1110,16 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             "url": "https://inginious.info.ucl.ac.be/"
         };
 
-        await request
+        const test = await request
             .post("/api/create_exercise")
             .set('Authorization', 'bearer ' + "NOT_A_TOKEN")
             //.set('Content-Type', "multipart/form-data")
             .attach("exerciseFile", example_zip_file)
             .field(exercise_data)
             .field("tags[0]", 42)
-            .field("tags[1]", 42)
-            .field("tags[2]", 42)
-            .expect(401);
+            .field("tags[1]", 43)
+            .field("tags[2]", 44);
+        expect(test.status).toBe(401);
     });
 });
 
@@ -1204,7 +1204,7 @@ describe("Validations testing", () => {
                 "title": "A Super Exercise",
                 "description": "...",
                 "tags": [
-                    0,1,2
+                    0, 1, 2
                 ],
                 "url": "https://inginious.info.ucl.ac.be/course/LEPL1402/Streams",
                 "version": 42
