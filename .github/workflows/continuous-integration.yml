@@ -45,7 +45,7 @@ jobs:
           npm ci
       - name: Tests
         env:
-          DATABASE_URL: '${{ env.POSTGRES_HOST }}://${{ env.POSTGRES_USER}}:${{env.POSTGRES_PASSWORD}}:${{env.POSTGRES_PORT}}/${{env.POSTGRES_DB}}'
+          DATABASE_URL: 'postgresql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@${{ env.POSTGRES_HOST }}:${{env.POSTGRES_PORT}}/${{env.POSTGRES_DB}}'
         run: |
           npm test
       - name: Upload code coverage
