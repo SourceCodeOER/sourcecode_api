@@ -315,7 +315,7 @@ components:
                     description: "A not-existent Tag we want to add"
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
-              minItems: 1 # We must always put at least one tag in the database
+              minItems: 3 # We must always put at least N tag(s) in the database
               maxItems: 25 # At some point, a limit is needed to prevent abuse
             url:
               type: string

@@ -183,14 +183,8 @@ paths:
         Creates multiple exercises into the system
         By default (if nothing specified), an exercise will be in state "DRAFT". 
 
-        The following restrictions are applied on simple user(s) for the field "state" (no restriction for admin):
-        
-        1. He/She can only modify his/her own exercises
-        2. Only the following states are allowed : 
-          - DRAFT  
-          - PENDING  
       tags:
-        - user
+        - admin
       operationId: createMultipleExercises
       x-controller: bulk
       x-operation: createMultipleExercises

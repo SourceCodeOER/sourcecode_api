@@ -1,6 +1,6 @@
 const chain = require('connect-chain-if');
-const {check_credentials_on_exercises} = require("../../controllers/_common/utlis_fct");
-const { pass_middleware, check_exercise_state } = require("./common_sub_middlewares");
+const {check_credentials_on_exercises, validated_tag_count} = require("../../controllers/_common/utlis_fct");
+const {pass_middleware, check_exercise_state} = require("./common_sub_middlewares");
 
 // Arrays for check
 const check_credentials_endpoints = ["UpdateExercise", "createSingleExercise"];
@@ -24,6 +24,20 @@ module.exports = (operation) => (req, res, next) => {
         chain.if(
             check_credentials_endpoints.includes(operation["x-operation"]),
             check_exercise_state([req.body.state].filter(s => s !== undefined)),
+            pass_middleware
+        ),
+        // Third check that user have add at least 3 validated tags
+        chain.if(
+            check_credentials_endpoints.includes(operation["x-operation"]),
+            (_req, _res, _next) => {
+                const tags = _req.body.tags.filter(tag => !isNaN(tag));
+                validated_tag_count(
+                    tags,
+                    3
+                )
+                    .then(() => _next())
+                    .catch((err) => _next(err));
+            },
             pass_middleware
         )
     ])(req, res, (err) => {
