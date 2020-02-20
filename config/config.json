@@ -6,7 +6,8 @@
     "dialect": "postgres",
     "database": "database_test",
     "schema": "exercises_library",
-    "logging": false
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
   },
   "test": {
     "username": "postgres",
@@ -15,7 +16,8 @@
     "dialect": "postgres",
     "database": "database_test",
     "schema": "exercises_library",
-    "logging": false
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
   },
   "production": {
     "username": "postgres",
@@ -24,6 +26,7 @@
     "dialect": "postgres",
     "database": "database_production",
     "schema": "exercises_library",
-    "logging": false
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
   }
 }
