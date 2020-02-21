@@ -12,7 +12,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     container:
-      image: node:12
+      image: node:12-alpine
     services:
 # More explanation about that here :
 # https://github.com/actions/example-services/blob/master/.github/workflows/postgres-service.yml

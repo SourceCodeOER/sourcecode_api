@@ -1,6 +1,6 @@
 'use strict';
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // To encrypt password before creating / updating an instance
 const SALT_WORK_FACTOR = 10;

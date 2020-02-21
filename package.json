@@ -7,7 +7,7 @@
     "url": "https://github.com/SourceCodeOER/sourcecode_api.git"
   },
   "scripts": {
-    "start": "cross-env DEBUG=sourcecode_api:* node ./bin/www",
+    "start": "node ./bin/www",
     "createSchema": "node ./bin/create_schema",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
@@ -18,7 +18,7 @@
   "author": "jy95",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "body-parser": "latest",
     "connect-chain-if": "^1.0.0",
