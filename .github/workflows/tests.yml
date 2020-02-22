@@ -1,0 +1,50 @@
+name: Source Code Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    container:
+      image: node:12-alpine
+    services:
+      # More explanation about that here :
+      # https://github.com/actions/example-services/blob/master/.github/workflows/postgres-service.yml
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: jy95
+          POSTGRES_DB: sourcecode
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: jy95
+      POSTGRES_DB: sourcecode
+      # use postgres for the host here because we have specified a container for the job.
+      # If we were running the job on the VM this would be localhost
+      POSTGRES_HOST: postgres
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set DB Port
+        env:
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+        run: |
+          echo "::set-env name=POSTGRES_PORT::$POSTGRES_PORT"
+      - name: Install
+        run: |
+          npm install -g npm@latest
+          npm ci
+      - name: Tests
+        env:
+          DATABASE_URL: 'postgresql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@${{ env.POSTGRES_HOST }}:${{env.POSTGRES_PORT}}/${{env.POSTGRES_DB}}'
+        run: |
+          npm test
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/lcov.info

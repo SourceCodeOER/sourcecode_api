@@ -9,21 +9,15 @@
     "logging": false
   },
   "test": {
-    "username": "postgres",
-    "password": "jy95",
-    "host": "127.0.0.1",
     "dialect": "postgres",
-    "database": "database_test",
     "schema": "exercises_library",
-    "logging": false
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
   },
   "production": {
-    "username": "postgres",
-    "password": "jy95",
-    "host": "127.0.0.1",
     "dialect": "postgres",
-    "database": "database_production",
     "schema": "exercises_library",
-    "logging": false
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
   }
 }

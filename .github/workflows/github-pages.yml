@@ -1,0 +1,31 @@
+name: Github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Set up
+        run: |
+          npm install -g redoc-cli
+          npm install -g @openapitools/openapi-generator-cli
+      - name: Validate OpenAPI documentation
+        run: |
+          npx openapi-generator validate -i api.yml
+      - name: Generate documentation
+        run: |
+          npx redoc-cli bundle api.yml -o docs/index.html
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
