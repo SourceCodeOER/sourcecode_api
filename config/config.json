@@ -16,7 +16,6 @@
   },
   "production": {
     "dialect": "postgres",
-    "schema": "exercises_library",
     "logging": false,
     "use_env_variable": "DATABASE_URL"
   }
