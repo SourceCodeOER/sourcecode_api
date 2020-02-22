@@ -15,6 +15,9 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
+# Set to production
+ENV NODE_ENV=production
+
 # Notification about what port is going to expose our app.
 EXPOSE 3000
 #  Command to start our container.
