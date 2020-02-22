@@ -26,6 +26,6 @@ jobs:
           npx redoc-cli bundle api.yml -o docs/index.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
