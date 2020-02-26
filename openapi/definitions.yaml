@@ -40,7 +40,6 @@ components:
       type: string
       enum: [NOT_VALIDATED, VALIDATED, DEPRECATED]
       example: DEPRECATED
-      default: NOT_VALIDATED
       description: |
         Status of the tag into the system. Currently, 3 states are possibles :  
 
