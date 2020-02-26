@@ -1293,7 +1293,7 @@ describe("Validations testing", () => {
                     state: "VALIDATED"
                 }))
             );
-        expect(response.status).toBe(400);
+        expect(response.status).toBe(403);
     });
 });
 

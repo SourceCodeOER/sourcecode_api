@@ -120,7 +120,7 @@ module.exports = {
                 .findAll({
                     attributes: [
                         [
-                            filterGen(`(WHERE "Tag"."state" = "${tagState.VALIDATED}")`),
+                            filterGen(`(WHERE "Tag"."state" = '${tagState.VALIDATED}')`),
                             "total"
                         ]
                     ],

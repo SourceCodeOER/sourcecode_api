@@ -49,10 +49,10 @@ module.exports = (operation) => (req, res, next) => {
         chain.if(
             operation["x-operation"] === "createMultipleTags",
             (_req, _res, _next) => {
-                let allowed = ["user"];
-                // state property is reserved for admin only
-                if (_req.body.some(t => t.hasOwnProperty("state"))) {
-                    allowed.push("admin");
+                let allowed = ["admin"];
+                // state property is reserved for admin only ; if simple user don't use it - he/she is allowed
+                if (!_req.body.some(t => t.hasOwnProperty("state"))) {
+                    allowed.push("user");
                 }
                 check_user_role(allowed)(_req, _res, _next);
             },
