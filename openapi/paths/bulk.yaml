@@ -244,6 +244,10 @@ paths:
   /api/bulk/create_tags:
     post:
       summary: "Creates multiple tags into the system"
+      description: |
+        Creates multiple tags into the system.
+
+        Warning : the "state" property can only be used by authorized people (no simple user can use it)
       tags:
         - user
       operationId: createMultipleTags
@@ -263,11 +267,8 @@ paths:
                   - $ref: "../definitions.yaml#/components/schemas/TagProposal"
                   - type: object
                     properties:
-                      isValidated:
-                        type: boolean
-                        example: false
-                        default: false
-                        description: "Should this tag validated or not ? By default, this tag is not validated"
+                      state:
+                        $ref: "../definitions.yaml#/components/schemas/TagState"
       responses:
         '200':
           description: OK

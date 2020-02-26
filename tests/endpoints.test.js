@@ -75,7 +75,7 @@ async function setUpBasic() {
             tags.map(tag => ({
                 text: tag,
                 category_id: 1,
-                isValidated: true
+                state: "VALIDATED"
             }))
         );
     expect(response4.status).toBe(200);
@@ -229,7 +229,7 @@ describe("Simple case testing", () => {
     it("GET /api/tags with all settings used", async () => {
         const response = await request
             .get("/api/tags")
-            .query('state=pending')
+            .query('state=NOT_VALIDATED')
             .query('tags_ids=1')
             .query('tags_ids=2')
             .query('categories_ids=' + 1)
@@ -339,7 +339,7 @@ describe("Simple case testing", () => {
             {
                 text: "MASTER_TAG_1",
                 category_id: aTagCategory,
-                isValidated: true,
+                state: "VALIDATED",
             },
             {
                 text: "MASTER_TAG_2",
@@ -1278,7 +1278,23 @@ describe("Validations testing", () => {
             .set('Content-Type', 'application/json')
             .send(some_exercise_data);
         expect(responseTemp.status).toBe(400);
-    })
+    });
+
+    it("POST /api/bulk/create_tags : Simple user cannot create a validated tag", async () => {
+        // creates some tags categories
+        let response = await request
+            .post("/api/bulk/create_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(
+                ["TROLL"].map(tag => ({
+                    text: tag,
+                    category_id: 1,
+                    state: "VALIDATED"
+                }))
+            );
+        expect(response.status).toBe(400);
+    });
 });
 
 // utilities functions

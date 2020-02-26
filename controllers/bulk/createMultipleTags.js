@@ -1,6 +1,8 @@
 const models = require('../../models');
 const Sequelize = require("sequelize");
 
+const TagState = require("../_common/constants")["TAGS"];
+
 // to prevent duplicates in database
 const {
     find_tag_matches,
@@ -32,9 +34,9 @@ module.exports = (req, res, next) => {
                                 really_new_tags.map(tag => {
                                     return {
                                         // if admin has set explicitly the isValidated
-                                        isValidated: (tag.hasOwnProperty("isValidated"))
-                                            ? tag.isValidated
-                                            : false,
+                                        state: (tag.hasOwnProperty("state"))
+                                            ? TagState[tag.state]
+                                            : TagState.NOT_VALIDATED,
                                         text: tag.text,
                                         category_id: tag.category_id,
                                         // some timestamps must be inserted

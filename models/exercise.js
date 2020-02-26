@@ -111,7 +111,7 @@ module.exports = (sequelize, DataTypes) => {
                         });
                     }
                 }
-                // if the user provide a title / isValidated check , we must add it to the where clause
+                // if the user provide some instructions , we must add them to the where clause
                 if (parameters.hasOwnProperty("data")) {
 
                     /* istanbul ignore else */
@@ -211,14 +211,15 @@ module.exports = (sequelize, DataTypes) => {
                             attributes: [
                                 ["id", "tag_id"],
                                 ["text", "tag_text"],
-                                "isValidated"
+                                "state"
                             ],
                             through: {attributes: []},
                             // Handle the case where no tags exists for one exercise
                             required: false,
                             // if asked, only include some tags (and not all)
                             where:
-                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                (![undefined].includes(filterOptions && filterOptions.tags))
+                                    // TODO
                                     ? {
                                         isValidated: (filterOptions.tags === "validated")
                                     }
@@ -250,12 +251,13 @@ module.exports = (sequelize, DataTypes) => {
                             attributes: [
                                 ["text", "text"],
                                 ["category_id", "category"],
-                                "isValidated"
+                                "state"
                             ],
                             through: {attributes: []},
                             // if asked, only include some tags (and not all)
                             where:
-                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                (![undefined].includes(filterOptions && filterOptions.tags))
+                                    // TODO
                                     ? {
                                         isValidated: (filterOptions.tags === "validated")
                                     }

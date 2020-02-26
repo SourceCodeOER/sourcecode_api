@@ -7,7 +7,6 @@ const values = Object.values(TagState);
 module.exports = {
     up: (queryInterface, Sequelize) => {
         // if using a schema
-        let schema;
         if (queryInterface.sequelize.options.schema) {
             opts.schema = queryInterface.sequelize.options.schema;
         }
@@ -22,14 +21,14 @@ module.exports = {
 
             // populate the db
             await queryInterface
-                .bulkUpdate(opts.tableName, {
+                .bulkUpdate(opts, {
                     state: TagState.VALIDATED
                 }, {
                     isValidated: true
-                });
+                }, {transaction: t});
 
             // destroy old field
-            await queryInterface.removeColumn(opts, "isValidated");
+            await queryInterface.removeColumn(opts, "isValidated", {transaction: t});
 
             return Promise.resolve();
         });
