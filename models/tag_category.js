@@ -42,15 +42,15 @@ module.exports = (sequelize, DataTypes) => {
                             "total"
                         ],
                         [
-                            filterGen(`(WHERE "tags"."state" = "${TagState.VALIDATED}")`),
+                            filterGen(`(WHERE "tags"."state" = '${TagState.VALIDATED}')`),
                             "total_validated"
                         ],
                         [
-                            filterGen(`(WHERE "tags"."state" = "${TagState.NOT_VALIDATED}")`),
+                            filterGen(`(WHERE "tags"."state" = '${TagState.NOT_VALIDATED}')`),
                             "total_unvalidated"
                         ],
                         [
-                            filterGen(`(WHERE "tags"."state" = "${TagState.DEPRECATED}")`),
+                            filterGen(`(WHERE "tags"."state" = '${TagState.DEPRECATED}')`),
                             "total_deprecated"
                         ],
                     ],
