@@ -3,7 +3,7 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-const exerciseState = require("../controllers/_common/constants")["EXERCISES"];
+const { EXERCISES: exerciseState, TAGS: tagState } = require("../controllers/_common/constants");
 let enumValues = Object.values(exerciseState);
 
 // Useful for vote filtering (and maybe other things later)
@@ -219,9 +219,10 @@ module.exports = (sequelize, DataTypes) => {
                             // if asked, only include some tags (and not all)
                             where:
                                 (![undefined].includes(filterOptions && filterOptions.tags))
-                                    // TODO
                                     ? {
-                                        isValidated: (filterOptions.tags === "validated")
+                                        state: {
+                                            [Op.in]: filterOptions.tags.map(s => tagState[s] )
+                                        }
                                     }
                                     : {}
                             ,
@@ -257,9 +258,10 @@ module.exports = (sequelize, DataTypes) => {
                             // if asked, only include some tags (and not all)
                             where:
                                 (![undefined].includes(filterOptions && filterOptions.tags))
-                                    // TODO
                                     ? {
-                                        isValidated: (filterOptions.tags === "validated")
+                                        state: {
+                                            [Op.in]: filterOptions.tags.map(s => tagState[s] )
+                                        }
                                     }
                                     : {}
                             ,

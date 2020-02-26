@@ -1,12 +1,13 @@
 const models = require('../../models');
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const {TAGS: TagState} = require("../_common/constants");
 
 module.exports = function (req, res, next) {
     const params = req.query;
 
     const settings = {
-        state: params.state || "default",
+        state: params.state || [],
         onlySelected: params.onlySelected || [],
     };
 
@@ -41,13 +42,16 @@ module.exports = function (req, res, next) {
                     "version"
                 ],
                 as: "tags",
-                // TODO
                 where: Object
                     .assign({},
                         ...(
-                            (settings.state !== "default")
+                            (settings.state.length > 0)
                                 /* istanbul ignore next */
-                                ? [{isValidated: settings.state === "validated"}]
+                                ? [{
+                                    state: {
+                                        [Op.in]: settings.state.map(s => TagState[s] )
+                                    }
+                                }]
                                 : []
                         )
                     )

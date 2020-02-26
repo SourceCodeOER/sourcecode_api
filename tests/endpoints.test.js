@@ -242,7 +242,7 @@ describe("Simple case testing", () => {
     it("GET /api/tags_by_categories with all settings used", async () => {
         const response = await request
             .get("/api/tags_by_categories")
-            .query('state=pending')
+            .query('state=VALIDATED')
             .query('onlySelected=1')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
@@ -372,7 +372,7 @@ describe("Simple case testing", () => {
                     .some(tag2 =>
                         (tag.text === tag2.tag_text)
                         && (tag2.category_id === aTagCategory)
-                        && (tag2.isValidated === (tag.isValidated || false))
+                        && (tag2.state === (tag.state || "NOT_VALIDATED"))
                     )
             )
         );
@@ -665,7 +665,7 @@ describe("Complex scenarios", () => {
 
         expect(created_tag).not.toBe(undefined);
         expect(created_tag.version).toBe(0);
-        expect(created_tag.isValidated).toBe(false);
+        expect(created_tag.state).toBe("NOT_VALIDATED");
 
         // modify it to validate it
         responseTmp = await request
@@ -677,7 +677,7 @@ describe("Complex scenarios", () => {
                 tag_text: created_tag.tag_text,
                 category_id: created_tag.category_id,
                 version: created_tag.version,
-                isValidated: true
+                state: "VALIDATED"
             });
         expect(responseTmp.status).toBe(200);
 
@@ -1197,7 +1197,7 @@ describe("Validations testing", () => {
                 "tag_id": 0,
                 "tag_text": "SomeTest",
                 "category_id": 0,
-                "isValidated": false,
+                "state": "NOT_VALIDATED",
                 "version": 0
             })
             .expect(403);

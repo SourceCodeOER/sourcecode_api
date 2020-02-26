@@ -2,6 +2,7 @@ const models = require('../../models');
 
 // to prevent duplicates in database
 const {find_tag_matches} = require("../_common/utlis_fct");
+const { TAGS: tagState } = require("../_common/constants");
 
 module.exports = (req, res, next) => {
     const creationDate = new Date();
@@ -22,7 +23,7 @@ module.exports = (req, res, next) => {
                         text: text,
                         category_id: category_id,
                         // by default, consider a tag as not official
-                        isValidated: false,
+                        state: tagState.NOT_VALIDATED,
                         // some date
                         updateAt: creationDate,
                         createAt: creationDate
