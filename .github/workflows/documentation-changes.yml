@@ -1,0 +1,38 @@
+name: Source Code API Breaking Changes
+# Everyone is happy with breaking changes ^^
+on:
+  push:
+#    branches:
+#      - master
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install required tools
+        run: |
+          npm install speccy -g
+          npm install openapi-diff -g
+      - name: Clones repository with the two separate branch ( MASTER and ${{ github.ref }})
+        run: |
+          branchWithPrefix="${{ github.ref }}"
+          prefix="refs/heads/"
+          branch=${var#$prefix}
+          git clone -b master --single-branch https://github.com/${{ github.repository }}.git A
+          git clone -b ${branch} --single-branch https://github.com/${{ github.repository }}.git B
+      - name: Build OAS specifications
+        run: |
+          npx speccy resolve A/api.yml -o original-spec.yaml
+          npx speccy resolve B/api.yml -o modified-spec.yaml
+      - name: Compare the two files
+        run: |
+          npx openapi-diff original-spec.yaml modified-spec.yaml 2> breaking-changes.txt
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: openapi-diff.txt
+          path: breaking-changes.txt
