@@ -320,7 +320,8 @@ describe("Simple case testing", () => {
         expect(response.body.every(t => t.hasOwnProperty("total"))).toBeTruthy();
         expect(response.body.every(t => t.hasOwnProperty("total_validated"))).toBeTruthy();
         expect(response.body.every(t => t.hasOwnProperty("total_unvalidated"))).toBeTruthy();
-        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_deprecated"))).toBeTruthy();
+        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated + t.total_deprecated))).toBeTruthy();
     });
 
     it("POST /api/bulk/create_tags", async () => {

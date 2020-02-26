@@ -12,7 +12,7 @@ const {
     build_dictionary_for_matching_process,
     matching_process,
 } = require("../_common/utlis_fct");
-const States = require("../_common/exercise_status");
+const exerciseState = require("../_common/constants")["EXERCISES"];
 
 module.exports = (req, res, next) => {
 
@@ -262,7 +262,7 @@ function update_exercise([id, body, t]) {
                     properties["url"] = body.url;
                 }
                 if (body.hasOwnProperty("state")) {
-                    properties["state"] = States[body.state];
+                    properties["state"] = exerciseState[body.state];
                 }
 
                 // user has the possibility to delete/replace his/her own file

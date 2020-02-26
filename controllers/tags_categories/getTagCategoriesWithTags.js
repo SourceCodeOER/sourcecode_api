@@ -37,10 +37,11 @@ module.exports = function (req, res, next) {
                     ["id", "tag_id"],
                     ["text", "tag_text"],
                     "category_id",
-                    "isValidated",
+                    "state",
                     "version"
                 ],
                 as: "tags",
+                // TODO
                 where: Object
                     .assign({},
                         ...(

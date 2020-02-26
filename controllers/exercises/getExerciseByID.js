@@ -1,7 +1,7 @@
 // function for bulky inner select
 const models = require('../../models');
 const {build_search_result} = require("../_common/utlis_fct");
-const enumObj = require("../_common/exercise_status");
+const exerciseState = require("../_common/constants")["EXERCISES"];
 
 module.exports = (req, res, next) => {
 
@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
             return new Promise((resolve, reject) => {
                 // If exercise is ARCHIVED and this exercise was not access by its creator or admin,
                 // a HTTP error should occur
-                if (result.get("state") === enumObj.ARCHIVED) {
+                if (result.get("state") === exerciseState.ARCHIVED) {
                     const passCriteria = [
                         req.user && req.user.role === "admin",
                         req.user && req.user.role !== "admin" && result.get("user") === req.user.id,

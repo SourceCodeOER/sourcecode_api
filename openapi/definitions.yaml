@@ -22,7 +22,7 @@ components:
       description: |
         Status of the exercise into the system. Currently, 5 states are possibles :
 
-        1. DRAFT : The default state (for example when a exercise is inserted into the system)
+        1. DRAFT : The default state (for example when an exercise is inserted into the system)
         2. PENDING : When an exercise is ready for review
         3. VALIDATED : When an exercise is validated by an admin
         4. NOT_VALIDATED : When an exercise is refused by an admin
@@ -36,6 +36,17 @@ components:
 
         1. user : The defaut ( an simple registered user )
         2. admin : User with additional credentials
+    TagState:
+      type: string
+      enum: [NOT_VALIDATED, VALIDATED, DEPRECATED]
+      example: DEPRECATED
+      default: NOT_VALIDATED
+      description: |
+        Status of the tag into the system. Currently, 3 states are possibles :  
+
+        1. NOT_VALIDATED : The default state ( for example when an exercise is inserted into the system)  
+        2. VALIDATED : When a tag is officially recognized
+        3. DEPRECATED : When a tag should not be used anymore
 # To control include for Exercise
     IncludeOptions:
       type: object
@@ -70,11 +81,11 @@ components:
             $ref: "#/components/schemas/State"
           maxItems: 5
         tags:
-          type: string
-          description: |
-            Filter the tags linked to exercise by their validity. The default value ('default') stands for no filtering.
-          enum: ["default", "validated", "pending"]
-          default: "default"
+          type: array
+          description: "Filter the tags linked to exercise by their state. By default, no filtering is done."
+          items:
+            $ref: "#/components/schemas/TagState"
+          maxItems: 3
 # Basic model of a Exercise
     BasicExerciseModel:
       type: object
@@ -234,14 +245,11 @@ components:
               required:
                 - category_text
                 - category_id
-            isValidated:
-              type: boolean
-              default: false
-              example: false
-              description: "Is this tag validated or not ?"
+            state:
+              $ref: "#/components/schemas/TagState"
           required:
             - category
-            - isValidated
+            - state
     TagCategoryWithTags:
       allOf:
         - $ref: "#/components/schemas/Tag_Category"
@@ -285,10 +293,8 @@ components:
               example: 42
               minimum: 0
               description: "the category id to which it is related"
-            isValidated:
-              type: boolean
-              example: false
-              description: "Is this tag validated or not"
+            state:
+              $ref: "#/components/schemas/TagState"
             version:
               type: integer
               minimum: 0
@@ -296,7 +302,7 @@ components:
               example: 42
           required:
             - category_id
-            - isValidated
+            - state
             - version
 # When we want to upload a new exercise, we need other fields for that
     ExerciseForm:

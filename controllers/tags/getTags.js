@@ -9,16 +9,18 @@ module.exports = (req, res, next) => {
     const settings = {
         tags_ids: params.tags_ids || [],
         categories_ids: params.categories_ids || [],
-        state: params.state || "default",
+        state: params.state || [],
         title: params.title || "",
     };
 
     let conditions = [];
 
     // must we include conditions or not
-    if (settings.state !== "default") {
+    if (settings.state.length > 0) {
         conditions.push({
-            isValidated: settings.state === "validated"
+            state: {
+                [Op.in]: settings.state
+            }
         })
     }
     if (settings.tags_ids.length > 0) {

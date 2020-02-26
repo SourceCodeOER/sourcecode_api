@@ -34,12 +34,16 @@ paths:
                           minimum: 0
                         total_validated:
                           type: integer
-                          description: "The total number of vamodated tags under this tag category"
+                          description: "The total number of VALIDATED tags under this tag category"
                           minimum: 0
                         total_unvalidated:
                           type: integer
-                          description: "The total number of vamodated tags under this tag category"
-                          minimum: 0                        
+                          description: "The total number of NOT_VALIDATED tags under this tag category"
+                          minimum: 0
+                        total_deprecated:
+                          type: integer
+                          description: "The total number of DEPRECATED tags under this tag category"
+                          minimum: 0
                 uniqueItems: true
         # Definition of all error statuses
         default:

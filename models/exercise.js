@@ -3,8 +3,8 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-const enumObj = require("../controllers/_common/exercise_status");
-let enumValues = Object.values(enumObj);
+const exerciseState = require("../controllers/_common/constants")["EXERCISES"];
+let enumValues = Object.values(exerciseState);
 
 // Useful for vote filtering (and maybe other things later)
 const OPERATIONS = {
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         state: {
             type: DataTypes.ENUM(enumValues),
             allowNull: false,
-            defaultValue: enumObj.DRAFT
+            defaultValue: exerciseState.DRAFT
         },
         url: {
             type: DataTypes.STRING,
@@ -106,7 +106,7 @@ module.exports = (sequelize, DataTypes) => {
                     if (parameters.filterOptions.hasOwnProperty("state")) {
                         criteria.push({
                             state: {
-                                [Op.in]: parameters.filterOptions.state.map(s => enumObj[s])
+                                [Op.in]: parameters.filterOptions.state.map(s => exerciseState[s])
                             }
                         });
                     }
