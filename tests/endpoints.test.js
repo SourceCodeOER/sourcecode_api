@@ -935,7 +935,7 @@ describe("Complex scenarios", () => {
                 includeMetrics: true
             },
             filterOptions: {
-                "tags": "pending"
+                "tags": ["NOT_VALIDATED", "DEPRECATED"]
             },
             data: {
                 title: "Exercise for delete scenario"
@@ -979,7 +979,7 @@ describe("Complex scenarios", () => {
             .send({
                 filterOptions: {
                     state: ["VALIDATED", "ARCHIVED"],
-                    tags: "pending"
+                    tags: ["VALIDATED", "NOT_VALIDATED" ,"DEPRECATED"]
                 },
                 "orderBy": [
                     // When my issue in Sequelize is fixed, it will restore my tags length sorting :

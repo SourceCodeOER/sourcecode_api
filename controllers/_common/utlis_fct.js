@@ -11,8 +11,7 @@ const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
 
 // state
-const exerciseState = require("./constants")["EXERCISES"];
-const tagState = require("./constants")["TAGS"];
+const {TAGS: tagState, EXERCISES: exerciseState} = require("./constants");
 
 // Some utilities functions commonly used
 module.exports = {
