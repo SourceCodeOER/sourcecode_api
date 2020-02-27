@@ -31,7 +31,6 @@ jobs:
         run: |
           npx openapi-diff original-spec.yaml modified-spec.yaml | tail -n +2 > breaking-changes.json
       - uses: actions/upload-artifact@v1
-        if: failure()
         with:
           name: openapi-diff.json
           path: breaking-changes.json
