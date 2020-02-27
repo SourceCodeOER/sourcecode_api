@@ -29,9 +29,9 @@ jobs:
           npx speccy resolve B/api.yml -o modified-spec.yaml
       - name: Compare the two files
         run: |
-          npx openapi-diff original-spec.yaml modified-spec.yaml > breaking-changes.txt
+          npx openapi-diff original-spec.yaml modified-spec.yaml | tail -n +2 > breaking-changes.json
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: openapi-diff.txt
-          path: breaking-changes.txt
+          name: openapi-diff.json
+          path: breaking-changes.json
