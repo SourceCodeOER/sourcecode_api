@@ -17,7 +17,7 @@ jobs:
         run: |
           npm install speccy -g
           npm install openapi-diff -g
-      - name: Clones repository with the two separate branch ( ${{ github.base_ref##*/ }} and ${{ github.head_ref##*/ }})
+      - name: Clones repository with the two separate branch ( ${{ github.base_ref }} and ${{ github.head_ref }})
         run: |
           git clone -b ${{ github.base_ref##*/}} --single-branch https://github.com/${{ github.repository }}.git A
           git clone -b ${{ github.head_ref##*/}} --single-branch https://github.com/${{ github.repository }}.git B
