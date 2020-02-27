@@ -2,8 +2,6 @@ name: Source Code API Breaking Changes
 # Everyone is happy with breaking changes ^^
 on:
   pull_request:
-#    branches:
-#      - master
 
 jobs:
   testing:
@@ -23,15 +21,15 @@ jobs:
           echo "::set-env name=TARGET_BRANCH::$(echo ${{ github.head_ref }} | sed 's|.*/||')"
       - name: Clones repository with the two separate branch ( ${{ env.CURRENT_BRANCH }} and ${{ env.TARGET_BRANCH }})
         run: |
-          git clone -b ${{ env.TARGET_BRANCH }} --single-branch https://github.com/${{ github.repository }}.git A
-          git clone -b ${{ env.CURRENT_BRANCH }} --single-branch https://github.com/${{ github.repository }}.git B
+          git clone -b ${{ env.TARGET_BRANCH }} --depth 1 --single-branch https://github.com/${{ github.repository }}.git A
+          git clone -b ${{ env.CURRENT_BRANCH }} --depth 1 --single-branch https://github.com/${{ github.repository }}.git B
       - name: Build OAS specifications
         run: |
           npx speccy resolve A/api.yml -o original-spec.yaml
           npx speccy resolve B/api.yml -o modified-spec.yaml
       - name: Compare the two files
         run: |
-          npx openapi-diff original-spec.yaml modified-spec.yaml 2> breaking-changes.txt
+          npx openapi-diff original-spec.yaml modified-spec.yaml > breaking-changes.txt
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
