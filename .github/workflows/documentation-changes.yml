@@ -1,7 +1,7 @@
 name: Source Code API Breaking Changes
 # Everyone is happy with breaking changes ^^
 on:
-  push:
+  pull_request:
 #    branches:
 #      - master
 
