@@ -1,4 +1,4 @@
-# Source Code API  [![codecov](https://codecov.io/gh/SourceCodeOER/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/SourceCodeOER/sourcecode_api) [![Greenkeeper badge](https://badges.greenkeeper.io/SourceCodeOER/sourcecode_api.svg)](https://greenkeeper.io/)
+# Source Code API  [![codecov](https://codecov.io/gh/SourceCodeOER/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/SourceCodeOER/sourcecode_api) [![Greenkeeper badge](https://badges.greenkeeper.io/SourceCodeOER/sourcecode_api.svg)](https://greenkeeper.io/) ![](https://github.com/SourceCodeOER/sourcecode_api/workflows/Source%20Code%20Tests/badge.svg) ![](https://github.com/SourceCodeOER/sourcecode_api/workflows/Source%20Code%20CI%2FCD/badge.svg) ![](https://github.com/SourceCodeOER/sourcecode_api/workflows/Github%20pages/badge.svg)
 > the new open source catalogue of computer exercises
 
 Like Open Educational Resources, Source Code offers the possibility for educational teams to
