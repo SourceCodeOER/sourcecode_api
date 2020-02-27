@@ -17,13 +17,10 @@ jobs:
         run: |
           npm install speccy -g
           npm install openapi-diff -g
-      - name: Clones repository with the two separate branch ( MASTER and ${{ github.ref }})
+      - name: Clones repository with the two separate branch ( ${{ github.base_ref##*/ }} and ${{ github.head_ref##*/ }})
         run: |
-          branchWithPrefix="${{ github.ref }}"
-          prefix="refs/heads/"
-          branch=${var#$prefix}
-          git clone -b master --single-branch https://github.com/${{ github.repository }}.git A
-          git clone -b ${branch} --single-branch https://github.com/${{ github.repository }}.git B
+          git clone -b ${{ github.base_ref##*/}} --single-branch https://github.com/${{ github.repository }}.git A
+          git clone -b ${{ github.head_ref##*/}} --single-branch https://github.com/${{ github.repository }}.git B
       - name: Build OAS specifications
         run: |
           npx speccy resolve A/api.yml -o original-spec.yaml
