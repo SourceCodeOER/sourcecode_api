@@ -62,11 +62,13 @@ jobs:
         with:
           name: modified-spec.yaml
           path: ./modified-spec.yaml
+      - name: Set up env variables
+        run:  |
+          echo "::set-env name=ORIGIN::$(echo "$(pwd)/original-spec.yaml" )"
+          echo "::set-env name=MODIFIED::$(echo "$(pwd)/modified-spec.yaml" )"
       - name: Generate report
         run: |
-          FILE1="$(pwd)/original-spec.yaml"
-          FILE2="$(pwd)/modified-spec.yaml"
-          sudo npx openapi-diff "$FILE1" "$FILE2" | sed -n '1!p' > breaking-changes.json
+          sudo npx openapi-diff ${{ env.ORIGIN }} ${{ env.MODIFIED }} | sed -n '1!p' > breaking-changes.json
       - uses: actions/upload-artifact@v1
         with:
           name: openapi-diff.json
