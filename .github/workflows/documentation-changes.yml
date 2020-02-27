@@ -15,6 +15,7 @@ jobs:
         run: |
           npm install speccy -g
           npm install openapi-diff -g
+          npm install -g @openapitools/openapi-generator-cli
       - name: Set up env variables
         run:  |
           echo "::set-env name=CURRENT_BRANCH::$(echo ${{ github.base_ref }} | sed 's|.*/||')"
@@ -23,10 +24,24 @@ jobs:
         run: |
           git clone -b ${{ env.TARGET_BRANCH }} --depth 1 --single-branch https://github.com/${{ github.repository }}.git A
           git clone -b ${{ env.CURRENT_BRANCH }} --depth 1 --single-branch https://github.com/${{ github.repository }}.git B
+      - name: Check if OAS from ${{ env.CURRENT_BRANCH }} is valid
+        run: |
+          npx openapi-generator validate -i B/api.yml
+      - name: Check if OAS from ${{ env.TARGET_BRANCH }} is valid
+        run: |
+          npx openapi-generator validate -i A/api.yml
       - name: Build OAS specifications
         run: |
           npx speccy resolve A/api.yml -o original-spec.yaml
           npx speccy resolve B/api.yml -o modified-spec.yaml
+      - uses: actions/upload-artifact@v1
+        with:
+          name: original-spec.yaml
+          path: original-spec.yaml
+      - uses: actions/upload-artifact@v1
+        with:
+          name: modified-spec.yaml
+          path: modified-spec.yaml
       - name: Compare the two files
         run: |
           npx openapi-diff original-spec.yaml modified-spec.yaml | sed -n '1!p' > breaking-changes.json
