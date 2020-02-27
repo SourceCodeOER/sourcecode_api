@@ -46,7 +46,7 @@ jobs:
     needs: build-oas-artefacts
     runs-on: ubuntu-latest
     container:
-       image: node:12-alpine 
+      image: node:12-alpine 
     steps:
       - name: Install required tools
         run: |
