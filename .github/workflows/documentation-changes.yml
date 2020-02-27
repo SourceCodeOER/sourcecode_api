@@ -45,13 +45,11 @@ jobs:
   build-report:
     needs: build-oas-artefacts
     runs-on: ubuntu-latest
+    container:
+       image: node:12-alpine 
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '13.x'
       - name: Install required tools
         run: |
-          npm install -g npm@latest
           npm install openapi-diff -g
       - name: Download OAS file from SOURCE branch
         uses: actions/download-artifact@v1
