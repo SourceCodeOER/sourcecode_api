@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  testing:
+  build-oas-artefacts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,7 +14,6 @@ jobs:
       - name: Install required tools
         run: |
           npm install speccy -g
-          npm install openapi-diff -g
           npm install -g @openapitools/openapi-generator-cli
       - name: Set up env variables
         run:  |
@@ -34,15 +33,35 @@ jobs:
         run: |
           npx speccy resolve A/api.yml -o original-spec.yaml
           npx speccy resolve B/api.yml -o modified-spec.yaml
-      - uses: actions/upload-artifact@v1
+      - name: Upload single OAS file from ${{ env.TARGET_BRANCH }}
+        uses: actions/upload-artifact@v1
         with:
           name: original-spec.yaml
           path: original-spec.yaml
-      - uses: actions/upload-artifact@v1
+      - name: Upload single OAS file from ${{ env.CURRENT_BRANCH }}
+        uses: actions/upload-artifact@v1
         with:
           name: modified-spec.yaml
           path: modified-spec.yaml
-      - name: Compare the two files
+  build-report:
+    needs: build-oas-artefacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install required tools
+        run: |
+          npm install openapi-diff -g
+      - name: Download OAS file from SOURCE branch
+        uses: actions/download-artifact@v1
+        with:
+          name: original-spec.yaml
+      - name: Download OAS file from TARGET branch
+        uses: actions/download-artifact@v1
+        with:
+          name: modified-spec.yaml
+      - name: Generate report
         run: |
           npx openapi-diff original-spec.yaml modified-spec.yaml | sed -n '1!p' > breaking-changes.json
       - uses: actions/upload-artifact@v1
