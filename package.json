@@ -38,7 +38,7 @@
     "morgan": "^1.9.1",
     "move-file": "^1.2.0",
     "multer": "^1.4.2",
-    "openapi-enforcer": "^1.8.8",
+    "openapi-enforcer": "^1.9.0",
     "openapi-enforcer-middleware": "^1.2.2",
     "openapi-enforcer-multer": "^0.1.6",
     "passport": "^0.4.1",
