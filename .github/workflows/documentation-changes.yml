@@ -70,7 +70,7 @@ jobs:
         run: |
           chmod -R ugo+rx ${{ env.ORIGIN }}
           chmod -R ugo+rx ${{ env.MODIFIED }}
-          sudo npx openapi-diff ${{ env.ORIGIN }} ${{ env.MODIFIED }} > breaking-changes.txt
+          openapi-diff ${{ env.ORIGIN }} ${{ env.MODIFIED }} > breaking-changes.txt
           sed -n '1!p' breaking-changes.txt > breaking-changes.json
       - uses: actions/upload-artifact@v1
         with:
