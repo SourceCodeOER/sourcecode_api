@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
 
     const settings = {
         state: params.state || [],
-        onlySelected: params.onlySelected || [],
+        onlySelected: params.onlySelected /* istanbul ignore next */ || [],
     };
 
     let criteria = [];

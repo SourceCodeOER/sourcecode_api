@@ -263,7 +263,7 @@ describe("Simple case testing", () => {
         expect(response.body.hasOwnProperty("password")).toBeFalsy();
         expect(response.body.fullName).toBe(userName);
         expect(response.body.email).toBe(user.email);
-        expect(response.body.role).toBe("admin");
+        expect(response.body.role).toBe("super_admin");
     });
 
     it("PUT /auth/update", async () => {
