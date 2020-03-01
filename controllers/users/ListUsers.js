@@ -1,7 +1,6 @@
 const {Op} = require("sequelize");
 
 const models = require('../../models');
-const {USERS: usersRoles} = require("../_common/constants");
 
 const DEFAULT_SIZE_LIMIT = 10;
 const DEFAULT_PAGE = 1;
@@ -21,7 +20,7 @@ module.exports = function (req, res, next) {
     if (settings.roles.length > 0) {
         criteria.push({
             role: {
-                [Op.in]: settings.roles.map(r => usersRoles[r])
+                [Op.in]: settings.roles
             }
         })
     }
