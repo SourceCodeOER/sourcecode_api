@@ -49,7 +49,9 @@ jobs:
           npm test
       - name: Upload report to Codecov
         run: |
-          bash <(curl -s https://codecov.io/bash)
+          curl -s https://codecov.io/bash > .codecov
+          chmod +x .codecov
+          ./.codecov
   cd:
     runs-on: ubuntu-latest
     needs: ci
