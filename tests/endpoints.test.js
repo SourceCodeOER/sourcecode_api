@@ -294,6 +294,10 @@ describe("Simple case testing", () => {
             .get("/api/users")
             .query('metadata%5Bsize%5D=10')
             .query('metadata%5Bpage%5D=1')
+            .query('roles=user')
+            .query('roles=admin')
+            .query('fullName=Bot')
+            .query('email=jy95@bot.net')
             .set('Accept', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN);
 

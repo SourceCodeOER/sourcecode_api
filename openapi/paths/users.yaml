@@ -94,6 +94,29 @@ paths:
           style: deepObject
           schema:
             $ref: "../definitions.yaml#/components/schemas/PaginationCriterias"
+        - in: query
+          name: roles
+          schema:
+            type: array
+            description: "If not empty, only consider the given user role(s). If empty, no user role is ignored"
+            default: []
+            uniqueItems: true
+            items:
+              $ref: "../definitions.yaml#/components/schemas/Roles"
+            maxItems: 3
+        - in: query
+          name: fullName
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 100
+        - in: query
+          name: email
+          schema:
+            type: string
+            format: email
+            minLength: 1
+            maxLength: 100
       responses:
         '200':
           description: "An list of Users with some metadata"
