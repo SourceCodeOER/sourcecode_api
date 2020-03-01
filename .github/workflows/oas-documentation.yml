@@ -1,12 +1,10 @@
-name: Github pages
+name: OAS Documentation
 
 on:
   push:
-    branches:
-      - master
 
 jobs:
-  deploy:
+  validate-oas-spec:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -16,11 +14,18 @@ jobs:
           node-version: '12.x'
       - name: Set up
         run: |
-          npm install -g redoc-cli
           npm install -g @openapitools/openapi-generator-cli
       - name: Validate OpenAPI documentation
         run: |
           npx openapi-generator validate -i api.yml
+  deploy-oas-spec:
+    runs-on: ubuntu-18.04
+    if: github.ref == 'refs/heads/master'
+    needs: validate-oas-spec
+    steps:
+      - name: Set up
+        run: |
+          npm install -g redoc-cli
       - name: Generate documentation
         run: |
           npx redoc-cli bundle api.yml -o docs/index.html
