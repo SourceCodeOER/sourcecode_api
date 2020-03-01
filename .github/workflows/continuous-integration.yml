@@ -53,7 +53,7 @@ jobs:
           apk add bash
           curl -s https://codecov.io/bash > .codecov
           chmod +x .codecov
-          ./.codecov
+          ./.codecov -t ${{ secrets.CODECOV_TOKEN }}
   cd:
     runs-on: ubuntu-latest
     needs: ci
