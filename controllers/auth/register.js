@@ -1,5 +1,6 @@
 const models = require('../../models');
 const Sequelize = require("sequelize");
+const {USERS} = require("../_common/constants");
 
 module.exports = function (req, res, next) {
     models
@@ -7,11 +8,11 @@ module.exports = function (req, res, next) {
         .findAll({
             attributes: [Sequelize.literal(1)],
             where: {
-                role: "admin"
+                role: USERS.SUPER_ADMIN
             },
             limit: 1
         }).then(hasAAdmin => {
-        const user_role = (hasAAdmin.length === 0) ? "admin" : "user";
+        const user_role = (hasAAdmin.length === 0) ? USERS.SUPER_ADMIN : USERS.USER;
         return models
             .User
             .create({

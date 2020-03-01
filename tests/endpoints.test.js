@@ -9,7 +9,7 @@ const user = {
 };
 const userName = "Eric Cartman";
 
-let JWT_TOKEN = ""; // The admin user
+let JWT_TOKEN = ""; // The super admin user
 let JWT_TOKEN_2 = ""; // A simple user
 const tag_categories = ["keywords", "source", "institution", "auteur"];
 const tags = ["java", "UCLOUVAIN", "Jacques Y", "github.com"];

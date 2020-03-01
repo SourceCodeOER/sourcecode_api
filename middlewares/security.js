@@ -1,5 +1,6 @@
 const passport = require('passport');
 const chain = require('connect-chain-if');
+let {USERS} = require("../controllers/_common/constants");
 
 // middleware
 const check_user_role = require("./check_user_role");
@@ -14,14 +15,18 @@ const only_authenticated_user = passport.authenticate("jwt", {
 const pass_middleware = function (req, res, next) {
     next();
 };
-const user_roles = ["guest", "user", "admin"];
+// Add guest role for validation
+const user_roles = Object.values(USERS).concat("guest");
 
 /* istanbul ignore next */
 function extract_required_roles(tags= []) {
     let requiredRoles = tags.filter(tag => user_roles.includes(tag));
     // an admin is also capable to do what a simple user can do
-    if (requiredRoles.includes("user")) {
-        requiredRoles.push("admin");
+    if (requiredRoles.includes(USERS.USER)) {
+        requiredRoles.push(USERS.ADMIN);
+    }
+    if (requiredRoles.includes(USERS.ADMIN)) {
+        requiredRoles.push(USERS.SUPER_ADMIN);
     }
     return requiredRoles;
 }

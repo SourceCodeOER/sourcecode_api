@@ -22,6 +22,8 @@ tags:
     description: "Everything an authentified user could do (more than a guest)"
   - name: admin
     description: "Everything an administrator could do (more than an user)"
+  - name: super_admin
+    description: "Everything an administrator could do (more than an admin)"
 
 paths:
   /auth/login:

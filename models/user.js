@@ -1,6 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcryptjs');
+const {USERS} = require("../controllers/_common/constants");
 
 // To encrypt password before creating / updating an instance
 const SALT_WORK_FACTOR = 10;
@@ -40,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         role: {
-            type: DataTypes.ENUM("admin", "user"),
+            type: DataTypes.ENUM(Object.values(USERS)),
             allowNull: false
         }
     }, {

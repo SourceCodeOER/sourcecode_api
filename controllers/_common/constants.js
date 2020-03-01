@@ -10,5 +10,10 @@ module.exports = {
         NOT_VALIDATED: "NOT_VALIDATED",
         VALIDATED: "VALIDATED",
         DEPRECATED: "DEPRECATED"
+    },
+    "USERS": {
+        ADMIN: "admin",
+        SUPER_ADMIN: "super_admin",
+        USER: "user",
     }
 };

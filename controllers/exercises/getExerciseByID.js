@@ -1,7 +1,7 @@
 // function for bulky inner select
 const models = require('../../models');
 const {build_search_result} = require("../_common/utlis_fct");
-const exerciseState = require("../_common/constants")["EXERCISES"];
+const {EXERCISES: exerciseState, USERS: userRoles} = require("../_common/constants");
 
 module.exports = (req, res, next) => {
 
@@ -22,10 +22,11 @@ module.exports = (req, res, next) => {
             return new Promise((resolve, reject) => {
                 // If exercise is ARCHIVED and this exercise was not access by its creator or admin,
                 // a HTTP error should occur
+                const authorizedUsers = [userRoles.ADMIN, userRoles.SUPER_ADMIN];
                 if (result.get("state") === exerciseState.ARCHIVED) {
                     const passCriteria = [
-                        req.user && req.user.role === "admin",
-                        req.user && req.user.role !== "admin" && result.get("user") === req.user.id,
+                        req.user && authorizedUsers.includes(req.user.role),
+                        req.user && !authorizedUsers.includes(req.user.role) && result.get("user") === req.user.id,
                     ];
                     if (passCriteria.includes(true)) {
                         resolve();
