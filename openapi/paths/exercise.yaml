@@ -176,13 +176,10 @@ paths:
                                     example: 42
                                     minimum: 0
                                     description: "The category of this tag"
-                                  isValidated:
-                                    type: boolean
-                                    default: false
-                                    example: false
-                                    description: "Is this tag validated or not ?"
+                                  state:
+                                    $ref: "../definitions.yaml#/components/schemas/TagState"
                                 required:
-                                  - isValidated
+                                  - state
                                   - category
                                   - text
                           required:

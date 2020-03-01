@@ -1,12 +1,14 @@
 const models = require('../../models');
 const Sequelize = require("sequelize");
 
+const tagState = require("../_common/constants")["TAGS"];
+
 module.exports = (req, res, next) => {
     const {
         tag_id,
         tag_text,
         category_id,
-        isValidated,
+        state,
         version
     } = req.body;
 
@@ -24,7 +26,7 @@ module.exports = (req, res, next) => {
             return instance.update({
                 category_id: category_id,
                 text: tag_text,
-                isValidated: isValidated
+                state: tagState[state]
             });
         })
         .then(() => {

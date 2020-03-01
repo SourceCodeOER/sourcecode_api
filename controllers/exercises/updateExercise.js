@@ -12,7 +12,7 @@ const {
     build_dictionary_for_matching_process,
     matching_process,
 } = require("../_common/utlis_fct");
-const States = require("../_common/exercise_status");
+const { EXERCISES: exerciseState, TAGS: tagState } = require("../_common/constants");
 
 module.exports = (req, res, next) => {
 
@@ -133,7 +133,7 @@ function insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t) {
             .Tag
             .bulkCreate(tags_to_be_inserted.map(tag => ({
                 // no matter of the kind of user, creating tags like that should be reviewed
-                isValidated: false,
+                state: tagState.NOT_VALIDATED,
                 text: tag.text,
                 category_id: tag.category_id,
                 // some timestamps must be inserted
@@ -262,7 +262,7 @@ function update_exercise([id, body, t]) {
                     properties["url"] = body.url;
                 }
                 if (body.hasOwnProperty("state")) {
-                    properties["state"] = States[body.state];
+                    properties["state"] = exerciseState[body.state];
                 }
 
                 // user has the possibility to delete/replace his/her own file

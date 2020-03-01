@@ -1,5 +1,6 @@
 'use strict';
 const Sequelize = require("sequelize");
+const TagState = require("../controllers/_common/constants")["TAGS"];
 
 module.exports = (sequelize, DataTypes) => {
     let Tag_Category = sequelize.define("Tag_Category", {
@@ -41,12 +42,16 @@ module.exports = (sequelize, DataTypes) => {
                             "total"
                         ],
                         [
-                            filterGen(`(WHERE "tags"."isValidated" = true)`),
+                            filterGen(`(WHERE "tags"."state" = '${TagState.VALIDATED}')`),
                             "total_validated"
                         ],
                         [
-                            filterGen(`(WHERE "tags"."isValidated" = false)`),
+                            filterGen(`(WHERE "tags"."state" = '${TagState.NOT_VALIDATED}')`),
                             "total_unvalidated"
+                        ],
+                        [
+                            filterGen(`(WHERE "tags"."state" = '${TagState.DEPRECATED}')`),
+                            "total_deprecated"
                         ],
                     ],
                     group: ["Tag_Category.id", "Tag_Category.kind"],

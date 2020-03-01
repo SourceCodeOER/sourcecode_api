@@ -2,6 +2,7 @@ const chain = require('connect-chain-if');
 const {check_credentials_on_exercises} = require("../../controllers/_common/utlis_fct");
 
 const {pass_middleware, check_exercise_state} = require("./common_sub_middlewares");
+const check_user_role = require("../check_user_role");
 
 // Arrays for check
 const check_credentials_endpoints = ["DeleteExercises", "ChangeExercisesStatus"];
@@ -42,6 +43,19 @@ module.exports = (operation) => (req, res, next) => {
                     )
                     .filter(s => s !== undefined)
             ),
+            pass_middleware
+        ),
+        // If endpoint === createMultipleTags , we should check if the user is authorized to include "state" property
+        chain.if(
+            operation["x-operation"] === "createMultipleTags",
+            (_req, _res, _next) => {
+                let allowed = ["admin"];
+                // state property is reserved for admin only ; if simple user don't use it - he/she is allowed
+                if (!_req.body.some(t => t.hasOwnProperty("state"))) {
+                    allowed.push("user");
+                }
+                check_user_role(allowed)(_req, _res, _next);
+            },
             pass_middleware
         )
     ])(req, res, (err) => {

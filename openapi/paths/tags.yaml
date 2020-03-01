@@ -26,7 +26,7 @@ paths:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
     put:
-      summary: "Validate or modify a Tag"
+      summary: "Modify a Tag"
       tags:
         - admin
       operationId: updateTag
@@ -79,10 +79,11 @@ paths:
         - in: query
           name: state
           schema:
-            type: string
-            enum: ["default", "validated", "pending"]
-            default: "default"
-            description: "Filter the tags by their validity. The default value ('default') stands for no filtering."
+            type: array
+            description: "Filter the tags by their state. By default, no filtering is done."
+            items:
+              $ref: "../definitions.yaml#/components/schemas/TagState"
+            maxItems: 3
         - in: query
           name: title
           schema:

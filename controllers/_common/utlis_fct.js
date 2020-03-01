@@ -11,7 +11,7 @@ const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
 
 // state
-const States = require("./exercise_status");
+const {TAGS: tagState, EXERCISES: exerciseState} = require("./constants");
 
 // Some utilities functions commonly used
 module.exports = {
@@ -120,7 +120,7 @@ module.exports = {
                 .findAll({
                     attributes: [
                         [
-                            filterGen(`(WHERE "Tag"."isValidated" = true)`),
+                            filterGen(`(WHERE "Tag"."state" = '${tagState.VALIDATED}')`),
                             "total"
                         ]
                     ],
@@ -206,7 +206,7 @@ module.exports = {
                                             really_new_tags.map(tag => {
                                                 return {
                                                     // no matter of the kind of user, creating tags like that should be reviewed
-                                                    isValidated: false,
+                                                    state: tagState.NOT_VALIDATED,
                                                     text: tag.text,
                                                     category_id: tag.category_id,
                                                     // some timestamps must be inserted
@@ -302,7 +302,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
         // optional properties to add
         url: exercise_data.url || null,
         file: (exercise_data.file !== null) ? exercise_data.file.filename : null,
-        state: (exercise_data.state) ? States[exercise_data.state] : States.DRAFT
+        state: (exercise_data.state) ? exerciseState[exercise_data.state] : exerciseState.DRAFT
     };
 
     return new Promise((resolve, reject) => {
@@ -330,7 +330,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                         really_new_tags.map(tag => {
                             return {
                                 // no matter of the kind of user, creating tags like that should be reviewed
-                                isValidated: false,
+                                state: tagState.NOT_VALIDATED,
                                 text: tag.text,
                                 category_id: tag.category_id,
                                 // some timestamps must be inserted

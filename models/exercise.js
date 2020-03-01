@@ -3,8 +3,8 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-const enumObj = require("../controllers/_common/exercise_status");
-let enumValues = Object.values(enumObj);
+const { EXERCISES: exerciseState, TAGS: tagState } = require("../controllers/_common/constants");
+let enumValues = Object.values(exerciseState);
 
 // Useful for vote filtering (and maybe other things later)
 const OPERATIONS = {
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         state: {
             type: DataTypes.ENUM(enumValues),
             allowNull: false,
-            defaultValue: enumObj.DRAFT
+            defaultValue: exerciseState.DRAFT
         },
         url: {
             type: DataTypes.STRING,
@@ -106,12 +106,12 @@ module.exports = (sequelize, DataTypes) => {
                     if (parameters.filterOptions.hasOwnProperty("state")) {
                         criteria.push({
                             state: {
-                                [Op.in]: parameters.filterOptions.state.map(s => enumObj[s])
+                                [Op.in]: parameters.filterOptions.state.map(s => exerciseState[s])
                             }
                         });
                     }
                 }
-                // if the user provide a title / isValidated check , we must add it to the where clause
+                // if the user provide some instructions , we must add them to the where clause
                 if (parameters.hasOwnProperty("data")) {
 
                     /* istanbul ignore else */
@@ -211,16 +211,18 @@ module.exports = (sequelize, DataTypes) => {
                             attributes: [
                                 ["id", "tag_id"],
                                 ["text", "tag_text"],
-                                "isValidated"
+                                "state"
                             ],
                             through: {attributes: []},
                             // Handle the case where no tags exists for one exercise
                             required: false,
                             // if asked, only include some tags (and not all)
                             where:
-                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                (![undefined].includes(filterOptions && filterOptions.tags))
                                     ? {
-                                        isValidated: (filterOptions.tags === "validated")
+                                        state: {
+                                            [Op.in]: filterOptions.tags.map(s => tagState[s] )
+                                        }
                                     }
                                     : {}
                             ,
@@ -250,14 +252,16 @@ module.exports = (sequelize, DataTypes) => {
                             attributes: [
                                 ["text", "text"],
                                 ["category_id", "category"],
-                                "isValidated"
+                                "state"
                             ],
                             through: {attributes: []},
                             // if asked, only include some tags (and not all)
                             where:
-                                (!["default", undefined].includes(filterOptions && filterOptions.tags))
+                                (![undefined].includes(filterOptions && filterOptions.tags))
                                     ? {
-                                        isValidated: (filterOptions.tags === "validated")
+                                        state: {
+                                            [Op.in]: filterOptions.tags.map(s => tagState[s] )
+                                        }
                                     }
                                     : {}
                             ,

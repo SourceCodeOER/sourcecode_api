@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         ["id", "tag_id"],
         ["text", "tag_text"],
         "category_id",
-        "isValidated",
+        "state",
         "version"
     ];
 

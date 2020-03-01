@@ -75,7 +75,7 @@ async function setUpBasic() {
             tags.map(tag => ({
                 text: tag,
                 category_id: 1,
-                isValidated: true
+                state: "VALIDATED"
             }))
         );
     expect(response4.status).toBe(200);
@@ -229,7 +229,7 @@ describe("Simple case testing", () => {
     it("GET /api/tags with all settings used", async () => {
         const response = await request
             .get("/api/tags")
-            .query('state=pending')
+            .query('state=NOT_VALIDATED')
             .query('tags_ids=1')
             .query('tags_ids=2')
             .query('categories_ids=' + 1)
@@ -242,7 +242,7 @@ describe("Simple case testing", () => {
     it("GET /api/tags_by_categories with all settings used", async () => {
         const response = await request
             .get("/api/tags_by_categories")
-            .query('state=pending')
+            .query('state=VALIDATED')
             .query('onlySelected=1')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
@@ -320,7 +320,8 @@ describe("Simple case testing", () => {
         expect(response.body.every(t => t.hasOwnProperty("total"))).toBeTruthy();
         expect(response.body.every(t => t.hasOwnProperty("total_validated"))).toBeTruthy();
         expect(response.body.every(t => t.hasOwnProperty("total_unvalidated"))).toBeTruthy();
-        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_deprecated"))).toBeTruthy();
+        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated + t.total_deprecated))).toBeTruthy();
     });
 
     it("POST /api/bulk/create_tags", async () => {
@@ -338,7 +339,7 @@ describe("Simple case testing", () => {
             {
                 text: "MASTER_TAG_1",
                 category_id: aTagCategory,
-                isValidated: true,
+                state: "VALIDATED",
             },
             {
                 text: "MASTER_TAG_2",
@@ -371,7 +372,7 @@ describe("Simple case testing", () => {
                     .some(tag2 =>
                         (tag.text === tag2.tag_text)
                         && (tag2.category_id === aTagCategory)
-                        && (tag2.isValidated === (tag.isValidated || false))
+                        && (tag2.state === (tag.state || "NOT_VALIDATED"))
                     )
             )
         );
@@ -664,7 +665,7 @@ describe("Complex scenarios", () => {
 
         expect(created_tag).not.toBe(undefined);
         expect(created_tag.version).toBe(0);
-        expect(created_tag.isValidated).toBe(false);
+        expect(created_tag.state).toBe("NOT_VALIDATED");
 
         // modify it to validate it
         responseTmp = await request
@@ -676,7 +677,7 @@ describe("Complex scenarios", () => {
                 tag_text: created_tag.tag_text,
                 category_id: created_tag.category_id,
                 version: created_tag.version,
-                isValidated: true
+                state: "VALIDATED"
             });
         expect(responseTmp.status).toBe(200);
 
@@ -934,7 +935,7 @@ describe("Complex scenarios", () => {
                 includeMetrics: true
             },
             filterOptions: {
-                "tags": "pending"
+                "tags": ["NOT_VALIDATED", "DEPRECATED"]
             },
             data: {
                 title: "Exercise for delete scenario"
@@ -978,7 +979,7 @@ describe("Complex scenarios", () => {
             .send({
                 filterOptions: {
                     state: ["VALIDATED", "ARCHIVED"],
-                    tags: "pending"
+                    tags: ["VALIDATED", "NOT_VALIDATED" ,"DEPRECATED"]
                 },
                 "orderBy": [
                     // When my issue in Sequelize is fixed, it will restore my tags length sorting :
@@ -1196,7 +1197,7 @@ describe("Validations testing", () => {
                 "tag_id": 0,
                 "tag_text": "SomeTest",
                 "category_id": 0,
-                "isValidated": false,
+                "state": "NOT_VALIDATED",
                 "version": 0
             })
             .expect(403);
@@ -1277,7 +1278,23 @@ describe("Validations testing", () => {
             .set('Content-Type', 'application/json')
             .send(some_exercise_data);
         expect(responseTemp.status).toBe(400);
-    })
+    });
+
+    it("POST /api/bulk/create_tags : Simple user cannot create a validated tag", async () => {
+        // creates some tags categories
+        let response = await request
+            .post("/api/bulk/create_tags")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(
+                ["TROLL"].map(tag => ({
+                    text: tag,
+                    category_id: 1,
+                    state: "VALIDATED"
+                }))
+            );
+        expect(response.status).toBe(403);
+    });
 });
 
 // utilities functions

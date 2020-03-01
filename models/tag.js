@@ -1,15 +1,19 @@
 'use strict';
+
+const tagState = require("../controllers/_common/constants")["TAGS"];
+let enumValues = Object.values(tagState);
+
 module.exports = (sequelize, DataTypes) => {
     let Tag = sequelize.define("Tag", {
         text: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        isValidated: {
-            type: DataTypes.BOOLEAN,
+        state: {
+            type: DataTypes.ENUM(enumValues),
             allowNull: false,
-            defaultValue: false
-        }
+            defaultValue: tagState.NOT_VALIDATED
+        },
     }, {
         // https://sequelize.org/master/manual/models-definition.html#configuration
 
@@ -26,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
                     ["id", "tag_id"],
                     ["text", "tag_text"],
                     "category_id",
-                    "isValidated",
+                    "state",
                     "version"
                 ]
             }

@@ -17,8 +17,9 @@ module.exports = (req, res, next) => {
     //      "Tag_Category"."id",
     //      "Tag_Category"."kind" AS "category",
     //      COUNT(*) FILTER (WHERE "tags"."id" IS NOT NULL) AS "total",
-    //      COUNT(*) FILTER (WHERE "tags"."isValidated" = true) AS "total_validated",
-    //      COUNT(*) FILTER(WHERE "tags"."isValidated" = false) AS "total_unvalidated"
+    //      COUNT(*) FILTER (WHERE "tags"."state" = "VALIDATED") AS "total_validated",
+    //      COUNT(*) FILTER(WHERE "tags"."state" = "NOT_VALIDATED") AS "total_unvalidated"
+    //      COUNT(*) FILTER(WHERE "tags"."state" = "DEPRECATED") AS "total_deprecated"
     // FROM "exercises_library"."Tag_Categories" AS "Tag_Category"
     // LEFT OUTER JOIN "exercises_library"."Tags" AS "tags" ON "Tag_Category"."id" = "tags"."category_id"
     // GROUP BY "Tag_Category"."id", "Tag_Category"."kind";
@@ -39,6 +40,7 @@ module.exports = (req, res, next) => {
                         "total": parseInt(cat.get("total")),
                         "total_validated": parseInt(cat.get("total_validated")),
                         "total_unvalidated": parseInt(cat.get("total_unvalidated")),
+                        "total_deprecated": parseInt(cat.get("total_deprecated")),
                     });
             }))
         )
