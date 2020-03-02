@@ -66,6 +66,8 @@ jobs:
         run:  |
           echo "::set-env name=ORIGIN_SPEC::$(echo "$(pwd)/specs/original-spec.yaml" )"
           echo "::set-env name=MODIFIED_SPEC::$(echo "$(pwd)/specs/modified-spec.yaml" )"
+          echo "::set-env name=SPECS_LOG::$(echo "$(pwd)/breaking-changes.log" )"
+          echo "::set-env name=JSON_DIFF_FILE::$(echo "$(pwd)/breaking-changes.json" )"
           echo "::set-env name=GH_COMMENT_FILE::$(echo "$(pwd)/Github-comment.md" )"
 # See : https://github.com/actions/download-artifact/issues/14
       - name: Restore permissions
@@ -74,21 +76,21 @@ jobs:
           chmod -R 777 ${{ env.MODIFIED_SPEC }}
       - name: Generate report
         run: |
-          openapi-diff ${{ env.ORIGIN_SPEC }} ${{ env.MODIFIED_SPEC }} | tee breaking-changes.log
-          sed -n '1!p' breaking-changes.log > breaking-changes.json
+          openapi-diff ${{ env.ORIGIN_SPEC }} ${{ env.MODIFIED_SPEC }} | tee ${{ env.SPECS_LOG }}
+          sed -n '1!p' ${{ env.SPECS_LOG }} > ${{ env.JSON_DIFF_FILE }}
       - uses: actions/upload-artifact@v1
         with:
           name: openapi-diff.json
           path: breaking-changes.json
       - name: Prepare comment on Github PR
         run: |
-          sed -n '1p' breaking-changes.log >> ${{ env.GH_COMMENT_FILE }}
+          sed -n '1p' ${{ env.SPECS_LOG }} >> ${{ env.GH_COMMENT_FILE }}
           echo "\n\n```yaml\n" >> ${{ env.GH_COMMENT_FILE }}
-          cat breaking-changes.json >> ${{ env.GH_COMMENT_FILE }}
+          cat ${{ env.JSON_DIFF_FILE }} >> ${{ env.GH_COMMENT_FILE }}
           echo "\n```\n" >> ${{ env.GH_COMMENT_FILE }}
       - name: comment PR
         uses: machine-learning-apps/pr-comment@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path: ${{ env.GH_COMMENT_FILE }}
+          path: Github-comment.md
