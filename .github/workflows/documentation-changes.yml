@@ -85,9 +85,9 @@ jobs:
       - name: Prepare comment on Github PR
         run: |
           sed -n '1p' ${{ env.SPECS_LOG }} >> ${{ env.GH_COMMENT_FILE }}
-          echo -e "\n\n```yaml\n" >> ${{ env.GH_COMMENT_FILE }}
+          printf "\n\n```yaml\n" >> ${{ env.GH_COMMENT_FILE }}
           sed -n '1!p' ${{ env.SPECS_LOG }} >> ${{ env.GH_COMMENT_FILE }}
-          echo -e "\n```\n" >> ${{ env.GH_COMMENT_FILE }}
+          printf "\n```\n" >> ${{ env.GH_COMMENT_FILE }}
       - name: comment PR
         uses: machine-learning-apps/pr-comment@master
         env:
