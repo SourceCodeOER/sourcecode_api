@@ -73,7 +73,7 @@ jobs:
           chmod -R 777 ${{ env.MODIFIED_SPEC }}
       - name: Generate report
         run: |
-          openapi-diff ${{ env.ORIGIN_SPEC }} ${{ env.MODIFIED_SPEC }} > breaking-changes.log
+          openapi-diff ${{ env.ORIGIN_SPEC }} ${{ env.MODIFIED_SPEC }} | tee breaking-changes.log
           sed -n '1!p' breaking-changes.log > breaking-changes.json
       - uses: actions/upload-artifact@v1
         with:
