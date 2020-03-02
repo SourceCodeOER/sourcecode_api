@@ -271,9 +271,11 @@ describe("Simple case testing", () => {
             .put("/auth/update")
             .set('Content-Type', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
-            .send(
-                Object.assign({}, user, {"fullName": userName})
-            );
+            .send({
+                "fullName": "SUPERMAN",
+                "password": user.password,
+                "role": "super_admin"
+            });
         expect(response.status).toBe(200);
     });
 
@@ -1241,7 +1243,6 @@ describe("Validations testing", () => {
             .set('Content-Type', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN_2)
             .send({
-                "email": "jy95@perdu.com",
                 "fullName": "HACKERMAN",
                 "password": "42",
                 "role": "admin",

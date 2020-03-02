@@ -54,20 +54,24 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: "../definitions.yaml#/components/schemas/BasicUser"
-                - type: object
-                  properties:
-                    password:
-                      type: string
-                      format: password
-                      example: "42"
-                    role:
-                      $ref: "../definitions.yaml#/components/schemas/Roles"
-                    id:
-                      type: integer
-                      description: "The UUID of this user. By default, it will take the one of logged user"
-                      example: 42
+              type: object
+              properties:
+                fullName:
+                  type: string
+                  example: "Alexandre Dewit"
+                  description: "The full name of the user"
+                  minLength: 1
+                  maxLength: 50
+                password:
+                  type: string
+                  format: password
+                  example: "42"
+                role:
+                  $ref: "../definitions.yaml#/components/schemas/Roles"
+                id:
+                  type: integer
+                  description: "The UUID of this user. By default, it will take the one of logged user"
+                  example: 42
       responses:
         '200':
           description: "OK"

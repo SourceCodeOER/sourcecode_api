@@ -87,4 +87,5 @@ You can customize some parts of the API using the following environment variable
 | PORT   | The port to use for the API | 3000  |
 | SECRET_PHRASE | The secretOrPrivateKey for [jwt.sign](https://github.com/auth0/node-jsonwebtoken#jwtsignpayload-secretorprivatekey-options-callback)  | "Super secured passphrase"   |
 | DEBUG  | To print relevant logs using [debug](https://www.npmjs.com/package/debug). Currently, you have the following choices : <br/> <br/> - `sourcecode_api:error_handler` : Print all errors <br/> - `sourcecode_api:error_tracker` : Print only failed requests errors <br/> - `sourcecode_api:files` : Print only files that couldn't deleted <br/> - `sequelize:*` : Print [sequelize](https://www.npmjs.com/package/sequelize) logs <br/> ...  |   |
+| DATABASE_URL  | The postgresql connection URI ( [See postgresl docs for more information](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)  )  |   | 
 |   |   |   |
