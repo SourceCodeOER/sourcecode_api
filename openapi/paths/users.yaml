@@ -40,13 +40,13 @@ paths:
       summary: "Update information about an user"
       description: |
         Any user can freely any information about (him/her)self (except the optional "id" / "role" fields ).  
-        An admin can freely update any user and it is the only one that can use the "id" / "role" fields.
+        An super admin can freely update any user and it is the only one that can use the "id" / "role" fields.
       operationId: "updateUser"
       x-controller: users
       x-operation: updateUser
       tags:
         - user
-        - admin
+        - super_admin
       security:
         - bearerAuth: []
       requestBody:
@@ -54,20 +54,24 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: "../definitions.yaml#/components/schemas/BasicUser"
-                - type: object
-                  properties:
-                    password:
-                      type: string
-                      format: password
-                      example: "42"
-                    role:
-                      $ref: "../definitions.yaml#/components/schemas/Roles"
-                    id:
-                      type: integer
-                      description: "The UUID of this user. By default, it will take the one of logged user"
-                      example: 42
+              type: object
+              properties:
+                fullName:
+                  type: string
+                  example: "Alexandre Dewit"
+                  description: "The full name of the user"
+                  minLength: 1
+                  maxLength: 50
+                password:
+                  type: string
+                  format: password
+                  example: "42"
+                role:
+                  $ref: "../definitions.yaml#/components/schemas/Roles"
+                id:
+                  type: integer
+                  description: "The UUID of this user. By default, it will take the one of logged user"
+                  example: 42
       responses:
         '200':
           description: "OK"
@@ -94,6 +98,29 @@ paths:
           style: deepObject
           schema:
             $ref: "../definitions.yaml#/components/schemas/PaginationCriterias"
+        - in: query
+          name: roles
+          schema:
+            type: array
+            description: "If not empty, only consider the given user role(s). If empty, no user role is ignored"
+            default: []
+            uniqueItems: true
+            items:
+              $ref: "../definitions.yaml#/components/schemas/Roles"
+            maxItems: 3
+        - in: query
+          name: fullName
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 100
+        - in: query
+          name: email
+          schema:
+            type: string
+            format: email
+            minLength: 1
+            maxLength: 100
       responses:
         '200':
           description: "An list of Users with some metadata"

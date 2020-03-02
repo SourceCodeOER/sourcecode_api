@@ -12,7 +12,7 @@ const {
     build_dictionary_for_matching_process,
     matching_process,
 } = require("../_common/utlis_fct");
-const { EXERCISES: exerciseState, TAGS: tagState } = require("../_common/constants");
+const { EXERCISES: exerciseState, TAGS: tagState, USERS: usersRoles } = require("../_common/constants");
 
 module.exports = (req, res, next) => {
 
@@ -75,7 +75,7 @@ function find_exercise_tags_and_search_possible_new_tags_match([id, user, versio
     });
 
     /* istanbul ignore next */
-    if (user.role !== "admin") {
+    if ( ![usersRoles.ADMIN, usersRoles.SUPER_ADMIN].includes(user.role) ) {
         whereOptions.push({
             user_id: user.id
         })

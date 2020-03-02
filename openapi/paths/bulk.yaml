@@ -9,7 +9,7 @@ paths:
       x-controller: bulk
       x-operation: DeleteExercises
       tags:
-        - admin
+        - super_admin
       security:
         - bearerAuth: []
       requestBody:
@@ -44,7 +44,7 @@ paths:
       x-controller: bulk
       x-operation: DeleteTags
       tags:
-        - admin
+        - super_admin
       security:
         - bearerAuth: []
       requestBody:
@@ -79,7 +79,7 @@ paths:
       x-controller: bulk
       x-operation: DeleteTagCategories
       tags:
-        - admin
+        - super_admin
       security:
         - bearerAuth: []
       requestBody:

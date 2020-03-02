@@ -3,6 +3,7 @@ const {check_credentials_on_exercises} = require("../../controllers/_common/utli
 
 const {pass_middleware, check_exercise_state} = require("./common_sub_middlewares");
 const check_user_role = require("../check_user_role");
+const {USERS} = require("../../controllers/_common/constants");
 
 // Arrays for check
 const check_credentials_endpoints = ["DeleteExercises", "ChangeExercisesStatus"];
@@ -49,10 +50,10 @@ module.exports = (operation) => (req, res, next) => {
         chain.if(
             operation["x-operation"] === "createMultipleTags",
             (_req, _res, _next) => {
-                let allowed = ["admin"];
+                let allowed = [USERS.ADMIN, USERS.SUPER_ADMIN];
                 // state property is reserved for admin only ; if simple user don't use it - he/she is allowed
                 if (!_req.body.some(t => t.hasOwnProperty("state"))) {
-                    allowed.push("user");
+                    allowed.push(USERS.USER);
                 }
                 check_user_role(allowed)(_req, _res, _next);
             },

@@ -9,7 +9,7 @@ const user = {
 };
 const userName = "Eric Cartman";
 
-let JWT_TOKEN = ""; // The admin user
+let JWT_TOKEN = ""; // The super admin user
 let JWT_TOKEN_2 = ""; // A simple user
 const tag_categories = ["keywords", "source", "institution", "auteur"];
 const tags = ["java", "UCLOUVAIN", "Jacques Y", "github.com"];
@@ -263,7 +263,7 @@ describe("Simple case testing", () => {
         expect(response.body.hasOwnProperty("password")).toBeFalsy();
         expect(response.body.fullName).toBe(userName);
         expect(response.body.email).toBe(user.email);
-        expect(response.body.role).toBe("admin");
+        expect(response.body.role).toBe("super_admin");
     });
 
     it("PUT /auth/update", async () => {
@@ -271,9 +271,11 @@ describe("Simple case testing", () => {
             .put("/auth/update")
             .set('Content-Type', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN)
-            .send(
-                Object.assign({}, user, {"fullName": userName})
-            );
+            .send({
+                "fullName": "SUPERMAN",
+                "password": user.password,
+                "role": "super_admin"
+            });
         expect(response.status).toBe(200);
     });
 
@@ -294,6 +296,10 @@ describe("Simple case testing", () => {
             .get("/api/users")
             .query('metadata%5Bsize%5D=10')
             .query('metadata%5Bpage%5D=1')
+            .query('roles=user')
+            .query('roles=admin')
+            .query('fullName=Bot')
+            .query('email=jy95@bot.net')
             .set('Accept', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN);
 
@@ -1237,7 +1243,6 @@ describe("Validations testing", () => {
             .set('Content-Type', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN_2)
             .send({
-                "email": "jy95@perdu.com",
                 "fullName": "HACKERMAN",
                 "password": "42",
                 "role": "admin",

@@ -1,3 +1,5 @@
+const {USERS} = require("../../controllers/_common/constants");
+
 module.exports = (operation) => (req, res, next) => {
     const action = operation["x-operation"];
     if (action === "updateUser") {
@@ -8,7 +10,7 @@ module.exports = (operation) => (req, res, next) => {
 };
 
 function handleUserUpdate(req, res, next) {
-    const isAdmin = req.user.role === "admin";
+    const isAdmin = req.user.role === USERS.SUPER_ADMIN;
     const prohibitedPropertiesForUser = ["id", "role"];
 
     if (isAdmin) {

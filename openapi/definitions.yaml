@@ -29,13 +29,14 @@ components:
         5. ARCHIVED : When an exercise is archived / soft deleted
     Roles:
       type: string
-      enum: [admin, user]
+      enum: [super_admin, admin, user]
       default: user
       description: |
-        The type of user. Currently, 2 types are possibles :
+        The type of user. Currently, 3 types are possibles :
 
         1. user : The defaut ( an simple registered user )
-        2. admin : User with additional credentials
+        2. admin : User with additional credentials  
+        3. super_admin : More powerful than an admin 
     TagState:
       type: string
       enum: [NOT_VALIDATED, VALIDATED, DEPRECATED]

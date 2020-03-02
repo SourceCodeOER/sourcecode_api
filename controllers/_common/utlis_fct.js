@@ -11,7 +11,7 @@ const uniqWith = require('lodash.uniqwith');
 const isEqual = require('lodash.isequal');
 
 // state
-const {TAGS: tagState, EXERCISES: exerciseState} = require("./constants");
+const {TAGS: tagState, EXERCISES: exerciseState, USERS: userRoles} = require("./constants");
 
 // Some utilities functions commonly used
 module.exports = {
@@ -520,7 +520,7 @@ function find_unique_tags(tags_array) {
 // For UPDATE / DELETE operations on exercises, we must verify that user is allowed to do that
 function check_credentials_on_exercises({role, id}, exercises_ids) {
     return new Promise((resolve, reject) => {
-        if (role === "admin") {
+        if ([userRoles.ADMIN, userRoles.SUPER_ADMIN].includes(role)) {
             resolve();
         } else {
             models
