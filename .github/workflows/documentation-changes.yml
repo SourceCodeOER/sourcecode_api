@@ -66,6 +66,7 @@ jobs:
         run:  |
           echo "::set-env name=ORIGIN_SPEC::$(echo "$(pwd)/specs/original-spec.yaml" )"
           echo "::set-env name=MODIFIED_SPEC::$(echo "$(pwd)/specs/modified-spec.yaml" )"
+          echo "::set-env name=GH_COMMENT_FILE::$(echo "$(pwd)/Github-comment.md" )"
 # See : https://github.com/actions/download-artifact/issues/14
       - name: Restore permissions
         run: |
@@ -79,3 +80,15 @@ jobs:
         with:
           name: openapi-diff.json
           path: breaking-changes.json
+      - name: Prepare comment on Github PR
+        run: |
+          sed -n '1p' breaking-changes.log >> ${{ env.GH_COMMENT_FILE }}
+          echo "\n\n```yaml\n" >> ${{ env.GH_COMMENT_FILE }}
+          cat breaking-changes.json >> ${{ env.GH_COMMENT_FILE }}
+          echo "\n```\n" >> ${{ env.GH_COMMENT_FILE }}
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: ${{ env.GH_COMMENT_FILE }}
