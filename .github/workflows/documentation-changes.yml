@@ -56,20 +56,21 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: original-spec.yaml
-          path: ./original-spec.yaml
       - name: Download OAS file from TARGET branch
         uses: actions/download-artifact@v1
         with:
           name: modified-spec.yaml
-          path: ./modified-spec.yaml
       - name: Set up env variables
         run:  |
           echo "::set-env name=ORIGIN_SPEC::$(echo "$(pwd)/original-spec.yaml" )"
           echo "::set-env name=MODIFIED_SPEC::$(echo "$(pwd)/modified-spec.yaml" )"
-      - name: Generate report
+# See : https://github.com/actions/download-artifact/issues/14
+      - name: Restore permissions
         run: |
           chmod -R 777 ${{ env.ORIGIN_SPEC }}
           chmod -R 777 ${{ env.MODIFIED_SPEC }}
+      - name: Generate report
+        run: |
           openapi-diff ${{ env.ORIGIN_SPEC }} ${{ env.MODIFIED_SPEC }} > breaking-changes.log
           sed -n '1!p' breaking-changes.log > breaking-changes.json
       - uses: actions/upload-artifact@v1
