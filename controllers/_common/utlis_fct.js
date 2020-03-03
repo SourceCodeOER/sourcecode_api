@@ -206,7 +206,7 @@ module.exports = {
                                             really_new_tags.map(tag => {
                                                 return {
                                                     // no matter of the kind of user, creating tags like that should be reviewed
-                                                    state: tagState.NOT_VALIDATED,
+                                                    state: tagState.PENDING,
                                                     text: tag.text,
                                                     category_id: tag.category_id,
                                                     // some timestamps must be inserted
@@ -330,7 +330,7 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                         really_new_tags.map(tag => {
                             return {
                                 // no matter of the kind of user, creating tags like that should be reviewed
-                                state: tagState.NOT_VALIDATED,
+                                state: tagState.PENDING,
                                 text: tag.text,
                                 category_id: tag.category_id,
                                 // some timestamps must be inserted
@@ -346,7 +346,6 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
             ])
             .then(([_, exercise, tags]) => {
                 // add the newly created tags ids to array so that I can bulk insert easily
-                // TODO
                 const all_tags_ids = existent_tags.concat(
                     tags.map(tag => tag.id)
                 );

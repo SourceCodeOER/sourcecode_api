@@ -1,7 +1,7 @@
 'use strict';
 
 let opts = {tableName: 'Tags'};
-const TagState = require("../controllers/_common/constants")["TAGS"];
+const {TAGS: TagState} = require("../controllers/_common/constants");
 const values = Object.values(TagState);
 
 module.exports = {

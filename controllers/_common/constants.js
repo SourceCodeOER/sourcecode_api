@@ -9,7 +9,8 @@ module.exports = {
     "TAGS": {
         NOT_VALIDATED: "NOT_VALIDATED",
         VALIDATED: "VALIDATED",
-        DEPRECATED: "DEPRECATED"
+        DEPRECATED: "DEPRECATED",
+        PENDING: "PENDING"
     },
     "USERS": {
         ADMIN: "admin",

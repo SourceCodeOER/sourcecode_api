@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
                         text: text,
                         category_id: category_id,
                         // by default, consider a tag as not official
-                        state: tagState.NOT_VALIDATED,
+                        state: tagState.PENDING,
                         // some date
                         updateAt: creationDate,
                         createAt: creationDate

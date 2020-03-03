@@ -671,7 +671,7 @@ describe("Complex scenarios", () => {
 
         expect(created_tag).not.toBe(undefined);
         expect(created_tag.version).toBe(0);
-        expect(created_tag.state).toBe("NOT_VALIDATED");
+        expect(created_tag.state).toBe("PENDING");
 
         // modify it to validate it
         responseTmp = await request
@@ -941,7 +941,7 @@ describe("Complex scenarios", () => {
                 includeMetrics: true
             },
             filterOptions: {
-                "tags": ["NOT_VALIDATED", "DEPRECATED"]
+                "tags": ["PENDING", "NOT_VALIDATED", "DEPRECATED"]
             },
             data: {
                 title: "Exercise for delete scenario"

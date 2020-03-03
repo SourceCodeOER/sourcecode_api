@@ -4,6 +4,7 @@ const {pass_middleware, check_exercise_state} = require("./common_sub_middleware
 
 // Arrays for check
 const check_credentials_endpoints = ["UpdateExercise", "createSingleExercise"];
+const REQUIRED_NUMBER_OF_VALIDATED_TAGS = 3;
 
 module.exports = (operation) => (req, res, next) => {
     // some endpoints need additional verification before allowing access
@@ -33,7 +34,7 @@ module.exports = (operation) => (req, res, next) => {
                 const tags = _req.body.tags.filter(tag => !isNaN(tag));
                 validated_tag_count(
                     tags,
-                    3
+                    REQUIRED_NUMBER_OF_VALIDATED_TAGS
                 )
                     .then(() => _next())
                     .catch((err) => _next(err));
