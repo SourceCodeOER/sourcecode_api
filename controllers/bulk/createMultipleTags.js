@@ -1,7 +1,7 @@
 const models = require('../../models');
 const Sequelize = require("sequelize");
 
-const TagState = require("../_common/constants")["TAGS"];
+const {TAGS: TagState} = require("../_common/constants");
 
 // to prevent duplicates in database
 const {
@@ -36,7 +36,7 @@ module.exports = (req, res, next) => {
                                         // if admin has set explicitly the isValidated
                                         state: (tag.hasOwnProperty("state"))
                                             ? TagState[tag.state]
-                                            : TagState.NOT_VALIDATED,
+                                            : TagState.PENDING,
                                         text: tag.text,
                                         category_id: tag.category_id,
                                         // some timestamps must be inserted
