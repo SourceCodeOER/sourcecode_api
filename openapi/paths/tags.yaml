@@ -83,7 +83,7 @@ paths:
             description: "Filter the tags by their state. By default, no filtering is done."
             items:
               $ref: "../definitions.yaml#/components/schemas/TagState"
-            maxItems: 3
+            maxItems: 4
         - in: query
           name: title
           schema:

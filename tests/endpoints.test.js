@@ -941,7 +941,7 @@ describe("Complex scenarios", () => {
                 includeMetrics: true
             },
             filterOptions: {
-                "tags": ["NOT_VALIDATED", "DEPRECATED"]
+                "tags": ["PENDING", "NOT_VALIDATED", "DEPRECATED"]
             },
             data: {
                 title: "Exercise for delete scenario"

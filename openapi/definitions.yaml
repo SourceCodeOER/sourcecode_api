@@ -39,14 +39,15 @@ components:
         3. super_admin : More powerful than an admin 
     TagState:
       type: string
-      enum: [NOT_VALIDATED, VALIDATED, DEPRECATED]
+      enum: [NOT_VALIDATED, VALIDATED, DEPRECATED, PENDING]
       example: DEPRECATED
       description: |
-        Status of the tag into the system. Currently, 3 states are possibles :  
+        Status of the tag into the system. Currently, 4 states are possibles :  
 
-        1. NOT_VALIDATED : The default state ( for example when an exercise is inserted into the system)  
-        2. VALIDATED : When a tag is officially recognized
-        3. DEPRECATED : When a tag should not be used anymore
+        1. NOT_VALIDATED : When a tag is officially not recognized    
+        2. PENDING : The default state ( for example when an exercise is inserted into the system)     
+        3. DEPRECATED : When a tag should not be used anymore   
+        4. VALIDATED : When a tag is officially recognized  
 # To control include for Exercise
     IncludeOptions:
       type: object

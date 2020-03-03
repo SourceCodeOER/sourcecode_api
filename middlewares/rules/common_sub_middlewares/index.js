@@ -1,6 +1,6 @@
 // Arrays for check
-const not_allowed_for_user = ["VALIDATED", "NOT_VALIDATED"];
-const {USERS} = require("../../../controllers/_common/constants");
+const {USERS, TAGS} = require("../../../controllers/_common/constants");
+const not_allowed_for_user = [TAGS.VALIDATED, TAGS.NOT_VALIDATED];
 const authorizedUsers = [USERS.ADMIN, USERS.SUPER_ADMIN];
 
 module.exports = {
