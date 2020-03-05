@@ -319,7 +319,10 @@ describe("Simple case testing", () => {
     it("GET /api/tags_categories with count properties", async () => {
         let response = await request
             .get("/api/tags_categories")
-            .query("fetchStats=1");
+            .query("fetchStats=1")
+            .query("category_ids=1")
+            .query("category_ids=2")
+            .query("category_ids=3");
         expect(response.status).toBe(200);
         // check that the count is correct ( for example if someone creates a better version that mine with errors ^^)
         expect(Array.isArray(response.body)).toBeTruthy();
@@ -327,7 +330,17 @@ describe("Simple case testing", () => {
         expect(response.body.every(t => t.hasOwnProperty("total_validated"))).toBeTruthy();
         expect(response.body.every(t => t.hasOwnProperty("total_unvalidated"))).toBeTruthy();
         expect(response.body.every(t => t.hasOwnProperty("total_deprecated"))).toBeTruthy();
-        expect(response.body.every(t => t.total === (t.total_validated + t.total_unvalidated + t.total_deprecated))).toBeTruthy();
+        expect(response.body.every(t => t.hasOwnProperty("total_pending"))).toBeTruthy();
+        // to check if total is still correct/coherent
+        const otherFields = ["total_validated", "total_unvalidated", "total_deprecated", "total_pending"];
+        expect(
+            response.body.every(
+                t =>
+                    t.total
+                    ===
+                    otherFields.reduce( (sum, field) => sum + t[field], 0)
+            )
+        ).toBeTruthy();
     });
 
     it("POST /api/bulk/create_tags", async () => {

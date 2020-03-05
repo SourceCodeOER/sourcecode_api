@@ -3,7 +3,7 @@
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV /* istanbul ignore next */ || 'development';
 const debug = require(__dirname + '/../controllers/_common/debug');
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../config/config.js')[env];
 const createSchema = `
     DROP SCHEMA IF EXISTS ${config.schema} CASCADE;
     CREATE SCHEMA ${config.schema};
