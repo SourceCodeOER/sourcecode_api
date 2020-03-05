@@ -48,6 +48,7 @@ module.exports = (req, res, next) => {
                         "total_validated": parseInt(cat.get("total_validated")),
                         "total_unvalidated": parseInt(cat.get("total_unvalidated")),
                         "total_deprecated": parseInt(cat.get("total_deprecated")),
+                        "total_pending": parseInt(cat.get("total_pending")),
                     });
             }))
         )
