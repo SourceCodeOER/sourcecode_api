@@ -1,6 +1,6 @@
 'use strict';
 const Sequelize = require("sequelize");
-const TagState = require("../controllers/_common/constants")["TAGS"];
+const {TAGS: TagState} = require("../controllers/_common/constants");
 
 module.exports = (sequelize, DataTypes) => {
     let Tag_Category = sequelize.define("Tag_Category", {
@@ -52,6 +52,10 @@ module.exports = (sequelize, DataTypes) => {
                         [
                             filterGen(`(WHERE "tags"."state" = '${TagState.DEPRECATED}')`),
                             "total_deprecated"
+                        ],
+                        [
+                            filterGen(`(WHERE "tags"."state" = '${TagState.PENDING}')`),
+                            "total_pending"
                         ],
                     ],
                     group: ["Tag_Category.id", "Tag_Category.kind"],
