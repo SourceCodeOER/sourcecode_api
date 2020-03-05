@@ -31,6 +31,8 @@ jobs:
       # use postgres for the host here because we have specified a container for the job.
       # If we were running the job on the VM this would be localhost
       POSTGRES_HOST: postgres
+      # To specify the schema we want to use
+      DATABASE_SCHEMA: exercises_library
     steps:
       - uses: actions/checkout@v2
       - name: Set DB Port
