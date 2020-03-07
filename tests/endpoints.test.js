@@ -132,7 +132,7 @@ describe("Simple case testing", () => {
         expect(Array.isArray(response.body)).toBeTruthy();
     });
 
-    it("GET /api/tags_by_categories", async () => {
+    it("GET /api/tags_categories", async () => {
         const response = await request
             .get("/api/tags_categories")
             .set('Accept', 'application/json');
@@ -244,6 +244,8 @@ describe("Simple case testing", () => {
             .get("/api/tags_by_categories")
             .query('state=VALIDATED')
             .query('onlySelected=1')
+            .query('countStates=VALIDATED')
+            .query('countStates=PENDING')
             .set('Accept', 'application/json');
         expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
