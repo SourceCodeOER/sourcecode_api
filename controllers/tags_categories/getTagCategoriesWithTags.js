@@ -80,7 +80,7 @@ module.exports = function (req, res, next) {
         ],
         order: [
             ["id", "ASC"],
-            //["tags.total", "DESC"]
+            [SequelizeLitteral(`"tags.total"`), "DESC"]
         ]
     };
 
