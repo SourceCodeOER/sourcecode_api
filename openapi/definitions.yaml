@@ -262,7 +262,18 @@ components:
               minItems: 1
               uniqueItems: true
               items:
-                $ref: "#/components/schemas/TagFull"
+                allOf:
+                  - $ref: "#/components/schemas/TagFull"
+                  - type: object
+                    properties:
+                      total:
+                        type: integer
+                        default: 0
+                        description: |
+                          Counter relevant to the number of exercises that have this tag.  
+                          See the query parameters "countStates" for more information
+                    required:
+                      - total
           required:
             - tags
 # Tag proposal

@@ -28,6 +28,16 @@ paths:
               minimum: 0
               example: 42
               description: "A Tag Category ID"
+        - in: query
+          name: countStates
+          description: | 
+            If not empty, only consider the given exercise state(s) to compute the field "total" inside each tag.   
+            If empty, every exercise state will be considered for the sum.
+          schema:
+            type: array
+            items:
+              $ref: "../definitions.yaml#/components/schemas/State"
+            maxItems: 5
       responses:
         '200':
           description: "An array of Tag category with their related tags"
