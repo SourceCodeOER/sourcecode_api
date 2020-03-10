@@ -86,7 +86,7 @@ components:
           description: "Filter the tags linked to exercise by their state. By default, no filtering is done."
           items:
             $ref: "#/components/schemas/TagState"
-          maxItems: 3
+          maxItems: 4
 # Basic model of a Exercise
     BasicExerciseModel:
       type: object
