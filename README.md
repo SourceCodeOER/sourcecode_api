@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/edc5960b909943b8b05715a2c34fe132)](https://app.codacy.com/gh/SourceCodeOER/sourcecode_api?utm_source=github.com&utm_medium=referral&utm_content=SourceCodeOER/sourcecode_api&utm_campaign=Badge_Grade_Dashboard)
 # Source Code API  [![codecov](https://codecov.io/gh/SourceCodeOER/sourcecode_api/branch/master/graph/badge.svg)](https://codecov.io/gh/SourceCodeOER/sourcecode_api) [![Greenkeeper badge](https://badges.greenkeeper.io/SourceCodeOER/sourcecode_api.svg)](https://greenkeeper.io/) ![](https://github.com/SourceCodeOER/sourcecode_api/workflows/Source%20Code%20CI%2FCD/badge.svg) ![](https://github.com/SourceCodeOER/sourcecode_api/workflows/OAS%20Documentation/badge.svg)
 > the new open source catalogue of computer exercises
 
