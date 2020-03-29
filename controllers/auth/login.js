@@ -8,7 +8,8 @@ module.exports = function (req, res) {
             {
                 id: req.user.id
             },
-            process.env.SECRET_PHRASE || "Super secured passphrase"
+            process.env.SECRET_PHRASE || "Super secured passphrase",
+            { expiresIn: '1h' }
         ),
         user: {
             role: req.user.role,
