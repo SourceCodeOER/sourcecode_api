@@ -13,7 +13,7 @@ jobs:
       - name: Install required tools
         run: |
           npm install speccy -g
-          npm install -g @openapitools/openapi-generator-cli
+          npm install -g @openapitools/openapi-generator-cli@1.0.10-4.2.3
       - name: Set up env variables
         run:  |
           echo "::set-env name=CURRENT_BRANCH::$(echo ${{ github.base_ref }} | sed 's|.*/||')"
