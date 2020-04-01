@@ -13,6 +13,7 @@ paths:
         2. Only the following states are allowed for the field "state" : 
           - DRAFT  
           - PENDING  
+        3. He/She can't use the field "state" inside an tag object of "tags" array
       operationId: createSingleExercise
       x-controller: exercises
       x-operation: createSingleExercise

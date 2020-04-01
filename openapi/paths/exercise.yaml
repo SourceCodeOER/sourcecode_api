@@ -56,7 +56,8 @@ paths:
         1. He/She can only modify his/her own exercises
         2. Only the following states are allowed for the field "state" :
           - DRAFT
-          - PENDING
+          - PENDING  
+        3. He/She can't use the field "state" inside an tag object of "tags" array
       operationId: UpdateExercise
       x-controller: exercises
       x-operation: UpdateExercise
