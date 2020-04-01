@@ -57,8 +57,12 @@ module.exports = (operation) => (req, res, next) => {
                             ? req.body
                             : req.body.exercisesData,
                         // Only takes tags objects
-                        ex => ex.tags.filter(tag => isNaN(tag))
+                        ex => ex.tags
                     )
+                    // if no tags were given
+                    .filter(s => s !== undefined)
+                    // Only takes tags objects
+                    .filter(tags => tags.filter(tag => isNaN(tag)))
                     // reduce result to an array of dimension 1 (needed for middelware)
                     .reduce((acc, val) => acc.concat(val), [])
             )

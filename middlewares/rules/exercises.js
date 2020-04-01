@@ -30,7 +30,8 @@ module.exports = (operation) => (req, res, next) => {
         // Third check that user is allowed to use stats for tag(s)
         chain.if(
             check_credentials_endpoints.includes(operation["x-operation"]),
-            check_tags_state(req.body.tags.filter(tag => isNaN(tag))),
+            // to deal with the fact this security middelware deal with other endpoint that might not have this property
+            check_tags_state( (req.body.tags || []).filter(tag => isNaN(tag))),
             pass_middleware
         ),
         // Fourth check that user have add at least 3 validated tags

@@ -337,10 +337,8 @@ components:
                   - type: integer
                     minimum: 0
                     description: "A Tag ID ( already existent in database )"
-                  - $ref: "#/components/schemas/TagProposal"
-                    description: "A not-existent Tag we want to add"
                   - $ref: "#/components/schemas/TagProposalWithState"
-                    description: "A not-existent Tag with state we want to add (ADMIN ONLY)"
+                    description: "A not-existent Tag with state we want to add"
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
               minItems: 3 # We must always put at least N tag(s) in the database
