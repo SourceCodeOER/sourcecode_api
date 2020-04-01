@@ -41,7 +41,7 @@ module.exports = (req, res, next) => {
                 through: {
                     attributes: []
                 },
-                required: true,
+                required: false,
             }],
             where: Object.assign({}, ...whereConditions),
             order: [
