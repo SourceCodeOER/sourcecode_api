@@ -1,7 +1,7 @@
 const chain = require('connect-chain-if');
 const {check_credentials_on_exercises} = require("../../controllers/_common/utlis_fct");
 
-const {pass_middleware, check_exercise_state} = require("./common_sub_middlewares");
+const {pass_middleware, check_exercise_state, check_tags_state} = require("./common_sub_middlewares");
 const check_user_role = require("../check_user_role");
 const {USERS} = require("../../controllers/_common/constants");
 
@@ -45,6 +45,27 @@ module.exports = (operation) => (req, res, next) => {
                     .filter(s => s !== undefined)
             ),
             pass_middleware
+        ),
+        // If endpoint === createMultipleExercises , we should check the state given in exercise tags
+        chain.if(
+            operation["x-operation"] === "createMultipleExercises",
+            // as this endpoint use 2 different schema, extraction is a little different
+            check_tags_state(
+                Array
+                    .from(
+                        (req.is("json"))
+                            ? req.body
+                            : req.body.exercisesData,
+                        // Only takes tags objects
+                        ex => ex.tags
+                    )
+                    // if no tags were given
+                    .filter(s => s !== undefined)
+                    // Only takes tags objects
+                    .filter(tags => tags.filter(tag => isNaN(tag)))
+                    // reduce result to an array of dimension 1 (needed for middelware)
+                    .reduce((acc, val) => acc.concat(val), [])
+            )
         ),
         // If endpoint === createMultipleTags , we should check if the user is authorized to include "state" property
         chain.if(

@@ -205,8 +205,9 @@ module.exports = {
                                         .bulkCreate(
                                             really_new_tags.map(tag => {
                                                 return {
-                                                    // no matter of the kind of user, creating tags like that should be reviewed
-                                                    state: tagState.PENDING,
+                                                    // by default, creating tags like that should be reviewed
+                                                    // (except if it is created by an admin)
+                                                    state: (tag.hasOwnProperty("state")) ? tag.state : tagState.PENDING,
                                                     text: tag.text,
                                                     category_id: tag.category_id,
                                                     // some timestamps must be inserted
@@ -329,8 +330,9 @@ function store_single_exercise(user, exercise_data, existent_tags, really_new_ta
                     .bulkCreate(
                         really_new_tags.map(tag => {
                             return {
-                                // no matter of the kind of user, creating tags like that should be reviewed
-                                state: tagState.PENDING,
+                                // by default, creating tags like that should be reviewed
+                                // (except if it is created by an admin)
+                                state: (tag.hasOwnProperty("state")) ? tag.state : tagState.PENDING,
                                 text: tag.text,
                                 category_id: tag.category_id,
                                 // some timestamps must be inserted

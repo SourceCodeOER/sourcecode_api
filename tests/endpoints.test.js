@@ -453,7 +453,8 @@ describe("Complex scenarios", () => {
             tags: some_tags_ids.concat(
                 ["SOME_TAG1", "SOME_TAG2", "SOME_TAG3", "some_Tag3"].map(tag => ({
                     text: tag,
-                    category_id: tag_categories_ids[0]
+                    category_id: tag_categories_ids[0],
+                    state: "PENDING"
                 }))
             ),
             "state": "DRAFT"
@@ -479,6 +480,7 @@ describe("Complex scenarios", () => {
         let data = response.data[0];
         expect(data.version).toBe(0);
         expect(data.state).toBe("DRAFT");
+        expect(data.tags.some(tag => tag.state === "PENDING")).toBe(true);
 
         // A simple user should not be able to delete exercises
         await request
@@ -1050,6 +1052,7 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .field("tags[1][category_id]", 1)
             .field("tags[2][text]", "MULTI PART exercise 3")
             .field("tags[2][category_id]", 1)
+            .field("tags[2][state]", "DEPRECATED")
             .field("tags[3]", 1)
             .field("tags[4]", 2)
             .field("tags[5]", 3);
@@ -1058,6 +1061,10 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         const exercise = await search_exercise(1, search_criteria);
         expect(exercise.data[0].file).not.toBe(null);
         expect(exercise.data[0].url).not.toBe(null);
+        // See if we can find the deprecated tag
+        expect(exercise.data[0].tags
+            .some(tag => tag["tag_text"] === "MULTI PART exercise 3" && tag.state === "DEPRECATED")
+        ).toBe(true);
 
         responseTmp = await request
             .put("/api/exercises/" + exercise.data[0].id)
@@ -1072,11 +1079,16 @@ describe("Using multipart/form-data (instead of JSON)", () => {
             .field("tags[0][category_id]", 1)
             .field("tags[1][text]", "MULTI PART exercise 2")
             .field("tags[1][category_id]", 1)
+            // This time, let's see if the system had recognized the similar tags (including the one with no state set)
             .field("tags[2][text]", "MULTI PART exercise 3")
             .field("tags[2][category_id]", 1)
             .field("tags[3]", 1)
             .field("tags[4]", 2)
-            .field("tags[5]", 3);
+            .field("tags[5]", 3)
+            // Add a new tag with state ( to trigger validation & testing )
+            .field("tags[6][text]", "MULTI PART exercise 42")
+            .field("tags[6][category_id]", 1)
+            .field("tags[6][state]", "NOT_VALIDATED");
         expect(responseTmp.status).toBe(200);
 
         const exercise2 = await search_exercise(1, search_criteria);
@@ -1084,8 +1096,15 @@ describe("Using multipart/form-data (instead of JSON)", () => {
         expect(exercise2.data[0].url).toBe(exercise2.data[0].url);
         expect(exercise2.data[0].title).toBe(title);
         expect(exercise2.data[0].description).toBe("Something changes ...");
-        expect(exercise2.data[0].tags).toHaveLength(exercise.data[0].tags.length);
-
+        expect(exercise2.data[0].tags).toHaveLength(exercise.data[0].tags.length + 1);
+        // This time, let's see if the system had recognized the similar tags (including the one with no state set)
+        expect(exercise2.data[0].tags
+            .some(tag => tag["tag_text"] === "MULTI PART exercise 3" && tag.state === "DEPRECATED")
+        ).toBe(true);
+        // And also find the NOT_VALIDATED tag
+        expect(exercise2.data[0].tags
+            .some(tag => tag["tag_text"] === "MULTI PART exercise 42" && tag.state === "NOT_VALIDATED")
+        ).toBe(true);
     });
     it("Should be able to upload multiple exercises with their linked files then delete one of them", async () => {
 
@@ -1275,6 +1294,25 @@ describe("Validations testing", () => {
                 category_id: 42
             })),
             "state": "VALIDATED"
+        };
+        let responseTemp = await request
+            .post("/api/create_exercise")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send(some_exercise_data);
+        expect(responseTemp.status).toBe(403);
+    });
+
+    it("POST /api/create_exercise : An simple user cannot insert a exercise with tags state", async () => {
+        // creates one exercise
+        const some_exercise_data = {
+            "title": "HELLO WORLD",
+            "description": "Some verrrrrrrrrry long description here",
+            tags: ["SOME_TAG1", "SOME_TAG2", "SOME_TAG3"].map(text => ({
+                text: text,
+                category_id: 42,
+                state: "VALIDATED"
+            }))
         };
         let responseTemp = await request
             .post("/api/create_exercise")
