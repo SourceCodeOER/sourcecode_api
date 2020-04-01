@@ -27,8 +27,8 @@ module.exports = {
                     COUNT(*) FILTER (WHERE ex.state = 'VALIDATED') AS "total_validated",
                     COUNT(*) FILTER (WHERE ex.state = 'NOT_VALIDATED') AS "total_not_validated",
                     COUNT(*) FILTER (WHERE ex.state = 'ARCHIVED') AS "total_archived"
-                FROM "exercises_library"."Exercises" ex
-                LEFT JOIN "exercises_library"."Exercises_Tags" et
+                FROM ${WithSchema(schema, "Exercises")} ex
+                LEFT JOIN ${WithSchema(schema, "Exercises_Tags")} et
                 ON et."exercise_id" = ex.id
                 GROUP BY et."tag_id"
             WITH DATA;

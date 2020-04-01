@@ -43,8 +43,8 @@ module.exports = function (req, res, next) {
         where: Object.assign({}, ...criteria),
         include: [
             {
-                // by default, it will do a left join, just change that to a inner join
-                required: true,
+                // WORKAROUND : normally I should use "required: true" but Sequelize has an bug on empty row cases
+                required: false,
                 model: models.Tag,
                 attributes: [
                     ["id", "tag_id"],
@@ -88,13 +88,15 @@ module.exports = function (req, res, next) {
         .Tag_Category
         .findAll(options)
         .then(result => {
-            let categories = result.map(cat => {
-                let newCat = cat.toJSON();
-                newCat["tags"] = newCat["tags"].map(tag => {
-                    tag["total"] = Number(tag["total"]);
-                    return tag;
-                });
-                return newCat;
+            let categories = result
+                .filter(cat => cat.get("tags").length > 0)
+                .map(cat => {
+                    let newCat = cat.toJSON();
+                    newCat["tags"] = newCat["tags"].map(tag => {
+                        tag["total"] = Number(tag["total"]);
+                        return tag;
+                    });
+                    return newCat;
             });
             res.send(categories);
         })
