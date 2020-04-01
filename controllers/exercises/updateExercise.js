@@ -132,8 +132,9 @@ function insert_new_tags_if_there_is_at_least_one(tags_to_be_inserted, t) {
         return models
             .Tag
             .bulkCreate(tags_to_be_inserted.map(tag => ({
-                // no matter of the kind of user, creating tags like that should be reviewed
-                state: tagState.NOT_VALIDATED,
+                // by default, creating tags like that should be reviewed
+                // (except if it is created by an admin)
+                state: (tag.hasOwnProperty("state")) ? tag.state : tagState.PENDING,
                 text: tag.text,
                 category_id: tag.category_id,
                 // some timestamps must be inserted

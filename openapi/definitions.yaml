@@ -294,6 +294,14 @@ components:
       required:
         - text
         - category_id
+# TagProposal with state (only for admin)
+    TagProposalWithState:
+      allOf:
+        - $ref: "#/components/schemas/TagProposal"
+        - type: object
+          properties:
+            state:
+              $ref: "#/components/schemas/TagState"
 # Tag updated / validated
     TagFull:
       allOf:
@@ -331,6 +339,8 @@ components:
                     description: "A Tag ID ( already existent in database )"
                   - $ref: "#/components/schemas/TagProposal"
                     description: "A not-existent Tag we want to add"
+                  - $ref: "#/components/schemas/TagProposalWithState"
+                    description: "A not-existent Tag with state we want to add (ADMIN ONLY)"
               description: "Mixed array that contains existent tag(s) or not"
               uniqueItems: true
               minItems: 3 # We must always put at least N tag(s) in the database
