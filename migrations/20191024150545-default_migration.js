@@ -153,7 +153,7 @@ module.exports = {
                 email character varying(255) NOT NULL,
                 password character varying(255) NOT NULL,
                 "fullName" character varying(255) NOT NULL,
-                role exercises_library."enum_Users_role" NOT NULL
+                role ${WithSchema(schema, "enum_Users_role")} NOT NULL
             );
             
             CREATE SEQUENCE ${WithSchema(schema, "Users_id_seq")}
