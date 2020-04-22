@@ -16,12 +16,17 @@ jobs:
           npm install -g @openapitools/openapi-generator-cli@1.0.10-4.2.3
       - name: Set up env variables
         run:  |
-          echo "::set-env name=CURRENT_BRANCH::$(echo ${{ github.base_ref }} | sed 's|.*/||')"
-          echo "::set-env name=TARGET_BRANCH::$(echo ${{ github.head_ref }} | sed 's|.*/||')"
-      - name: Clones repository with the two separate branch ( ${{ env.CURRENT_BRANCH }} and ${{ env.TARGET_BRANCH }})
-        run: |
-          git clone -b ${{ env.TARGET_BRANCH }} --depth 1 --single-branch https://github.com/${{ github.repository }}.git A
-          git clone -b ${{ env.CURRENT_BRANCH }} --depth 1 --single-branch https://github.com/${{ github.repository }}.git B
+          echo "::set-env name=CURRENT_BRANCH::$(echo ${{ github.head_ref }} | sed 's|.*/||')"
+          echo "::set-env name=TARGET_BRANCH::$(echo ${{ github.base_ref }} | sed 's|.*/||')"
+      - name: Clone repository in branch ${{ env.TARGET_BRANCH }}
+        uses: actions/checkout@v2
+        with:
+          path: 'A'
+          ref: ${{ github.base_ref }}
+      - name: Clone repository in branch ${{ env.CURRENT_BRANCH }}
+        uses: actions/checkout@v2
+        with:
+          path: 'B'
       - name: Check if OAS from ${{ env.CURRENT_BRANCH }} is valid
         run: |
           npx openapi-generator validate -i B/api.yml
