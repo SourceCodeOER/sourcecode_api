@@ -36,7 +36,7 @@
     "lodash.uniqwith": "^4.5.0",
     "mime-types": "latest",
     "morgan": "^1.10.0",
-    "move-file": "^1.2.0",
+    "move-file": "^2.0.0",
     "multer": "^1.4.2",
     "openapi-enforcer": "^1.10.1",
     "openapi-enforcer-middleware": "^1.2.2",
