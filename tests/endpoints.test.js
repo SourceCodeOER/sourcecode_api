@@ -94,6 +94,17 @@ beforeAll(() => {
 });
 
 describe("Simple case testing", () => {
+
+    it("POST /auth/verify : Valid token", async () => {
+        await request
+            .post("/auth/verify")
+            .set('Content-Type', 'application/json')
+            .send({
+                token: JWT_TOKEN
+            })
+            .expect(200);
+    });
+
     it("POST /api/bulk/create_or_find_tag_categories", async () => {
         const response = await request
             .post("/api/bulk/create_or_find_tag_categories")
@@ -141,11 +152,10 @@ describe("Simple case testing", () => {
     });
 
     it("GET /api/exercises/{id} : 404 error", async () => {
-        const response = await request
+        await request
             .get("/api/exercises/" + 42)
             .set('Accept', 'application/json')
             .expect(404);
-        expect(response.status).toBe(404);
     });
 
     it("POST /api/search with no exercise", async () => {
@@ -483,14 +493,14 @@ describe("Complex scenarios", () => {
         expect(data.tags.some(tag => tag.state === "PENDING")).toBe(true);
 
         // A simple user should not be able to delete exercises
-        await request
+        response = await request
             .delete("/api/bulk/delete_exercises")
             .set('Accept', 'application/json')
             .set('Authorization', 'bearer ' + JWT_TOKEN_2)
             .send([
                 data.id
-            ])
-            .expect(403);
+            ]);
+        expect(response.status).toBe(403);
 
         // A simple user should not be able to modify a exercise that doesn't belong to him
         let newExerciseVersion = {
@@ -829,9 +839,11 @@ describe("Complex scenarios", () => {
                 .set('Authorization', 'bearer ' + JWT_TOKEN)
                 .set('Content-Type', 'application/json')
                 .send({text: tag, category_id: 1})
-                .expect(200)
         }));
         expect(responses).toHaveLength(tags.length);
+        expect(
+            responses.every(item => item.status === 200)
+        ).toBeTruthy();
         let responseTmp;
         // creates a configuration
         responseTmp = await request
@@ -1226,6 +1238,23 @@ describe("Validations testing", () => {
             .set('Content-Type', 'application/json')
             .send(Object.assign({}, user, {fullName: userName}))
             .expect(409);
+    });
+
+    it("POST /auth/verify : Expired token", async () => {
+        // this JWT token is at least expired from 23/04/2020 (fetched from my browser)
+        const tokenParts = [
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+            "eyJpZCI6MSwiaWF0IjoxNTg3NDk3NjI3LCJleHAiOjE1ODc1MDEyMjd9",
+            "3bbBZwSlxRbJ4tFAcv3viae43nnSaKDm40kzXcQmY0M"
+        ];
+        const tokenExpired = tokenParts.join(".");
+        let response = await request
+            .post("/auth/verify")
+            .set('Content-Type', 'application/json')
+            .send({
+                token: tokenExpired
+            });
+        expect(response.status).not.toBe(200);
     });
 
     it("PUT /api/tags : A simple user cannot modify a tag", async () => {
