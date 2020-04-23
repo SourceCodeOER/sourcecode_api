@@ -839,11 +839,9 @@ describe("Complex scenarios", () => {
                 .set('Authorization', 'bearer ' + JWT_TOKEN)
                 .set('Content-Type', 'application/json')
                 .send({text: tag, category_id: 1})
+                .expect(200)
         }));
         expect(responses).toHaveLength(tags.length);
-        expect(
-            responses.every(item => item.status === 200)
-        ).toBeTruthy();
         let responseTmp;
         // creates a configuration
         responseTmp = await request
