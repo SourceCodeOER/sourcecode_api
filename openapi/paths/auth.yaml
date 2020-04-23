@@ -84,6 +84,38 @@ paths:
             application/json:
               schema:
                 $ref: "../definitions.yaml#/components/schemas/ErrorObject"
+  /auth/verify:
+    post:
+      summary: "Verify if given JWT token is valid (and not expired)"
+      operationId: verify
+      x-controller: auth
+      x-operation: verify
+      tags:
+        - guest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  pattern: '^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$'
+                  description: |
+                    An [JWT Token](https://jwt.io/) string 
+              required:
+                - token 
+      responses:
+        '200':
+          description: OK
+        # Definition of all error statuses
+        default:
+          description: "Whatever error : 4XX - Client error (Bad Request, Unauthorized, etc.) , 5XX - Server error"
+          content:
+            application/json:
+              schema:
+                $ref: "../definitions.yaml#/components/schemas/ErrorObject"
 components:
   schemas:
     Auth:

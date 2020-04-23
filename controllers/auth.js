@@ -1,5 +1,6 @@
 const login = require("./auth/login");
 const register = require("./auth/register");
+const verify = require("./auth/verify");
 
 module.exports = function () {
     // useful for Dependency Injection
@@ -9,6 +10,7 @@ module.exports = function () {
     // add endpoints
     controller.register = register;
     controller.signIn = login;
+    controller.verify = verify;
 
     return controller;
 };
