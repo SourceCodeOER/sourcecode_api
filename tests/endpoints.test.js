@@ -236,6 +236,17 @@ describe("Simple case testing", () => {
             .expect(404);
     });
 
+    it("POST /api/configurations with no tags", async () => {
+        await request
+            .post("/api/configurations")
+            .set('Authorization', 'bearer ' + JWT_TOKEN_2)
+            .set('Content-Type', 'application/json')
+            .send({
+                name: "UCLouvain exercises in Java",
+            })
+            .expect(200);
+    });
+
     it("GET /api/tags with all settings used", async () => {
         const response = await request
             .get("/api/tags")
