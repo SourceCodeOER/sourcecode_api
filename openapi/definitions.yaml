@@ -594,7 +594,7 @@ components:
           items:
             type: integer
             minimum: 0
-          minItems: 1
+          default: []
       required:
         - name
         - tags
