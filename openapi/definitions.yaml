@@ -594,10 +594,8 @@ components:
           items:
             type: integer
             minimum: 0
-          minItems: 1
       required:
         - name
-        - tags
     ExistentConfiguration:
       allOf:
         - $ref: "#/components/schemas/ConfigurationProposal"

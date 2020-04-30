@@ -42,10 +42,11 @@ module.exports = (req, res, next) => {
                             return models
                                 .Configuration_Tag
                                 .bulkCreate(
-                                    req.body.tags.map(tag => ({
-                                        tag_id: tag,
-                                        configuration_id: configuration.id
-                                    })), {
+                                    (req.body.tags /* istanbul ignore next */ || [])
+                                        .map(tag => ({
+                                            tag_id: tag,
+                                            configuration_id: configuration.id
+                                        })), {
                                         transaction: t
                                     });
                         });
