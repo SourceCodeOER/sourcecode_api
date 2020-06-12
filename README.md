@@ -23,7 +23,7 @@ For more examples and API details, see [API documentation](https://sourcecodeoer
 npm install
 ```
 
-2. Creates a database (settings are stored in `config/config.json`)
+2. Creates a database (settings are stored in `config/config.js`)
 ```
 npx sequelize db:create
 ```
