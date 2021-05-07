@@ -2,7 +2,8 @@ name: Source Code API Breaking Changes
 # Everyone is happy with breaking changes ^^
 on:
   pull_request:
-
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 jobs:
   build-oas-artefacts:
     runs-on: ubuntu-latest
